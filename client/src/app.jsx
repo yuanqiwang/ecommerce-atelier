@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Overview from './components/Overview/Overview.jsx'
+import Review from './components/Review/Review.jsx'
+import Related from './components/Related/Related.jsx'
+import QA from './components/QA/QA.jsx'
+
 
 
 
@@ -14,10 +19,10 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <Overview />
-      <Related />
+      {/* <Overview /> */}
+      {/* <Related /> */}
       <QA />
-      <Review />
+      {/* <Review /> */}
     </div>)
   }
 }
