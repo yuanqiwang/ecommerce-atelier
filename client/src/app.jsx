@@ -20,7 +20,7 @@ class App extends React.Component {
   render () {
     return (<div>
       {/* <Overview /> */}
-      {/* <Related /> */}
+      <Related />
       <QA />
       {/* <Review /> */}
     </div>)
