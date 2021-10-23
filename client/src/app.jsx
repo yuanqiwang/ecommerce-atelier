@@ -22,7 +22,7 @@ class App extends React.Component {
       {/* <Overview /> */}
       <Related />
       <QA />
-      {/* <Review /> */}
+      <Review />
     </div>)
   }
 }
