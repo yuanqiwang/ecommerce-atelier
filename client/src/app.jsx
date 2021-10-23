@@ -19,7 +19,7 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      {/* <Overview /> */}
+      <Overview />
       <Related />
       <QA />
       <Review />
