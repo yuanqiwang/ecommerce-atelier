@@ -1,0 +1,54 @@
+#related {
+  margin: 0 auto;
+  /* max-width: 1600px; */
+  width: 70%;
+  /* box-sizing: border-box; */
+}
+
+
+#rp-image1 {
+  display: inline-block;
+  /* object-fit: cover; */
+  /* display: flex; */
+  width: 200px;
+  border-style: groove;
+  height: 280px;
+  margin: 1rem;
+  margin-left: 0;
+  color: grey;
+}
+
+#rp-image {
+  display: inline-block;
+  /* object-fit: cover; */
+  /* display: flex; */
+  width: 200px;
+  border-style: groove;
+  height: 280px;
+  margin: 1rem;
+  color: grey;
+}
+
+#yo-image1 {
+  display: inline-block;
+  /* object-fit: cover; */
+  /* display: flex; */
+  width: 200px;
+  border-style: groove;
+  height: 280px;
+  margin: 1rem;
+  margin-left: 0;
+  color: grey;
+}
+
+
+#yo-image {
+  display: inline-block;
+  /* object-fit: cover; */
+  /* display: flex; */
+  width: 200px;
+  border-style: groove;
+  height: 280px;
+  margin: 1rem;
+  color: grey;
+}
