@@ -6,7 +6,7 @@ import Related from './components/Related/Related.jsx'
 import QA from './components/QA/QA.jsx'
 
 
-
+let productID = '59553';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class App extends React.Component {
     return (<div>
       <Overview />
       <Related />
-      <QA />
+      <QA productID={productID}/>
       <Review />
     </div>)
   }
