@@ -39,6 +39,7 @@
 }
 
 .question {
+  margin-top: 10px;
   margin-right: auto;
   font-weight: 500;
 }
@@ -47,10 +48,15 @@
   font-size: 12px;
 }
 
-.helpful, .answerby{
+.helpful {
   display: inline-flex;
   margin-left: 3px;
   margin-right: 3px;
+}
+
+.answerby {
+  display: inline-flex;
+  margin: 3px 10px 3px 10px;
 }
 
 .underscore {

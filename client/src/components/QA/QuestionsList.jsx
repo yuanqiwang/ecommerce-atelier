@@ -1,17 +1,13 @@
 import React from 'react'
-import Question from './Questions.jsx'
+import Question from './Question.jsx'
 
-class QuestionsList extends React.Component {
-
-
-  render() {
-    return (
-      <div className='main-questions'>
-        <Question/>
-      </div>
-
-    )
-  }
+const QuestionsList = (props) => {
+  return (
+    <div className='main-questions'>
+      {props.questions.map(question => <Question question={question} key={question.question_id}/>)}
+    </div>
+  )
 }
+
 
 export default QuestionsList;

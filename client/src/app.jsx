@@ -7,8 +7,6 @@ import QA from './components/QA/QA.jsx'
 
 import axios from 'axios';
 
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +33,7 @@ class App extends React.Component {
     return (<div>
       <Overview />
       <Related relatedProductArr={this.state.relatedProductArr}/>
-      <QA />
+      <QA productID={this.state.productId}/>
       <Review />
     </div>)
   }
