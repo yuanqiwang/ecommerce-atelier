@@ -1,11 +1,29 @@
 import React from 'react'
+import Stars from './Stars.jsx'
+import Sliders from './Sliders.jsx'
+import UserReviews from './UserReviews.jsx'
+import Buttons from './Buttons.jsx'
 
 
 class Review extends React.Component {
 
   render() {
     return (
-      <div>This will be Ratings and Review section</div>
+      <>
+      <h2> Part 4 : This will be Ratings & Reviews section</h2>
+      <div className="review-grid">
+       <div id="left-column">
+         Reviews & Ratings
+         <Stars />
+         <Sliders />
+       </div>
+       <div id="right-column">
+         # reviews, sorted by ....
+         <UserReviews />
+         <Buttons />
+       </div>
+      </div>
+      </>
     )
   }
 
