@@ -31,6 +31,10 @@ class App extends React.Component {
 
   render () {
     return (<div>
+      <div id="header">
+        <h1>Logo</h1>
+        <div id="search"></div>
+      </div>
       <Overview />
       <Related relatedProductArr={this.state.relatedProductArr}/>
       <QA productID={this.state.productId}/>

@@ -1,0 +1,38 @@
+#overview {
+  width: 70%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
+#overview_image_gallery {
+  position: relative;
+  background: #EEE;
+  text-align: center;
+  padding: 20px;
+}
+
+#overview_image_gallery img {
+  max-height: 500px;
+}
+
+#overview_product_options {
+  background: #EEE;
+  border-left: 5px dotted #DDD;
+  padding: 0 20px;
+}
+
+#overview_thumbnails {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.overview_thumbnail {
+  width: 75px;
+  padding: 3px;
+  border: 1px solid lightgrey;
+  margin: 1px 0;
+}

@@ -2,9 +2,20 @@
   font-family: 'Lato', sans-serif;
 }
 
+
+#header {
+  width: 70%;
+  margin: 10px auto;
+  background: grey;
+  height: 100px;
+  line-height: 100px;
+  padding: 0 20px;
+}
+
 .review-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
 }
+
 

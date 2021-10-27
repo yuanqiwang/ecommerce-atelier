@@ -4,7 +4,7 @@ To fill out
 
 ## Setup/Installation
 * Clone this repo to your desktop
-* Use command `npm run start-dev` to start the server
+* Use command `npm run react-dev` to start the server
 * Open `js/index.html` in your browser
 
 
