@@ -73,3 +73,8 @@
   padding-top: 10px;
   font-weight: bold;
 }
+
+.scroll {
+  overflow-y: scroll;
+  max-height: 150px;
+}

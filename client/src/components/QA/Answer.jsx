@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 const Answer = ({answer}) => {
+
+  //[helpfulness, setHelpfulness] = useState(answer.helpfulness);
+
   return (
-    <div>
+    <div className='answer'>
       <div className='question'>A:
           <span className ='tiny'> {answer.body}</span>
       </div>
