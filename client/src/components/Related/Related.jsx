@@ -1,27 +1,22 @@
-import React from 'react';
-import RP from './related_components/RP.jsx';
+import React, {useState, useEffect} from 'react';
+import RP_sub from './related_components/RP-sub.jsx';
 import YO from './related_components/YO.jsx';
 
-class Related extends React.Component {
+const Related =(props) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      productId: 60221
-    }
-  }
 
-  render() {
-    return (
-      <div id='related'>
-        <br/>
-        <h2> Part 2 : This will be Related Products section</h2>
-        <RP />
-        <YO />
-        <br/>
-      </div>
-    )
-  }
+  return (
+    <div id='related'>
+      <br/>
+      <h2> Part 2 : This will be Related Products section</h2>
+      <h3>RELATED PRODUCTS</h3>
+      <section className = 'rp-cardrow'>
+        {props.relatedProductArr.map((item, i) => <RP_sub key={i} item ={item} /> )}
+      </section>
+      <YO />
+      <br/>
+    </div>
+  );
 
 }
 
