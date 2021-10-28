@@ -20,10 +20,7 @@ class QA extends React.Component {
   componentDidMount() {
     axios.get(`/qa/${this.props.productID}`)//{params: {productID: this.props.productID}}
       .then(({data})=> {
-        // console.log('not sorted?', data.results);
-        let questions = data.results;
-        questions.sort((a, b) => {return b['question_helpfulness'] - a['question_helpfulness']})
-        this.setState({questions: questions})
+        this.setState({questions: data})
       })
       .catch(
         console.log('why is error display?')

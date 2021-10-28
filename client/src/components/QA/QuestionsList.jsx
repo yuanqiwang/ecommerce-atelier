@@ -3,13 +3,22 @@ import Question from './Question.jsx'
 
 const QuestionsList = (props) => {
 
+  const [questionList, setQuestionList] = useState(props.questions);
   const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
   const [moreQuestionVisible, setMoreQuestionVisible] = useState(true);
-
+  console.log('x',props.questions)
   useEffect(() => {
-    console.log('clicked ask as question')
-  })
+    // console.log('effect:', questionList)
+    if (props.questions.length > 0) {
+      console.log('effect2')
+      setMoreQuestionVisible(true)
+    }
+  }, [])
 
+
+  const moreQuestions = () => {
+    console.log()
+  }
 
   return (
     <div>
@@ -20,7 +29,8 @@ const QuestionsList = (props) => {
       {moreQuestionVisible ?
         <div className='more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
             MORE ANSWERED QUESTIONS
-        </div> : null}
+        </div>
+        : null}
 
          <div className='more-question' onClick={() => {console.log('ask a questions')}}> ASK A QUESTION + </div>
       </div>

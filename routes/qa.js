@@ -14,8 +14,10 @@ router.get('/:productId', (req, res) => {
     }
   })
     .then(({data}) => {
+      let questions = data.results;
+      questions.sort((a, b) => {return b['question_helpfulness'] - a['question_helpfulness']})
+      res.json(questions)
 
-      res.json(data)
     })
     .catch(()=> res.sendStatus(404))
 })

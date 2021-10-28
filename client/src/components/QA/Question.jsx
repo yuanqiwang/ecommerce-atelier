@@ -3,10 +3,6 @@ import Answer from './Answer.jsx'
 
 const Question = ({question}) => {
 
-  // const [answerData, setAnswerData] = useState([]);
-  // const [questionBody, setQuestionBody] = useState('');
-  // const [questionHelpfulness, setQuestionHelpfulness] = useState();
-  // const [answerData, setAnswerData] =useState();
   const [questionData, setQuestionData] = useState({
     questionBody: question.question_body,
     questionHelpfulness: question.question_helpfulness,
