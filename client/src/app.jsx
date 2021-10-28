@@ -23,11 +23,11 @@ class App extends React.Component {
     axios
       .get(`/product/info/${this.state.productId}`)
       .then((result) => {
-        console.log(result.data)
+        //console.log(result.data)
         this.setState({
           relatedProductArr: result.data['related'],
           reviews: result.data['review']['results'],
-          stars: result.data['reviewStars']
+          reviewStars: result.data['reviewStars']
         })
       })
   }
@@ -45,6 +45,7 @@ class App extends React.Component {
       <Review
         productID={this.state.productId}
         reviews={this.state.reviews}
+        stars={this.state.reviewStars}
       />
     </div>)
   }
