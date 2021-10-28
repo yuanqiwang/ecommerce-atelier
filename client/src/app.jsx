@@ -12,7 +12,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: 60221,
-      relatedProductArr: []
+      relatedProductArr: [],
+      reviews: []
     }
   }
 
@@ -21,9 +22,10 @@ class App extends React.Component {
     axios
       .get(`/product/info/${this.state.productId}`)
       .then((result) => {
-        console.log(result.data['related']);
+        console.log(result.data['review']);
         this.setState({
-          relatedProductArr: result.data['related']
+          relatedProductArr: result.data['related'],
+          reviews: result.data['review']['results']
         })
       })
   }
@@ -38,7 +40,10 @@ class App extends React.Component {
       <Overview />
       <Related relatedProductArr={this.state.relatedProductArr}/>
       <QA productID={this.state.productId}/>
-      <Review />
+      <Review
+        productID={this.state.productId}
+        reviews={this.state.reviews}
+      />
     </div>)
   }
 }

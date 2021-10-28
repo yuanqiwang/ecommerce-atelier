@@ -29,11 +29,11 @@ app.get('/product/info/*', async (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
     headers: { Authorization: config.github_token }
   }
-  const reviwRequest = axios(optionsReview);
+  const reviewRequest = axios(optionsReview);
 
   try {
     let relatedProduct = await relatedProductRequest;
-    let review = await reviwRequest;
+    let review = await reviewRequest;
 
     res.send({
       related: relatedProduct.data,
