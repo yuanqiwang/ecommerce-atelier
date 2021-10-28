@@ -6,14 +6,18 @@ import Buttons from './Buttons.jsx'
 
 
 class Review extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
   render() {
+    console.log(this.props.reviews)
     return (
       <>
       <h2> Part 4 : This will be Ratings & Reviews section</h2>
       <div className="review-grid">
        <div id="left-column">
-         Reviews & Ratings
+         <h3>Reviews & Ratings</h3>
          <Stars />
          <Sliders />
        </div>
