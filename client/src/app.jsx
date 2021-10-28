@@ -14,7 +14,7 @@ class App extends React.Component {
       productId: 60221,
       relatedProductArr: [],
       reviews: [],
-      stars: []
+      reviewStars: []
     }
   }
 
@@ -27,7 +27,7 @@ class App extends React.Component {
         this.setState({
           relatedProductArr: result.data['related'],
           reviews: result.data['review']['results'],
-          stars: result.data['stars']
+          stars: result.data['reviewStars']
         })
       })
   }

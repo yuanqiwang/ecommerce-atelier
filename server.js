@@ -48,7 +48,7 @@ app.get('/product/info/*', async (req, res) => {
     res.send({
       related: relatedProduct.data,
       review: review.data,
-      stars: reviewStars.data
+      reviewStars: reviewStars.data
     })
   } catch(err){
     res.send(err);
