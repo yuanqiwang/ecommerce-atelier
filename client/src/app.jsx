@@ -38,7 +38,6 @@ class App extends React.Component {
 
 
   render () {
-    //console.log(this.state.stars)
     return (<div>
       <div id="header">
         <h1>Logo</h1>

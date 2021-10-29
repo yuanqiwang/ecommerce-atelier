@@ -12,7 +12,7 @@ class Review extends React.Component {
 
 
   render() {
-
+    //console.log(this.props)
     return (
       <>
       <h2> Part 4 : This will be Ratings & Reviews section</h2>
@@ -23,11 +23,14 @@ class Review extends React.Component {
           ratings={this.props.stars['ratings']}
           recommend={this.props.stars['recommended']}
          />
-         <Characteristics />
+         <Characteristics
+           characteristics={this.props.stars['characteristics']}
+         />
        </div>
        <div id="right-column">
-         # reviews, sorted by ....
-         <UserReviews />
+         <UserReviews
+          reviews={this.props['reviews']}
+         />
          <Buttons />
        </div>
       </div>
