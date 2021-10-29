@@ -1,11 +1,15 @@
 import React from 'react';
+import ImageGallery from './sub-components/ImageGallery.jsx';
+import ProductOptions from './sub-components/ProductOptions.jsx';
+import ProductInfo from './sub-components/ProductInfo.jsx';
 
 class Overview extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Hello Team Ketchup!</h1>
-        <img src="https://i.pinimg.com/564x/1d/ab/b2/1dabb25c645161f596f0a70f1b715bae.jpg"/>
+      <div id="overview">
+        <ImageGallery />
+        <ProductOptions />
+        <ProductInfo />
       </div>
     );
   }

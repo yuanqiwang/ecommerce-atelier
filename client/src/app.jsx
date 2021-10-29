@@ -11,30 +11,36 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 59553,
-      relatedProductArr: []
+      productId: 59554,
+      relatedProductArr: [],
+      questions: []
     }
   }
 
-
-  componentDidMount(){
+  componentDidMount() {
     axios
       .get(`/product/info/${this.state.productId}`)
       .then((result) => {
         console.log(result.data['related']);
         this.setState({
-          relatedProductArr: result.data['related']
+          relatedProductArr: result.data['related'],
+          questions: result.data['questions']
         })
       })
   }
 
 
   render () {
-    return (<div>
-      <Overview />
-      <Related relatedProductArr={this.state.relatedProductArr}/>
-      <QA productID={this.state.productId}/>
-      <Review />
+    return (
+    <div>
+      {/* <div id="header">
+        <h1>Logo</h1>
+        <div id="search"></div>
+      </div> */}
+      {/* <Overview /> */}
+      {/* <Related relatedProductArr={this.state.relatedProductArr}/> */}
+      <QA questions={this.state.questions}/>
+      {/* <Review /> */}
     </div>)
   }
 }
