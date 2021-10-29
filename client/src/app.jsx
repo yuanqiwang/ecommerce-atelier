@@ -15,18 +15,19 @@ class App extends React.Component {
       productInfo: {},
       productStyle: [],
       relatedProductArr: [],
+      questions: [],
       reviews: [],
       reviewStars: {}
     }
   }
 
-
-  componentDidMount(){
+  componentDidMount() {
     axios
       .get(`/product/info/${this.state.productId}`)
       .then((result) => {
         this.setState({
           relatedProductArr: result.data['related'],
+          questions: result.data['questions'],
           reviews: result.data['review']['results'],
           stars: result.data['reviewStars'],
           productStyle: result.data['style']['results'],
@@ -49,7 +50,7 @@ class App extends React.Component {
         productInfo={this.state.productInfo}
         productStyle={this.state.productStyle}
       />
-      <QA productID={this.state.productId}/>
+      <QA questions={this.state.questions}/>
       <Review
         productID={this.state.productId}
         reviews={this.state.reviews}

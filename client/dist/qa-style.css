@@ -1,3 +1,4 @@
+
 .search-bar {
   width: 100%;
   min-width: 300px;
@@ -36,6 +37,8 @@
 .main-questions {
   padding: 10px;
   min-height: 250px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .question {
@@ -75,6 +78,33 @@
 }
 
 .scroll {
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 150px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  background: white;
+  width: 80%;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
 }
