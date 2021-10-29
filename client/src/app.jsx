@@ -29,13 +29,9 @@ class App extends React.Component {
           relatedProductArr: result.data['related'],
           questions: result.data['questions'],
           reviews: result.data['review']['results'],
-<<<<<<< HEAD
-          reviewStars: result.data['reviewStars']
-=======
           stars: result.data['reviewStars'],
           productStyle: result.data['style']['results'],
           productInfo: result.data['prod']
->>>>>>> b5a599d267c773c1c82dadd06ad8e42869b62e35
         })
       })
   }
