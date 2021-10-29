@@ -1,47 +1,58 @@
 import React from 'react';
 import QuestionsList from './QuestionsList.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
-import MoreQuestions from './MoreQuestions.jsx';
-import AskAQuestion from './AskAQuestion.jsx';
+// import MoreQuestions from './MoreQuestions.jsx';
+// import AskAQuestion from './AskAQuestion.jsx';
 import axios from 'axios';
 
 class QA extends React.Component {
   constructor(props) {
     super(props);
-    this.handleAskAQuestion = this.handleAskAQuestion.bind(this);
-    this.state={
-      questions: []
-    }
-  }
 
-  handleAskAQuestion(){
-    console.log('clicked ask as question')
-  }
-
-  handleMoreQuestions(){
-    console.log('clicked handleMoreQuestions')
-  }
-
-  componentDidMount() {
-    axios.get(`/qa/${this.props.productID}`)//{params: {productID: this.props.productID}}
-      .then(({data})=> {
-        console.log(data.results)
-        this.setState({questions: data.results})
-      })
+    this.state = {
+      show: false,
+      moreQuestionVisible: true
+    };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    // this.moreQuestions = this.moreQuestions.bind(this);
 
   }
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    console.log('clicked')
+    this.setState({show: false},()=>{
+      console.log(this.state.show)
+    });
+  };
 
 
   render() {
     return (
       <div className='QA'>
+
         <h5>QUESTIONS & ANSWERS</h5>
         <SearchQuestions/>
-        <QuestionsList questions={this.state.questions}/>
-        <div>
-          <MoreQuestions handleMoreQuestions={this.handleMoreQuestions.bind(this)}/>
-          <AskAQuestion handleAskAQuestion={this.handleAskAQuestion}/>
-        </div>
+        <QuestionsList
+            questions={this.props.questions}
+          />
+        {/* <div >
+          {this.state.moreQuestionVisible ?
+            <div className='more-question'>
+                MORE ANSWERED QUESTIONS
+            </div>
+            : null}
+
+          <div className='more-question' onClick={this.showModal}>
+            ASK A QUESTION +
+            <AskAQuestion show={this.state.show} handleClose={this.hideModal} />
+          </div>
+        </div> */}
+
     </div>
     )
   }

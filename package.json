@@ -23,6 +23,7 @@
   "homepage": "https://github.com/rpp31-fec-ketchup/project-atelier#readme",
   "devDependencies": {
     "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "jest": "^27.3.1",

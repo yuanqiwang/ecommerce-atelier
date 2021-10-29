@@ -12,22 +12,30 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: 60221,
+      productInfo: {},
+      productStyle: [],
       relatedProductArr: [],
+      questions: [],
       reviews: [],
-      reviewStars: []
+      reviewStars: {}
     }
   }
 
-
-  componentDidMount(){
+  componentDidMount() {
     axios
       .get(`/product/info/${this.state.productId}`)
       .then((result) => {
-        console.log(result.data)
         this.setState({
           relatedProductArr: result.data['related'],
+          questions: result.data['questions'],
           reviews: result.data['review']['results'],
+<<<<<<< HEAD
           reviewStars: result.data['reviewStars']
+=======
+          stars: result.data['reviewStars'],
+          productStyle: result.data['style']['results'],
+          productInfo: result.data['prod']
+>>>>>>> b5a599d267c773c1c82dadd06ad8e42869b62e35
         })
       })
   }
@@ -40,8 +48,13 @@ class App extends React.Component {
         <div id="search"></div>
       </div>
       <Overview />
-      <Related relatedProductArr={this.state.relatedProductArr}/>
-      <QA productID={this.state.productId}/>
+      <Related
+        relatedProductArr={this.state.relatedProductArr}
+        productID={this.state.productId}
+        productInfo={this.state.productInfo}
+        productStyle={this.state.productStyle}
+      />
+      <QA questions={this.state.questions}/>
       <Review
         productID={this.state.productId}
         reviews={this.state.reviews}

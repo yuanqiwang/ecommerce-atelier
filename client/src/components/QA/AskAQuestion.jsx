@@ -1,15 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-class AskAQuestion extends React.Component {
+const AskAQuestion = ({ handleClose, show}) => {
+  const showHideClassName = show ? "modal display-block" : "modal display-none";
 
+  return (
+    <div className={showHideClassName}>
+      <section className="modal-main">
 
-  render() {
-    return (
-      <div className='more-question'
-        onClick={this.props.handleAskAQuestion}> ASK A QUESTION +
-      </div>
-    )
-  }
-}
+        <button type="button" onClick={handleClose}>
+          Close
+        </button>
+      </section>
+    </div>
+  );
+};
 
 export default AskAQuestion;
