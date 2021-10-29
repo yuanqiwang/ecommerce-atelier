@@ -5,6 +5,8 @@
   grid-template-columns: 3fr 2fr;
 }
 
+/* ===== Hero Image + Thumbnails ===== */
+
 #overview_image_gallery {
   position: relative;
   background: #EEE;
@@ -35,4 +37,32 @@
   padding: 3px;
   border: 1px solid lightgrey;
   margin: 1px 0;
+}
+
+#overview_star_rating {
+  background: #DDD;
+  display: flex;
+  justify-content: space-around;
+  padding: 7px;
+  width: 65%;
+  border-radius: 7px;
+  margin: 10px 0;
+}
+
+#overview_product_headline {
+  background: #DDD;
+  padding: 1px 7px;
+  border-radius: 7px;
+  margin: 10px 0;
+}
+
+#overview_product_headline h2 {
+  font-size: 27px;
+  font-weight: bold;
+  line-height: 0;
+}
+
+#overview_product_headline h3 {
+  font-size: 13px;
+  font-weight: normal;
 }
