@@ -10,11 +10,28 @@ const UserReviews = (props) => {
   //console.log(props.reviews.length)
   console.log(test['results'])
   let reviews = test['results']
-  //test sorting
+
+  //test sorting by relevance
+  const relevance = [].concat(reviews)
+    .sort((a, b) => a.date < b.date && a.helpfulness < b.helpfulness ? 1 : -1)
+    .map( (item, i) => {
+      return <div key={i}>{item.date} + {item.helpfulness}</div>
+    })
+
+
+  //test sorting by date
   const recent = [].concat(reviews)
     .sort((a, b) => a.date < b.date ? 1 : -1)
     .map( (item, i) => {
       return <div key={i}>{item.date}</div>
+    })
+
+
+  //test sorting by helpfulness
+  const helpful = [].concat(reviews)
+    .sort((a, b) => a.helpfulness < b.helpfulness ? 1 : -1)
+    .map( (item, i) => {
+      return <div key={i}>{item.helpfulness}</div>
     })
 
   if (props.reviews.length > 0)
@@ -23,7 +40,7 @@ const UserReviews = (props) => {
       <SortReview
        amount={props.reviews.length}
       />
-     {recent}
+     {relevance}
 
     </div>
   )
