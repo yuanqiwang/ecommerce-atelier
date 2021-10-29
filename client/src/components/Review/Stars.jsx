@@ -8,6 +8,7 @@ const Stars = (props) => {
   let totalScore = 0;
   let starsAvg = 0;
   let starsFill = 0;
+  let showNum = 0;
   if (props.ratings !== undefined) {
 
     nOfRatings = Object.values(props.ratings).reduce((a, b) => parseInt(a) + parseInt(b))
@@ -20,8 +21,8 @@ const Stars = (props) => {
     }
     const reducer = (a, b) => a + b;
     starsAvg = keyTimesValue.reduce(reducer) / nOfRatings;
-
     starsFill = (2/5) * 100
+    showNum = starsAvg.toFixed(1)
   }
 
 
@@ -34,10 +35,11 @@ const Stars = (props) => {
     trueRecs = parseInt(props.recommend['true'])
     percentage = Math.round(((trueRecs / (trueRecs + falseRecs)) * 100))
   }
+  //console.log(props)
   return (
   /*this needs to be pulled from the API and then applied styling */
  <div>
-   <span className="star-text">{starsAvg}</span>
+   <span className="star-text">{showNum}</span>
    <div className="star-rating">
     <div className="off"></div>
     <div className="on" style={{"width": `${starsFill}%`}}></div>
