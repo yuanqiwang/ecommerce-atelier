@@ -8,19 +8,8 @@ import Buttons from './Buttons.jsx'
 class Review extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      reviews: [],
-      stars: []
-    }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.stars !== prevProps.stars) {
-      //console.log(this.props.stars['ratings'])
-      this.setState({ stars: this.props.stars })
-    }
-
-  }
 
   render() {
     //console.log(this.props)
@@ -32,8 +21,8 @@ class Review extends React.Component {
        <div id="left-column">
          <h3>Reviews & Ratings</h3>
          <Stars
-          ratings={this.state.stars['ratings']}
-          recommend={this.state.stars['recommended']}
+          ratings={this.props.stars['ratings']}
+          recommend={this.props.stars['recommended']}
          />
          <Characteristics />
        </div>
