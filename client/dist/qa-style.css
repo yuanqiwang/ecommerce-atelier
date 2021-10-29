@@ -41,10 +41,6 @@
   overflow-y: auto;
 }
 
-.main-questions:: scrollbar-color {
-  color:
-}
-
 .question {
   margin-top: 10px;
   margin-right: auto;

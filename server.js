@@ -29,7 +29,32 @@ app.get('/product/info/*', async (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
     headers: { Authorization: config.github_token }
   }
-  const reviwRequest = axios(optionsReview);
+  const reviewRequest = axios(optionsReview);
+
+  const optionsStars = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${productId}`,
+    headers: { Authorization: config.github_token }
+  }
+
+  const starsRequest = axios(optionsStars)
+
+  const optionsStyle = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`,
+    headers: { Authorization: config.github_token }
+  }
+
+  const styleRequest = axios(optionsStyle)
+
+
+  const optionsProduct = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`,
+    headers: { Authorization: config.github_token }
+  }
+
+  const productRequest = axios(optionsProduct)
 
   const optionsQuestions= {
     method: 'GET',
@@ -41,13 +66,24 @@ app.get('/product/info/*', async (req, res) => {
 
   try {
     let relatedProduct = await relatedProductRequest;
-    let review = await reviwRequest;
+    let review = await reviewRequest;
+    let reviewStars = await starsRequest;
+    let style = await styleRequest;
+    let prod = await productRequest;
     let questions = await questionsRequest;
+
+    // console.log('style', style.data);
+    // console.log('review', review.data);
+    // console.log('reviewStars', reviewStars.data);
+    // console.log('prod', prod.data);
 
     res.send({
       related: relatedProduct.data,
       review: review.data,
-      questions: questions.data.results
+      questions: questions.data.results,
+      reviewStars: reviewStars.data,
+      style : style.data,
+      prod : prod.data
     })
   } catch(err){
     res.send(err);
