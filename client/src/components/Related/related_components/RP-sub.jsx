@@ -13,7 +13,7 @@ const RP_sub = (props) => {
   const getProductInfo = async () => {
     try {
       const response =  await axios.get(`/product/info/${props.item}`);
-      console.log(response.data['style']['results'][0]);
+
       setInfo(response.data['prod']);
       setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
       setReview(response.data['reviewStars'].ratings)
@@ -35,10 +35,12 @@ const RP_sub = (props) => {
 
   return(
     <article className = 'rp-card'>
-      <img src={stylePic} />
-      <h3>{productInfo.category}</h3>
-      <h3>{styleName}</h3>
-      <h3>${stylePrice}</h3>
+      <img className='rp-card-img' src={stylePic} />
+      <div className ='sub-card'>
+        <div id = 'category'> &nbsp;{productInfo.category}</div>
+        <div id = 'name'> &nbsp;{styleName}</div>
+        <div id= 'price'> &nbsp;${stylePrice}</div>
+      </div>
     </article>
   )
 }

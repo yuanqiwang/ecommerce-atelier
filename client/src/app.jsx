@@ -17,7 +17,7 @@ class App extends React.Component {
       relatedProductArr: [],
       questions: [],
       reviews: [],
-      reviewStars: {}
+      stars: {}
     }
   }
 
@@ -38,6 +38,7 @@ class App extends React.Component {
 
 
   render () {
+    //console.log(this.state.stars)
     return (<div>
       <div id="header">
         <h1>Logo</h1>
@@ -55,6 +56,7 @@ class App extends React.Component {
       <Review
         productID={this.state.productId}
         reviews={this.state.reviews}
+        stars={this.state.stars}
       />
     </div>)
   }

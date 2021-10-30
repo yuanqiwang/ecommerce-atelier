@@ -1,25 +1,77 @@
 #related {
   margin: 0 auto;
   /* max-width: 1600px; */
-  width: 70%;
+  width: 1000px;
   /* box-sizing: border-box; */
 }
 
-.rp-card {
-  padding: 20px;
-  border: 1px solid #c9c9c9;
-  border-radius: 7px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+#wrapper {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  position: relative;
 }
 
 .rp-cardrow {
-  display: grid;
-  grid-template-columns: repeat(3, 32%);
-  justify-content: space-between;
+  overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
 }
 
 
+.rp-card {
+  /* padding: 20px; */
+  border: 1px solid #9b9a9a;
+  border-radius: 5px;
+  /* border-style: groove; */
+  /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); */
+  width: 260px;
+  height: 380px;
+  display: inline-block;
+  margin-right: 20px;
+}
 
+
+.rp-card-img {
+  height: 260px;
+  width: 261px;
+  /* overflow: hidden; */
+}
+.paddle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+  border: none;
+  width: 2em;
+  font-size: 1.5em;
+}
+
+.left-paddle {
+	left: 0;
+  background:linear-gradient(to left, rgba(255, 255, 255, 0.418), rgba(255, 255, 255, 0.89), white);
+}
+.right-paddle {
+	right: 0;
+  background:linear-gradient(to right, rgba(255, 255, 255, 0.418), rgba(255, 255, 255, 0.89), white);
+}
+/* .hidden {
+	display: none;
+} */
+
+#category {
+  padding: 5px;
+}
+#name {
+  padding: 5px;
+}
+#price {
+  padding: 5px;
+}
+
+#title {
+  font-size: 1em;
+  padding: 20px;
+}
 #yo-image1 {
   display: inline-block;
   /* object-fit: cover; */
