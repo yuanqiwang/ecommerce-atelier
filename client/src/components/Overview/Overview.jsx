@@ -3,6 +3,7 @@ import axios from 'axios';
 import ImageGallery from './sub-components/ImageGallery.jsx';
 import ProductOptions from './sub-components/ProductOptions.jsx';
 import ProductInfo from './sub-components/ProductInfo.jsx';
+import ProductBullets from './sub-components/ProductBullets.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Overview extends React.Component {
         <ImageGallery heroPic={this.state.currentImg} changePic={this.changeHeroPic} />
         <ProductOptions />
         <ProductInfo />
+        <ProductBullets />
       </div>
     );
   }

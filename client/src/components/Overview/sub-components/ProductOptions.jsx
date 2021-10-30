@@ -9,7 +9,7 @@ function ProductOptions(props) {
     <div id="overview_product_options">
       <StarRating />
       <ProductHeadline />
-      <StyleSelector />
+      <StyleSelector selectedStyle="Ketchup" />
       <AddToCart />
     </div>
   );
