@@ -92,6 +92,24 @@ app.get('/product/info/*', async (req, res) => {
 
 })
 
+app.post('/qa/questions', (req, res) => {
+  console.log(req.body);
+  const optionPostQuestion = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
+    headers: { Authorization: config.github_token },
+    data: req.body
+  };
+
+  axios(optionPostQuestion)
+    .then((result) => {
+      console.log('success')
+      res.send(201)})
+    .catch((error) => {
+      console.log(error)
+      res.send(error)})
+
+})
 
 
 app.listen(PORT, () => console.log(`Listen on port ${PORT}`))
