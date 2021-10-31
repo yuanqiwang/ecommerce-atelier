@@ -12,7 +12,6 @@ const Question = ({question}) => {
   const [loadMoreAnswers, setLoadMoreAnswers] = useState() //null, load more answers, collapse answers
 
   const handleAddAnswer = () => {
-    //do we need to post this?
     console.log('add answer')
   }
 
@@ -28,9 +27,6 @@ const Question = ({question}) => {
    }
   }, []);
 
-  // useEffect(() => {
-  //   handleLoadMoreAnswers(loadMoreAnswers)
-  // })
   function handleLoadMoreAnswers(value) {
     if (value === 'LOAD MORE ANSWERS') {
       setVisible(Object.keys(answers).length)

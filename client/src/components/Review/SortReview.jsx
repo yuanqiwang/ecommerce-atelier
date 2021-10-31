@@ -1,15 +1,25 @@
 import React from 'react'
 
-const SortReview = (props) => {
+class SortReview extends React.Component {
+  constructor(props) {
+    super(props);
 
- if (props.amount > 0) {
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange = (event) => {
+    //console.log(event.target.value)
+    this.props.dropdownCallback(event.target.value);
+    event.preventDefault();
+  }
+  render() {
+ if (this.props.nReviews > 0) {
   return (
       <div>
-        {props.amount} reviews, sort by &nbsp;
-      <select>
-        <option>relevance</option>
-        <option>helpfulness</option>
-        <option>newest</option>
+        {this.props.nReviews} reviews, sort by &nbsp;
+      <select onChange={this.handleChange}>
+        <option value="relevance">relevance</option>
+        <option value="helpfulness">helpfulness</option>
+        <option value="newest">newest</option>
       </select>
       </div>
   )
@@ -17,6 +27,7 @@ const SortReview = (props) => {
  return (
    null
  )
+  }
 }
 
 

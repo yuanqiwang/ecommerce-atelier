@@ -2,12 +2,20 @@ import React from 'react'
 import Stars from './Stars.jsx'
 import Characteristics from './Characteristics.jsx'
 import UserReviews from './UserReviews.jsx'
+import SortReview from './SortReview.jsx'
 import Buttons from './Buttons.jsx'
 
 
 class Review extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      dropdown: 'relevance'
+    }
+  }
+
+  handleCallback = (childData) => {
+    this.setState({dropdown: childData})
   }
 
 
@@ -28,8 +36,13 @@ class Review extends React.Component {
          />
        </div>
        <div id="right-column">
+        <SortReview
+          nReviews={this.props['reviews'].length}
+          dropdownCallback={this.handleCallback}
+        />
          <UserReviews
           reviews={this.props['reviews']}
+          dropdown={this.state.dropdown}
          />
          <Buttons />
        </div>

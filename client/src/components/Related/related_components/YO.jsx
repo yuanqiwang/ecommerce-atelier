@@ -6,7 +6,7 @@ class YO extends React.Component {
   render() {
     return (
       <div>
-        <h3>YOUR OUTFIT</h3>
+        <div id='title'>YOUR OUTFIT - persist between sessions</div>
         <div id='yo-image-load'>
           <div id='yo-image1'>
             YO Picture 1

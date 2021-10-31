@@ -48,9 +48,10 @@ class App extends React.Component {
         relatedProductArr={this.state.relatedProductArr}
         productID={this.state.productId}
         productInfo={this.state.productInfo}
-        productStyle={this.state.productStyle}
-      />
-      <QA questions={this.state.questions}/>
+        productStyle={this.state.productStyle} />
+      <QA
+        productId={this.state.productId}
+        questions={this.state.questions}/>
       <Review
         productID={this.state.productId}
         reviews={this.state.reviews}

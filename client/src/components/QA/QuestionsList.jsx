@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import Question from './Question.jsx'
-import AskAQuestion from './AskAQuestion.jsx'
-const QuestionsList = ({questions}) => {
+import QuestionModal from './QuestionModal.jsx';
+
+const QuestionsList = ({questions, productId}) => {
 
   const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
   const [moreQuestionVisible, setMoreQuestionVisible] = useState(false);
-  const [askQuestionModal, setAskQuestionModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     // console.log('initial render and when questions is updated ')
@@ -16,39 +17,34 @@ const QuestionsList = ({questions}) => {
 
   useEffect(() => {
     // console.log('initial and rerender on display count')
-    if (questionDisplayCount>=questions.length) {
+    if (questionDisplayCount >= questions.length) {
       setMoreQuestionVisible(false)
     }
   },[questionDisplayCount]
   )
 
-  const showModal = () => {
-    setAskQuestionModal(true)
-  };
-
-  const hideModal = () => {
-    console.log('clicked hide modal')
-    setAskQuestionModal(false)
-  };
-
-
   return (
     <div>
       <div className='main-questions'>
-        {questions.slice(0,questionDisplayCount).map(question => <Question question={question} key={question.question_id}/>)}
+        {questions.slice(0,questionDisplayCount).map(question =>
+          <Question question={question} key={question.question_id}/>)
+        }
       </div>
-      <div >
-      {moreQuestionVisible ?
-        <div className='more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
-            MORE ANSWERED QUESTIONS
+
+      <div>
+        {moreQuestionVisible ?
+          <div className='more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
+              MORE ANSWERED QUESTIONS
+          </div>
+          : null
+        }
+
+        <div className='more-question' onClick={() => {setIsOpen(true)}}>
+          ASK A QUESTION +
 
         </div>
-        : null}
+        <QuestionModal open={isOpen} productId={productId} onClose={()=> setIsOpen(false)} />
 
-         <div className='more-question' onClick={showModal}>
-          ASK A QUESTION +
-          <AskAQuestion show={askQuestionModal} handleClose={hideModal} />
-         </div>
       </div>
     </div>
 

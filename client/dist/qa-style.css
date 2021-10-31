@@ -31,6 +31,8 @@
 }
 
 .container {
+  margin-top: 15px;
+  margin-bottom: 10px;
   display: flex
 }
 
@@ -39,10 +41,10 @@
   min-height: 250px;
   max-height: 80vh;
   overflow-y: auto;
+
 }
 
 .question {
-  margin-top: 10px;
   margin-right: auto;
   font-weight: 500;
 }
@@ -73,7 +75,7 @@
 }
 
 .moreanswer {
-  padding-top: 10px;
+  padding-top: 5px;
   font-weight: bold;
 }
 
@@ -94,17 +96,44 @@
 .modal-main {
   position:fixed;
   background: white;
-  width: 80%;
+  width: 90%;
   height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  padding:5px;
 }
 
 .display-block {
   display: block;
 }
 
-.display-none {
-  display: none;
+.instructions {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+  color: rgb(116, 113, 113);
+  font-size: 0.8rem;
+}
+
+.instructions span {
+  padding-left: 5px;
+
+}
+
+.modal-main label {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  max-width: 600px;
+}
+
+input {
+  flex-basis: 100%;
+  width: calc(85% - 2px);
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
 }
