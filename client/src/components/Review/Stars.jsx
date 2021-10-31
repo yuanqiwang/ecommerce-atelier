@@ -25,7 +25,6 @@ const Stars = (props) => {
     showNum = starsAvg.toFixed(1)
   }
 
-
   /*recommendation logic*/
   let falseRecs = 0;
   let trueRecs = 0;
@@ -35,22 +34,17 @@ const Stars = (props) => {
     trueRecs = parseInt(props.recommend['true'])
     percentage = Math.round(((trueRecs / (trueRecs + falseRecs)) * 100))
   }
-  //console.log(props)
+
   return (
-  /*this needs to be pulled from the API and then applied styling */
  <div>
-   <span className="star-text">{showNum}</span>
+   <span className="star-text">{showNum} &nbsp;</span>
    <div className="star-rating">
     <div className="off"></div>
     <div className="on" style={{"width": `${starsFill}%`}}></div>
    </div>
 
-   <div>
-   {percentage}% of reviews recommend this product<br />
-    5 stars<br />
-    4 stars<br />
-    3 stars<br />
-    2 stars<br />
+    <div>
+      {percentage}% of reviews recommend this product<br />
     </div>
   </div>
   )
