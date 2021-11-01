@@ -30,7 +30,7 @@ class Related extends React.Component {
           <div id='title'>RELATED PRODUCTS</div>
           <div id ='wrapper'>
             <section className = 'rp-cardrow' ref={this.navRef}>
-              {this.props.relatedProductArr.map((item, i) => <RP_sub key={i} item ={item} /> )}
+              {this.props.relatedProductArr.map((item, i) => <RP_sub key={i} item ={item} mainInfo = {this.props.productInfo} mainStyle ={this.props.productStyle}/> )}
               <div class="paddles">
                 <button class="left-paddle paddle hidden" onClick={()=>this.handleNav('left')}> {'<'} </button>
                 <button class="right-paddle paddle" onClick={()=>this.handleNav('right')}> {'>'} </button>

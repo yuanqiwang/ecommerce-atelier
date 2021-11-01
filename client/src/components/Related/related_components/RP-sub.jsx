@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Style from 'style-it';
 
 
 const RP_sub = (props) => {
 
   const[productInfo, setInfo] = useState({});
-  const[stylePic, setStylePicture] = useState([]);
-  const[stylePrice, setStylePrice] = useState([]);
-  const[styleName, setStyleName] = useState([]);
+  const[stylePic, setStylePicture] = useState();
+  const[stylePrice, setStylePrice] = useState();
+  const[salePrice, setSaleprice] = useState(100);
+  const[styleName, setStyleName] = useState();
   const[reviewInfo, setReview] = useState(0);
 
   const avgReview = (reviewObj) => {
@@ -39,7 +39,11 @@ const RP_sub = (props) => {
       setInfo(response.data['prod']);
       setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
       setReview(avgReviewnum)
-      setStylePrice(response.data['style']['results'][0]['original_price'])
+      // console.log(response.data['style']['results'][0]['original_price'])
+      setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
+      if(response.data['style']['results'][0]['sale_price']){
+        setSaleprice(response.data['style']['results'][0]['sale_price'].toFixed(0))
+      }
       const ProductName = response.data['prod']['name'] + ' -- ' + response.data['style']['results'][0]['name'];
       setStyleName(ProductName)
 
@@ -53,18 +57,42 @@ const RP_sub = (props) => {
   }, [])
 
   // const calAverageRating;// helper function
+  function MouseOver(event) {
+    event.target.style['-webkit-text-fill-color'] = 'black';
+  }
+  function MouseOut(event){
+    event.target.style['-webkit-text-fill-color'] = 'transparent';
+  }
+
 
   return(
     <article className = 'rp-card'>
-      <img className='rp-card-img' src={stylePic} />
+
+      <div className='sub-card-img'>
+         <button id='rp-action-button' onMouseOver={MouseOver} onMouseOut={MouseOut} > ★ </button>
+         <img className='rp-card-img' src={stylePic} />
+      </div>
+
       <div className ='sub-card'>
         <div id = 'category'> {productInfo.category}</div>
         <div id = 'name'> {styleName}</div>
-        <div id= 'price'> {stylePrice}</div>
+        {
+          salePrice > 0?
+          <div className='rp-allprice'>
+            <div id= 'rp-sale-price'> ${salePrice}</div>
+            <div id= 'rp-origin-price-dup'>${stylePrice}</div>
+          </div>
+          : <div id= 'rp-origin-price'> {stylePrice}</div>
+        }
+        {
+          reviewInfo?
+          <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
+            &nbsp;{reviewInfo}
+          </div>
+          : <div>No Reviews yet</div>
+        }
       </div>
-      <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
-        &nbsp;{reviewInfo}
-      </div>
+
     </article>
   )
 }
