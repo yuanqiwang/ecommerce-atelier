@@ -1,48 +1,27 @@
 import React from 'react'
 import test from './test-review.js'
-
-
-
+import ReviewCard from './ReviewCard.jsx'
 
 const UserReviews = (props) => {
-
   let reviews = props.reviews
-
-  //test sorting by relevance
-  const relevance = [].concat(reviews)
-    .sort((a, b) => a.date < b.date && a.helpfulness < b.helpfulness ? 1 : -1)
-    .map( (item, i) => {
-      return <div key={i}>{item.date} + {item.helpfulness}</div>
-    })
-
-
-  //test sorting by date
-  const recent = [].concat(reviews)
-    .sort((a, b) => a.date < b.date ? 1 : -1)
-    .map( (item, i) => {
-      return <div key={i}>{item.date}</div>
-    })
-
-
-  //test sorting by helpfulness
-  const helpful = [].concat(reviews)
-    .sort((a, b) => a.helpfulness < b.helpfulness ? 1 : -1)
-    .map( (item, i) => {
-      return <div key={i}>{item.helpfulness}</div>
-    })
-
   if (props.reviews.length > 0) {
-
     if (props.dropdown === 'relevance') {
       const relevance = [].concat(reviews)
       .sort((a, b) => a.helpfulness < b.helpfulness && a.date < b.date ? 1 : -1)
       .map( (item, i) => {
         return (
           <>
-          <div key={i}>{item.date}</div>
-          <div>{item.summary}</div>
-          <div>{item.body}</div>
-          <div>-------------</div>
+          <ReviewCard
+            rating={item.rating}
+            summary={item.summary}
+            recommend={item.recommend}
+            response={item.response}
+            body={item.body}
+            date={item.date}
+            reviewer={item.reviewer_name}
+            helpfulness={item.helpfulness}
+            photos={item.photos}
+          />
           </>
         )
       })
@@ -57,10 +36,17 @@ const UserReviews = (props) => {
       .map( (item, i) => {
       return  (
         <>
-        <div key={i}>{item.date}</div>
-        <div>{item.summary}</div>
-        <div>{item.body}</div>
-        <div>-------------</div>
+        <ReviewCard
+            rating={item.rating}
+            summary={item.summary}
+            recommend={item.recommend}
+            response={item.response}
+            body={item.body}
+            date={item.date}
+            reviewer={item.reviewer_name}
+            helpfulness={item.helpfulness}
+            photos={item.photos}
+          />
         </>
       )
     })
@@ -75,10 +61,17 @@ const UserReviews = (props) => {
       .map( (item, i) => {
         return  (
           <>
-          <div key={i}>{item.date}</div>
-          <div>{item.summary}</div>
-          <div>{item.body}</div>
-          <div>-------------</div>
+          <ReviewCard
+            rating={item.rating}
+            summary={item.summary}
+            recommend={item.recommend}
+            response={item.response}
+            body={item.body}
+            date={item.date}
+            reviewer={item.reviewer_name}
+            helpfulness={item.helpfulness}
+            photos={item.photos}
+          />
           </>
         )
       })

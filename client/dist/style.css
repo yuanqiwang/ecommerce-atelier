@@ -17,4 +17,8 @@
   grid-template-columns: 1fr 2fr;
 }
 
+hr.review-solid {
+  border-top: 3px solid #bbb;
+}
+
 
