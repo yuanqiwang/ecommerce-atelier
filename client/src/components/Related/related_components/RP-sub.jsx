@@ -10,6 +10,7 @@ const RP_sub = (props) => {
   const[salePrice, setSaleprice] = useState(100);
   const[styleName, setStyleName] = useState();
   const[reviewInfo, setReview] = useState(0);
+  const[showModal, setModal] = useState(false);
 
   const avgReview = (reviewObj) => {
     let reviewNum=0;
@@ -64,12 +65,15 @@ const RP_sub = (props) => {
     event.target.style['-webkit-text-fill-color'] = 'transparent';
   }
 
+  function actionClick(){
+    setModal(!showModal);
+  }
 
   return(
     <article className = 'rp-card'>
 
       <div className='sub-card-img'>
-         <button id='rp-action-button' onMouseOver={MouseOver} onMouseOut={MouseOut} > ★ </button>
+         <button id='rp-action-button' onMouseOver={MouseOver} onMouseOut={MouseOut} onClick={actionClick}> ★ </button>
          <img className='rp-card-img' src={stylePic} />
       </div>
 
@@ -92,7 +96,15 @@ const RP_sub = (props) => {
           : <div>No Reviews yet</div>
         }
       </div>
-
+      {/* {
+        showModal?
+        <div class ='rp-comparison-modal'>
+          <div class ='rp-sub-modal'>
+            <h1> Here is Comparison modal </h1>
+          </div>
+        </div>
+        : null
+      } */}
     </article>
   )
 }
