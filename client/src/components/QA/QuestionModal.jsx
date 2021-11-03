@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const QuestionModal = ({ open, productId, onClose}) => {
+const QuestionModal = ({ open, productId, productName, onClose}) => {
 
 
   if(!open) return null;
@@ -24,16 +24,17 @@ const QuestionModal = ({ open, productId, onClose}) => {
   }
 
   return (
-    <div className='modal'>
+    <div className='qa-modal'>
 
-      <div className='modal-main'>
+      <div className='qa-modal-main'>
 
           <div >Ask Your Question</div>
           {/* <p>About the {productName} </p> */}
-        <form>
+        <form className='qa-form'>
           <p>
             <label htmlFor='question'>Question</label>
             <input
+              className='qa-input'
               id ='question'
               name = 'body' //use for onChange
               type='textarea'
@@ -44,6 +45,7 @@ const QuestionModal = ({ open, productId, onClose}) => {
           <p>
             <label htmlFor='nickname'>Nickname</label>
             <input
+              className='qa-input'
               id ='nickname'
               name = 'name' //use for onChange
               type='text'
@@ -57,6 +59,7 @@ const QuestionModal = ({ open, productId, onClose}) => {
           <p>
             <label htmlFor='email'>Email</label>
             <input
+              className='qa-input'
               id='email'
               type='text'
               name = 'email' //use for onChange

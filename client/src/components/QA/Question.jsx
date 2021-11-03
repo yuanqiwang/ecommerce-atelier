@@ -1,25 +1,38 @@
 import React, { useEffect, useState} from 'react'
 import Answer from './Answer.jsx'
+import axios from 'axios'
 
-const Question = ({question}) => {
 
-  const [questionData, setQuestionData] = useState({
-    questionBody: question.question_body,
-    questionHelpfulness: question.question_helpfulness,
-    answers: question.answers //object
-  })
+const Question = ({question, productId}) => {
+
+  const [questionBody, setQuestionBody] = useState(question.question_body)
+  const [questionHelpfulness, setQuestionHelpfulness] = useState(question.question_helpfulness)
+  const [answers, setAnswers] = useState(question.answers)
+
   const [visible, setVisible] = useState(2)
   const [loadMoreAnswers, setLoadMoreAnswers] = useState() //null, load more answers, collapse answers
+  const [voteHelpful, setVoteHelpful] = useState(false)
 
   const handleAddAnswer = () => {
     console.log('add answer')
   }
 
   const handleHelpful = () => {
-    console.log('yes, helpful')
-  }
 
-  const {questionBody, questionHelpfulness, answers} = questionData;
+    //check if the id is already in local storage
+    var questionsMarkedHelpful=JSON.parse(localStorage.getItem('questionsMarkedHelpful')) || [];
+    if (questionsMarkedHelpful.includes(productId)) {
+      console.log('already voted helpful')
+    } else {//if not existing
+      //save the question id to local storage
+      questionsMarkedHelpful.push(productId)
+      localStorage.setItem('questionsMarkedHelpful', JSON.stringify(questionsMarkedHelpful));
+      //put the question as helpful in API: /qa/questions/:question_id/helpful
+      // axios.post()
+      //either increment the count locally? or get the API? option 1 because it is instant...but can check
+      setQuestionHelpfulness(prevCount => prevCount +1)
+    }
+  }
 
   useEffect(() => {
    if (Object.keys(answers).length>2) {
@@ -42,23 +55,23 @@ const Question = ({question}) => {
 
   return (
     <div>
-      <div className='container'>
-        <div className='question'>Q: {questionBody} </div>
-        <div className='tiny helpful'>
-          <div className= 'helpful'> Helpful?</div>
-          <div className='underscore helpful' onClick={handleHelpful}> Yes ({questionHelpfulness})</div>
-          <div className='divider'>|</div>
-          <div className='underscore helpful' onClick={handleAddAnswer}> Add answers </div>
+      <div className='qa-container'>
+        <div className='qa-question'>Q: {questionBody} </div>
+        <div className='qa-tiny qa-helpful'>
+          <div className= 'qa-helpful'> Helpful?</div>
+          <div className='qa-underscore qa-helpful' onClick={handleHelpful}> Yes ({questionHelpfulness})</div>
+          <div className='qa-divider'>|</div>
+          <div className='qa-underscore qa-helpful' onClick={handleAddAnswer}> Add answers </div>
         </div>
       </div>
-      <div className='answers scroll'>
+      <div className='qa-answers qa-scroll'>
         {Object.keys(answers).slice(0, visible).map((key) => {
               return <Answer answer={answers[key]} key={key} />
             })
         }
         </div>
       {loadMoreAnswers ?
-        <div className ='moreanswer tiny' onClick={() => handleLoadMoreAnswers(loadMoreAnswers)}>
+        <div className ='qa-moreanswer qa-tiny' onClick={() => handleLoadMoreAnswers(loadMoreAnswers)}>
           {loadMoreAnswers}</div>
       : null}
     </div>
