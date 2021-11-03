@@ -5,11 +5,12 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 function ProductOptions(props) {
+  console.log('PO:',props)
   return (
     <div id="overview_product_options">
       <StarRating />
       <ProductHeadline />
-      <StyleSelector selectedStyle="Ketchup" />
+      <StyleSelector productStyle={props.productStyle} />
       <AddToCart />
     </div>
   );
