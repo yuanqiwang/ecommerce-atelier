@@ -37,7 +37,7 @@ class Overview extends React.Component {
     return (
       <div id="overview">
         <ImageGallery productStyle={this.props.productStyle} changePic={this.changeHeroPic} />
-        <ProductOptions />
+        <ProductOptions productStyle={this.props.productStyle} />
         <ProductInfo />
         <ProductBullets />
       </div>

@@ -13,9 +13,9 @@ function Thumbnails(props) {
   return (
     <div id="overview_thumbnails">
       {props.thumbnails.map(thumb => {
-        console.log(thumb);
+        // console.log(thumb);
         return (
-          <Thumbnail key={thumb.url} img={thumb.url} changePic={props.changePic} />
+          <Thumbnail key={thumb.url} img={thumb.thumbnail_url} changePic={props.changePic} />
         )
       })}
     </div>
