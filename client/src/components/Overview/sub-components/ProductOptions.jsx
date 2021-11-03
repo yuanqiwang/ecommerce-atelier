@@ -5,12 +5,12 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 function ProductOptions(props) {
-  console.log('PO:',props)
+  // console.log('PO:',props)
   return (
     <div id="overview_product_options">
       <StarRating />
-      <ProductHeadline />
-      <StyleSelector productStyle={props.productStyle} />
+      <ProductHeadline productInfo={props.productInfo} />
+      <StyleSelector productStyle={props.productStyle} currentStyle={props.currentStyle} />
       <AddToCart />
     </div>
   );
