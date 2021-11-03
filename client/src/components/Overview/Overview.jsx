@@ -9,7 +9,7 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImg: "https://pngimg.com/uploads/ketchup/ketchup_PNG21.png"
+      currentImg: props.productStyle
     };
 
     this.changeHeroPic = this.changeHeroPic.bind(this);
@@ -20,7 +20,7 @@ class Overview extends React.Component {
 
     axios.get('/product/info/' + prodNum)
     .then(data => {
-      // console.log(data);
+      console.log(data.data.prod);
     })
     .catch(err => {
       console.log('Error fetching Overview data!');
@@ -29,13 +29,14 @@ class Overview extends React.Component {
   }
 
   changeHeroPic(pic) {
-    this.setState({currentImg: pic});
+    // this.setState({currentImg: pic});
+    console.log(this.props);
   }
 
   render() {
     return (
       <div id="overview">
-        <ImageGallery heroPic={this.state.currentImg} changePic={this.changeHeroPic} />
+        <ImageGallery productStyle={this.props.productStyle} changePic={this.changeHeroPic} />
         <ProductOptions />
         <ProductInfo />
         <ProductBullets />
@@ -44,7 +45,7 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    this.getProductInfo('59980');
+    // this.getProductInfo('59980');
   }
 }
 
