@@ -2,7 +2,10 @@ import React from 'react'
 import test from './test-review.js'
 import ReviewCard from './ReviewCard.jsx'
 
+
 const UserReviews = (props) => {
+
+  let count = props.count
   let reviews = props.reviews
   if (props.reviews.length > 0) {
     if (props.dropdown === 'relevance') {
@@ -12,6 +15,7 @@ const UserReviews = (props) => {
         return (
           <>
           <ReviewCard
+            index={i}
             rating={item.rating}
             summary={item.summary}
             recommend={item.recommend}
@@ -26,7 +30,7 @@ const UserReviews = (props) => {
         )
       })
       return (
-        <div>{relevance}</div>
+        <div>{relevance.slice(0, count)}</div>
       )
     }
 
@@ -37,6 +41,7 @@ const UserReviews = (props) => {
       return  (
         <>
         <ReviewCard
+            index={i}
             rating={item.rating}
             summary={item.summary}
             recommend={item.recommend}
@@ -51,7 +56,7 @@ const UserReviews = (props) => {
       )
     })
     return (
-      <div>{helpful}</div>
+      <div>{helpful.slice(0, count)}</div>
     )
     }
 
@@ -62,6 +67,7 @@ const UserReviews = (props) => {
         return  (
           <>
           <ReviewCard
+            index={i}
             rating={item.rating}
             summary={item.summary}
             recommend={item.recommend}
@@ -76,7 +82,7 @@ const UserReviews = (props) => {
         )
       })
     return (
-      <div>{recent}</div>
+      <div>{recent.slice(0, count)}</div>
     )
     }
 
@@ -86,24 +92,5 @@ const UserReviews = (props) => {
     null
   )
 }
-/*
-{
-            "review_id": 1029620,
-            "rating": 3,
-            "summary": "Consequuntur unde quod velit vel.",
-            "recommend": true,
-            "response": "\"Ut maiores explicabo accusamus dicta.\"",
-            "body": "Quisquam dicta vel. Quia nostrum suscipit provident voluptas illo tempora saepe enim. Aut distinctio ut aliquam distinctio quis consequatur maiores in. Nemo sint nobis dicta blanditiis sed et. Ut et enim non recusandae a est.",
-            "date": "2021-04-09T00:00:00.000Z",
-            "reviewer_name": "Clinton93",
-            "helpfulness": 29,
-            "photos": [
-                {
-                    "id": 1959391,
-                    "url": "https://images.unsplash.com/photo-1503449377594-32dd9ac4467c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
-                }
-            ]
-        }
-*/
 
 export default UserReviews

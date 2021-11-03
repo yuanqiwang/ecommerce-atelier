@@ -3,24 +3,32 @@ import Stars from './Stars.jsx'
 import Characteristics from './Characteristics.jsx'
 import UserReviews from './UserReviews.jsx'
 import SortReview from './SortReview.jsx'
-import Buttons from './Buttons.jsx'
+import MoreReviewButton from './MoreReviewButton.jsx'
 
 
 class Review extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      dropdown: 'relevance'
+      dropdown: 'relevance',
+      reviewCount: 2
     }
   }
 
   handleCallback = (childData) => {
     this.setState({dropdown: childData})
+    this.setState({reviewCount: 2})
+  }
+
+  addCountCallback = (childData) => {
+    this.setState({reviewCount: this.state.reviewCount + 2})
   }
 
 
+
+
   render() {
-    //console.log(this.props)
+    console.log(this.state.reviewCount)
     return (
       <>
       <h2> Part 4 : This will be Ratings & Reviews section</h2>
@@ -43,8 +51,11 @@ class Review extends React.Component {
          <UserReviews
           reviews={this.props['reviews']}
           dropdown={this.state.dropdown}
+          count={this.state.reviewCount}
          />
-         <Buttons />
+         <MoreReviewButton
+           addCountCallback={this.addCountCallback}
+         />
        </div>
       </div>
       </>
