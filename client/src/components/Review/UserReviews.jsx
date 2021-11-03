@@ -16,7 +16,6 @@ const UserReviews = (props) => {
       .map( (item, i) => {
         let date = new Date(item.date).toLocaleDateString("en-US", options)
         return (
-
           <>
             <ReviewCard
               index={i}
@@ -41,6 +40,7 @@ const UserReviews = (props) => {
       const helpful = [].concat(reviews)
       .sort((a, b) => a.helpfulness < b.helpfulness ? 1 : -1)
       .map( (item, i) => {
+        let date = new Date(item.date).toLocaleDateString("en-US", options)
       return  (
         <>
           <ReviewCard
@@ -66,6 +66,7 @@ const UserReviews = (props) => {
       const recent = [].concat(reviews)
       .sort((a, b) => a.date < b.date ? 1 : -1)
       .map( (item, i) => {
+        let date = new Date(item.date).toLocaleDateString("en-US", options)
         return  (
           <>
             <ReviewCard
