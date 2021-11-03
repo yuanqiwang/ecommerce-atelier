@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Question from './Question.jsx'
 import QuestionModal from './QuestionModal.jsx';
 
-const QuestionsList = ({questions, productId}) => {
+const QuestionsList = ({questions, productId, productInfo}) => {
 
   const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
   const [moreQuestionVisible, setMoreQuestionVisible] = useState(false);
@@ -25,25 +25,29 @@ const QuestionsList = ({questions, productId}) => {
 
   return (
     <div>
-      <div className='main-questions'>
+      <div className='qa-main-questions'>
         {questions.slice(0,questionDisplayCount).map(question =>
-          <Question question={question} key={question.question_id}/>)
+          <Question question={question} key={question.question_id} productId={productId}/>)
         }
       </div>
 
       <div>
         {moreQuestionVisible ?
-          <div className='more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
+          <div className='qa-more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
               MORE ANSWERED QUESTIONS
           </div>
           : null
         }
 
-        <div className='more-question' onClick={() => {setIsOpen(true)}}>
+        <div className='qa-more-question' onClick={() => {setIsOpen(true)}}>
           ASK A QUESTION +
 
         </div>
-        <QuestionModal open={isOpen} productId={productId} onClose={()=> setIsOpen(false)} />
+        <QuestionModal
+          open={isOpen}
+          productName={productInfo.name}
+          productId={productId}
+          onClose={()=> setIsOpen(false)} />
 
       </div>
     </div>

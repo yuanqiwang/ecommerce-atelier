@@ -40,7 +40,7 @@ class App extends React.Component {
   render () {
     //console.log(this.state.stars)
     return (<div>
-      <div id="header">
+      {/* <div id="header">
         <h1>Logo</h1>
         <div id="search"></div>
       </div>
@@ -49,15 +49,16 @@ class App extends React.Component {
         relatedProductArr={this.state.relatedProductArr}
         productID={this.state.productId}
         productInfo={this.state.productInfo}
-        productStyle={this.state.productStyle} />
+        productStyle={this.state.productStyle} /> */}
       <QA
         productId={this.state.productId}
+        productInfo={this.state.productInfo}
         questions={this.state.questions}/>
-      <Review
+      {/* <Review
         productID={this.state.productId}
         reviews={this.state.reviews}
         stars={this.state.stars}
-      />
+      /> */}
     </div>)
   }
 }

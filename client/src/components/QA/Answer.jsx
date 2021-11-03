@@ -5,17 +5,17 @@ const Answer = ({answer}) => {
   //[helpfulness, setHelpfulness] = useState(answer.helpfulness);
 
   return (
-    <div className='answer'>
-      <div className='question'>A:
-          <span className ='tiny'> {answer.body}</span>
+    <div className='qa-answer'>
+      <div className='qa-question'>A:
+          <span className ='qa-tiny'> {answer.body}</span>
       </div>
-      <div className='answerby tiny'>
+      <div className='qa-answerby qa-tiny'>
         <div>by {answer.answerer_name}, {answer.date.slice(0,10)}</div>
-        <div className='divider'>|</div>
-        <div className='helpful'> Helpful?</div>
-        <div className='underscore helpful'> Yes ({answer.helpfulness})</div>
-        <div className='divider'>|</div>
-        <div className='underscore tiny'> Report</div>
+        <div className='qa-divider'>|</div>
+        <div className='qa-helpful'> Helpful?</div>
+        <div className='qa-underscore qa-helpful'> Yes ({answer.helpfulness})</div>
+        <div className='qa-divider'>|</div>
+        <div className='qa-underscore qa-tiny'> Report</div>
       </div>
     </div>
   )
