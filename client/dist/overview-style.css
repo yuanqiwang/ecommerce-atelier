@@ -17,6 +17,7 @@
 
 #overview_image_gallery img {
   max-height: 500px;
+  max-width: 100%;
 }
 
 #overview_product_options {

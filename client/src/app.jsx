@@ -43,7 +43,9 @@ class App extends React.Component {
         <h1>Logo</h1>
         <div id="search"></div>
       </div>
-      <Overview />
+      <Overview
+        productInfo={this.state.productInfo}
+        productStyle={this.state.productStyle} />
       <Related
         relatedProductArr={this.state.relatedProductArr}
         productID={this.state.productId}
