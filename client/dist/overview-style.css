@@ -58,6 +58,13 @@
   margin-right: 5px;
 }
 
+.go-to-reviews {
+  cursor: pointer;
+  color: green;
+  text-decoration: underline;
+  user-select: none;
+}
+
 #overview_product_headline,
 #overview_style_selector,
 #overview_add_cart {

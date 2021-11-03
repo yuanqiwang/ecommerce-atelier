@@ -9,7 +9,8 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImg: props.productStyle
+      currentImg: props.productStyle,
+      currentStyleID: 369761
     };
 
     this.changeHeroPic = this.changeHeroPic.bind(this);
@@ -37,7 +38,7 @@ class Overview extends React.Component {
     return (
       <div id="overview">
         <ImageGallery productStyle={this.props.productStyle} changePic={this.changeHeroPic} />
-        <ProductOptions productStyle={this.props.productStyle} />
+        <ProductOptions productInfo={this.props.productInfo} productStyle={this.props.productStyle} currentStyle={this.state.currentStyleID} />
         <ProductInfo />
         <ProductBullets />
       </div>
