@@ -34,6 +34,8 @@
     "axios": "^0.23.0",
     "babel-loader": "^8.2.3",
     "body-parse": "^0.1.0",
+    "eslint": "^8.1.0",
+    "eslint-plugin-react": "^7.26.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.14",
     "path": "^0.12.7",

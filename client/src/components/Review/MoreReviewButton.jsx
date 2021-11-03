@@ -13,12 +13,16 @@ class MoreReviewButton extends React.Component {
     event.preventDefault();
   }
   render() {
-    return (
-      <div>
-      <button onClick={this.addCount}>MORE REVIEWS</button>
-      <button>ADD A REVIEW +</button>
-      </div>
-    )
+    if (this.props.nReviews > this.props.reviewCount) {
+      return (
+        <div>
+          <button onClick={this.addCount}>MORE REVIEWS</button>
+        </div>
+      )
+    }
+      return (
+        null
+      )
   }
 }
 

@@ -3,9 +3,7 @@ import React from 'react'
 
 const Stars = (props) => {
   /*stars logic*/
-  let stars = 0;
   let nOfRatings = 0;
-  let totalScore = 0;
   let starsAvg = 0;
   let starsFill = 0;
   let showNum = 0;
@@ -36,17 +34,17 @@ const Stars = (props) => {
   }
 
   return (
- <div>
-   <span className="star-text">{showNum} &nbsp;</span>
-   <div className="star-rating">
-    <div className="off"></div>
-    <div className="on" style={{"width": `${starsFill}%`}}></div>
-   </div>
-
     <div>
-      {percentage}% of reviews recommend this product<br />
+    <span className="star-text">{showNum} &nbsp;</span>
+    <div className="star-rating">
+      <div className="off"></div>
+      <div className="on" style={{"width": `${starsFill}%`}}></div>
     </div>
-  </div>
+
+      <div>
+        {percentage}% of reviews recommend this product<br />
+      </div>
+    </div>
   )
 }
 

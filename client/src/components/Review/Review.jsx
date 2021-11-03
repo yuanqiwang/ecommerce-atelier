@@ -4,6 +4,7 @@ import Characteristics from './Characteristics.jsx'
 import UserReviews from './UserReviews.jsx'
 import SortReview from './SortReview.jsx'
 import MoreReviewButton from './MoreReviewButton.jsx'
+import AddReviewButton from './AddReviewButton.jsx'
 
 
 class Review extends React.Component {
@@ -28,7 +29,6 @@ class Review extends React.Component {
 
 
   render() {
-    console.log(this.state.reviewCount)
     return (
       <>
       <h2> Part 4 : This will be Ratings & Reviews section</h2>
@@ -55,7 +55,10 @@ class Review extends React.Component {
          />
          <MoreReviewButton
            addCountCallback={this.addCountCallback}
+           nReviews={this.props['reviews'].length}
+           reviewCount={this.state.reviewCount}
          />
+         <AddReviewButton />
        </div>
       </div>
       </>
