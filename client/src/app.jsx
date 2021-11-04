@@ -51,6 +51,7 @@ class App extends React.Component {
         productStyle={this.state.productStyle} />
       <QA
         productId={this.state.productId}
+        productInfo={this.state.productInfo}
         questions={this.state.questions}/>
       <Review
         productID={this.state.productId}

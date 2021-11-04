@@ -3,9 +3,9 @@ import QuestionsList from './QuestionsList.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
 import axios from 'axios';
 
-const QA = ({questions, productId}) => {
+const QA = ({questions, productId, productInfo}) => {
   // const [isOpen, setIsOpen] = useState(false)
-
+  // console.log(productInfo)
   questions.sort((a,b) => {
     return b.question_helpfulness - a.question_helpfulness
   });
@@ -15,7 +15,9 @@ const QA = ({questions, productId}) => {
       <h5>{`QUESTIONS & ANSWERS`}</h5>
       <SearchQuestions/>
       <QuestionsList
-          questions={questions} productId={productId}
+          questions={questions}
+          productId={productId}
+          productInfo={productInfo}
         />
     </div>
   )
