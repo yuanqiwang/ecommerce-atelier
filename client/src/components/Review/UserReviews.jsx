@@ -8,7 +8,6 @@ const UserReviews = (props) => {
   let reviews = props.reviews
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-  console.log(props.reviews)
   if (props.reviews.length > 0) {
     if (props.dropdown === 'relevance') {
       const relevance = [].concat(reviews)
