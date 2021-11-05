@@ -82,7 +82,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-ul{
+.rp-cardrow {
   display: flex;
   align-items: center;
   list-style: none;
