@@ -14,7 +14,7 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     if (questions) {
       setQuestionList(questions)
     }
-    if (questionList.length > 0) {
+    if (questions.length > 0) {
       setMoreQuestionVisible(true)
     }
 
