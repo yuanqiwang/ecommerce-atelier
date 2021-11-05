@@ -10,3 +10,7 @@ describe("Example tests", function(){
     expect(1+1).toBe(2);
   });
 });
+
+test('test', () => {
+  expect(true).toBe(true);
+})
