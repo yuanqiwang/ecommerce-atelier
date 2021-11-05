@@ -24,7 +24,7 @@ const Stars = (props) => {
     }
     const reducer = (a, b) => a + b;
     starsAvg = keyTimesValue.reduce(reducer) / nOfRatings;
-    starsFill = (2/5) * 100
+    starsFill = (2.5/5) * 100
     showNum = starsAvg.toFixed(1)
     /*starbars logic*/
     starBars = keyValArr.map((item, index) =>

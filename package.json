@@ -4,7 +4,7 @@
   "description": "It's French!",
   "main": "index.js",
   "scripts": {
-    "test": "jest pa.spec.js",
+    "test": "jest --collectCoverage=true",
     "start": "nodemon server.js",
     "react-dev": "webpack --mode development --watch"
   },
@@ -26,6 +26,10 @@
     "@babel/plugin-transform-runtime": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
+<<<<<<< HEAD
+=======
+    "@testing-library/jest-dom": "^5.15.0",
+>>>>>>> 03130e2be21ce9d9743ef31d586d054f26d63c65
     "@testing-library/react": "^12.1.2",
     "jest": "^27.3.1",
     "webpack": "^5.59.1",
