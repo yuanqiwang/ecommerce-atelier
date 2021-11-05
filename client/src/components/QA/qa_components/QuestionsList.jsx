@@ -49,11 +49,10 @@ const QuestionsList = ({questions, productId, productInfo}) => {
           ASK A QUESTION +
         </div>
         <QuestionModal
-          open={isOpen}
-          productName={productInfo? productInfo.name : 'product'}
-          productId={productId}
-          onClose={()=> setIsOpen(false)} />
-
+            open={isOpen}
+            productName={productInfo? productInfo.name : 'product'}
+            productId={productId}
+            onClose={()=> {setIsOpen(false)}} />
       </div>
     </div>
 
