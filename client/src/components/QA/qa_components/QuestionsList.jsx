@@ -32,6 +32,7 @@ const QuestionsList = ({questions, productId, productInfo}) => {
       </div>
 
       <div>
+
         {moreQuestionVisible ?
           <div className='qa-more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
               MORE ANSWERED QUESTIONS
@@ -41,7 +42,6 @@ const QuestionsList = ({questions, productId, productInfo}) => {
 
         <div className='qa-more-question' onClick={() => {setIsOpen(true)}}>
           ASK A QUESTION +
-
         </div>
         <QuestionModal
           open={isOpen}

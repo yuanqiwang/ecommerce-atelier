@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import Answer from './Answer.jsx'
 import axios from 'axios'
-
+import AnswerModal from './AnswerModal.jsx'
 
 const Question = ({question, productId}) => {
 
@@ -12,27 +12,7 @@ const Question = ({question, productId}) => {
   const [visible, setVisible] = useState(2)
   const [loadMoreAnswers, setLoadMoreAnswers] = useState() //null, load more answers, collapse answers
   const [voteHelpful, setVoteHelpful] = useState(false)
-
-  const handleAddAnswer = () => {
-    console.log('add answer')
-  }
-
-  const handleHelpful = () => {
-
-    //check if the id is already in local storage
-    var questionsMarkedHelpful=JSON.parse(localStorage.getItem('questionsMarkedHelpful')) || [];
-    if (questionsMarkedHelpful.includes(productId)) {
-      console.log('already voted helpful')
-    } else {//if not existing
-      //save the question id to local storage
-      questionsMarkedHelpful.push(productId)
-      localStorage.setItem('questionsMarkedHelpful', JSON.stringify(questionsMarkedHelpful));
-      //put the question as helpful in API: /qa/questions/:question_id/helpful
-      // axios.post()
-      //either increment the count locally? or get the API? option 1 because it is instant...but can check
-      setQuestionHelpfulness(prevCount => prevCount +1)
-    }
-  }
+  const [addAnswer, setAddAnswer] = useState(false)
 
   useEffect(() => {
    if (Object.keys(answers).length>2) {
@@ -52,6 +32,23 @@ const Question = ({question, productId}) => {
 
   }
 
+  const handleAddAnswer = () => {
+    console.log('add answer')
+    setAddAnswer(true)
+  }
+
+  const handleHelpful = () => {
+
+    var questionsMarkedHelpful=JSON.parse(localStorage.getItem('questionsMarkedHelpful')) || [];
+    if (questionsMarkedHelpful.includes(question.question_id)) {
+      console.log('already voted helpful')
+    } else {
+      questionsMarkedHelpful.push(question.question_id)
+      localStorage.setItem('questionsMarkedHelpful', JSON.stringify(questionsMarkedHelpful));
+      //put the question as helpful in API: /qa/questions/:question_id/helpful
+      setQuestionHelpfulness(prevCount => prevCount +1)
+    }
+  }
 
   return (
     <div>
@@ -65,15 +62,29 @@ const Question = ({question, productId}) => {
         </div>
       </div>
       <div className='qa-answers qa-scroll'>
-        {Object.keys(answers).slice(0, visible).map((key) => {
-              return <Answer answer={answers[key]} key={key} />
-            })
-        }
+        <div className='qa-answers-left'>A: </div>
+        <div className='qa-answers-right'>
+          {Object.keys(answers).slice(0, visible).map((key) => {
+                return <Answer answer={answers[key]} key={key} />
+              })
+          }
         </div>
+      </div>
+
       {loadMoreAnswers ?
         <div className ='qa-moreanswer qa-tiny' onClick={() => handleLoadMoreAnswers(loadMoreAnswers)}>
           {loadMoreAnswers}</div>
       : null}
+
+      <AnswerModal
+        open={addAnswer}
+        productName={'test'}
+        question={questionBody}
+        productId={productId}
+        onClose={()=> {
+          console.log('test')
+          setAddAnswer(false)}}
+      />
     </div>
   )
 
