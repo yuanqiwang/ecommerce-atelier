@@ -10,9 +10,9 @@ const QA = ({questions, productId, productInfo}) => {
   const [questionList, setQuestionList] = useState([]);
 
   useEffect(() => {
-    questions.sort((a,b) => {//need to do this with search results
-      return b.question_helpfulness - a.question_helpfulness
-    });
+    // questions.sort((a,b) => {//need to do this with search results
+    //   return b.question_helpfulness - a.question_helpfulness
+    // });
     setQuestionList(questions)
   }, [questions])
 

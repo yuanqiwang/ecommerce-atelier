@@ -82,7 +82,6 @@ const Question = ({question, productId}) => {
         question={questionBody}
         productId={productId}
         onClose={()=> {
-          console.log('test')
           setAddAnswer(false)}}
       />
     </div>
