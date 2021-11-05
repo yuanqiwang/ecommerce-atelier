@@ -14,7 +14,7 @@ function Styles(props) {
           );
         } else {
           return (
-            <div className="overview_style">
+            <div key={style.name} className="overview_style">
               <img src={style.photos[0].thumbnail_url} alt={style.name} />
             </div>
           );

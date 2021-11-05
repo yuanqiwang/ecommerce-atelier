@@ -36,7 +36,7 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div id="overview">
+      <div id="overview" data-testid="overview">
         <ImageGallery productStyle={this.props.productStyle} changePic={this.changeHeroPic} />
         <ProductOptions productInfo={this.props.productInfo} productStyle={this.props.productStyle} currentStyle={this.state.currentStyleID} />
         <ProductInfo />
