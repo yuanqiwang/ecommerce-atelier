@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-
+import ComparisonModal from './RP-Modal.jsx';
 
 const RP_sub = (props) => {
 
@@ -60,9 +60,11 @@ const RP_sub = (props) => {
   // const calAverageRating;// helper function
   function MouseOver(event) {
     event.target.style['-webkit-text-fill-color'] = 'black';
+    setModal(!showModal);
   }
   function MouseOut(event){
     event.target.style['-webkit-text-fill-color'] = 'transparent';
+    setModal(!showModal);
   }
 
   function actionClick(){
@@ -96,15 +98,7 @@ const RP_sub = (props) => {
           : <div>No Reviews yet</div>
         }
       </div>
-      {/* {
-        showModal?
-        <div class ='rp-comparison-modal'>
-          <div class ='rp-sub-modal'>
-            <h1> Here is Comparison modal </h1>
-          </div>
-        </div>
-        : null
-      } */}
+      {/* <ComparisonModal isOpen={showModal}/> */}
     </article>
   )
 }
@@ -112,4 +106,3 @@ const RP_sub = (props) => {
 
 
 export default RP_sub;
-//style = "--rating: 2.3"

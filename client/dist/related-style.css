@@ -9,19 +9,18 @@
   width: 90%;
 }
 
-#wrapper {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  white-space: nowrap;
-  position: relative;
+#rp-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .rp-cardrow {
   overflow-x: auto;
 	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
+  white-space: nowrap;
 }
-
 
 .rp-card {
   /* padding: 20px; */
@@ -33,6 +32,23 @@
   height: 380px;
   display: inline-block;
   margin-right: 20px;
+}
+
+
+.rp-prev {
+  border: 1px solid grey;
+  border-radius: 0.8em;
+  width: 2em;
+  font-size: 1.5em;
+  background:linear-gradient(to left, rgba(255, 255, 255, 0.418), rgba(255, 255, 255, 0.89), white);
+}
+
+.rp-next {
+  border: 1px solid grey;
+  border-radius: 0.8em;
+  width: 2em;
+  font-size: 1.5em;
+  background:linear-gradient(to right, rgba(255, 255, 255, 0.418), rgba(255, 255, 255, 0.89), white);
 }
 
 .sub-card-img{
@@ -65,25 +81,14 @@
   -webkit-text-stroke: 2px black;
   -webkit-text-fill-color: transparent;
 }
-.paddle {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-  border: none;
-  width: 2em;
-  font-size: 1.5em;
-}
 
-.left-paddle {
-	left: 0;
-  background:linear-gradient(to left, rgba(255, 255, 255, 0.418), rgba(255, 255, 255, 0.89), white);
-}
-.right-paddle {
-	right: 0;
-  background:linear-gradient(to right, rgba(255, 255, 255, 0.418), rgba(255, 255, 255, 0.89), white);
-}
-.hidden {
-	display: none;
+ul{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  max-width: 100%;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 #category {
@@ -101,10 +106,6 @@
   padding: 5px;
   margin-left: 8px;
 }
-
-/* .rp-allprice {
-  display: inline;
-} */
 
 #rp-origin-price-dup {
   margin-left: 5px;
