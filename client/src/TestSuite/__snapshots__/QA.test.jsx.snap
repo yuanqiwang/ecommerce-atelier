@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snaoshot 1`] = `
+<div
+  className="QA"
+  data-testid="QA-render"
+>
+  <h5>
+    QUESTIONS & ANSWERS
+  </h5>
+  <div
+    className="qa-search-bar"
+  >
+    <input
+      onChange={[Function]}
+      placeholder="Have a question? Search for answers…"
+      type="text"
+    />
+    <button
+      className="qa-search-btn"
+    >
+      <span>
+        Magifier
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="qa-main-questions"
+    />
+    <div>
+      <div
+        className="qa-more-question"
+        onClick={[Function]}
+      >
+        ASK A QUESTION +
+      </div>
+    </div>
+  </div>
+</div>
+`;
