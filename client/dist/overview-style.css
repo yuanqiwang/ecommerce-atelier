@@ -17,6 +17,7 @@
 
 #overview_image_gallery img {
   max-height: 500px;
+  max-width: 100%;
 }
 
 #overview_product_options {
@@ -55,6 +56,13 @@
 
 .overview_stars {
   margin-right: 5px;
+}
+
+.go-to-reviews {
+  cursor: pointer;
+  color: green;
+  text-decoration: underline;
+  user-select: none;
 }
 
 #overview_product_headline,
@@ -97,6 +105,12 @@
   border-radius: 50%;
   border: 2px solid #CCC;
   position: relative;
+}
+
+.overview_style img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .overview_selected_style::after {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class YO extends React.Component {
+class YO_row extends React.Component {
 
   render() {
     return (
@@ -19,4 +19,4 @@ class YO extends React.Component {
 }
 
 
-export default YO;
+export default YO_row;

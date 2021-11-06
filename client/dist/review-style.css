@@ -1,5 +1,45 @@
+.review-grid {
+  margin: auto;
+  width:70%;
 
 
+}
+
+#left-column {
+  margin:30;
+  width:70%
+}
+
+
+#right-column {
+  margin:0;
+  width:70%
+}
+
+.review-card {
+  position:relative
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  max-width: 1600px
+
+}
+
+#review-reviewer {
+  float:right;
+  color:grey;
+  font-size: 0.8rem;
+}
+
+#review-rec {
+  color:grey;
+  font-size: 0.8rem;
+}
+
+#review-body {
+  display: inline-flex;
+  margin: 3px 10px 3px 10px;
+  font-size: 12px;
+}
 .star-rating {
   position: relative;
   vertical-align: middle;
@@ -31,4 +71,45 @@
   font-family: 'Lato', sans-serif;
   font-size: 30px;
   font-weight: 900;
+}
+
+button {
+  float: left;
+}
+
+
+.starbar {
+
+}
+
+.starbar-rating {
+  text-decoration: underline;
+
+}
+
+.starbar-bar {
+  background-color: black;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* progress bar */
+#progressbar {
+  background-color: gray;
+  border-radius: 13px;
+  /* (height of inner div) / 2 + padding */
+  padding: 3px;
+}
+
+#progressbar>div {
+  background-color: black;
+  width: 40%;
+  /* Adjust with JavaScript */
+  height: 20px;
+  border-radius: 10px;
 }
