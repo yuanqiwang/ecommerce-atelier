@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react'
 import Answer from './Answer.jsx'
 import axios from 'axios'
 import AnswerModal from './AnswerModal.jsx'
+import Helpful from './Helpful.jsx'
 
 const Question = ({question, productId}) => {
 
@@ -62,11 +63,15 @@ const Question = ({question, productId}) => {
         <div className='qa-question'>Q: {questionBody} </div>
         <div className='qa-tiny qa-helpful'>
           <div className= 'qa-helpful'> Helpful?</div>
-          <div className='qa-helpful' onClick={handleHelpful}>
+          {/* <div className='qa-helpful' onClick={handleHelpful}>
             <span className={voteHelpful? 'qa-not-clickable': 'qa-clickable'}>Yes </span>  ({questionHelpfulness})
-          </div>
+          </div> */}
+          <Helpful
+            id={question.question_id}
+            helpfulness={question.question_helpfulness}
+            localStorageName={'questionsMarkedHelpful'}/>
           <div className='qa-divider'>|</div>
-          <div className='qa-underscore qa-helpful' onClick={handleAddAnswer}> Add Answers </div>
+          <div className='qa-clickable qa-helpful' onClick={handleAddAnswer}> Add Answers </div>
         </div>
       </div>
       <div className='qa-answers qa-scroll'>
