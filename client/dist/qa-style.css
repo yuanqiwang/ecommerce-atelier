@@ -41,8 +41,10 @@
 .qa-more-question {
   display: inline-block;
   border-style: solid;
-  border-color: gray;
+  border-color: rgb(48, 47, 47);
+  border-width:  1px;
   padding: 10px;
+  margin-left: 10px;
   margin-inline-end: 5px;
   margin-bottom: 20px;
   cursor: pointer;
@@ -75,7 +77,6 @@
   display: inline-flex;
   margin-left: 3px;
   margin-right: 3px;
-  cursor: pointer;
 }
 
 .qa-answerby {
@@ -98,7 +99,18 @@
 .qa-underscore {
   text-decoration: underline;
 }
-
+.qa-clickable {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.qa-clickable:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: maroon
+}
+.qa-not-clickable {
+  cursor: not-allowed;
+}
 .qa-divider {
   padding-left: 5px;
   padding-right: 5px;
@@ -174,8 +186,15 @@
 }
 
 .qa-answer-img-container {
-  height: 90px;
+  height: 70px;
   display: flex
+}
+
+.qa-answer-img-container img {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(48, 47, 47);
+  margin-left: 10px;
 }
 
 .qa-image-upload {
@@ -211,4 +230,9 @@
 .multi-preview img {
   max-width: 100px;
   padding: 5px;
+}
+
+span {
+  padding-left: 3px;
+  padding-right: 3px;
 }

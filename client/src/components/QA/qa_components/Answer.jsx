@@ -3,6 +3,23 @@ import React, {useState, useEffect} from 'react';
 const Answer = ({answer}) => {
 
   //[helpfulness, setHelpfulness] = useState(answer.helpfulness);
+  let reportedAnswers = JSON.parse(localStorage.getItem('reportedAnswers')) || [];
+  let reportedInit = false;
+  if (reportedAnswers.includes(answer.id)) {
+    reportedInit = true
+  }
+  const [reportStatus, setReportStatus] = useState(reportedInit);
+  const handleReport = () => {
+
+    if (reportStatus) {
+      console.log('already reported')
+    } else {
+      setReportStatus(true);
+      reportedAnswers.push(answer.id);
+      localStorage.setItem('reportedAnswers', JSON.stringify(reportedAnswers));
+    }
+
+  }
 
   return (
     <div className='qa-answer'>
@@ -22,7 +39,10 @@ const Answer = ({answer}) => {
         <div className='qa-helpful'> Helpful?</div>
         <div className='qa-underscore qa-helpful'> Yes ({answer.helpfulness})</div>
         <div className='qa-divider'>|</div>
-        <div className='qa-underscore qa-tiny'> Report</div>
+        <div className={reportStatus? 'qa-not-clickable': 'qa-clickable'}
+          onClick={handleReport}>
+          {reportStatus? 'Reported': 'Report'}
+        </div>
 
       </div>
     </div>
