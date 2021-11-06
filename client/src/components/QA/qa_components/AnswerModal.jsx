@@ -24,8 +24,22 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
   //     .then((res)  => console.log(res))
   //     .catch((err) => console.log(err))
   // }
-  const fileSelectHandler = (e) => {
-    setFiles([...files, ...e.target.files])
+  const uploadMultipleFiles = (e) => {
+    let fileObj = []
+    let fileArray = [];
+    // console.log('e.target.files', e.target.files[0])
+    fileObj.push(e.target.files)
+
+    for (let i = 0; i < fileObj[0].length; i++) {
+        fileArray.push(URL.createObjectURL(fileObj[0][i]))
+    }
+    console.log(fileArray)
+    setFiles([...files, fileArray])
+  }
+
+  const uploadFiles = (e) => {
+      e.preventDefault()
+      console.log(files)
   }
 
   return (
@@ -89,9 +103,13 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
               id='image'
               type='file'
               multiple
-              onChange={fileSelectHandler}
+              onChange={uploadMultipleFiles}
               />
-             <button type='submit'> Upload</button>
+              <div className="form-group multi-preview">
+                    {(files || []).map((url,i) => (
+                        <img key={i} src={url} alt="..." />
+                    ))}
+                </div>
 
           </div>
 

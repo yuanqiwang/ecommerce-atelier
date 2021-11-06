@@ -207,3 +207,8 @@
 .qa-image-btn {
   display: flex;
 }
+
+.multi-preview img {
+  max-width: 100px;
+  padding: 5px;
+}

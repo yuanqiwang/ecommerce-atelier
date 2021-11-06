@@ -33,7 +33,6 @@ const Question = ({question, productId}) => {
   }
 
   const handleAddAnswer = () => {
-    console.log('add answer')
     setAddAnswer(true)
   }
 
