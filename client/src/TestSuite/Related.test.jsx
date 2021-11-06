@@ -3,6 +3,8 @@ import {render, screen, cleanup, fireEvent, waitForElement} from '@testing-libra
 import '@testing-library/jest-dom';
 import Related from '../components/Related/Related.jsx';
 import axios from 'axios';
+
+
 afterEach(() => {
   cleanup()
 })

@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ComparisonModal from './RP-Modal.jsx';
 
-const RP_sub = (props) => {
+const RP_sub = ({item, mainInfo}) => {
 
   const[productInfo, setInfo] = useState({});
-  const[stylePic, setStylePicture] = useState();
+  const[stylePic, setStylePicture] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
   const[stylePrice, setStylePrice] = useState();
   const[salePrice, setSaleprice] = useState(100);
   const[styleName, setStyleName] = useState();
@@ -21,8 +21,6 @@ const RP_sub = (props) => {
       let values = Object.values(reviewObj);
 
         for (var i=0; i<keys.length; i++) {
-          // console.log(keys[i], typeof keys[i]);
-          // console.log(values[i], typeof values[i])
           reviewNum += parseInt(values[i]);
           ratingSum += parseInt(keys[i])*parseInt(values[i]);
         }
@@ -35,12 +33,11 @@ const RP_sub = (props) => {
 
   const getProductInfo = async () => {
     try {
-      const response =  await axios.get(`/product/info/${props.item}`);
+      const response =  await axios.get(`/product/info/${item}`);
       const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
       setInfo(response.data['prod']);
       setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
       setReview(avgReviewnum)
-      // console.log(response.data['style']['results'][0]['original_price'])
       setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
       if(response.data['style']['results'][0]['sale_price']){
         setSaleprice(response.data['style']['results'][0]['sale_price'].toFixed(0))
@@ -60,11 +57,9 @@ const RP_sub = (props) => {
   // const calAverageRating;// helper function
   function MouseOver(event) {
     event.target.style['-webkit-text-fill-color'] = 'black';
-    setModal(!showModal);
   }
   function MouseOut(event){
     event.target.style['-webkit-text-fill-color'] = 'transparent';
-    setModal(!showModal);
   }
 
   function actionClick(){
@@ -98,7 +93,8 @@ const RP_sub = (props) => {
           : <div>No Reviews yet</div>
         }
       </div>
-      {/* <ComparisonModal isOpen={showModal}/> */}
+
+      <ComparisonModal isOpen={showModal} mainFeature = {mainInfo.features} currentFeature = {productInfo.features} mainName = {mainInfo.name} currentName ={productInfo.name}/>
     </article>
   )
 }
