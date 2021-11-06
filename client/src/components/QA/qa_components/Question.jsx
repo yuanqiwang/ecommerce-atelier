@@ -6,15 +6,9 @@ import Helpful from './Helpful.jsx'
 
 const Question = ({question, productId}) => {
 
-  let voteHelpfulInit = false;
-  let questionsMarkedHelpful=JSON.parse(localStorage.getItem('questionsMarkedHelpful')) || [];
-  if (questionsMarkedHelpful.includes(question.question_id)) {
-    voteHelpfulInit = true;
-  }
+
 
   const [questionBody, setQuestionBody] = useState(question.question_body)
-  const [questionHelpfulness, setQuestionHelpfulness] = useState(question.question_helpfulness)
-  const [voteHelpful, setVoteHelpful] = useState(voteHelpfulInit) //resord state of vote
   const [answers, setAnswers] = useState(question.answers)
 
   const [visible, setVisible] = useState(2)
@@ -43,29 +37,12 @@ const Question = ({question, productId}) => {
     setAddAnswer(true)
   }
 
-  const handleHelpful = () => {
-
-    if (voteHelpful) {
-      console.log('already voted helpful')
-    } else {
-      questionsMarkedHelpful.push(question.question_id)
-      localStorage.setItem('questionsMarkedHelpful', JSON.stringify(questionsMarkedHelpful));
-      //put the question as helpful in API: /qa/questions/:question_id/helpful
-      // (will this automatically update question API?)
-      setQuestionHelpfulness(prevCount => prevCount +1);
-      setVoteHelpful(true);
-    }
-  }
-
   return (
     <div>
       <div className='qa-container'>
         <div className='qa-question'>Q: {questionBody} </div>
         <div className='qa-tiny qa-helpful'>
           <div className= 'qa-helpful'> Helpful?</div>
-          {/* <div className='qa-helpful' onClick={handleHelpful}>
-            <span className={voteHelpful? 'qa-not-clickable': 'qa-clickable'}>Yes </span>  ({questionHelpfulness})
-          </div> */}
           <Helpful
             id={question.question_id}
             helpfulness={question.question_helpfulness}
