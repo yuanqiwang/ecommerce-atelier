@@ -2,28 +2,45 @@ import React from 'react'
 
 
 const Stars = (props) => {
-  /*stars logic*/
-  let stars = 0;
+  /*stars variables*/
   let nOfRatings = 0;
-  let totalScore = 0;
   let starsAvg = 0;
   let starsFill = 0;
   let showNum = 0;
+  let keys, values
+  /*star bars variables*/
+  let keyValArr = []
+  let starBars;
+
   if (props.ratings !== undefined) {
-
     nOfRatings = Object.values(props.ratings).reduce((a, b) => parseInt(a) + parseInt(b))
-
-    let keys = Object.keys(props.ratings)
-    let values = Object.values(props.ratings)
+    keys = Object.keys(props.ratings)
+    values = Object.values(props.ratings)
     let keyTimesValue = [];
     for (var i=0; i<keys.length; i++) {
       keyTimesValue.push(keys[i] * values[i])
+      keyValArr.push(keys[i])
+      keyValArr.push(values[i])
     }
     const reducer = (a, b) => a + b;
     starsAvg = keyTimesValue.reduce(reducer) / nOfRatings;
-    starsFill = (2/5) * 100
+    starsFill = (2.5/5) * 100
     showNum = starsAvg.toFixed(1)
+    /*starbars logic*/
+    starBars = keyValArr.map((item, index) =>
+      index%2 === 0 ?
+        index === 0 ?
+      <div className="starbar-rating" key={index}>{item} star</div> :
+      <div className="starbar-rating" key={index}>{item} stars</div>
+      :
+      <div className="bar-container">
+        <div className="starbar-bar" key={index} style={{"width": `${(item / 5)*100}%` }}><br/></div>
+      </div>
+
+    )
+
   }
+
 
   /*recommendation logic*/
   let falseRecs = 0;
@@ -36,17 +53,20 @@ const Stars = (props) => {
   }
 
   return (
- <div>
-   <span className="star-text">{showNum} &nbsp;</span>
-   <div className="star-rating">
-    <div className="off"></div>
-    <div className="on" style={{"width": `${starsFill}%`}}></div>
-   </div>
-
     <div>
-      {percentage}% of reviews recommend this product<br />
+      <div className="star-text">{showNum} &nbsp;</div>
+      <div className="star-rating">
+        <span className="off"></span>
+        <span className="on" style={{"width": `${starsFill}%`}}></span>
+      </div>
+      <div id="review-rec">
+        {percentage}% of reviews recommend this product<br />
+      </div>
+      <div className="star-bars">
+        {starBars}
+      </div>
+
     </div>
-  </div>
   )
 }
 

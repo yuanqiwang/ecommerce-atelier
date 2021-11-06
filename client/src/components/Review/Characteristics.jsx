@@ -1,26 +1,26 @@
 import React from 'react'
 
+
 const Characteristics = (props) => {
-  let category, cats, vals;
-  let value = [];
-  //console.log(props)
+  let category, value;
+  let characArr = [];
   if (props.characteristics !== undefined) {
     category = Object.keys(props.characteristics)
     for (var i=0; i<category.length; i++) {
-      value.push(parseFloat(props.characteristics[category[i]].value))
+      characArr.push(category[i])
+      characArr.push(parseFloat(props.characteristics[category[i]].value))
     }
-    cats = category.map((item, index) =>
-      <div key={index}>{item}</div>
+    value = characArr.map((item, index) =>
+      index%2 === 0 ?
+      <h3 className="review-characteristic" key={index}>{item}</h3> :
+      <div id="progressbar">
+        <div></div>
+      </div>
     )
-    vals = value.map((item, index) =>
-      <div key={index}>{item} out of 5</div>
-    )
-
   }
   return (
     <>
-    {cats}
-    {vals}
+    {value}
     </>
   )
 
