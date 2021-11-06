@@ -1,4 +1,4 @@
-// const mergeSort = require('./mergeSort/mergeSort').mergeSort;
+import { render } from "@testing-library/react";
 
 /*
 A "describe" block can be used to group together multiple tests
@@ -11,6 +11,8 @@ describe("Example tests", function(){
   });
 });
 
+
 test('test', () => {
   expect(true).toBe(true);
 })
+
