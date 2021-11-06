@@ -1,70 +1,75 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useEffect, useState} from 'react'
 
-const QuestionModal = ({ open, productId, productName, onClose}) => {
+const AnswerModal = ({open, productId, productName, question, onClose}) => {
 
-
-  if(!open) return null;
+  if (!open) {
+    return null;
+  }
+  // console.log(productName, question)
 
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    let data = {
-      body,
-      name,
-      email,
-      product_id: productId
-    }
-    axios.post('/qa/questions', data)
-      .then((res)  => console.log(res))
-      .catch((err) => console.log(err))
-  }
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   let data = {
+  //     body,
+  //     name,
+  //     email,
+  //     product_id: productId
+  //   }
+  //   axios.post('/qa/questions', data) //update this.
+  //     .then((res)  => console.log(res))
+  //     .catch((err) => console.log(err))
+  // }
 
   return (
     <div className='qa-modal'>
 
       <div className='qa-modal-main'>
 
-          <div >Ask Your Question</div>
-          {/* <p>About the {productName} </p> */}
+          <div >Submit your Answer</div>
+          <p> {productName}: {question} </p>
         <form className='qa-form'>
           <p>
-            <label htmlFor='question'>Question</label>
-            <input
+            <label htmlFor='answer'>Your Answer (mandatory)*</label>
+            <textarea
               className='qa-input'
-              id ='question'
+              id ='answer'
               name = 'body' //use for onChange
               type='textarea'
+              rows="5" cols="33"
+              maxLength='1000'
               autoComplete='off'
               onChange={(e)=> setBody(e.target.value)}
               required/>
           </p>
           <p>
-            <label htmlFor='nickname'>Nickname</label>
+            <label htmlFor='nickname'>What is your nickname (mandatory)*</label>
             <input
               className='qa-input'
               id ='nickname'
               name = 'name' //use for onChange
               type='text'
-              placeholder='Example: jackson11!'
+              placeholder='Example: jackson543!'
               autoComplete='off'
+              maxLength='60'
               onChange={(e)=> setName(e.target.value)}
               required
             />
             <span className='instructions'> For privacy reasons, do not use your full name or email address</span>
           </p>
           <p>
-            <label htmlFor='email'>Email</label>
+            <label htmlFor='email'>Your email (mandatory)*</label>
             <input
               className='qa-input'
               id='email'
               type='text'
               name = 'email' //use for onChange
-              placeholder='Why did you like the product or not?'
+              placeholder='Example: jack@email.com'
               autoComplete='off'
+              maxLength='60'
               onChange={(e)=> setEmail(e.target.value)}
               required/>
             <span className='instructions'> For authentication reasons, you will not be emailed
@@ -82,5 +87,4 @@ const QuestionModal = ({ open, productId, productName, onClose}) => {
     </div>
   )
 }
-
-export default QuestionModal
+export default AnswerModal

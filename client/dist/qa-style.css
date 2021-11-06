@@ -64,6 +64,15 @@
   margin: 3px 10px 3px 10px;
 }
 
+.qa-answers {
+  display: flex;
+  /* flex-direction: column; */
+}
+.qa-answers-right {
+  display: flex;
+  flex-direction: column;
+}
+
 .qa-underscore {
   text-decoration: underline;
 }
@@ -81,7 +90,7 @@
 
 .qa-scroll {
   overflow-y: auto;
-  max-height: 150px;
+  max-height: 300px;
 }
 
 .qa-modal {
@@ -136,4 +145,9 @@
   width: calc(85% - 2px);
   padding: 0.25rem 1rem;
   border-radius: 0.25rem;
+}
+
+.qa-answer-img-container {
+  height: 90px;
+  display: flex
 }
