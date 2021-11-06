@@ -1,24 +1,51 @@
 import React, { useEffect, useState} from 'react';
-import QuestionsList from './QuestionsList.jsx';
-import SearchQuestions from './SearchQuestions.jsx';
+import QuestionsList from './qa_components/QuestionsList.jsx';
+import SearchQuestions from './qa_components/SearchQuestions.jsx';
 import axios from 'axios';
 
 const QA = ({questions, productId, productInfo}) => {
-  // const [isOpen, setIsOpen] = useState(false)
-  // console.log(productInfo)
-  questions.sort((a,b) => {
-    return b.question_helpfulness - a.question_helpfulness
-  });
+
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [questionList, setQuestionList] = useState([]);
+
+  useEffect(() => {
+    // questions.sort((a,b) => {//need to do this with search results
+    //   return b.question_helpfulness - a.question_helpfulness
+    // });
+    setQuestionList(questions)
+  }, [questions])
+
+  useEffect(() => {
+     if (searchTerm.length >= 3) {
+       let matchResult = []
+       questions.forEach((question) => {
+        if (JSON.stringify(question.question_body).indexOf(searchTerm) >0) {
+          matchResult.push(question)
+        }
+       })
+       setQuestionList(matchResult);
+     } else {
+       setQuestionList(questions);
+     }
+
+   }, [searchTerm]);
+
+  const handleSearch = (ev) => {
+    setSearchTerm(ev.target.value)
+  }
 
   return (
-    <div className='QA'>
+    <div className='QA' data-testid="QA-render">
       <h5>{`QUESTIONS & ANSWERS`}</h5>
-      <SearchQuestions/>
+      <SearchQuestions
+        onChange={handleSearch}
+      />
       <QuestionsList
-          questions={questions}
-          productId={productId}
-          productInfo={productInfo}
-        />
+        questions={questionList}
+        productId={productId}
+        productInfo={productInfo}
+      />
     </div>
   )
 

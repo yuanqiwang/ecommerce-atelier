@@ -13,8 +13,12 @@ const Characteristics = (props) => {
     value = characArr.map((item, index) =>
       index%2 === 0 ?
       <h3 className="review-characteristic" key={index}>{item}</h3> :
-      <div id="progressbar">
-        <div></div>
+      <div className="rating-progress">
+        <div className="progress-bar-gray"></div>
+        <div className="progress-bar-white"></div>
+        <div className="progress-bar-gray"></div>
+        <div className="progress-bar-white"></div>
+        <div className="progress-bar-gray"></div>
       </div>
     )
   }
@@ -23,9 +27,6 @@ const Characteristics = (props) => {
     {value}
     </>
   )
-
-
-
 
 };
 export default Characteristics

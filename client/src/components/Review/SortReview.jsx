@@ -16,7 +16,7 @@ class SortReview extends React.Component {
   return (
       <div>
         {this.props.nReviews} reviews, sorted by &nbsp;
-      <select onChange={this.handleChange}>
+      <select id="review-dropdown" onChange={this.handleChange}>
         <option value="relevance">relevance</option>
         <option value="helpfulness">helpfulness</option>
         <option value="newest">newest</option>

@@ -4,6 +4,7 @@ import ReviewCard from './ReviewCard.jsx'
 
 
 const UserReviews = (props) => {
+
   let count = props.count
   let reviews = props.reviews
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -14,6 +15,7 @@ const UserReviews = (props) => {
       .sort((a, b) => a.helpfulness < b.helpfulness && a.date < b.date ? 1 : -1)
       .map( (item, i) => {
         let date = new Date(item.date).toLocaleDateString("en-US", options)
+        console.log(item)
         return (
           <>
             <ReviewCard
