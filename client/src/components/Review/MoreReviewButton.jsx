@@ -16,7 +16,8 @@ class MoreReviewButton extends React.Component {
     if (this.props.nReviews > this.props.reviewCount) {
       return (
         <div>
-          <button onClick={this.addCount}>MORE REVIEWS</button>
+          <button data-testid="ClickIndicator"
+onClick={this.addCount}>MORE REVIEWS</button>
         </div>
       )
     }

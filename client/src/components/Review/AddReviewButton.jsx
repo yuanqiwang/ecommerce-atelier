@@ -6,6 +6,7 @@ export default function AddReviewButton() {
   return (
     <div className="App">
       <button
+        data-testid="ClickIndicator"
         onClick={() => {
           setIsOpen(true);
         }}
