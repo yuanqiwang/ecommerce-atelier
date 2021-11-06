@@ -2,7 +2,7 @@ import React from 'react';
 
 function ProductInfo(props) {
   return (
-    <div id="overview_product_bullets">
+    <div id="overview_product_bullets" data-testid="product-bullets">
       <div>
         <ul>
           <li>Heinz sells 11B packets of ketchup a year</li>

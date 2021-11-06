@@ -11,7 +11,7 @@ import Thumbnail from './Thumbnail.jsx';
 
 function Thumbnails(props) {
   return (
-    <div id="overview_thumbnails">
+    <div id="overview_thumbnails" data-testid="thumbnails">
       {props.thumbnails.map(thumb => {
         // console.log(thumb);
         return (

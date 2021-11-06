@@ -24,7 +24,7 @@ function StyleSelector(props) {
   }
 
   return (
-    <div id="overview_style_selector">
+    <div id="overview_style_selector" data-testid="style-selector">
       <h3>Style > {selectedStyleName}</h3>
       <Styles allStyles={allStyles} currentStyle={props.currentStyle} />
       <SelectSize />

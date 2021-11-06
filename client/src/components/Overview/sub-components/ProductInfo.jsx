@@ -2,7 +2,7 @@ import React from 'react';
 
 function ProductInfo(props) {
   return (
-    <div id="overview_product_info">
+    <div id="overview_product_info" data-testid="product-info">
       <div>
         <h3>America's Favorite Ketchup. Yeah, it's that important.</h3>
         <p>First introduced as "Catsup" in 1876 in Pittsburgh, Pennsylvania, Heinz Tomato Ketchup remains the best-selling brand of ketchup,

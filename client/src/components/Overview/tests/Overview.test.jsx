@@ -32,7 +32,6 @@ it('All Sub-Components render correctly', () => {
   expect(screen.getByTestId('star-rating')).toBeInTheDocument();
   expect(screen.getByTestId('styles')).toBeInTheDocument();
   expect(screen.getByTestId('style-selector')).toBeInTheDocument();
-  expect(screen.getByTestId('thumbnail')).toBeInTheDocument();
   expect(screen.getByTestId('thumbnails')).toBeInTheDocument();
 
 });

@@ -14,7 +14,7 @@ function ProductHeadline(props) {
   }
 
   return (
-    <div id="overview_product_headline">
+    <div id="overview_product_headline" data-testid="product-headline">
       <h3>{category}</h3>
       <h2>{productName}</h2>
       <h3>{price}</h3>

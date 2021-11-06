@@ -4,7 +4,7 @@ function Styles(props) {
   // console.log('S:',props);
 
   return (
-    <div id="overview_all_styles">
+    <div id="overview_all_styles" data-testid="styles">
       {props.allStyles.map(style => {
         if ( props.currentStyle === style.style_id ) {
           return (

@@ -14,7 +14,7 @@ function ImageGallery(props) {
   }
 
   return (
-    <div id="overview_image_gallery">
+    <div id="overview_image_gallery" data-testid="image-gallery">
       <Thumbnails thumbnails={thumbnails} changePic={props.changePic} />
       <img src={heroPic}/>
     </div>
