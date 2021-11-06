@@ -9,7 +9,7 @@ function StarRating(props) {
   return (
     <div id="overview_star_rating" data-testid="star-rating">
       <div className="overview_stars">[Star Rating]</div>
-      <div class='go-to-reviews' onClick={scrollToReviews}>Read all reviews</div>
+      <div className='go-to-reviews' onClick={scrollToReviews}>Read all reviews</div>
     </div>
   );
 };

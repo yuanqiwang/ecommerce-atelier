@@ -8,14 +8,16 @@ function Styles(props) {
       {props.allStyles.map(style => {
         if ( props.currentStyle === style.style_id ) {
           return (
-            <div key={style.name} className="overview_style overview_selected_style">
+            <div key={Math.random()} className="overview_style overview_selected_style">
               <img src={style.photos[0].thumbnail_url} alt={style.name} />
             </div>
           );
         } else {
           return (
-            <div key={style.name} className="overview_style">
-              <img src={style.photos[0].thumbnail_url} alt={style.name} />
+            <div key={Math.random()} className="overview_style">
+              <img src={style.photos[0].thumbnail_url} alt={style.name} onClick={() => {
+                props.changeStyle(style.style_id);
+                }} />
             </div>
           );
         }

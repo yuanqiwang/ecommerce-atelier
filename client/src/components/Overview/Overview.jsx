@@ -9,11 +9,12 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImg: props.productStyle,
+      currentImg: '',
       currentStyleID: 369761
     };
 
     this.changeHeroPic = this.changeHeroPic.bind(this);
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
   getProductInfo(prodNum) {
@@ -34,13 +35,17 @@ class Overview extends React.Component {
     console.log(this.props);
   }
 
+  changeStyle(id) {
+    this.setState({currentStyleID: id});
+  }
+
   render() {
     return (
       <div id="overview" data-testid="overview">
-        <ImageGallery productStyle={this.props.productStyle} changePic={this.changeHeroPic} />
-        <ProductOptions productInfo={this.props.productInfo} productStyle={this.props.productStyle} currentStyle={this.state.currentStyleID} />
-        <ProductInfo />
-        <ProductBullets />
+        <ImageGallery productStyle={this.props.productStyle} currentStyle={this.state.currentStyleID} changePic={this.changeHeroPic} />
+        <ProductOptions productInfo={this.props.productInfo} productStyle={this.props.productStyle} currentStyle={this.state.currentStyleID} changeStyle={this.changeStyle} />
+        <ProductInfo productInfo={this.props.productInfo} />
+        <ProductBullets productInfo={this.props.productInfo} />
       </div>
     );
   }

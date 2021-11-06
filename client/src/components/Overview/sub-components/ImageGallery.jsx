@@ -8,10 +8,7 @@ function ImageGallery(props) {
   try {
     heroPic = props.productStyle[0].photos[0].url;
     thumbnails = props.productStyle[0].photos;
-  } catch {
-    // console.log(props);
-    console.log('no data from server yet!');
-  }
+  } catch {}
 
   return (
     <div id="overview_image_gallery" data-testid="image-gallery">

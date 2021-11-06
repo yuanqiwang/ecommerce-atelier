@@ -10,7 +10,7 @@ function ProductOptions(props) {
     <div id="overview_product_options" data-testid="product-options">
       <StarRating />
       <ProductHeadline productInfo={props.productInfo} />
-      <StyleSelector productStyle={props.productStyle} currentStyle={props.currentStyle} />
+      <StyleSelector productStyle={props.productStyle} currentStyle={props.currentStyle} changeStyle={props.changeStyle} />
       <AddToCart />
     </div>
   );

@@ -19,14 +19,12 @@ function StyleSelector(props) {
   try {
     selectedStyleName = props.productStyle[0].name;
     allStyles = props.productStyle;
-  } catch {
-    console.log('nope, still no data loaded...');
-  }
+  } catch {}
 
   return (
     <div id="overview_style_selector" data-testid="style-selector">
       <h3>Style > {selectedStyleName}</h3>
-      <Styles allStyles={allStyles} currentStyle={props.currentStyle} />
+      <Styles allStyles={allStyles} currentStyle={props.currentStyle} changeStyle={props.changeStyle} />
       <SelectSize />
     </div>
   );
