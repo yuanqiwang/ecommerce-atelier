@@ -10,6 +10,7 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [files, setFiles] = useState([])
 
   // const onSubmit = (e) => {
   //   e.preventDefault();
@@ -23,14 +24,34 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
   //     .then((res)  => console.log(res))
   //     .catch((err) => console.log(err))
   // }
+  const uploadMultipleFiles = (e) => {
+    let fileObj = []
+    let fileArray = [];
+    // console.log('e.target.files', e.target.files[0])
+    fileObj.push(e.target.files)
+
+    for (let i = 0; i < fileObj[0].length; i++) {
+        fileArray.push(URL.createObjectURL(fileObj[0][i]))
+    }
+    console.log(fileArray)
+    setFiles([...files, fileArray])
+  }
+
+  const uploadFiles = (e) => {
+      e.preventDefault()
+      console.log(files)
+  }
 
   return (
     <div className='qa-modal'>
 
       <div className='qa-modal-main'>
+          <div className='qa-add-answer-header'>
+            <div>Submit your Answer</div>
+            <button className='close-btn' onClick={onClose}> x </button>
+          </div>
+          <div> {productName}: {question} </div>
 
-          <div >Submit your Answer</div>
-          <p> {productName}: {question} </p>
         <form className='qa-form'>
           <p>
             <label htmlFor='answer'>Your Answer (mandatory)*</label>
@@ -58,7 +79,7 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
               onChange={(e)=> setName(e.target.value)}
               required
             />
-            <span className='instructions'> For privacy reasons, do not use your full name or email address</span>
+            <span className='qa-instructions'> For privacy reasons, do not use your full name or email address</span>
           </p>
           <p>
             <label htmlFor='email'>Your email (mandatory)*</label>
@@ -72,16 +93,29 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
               maxLength='60'
               onChange={(e)=> setEmail(e.target.value)}
               required/>
-            <span className='instructions'> For authentication reasons, you will not be emailed
-            </span>
+            <span className='qa-instructions'> For authentication reasons, you will not be emailed</span>
           </p>
-          <button type='submit' onClick={(e)=> {
-            onSubmit(e)
-            onClose()}
-          }
-          >Submit</button>
+
+          <div className='qa-image-upload'>
+            <label htmlFor='image'>Upload pictures</label>
+            <input
+              className='qa-input'
+              id='image'
+              type='file'
+              multiple
+              onChange={uploadMultipleFiles}
+              />
+              <div className="form-group multi-preview">
+                    {(files || []).map((url,i) => (
+                        <img key={i} src={url} alt="..." />
+                    ))}
+                </div>
+
+          </div>
+
+          <button type='submit' className='qa-submit-btn' onClick={(e)=> { onSubmit(e); onClose()}}>Submit</button>
         </form>
-        <button onClick={onClose}> Close</button>
+
       </div>
 
     </div>
