@@ -1,3 +1,10 @@
+@import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+.QA {
+  margin: auto;
+  /* max-width: 1600px; */
+  width: 70%;
+  /* box-sizing: border-box; */
+}
 
 .qa-search-bar {
   width: 100%;
@@ -5,29 +12,42 @@
   display: flex;
   padding: 10px;
   margin-right: 20px;
+  border: 1px solid rgb(85, 84, 84);
 }
 
 .qa-search-bar input {
   width: 100%;
-  -webkit-box-sizing: border-box;
+  /* -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 10px;
+  box-sizing: border-box; */
+  padding: 2px;
+  border: white;
+  outline: none;
+}
+
+.qa-search-bar input:focus {
+  border-color: transparent;
+  border-bottom: 1px solid maroon
 }
 
 .qa-search-btn {
-  border-radius: 3px;
+  /* border-radius: 3px; */
   float: right;
-  margin-right: 25px;
+  /* margin-right: 25px; */
+  background-color: white;
+  border: hidden;
 }
 
 .qa-more-question {
   display: inline-block;
   border-style: solid;
-  border-color: gray;
+  border-color: rgb(48, 47, 47);
+  border-width:  1px;
   padding: 10px;
+  margin-left: 10px;
   margin-inline-end: 5px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .qa-container {
@@ -61,7 +81,9 @@
 
 .qa-answerby {
   display: inline-flex;
-  margin: 3px 10px 3px 10px;
+  margin: 7px 10px 7px 10px;
+  color: rgb(87, 86, 86);
+  font-weight: 400;
 }
 
 .qa-answers {
@@ -71,12 +93,24 @@
 .qa-answers-right {
   display: flex;
   flex-direction: column;
+  padding-left:5px;
 }
 
 .qa-underscore {
   text-decoration: underline;
 }
-
+.qa-clickable {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.qa-clickable:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: maroon
+}
+.qa-not-clickable {
+  cursor: not-allowed;
+}
 .qa-divider {
   padding-left: 5px;
   padding-right: 5px;
@@ -86,6 +120,10 @@
 .qa-moreanswer {
   padding-top: 5px;
   font-weight: bold;
+}
+.qa-moreanswer:hover {
+  color:maroon;
+  cursor: pointer;
 }
 
 .qa-scroll {
@@ -148,6 +186,53 @@
 }
 
 .qa-answer-img-container {
-  height: 90px;
+  height: 70px;
   display: flex
+}
+
+.qa-answer-img-container img {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(48, 47, 47);
+  margin-left: 10px;
+}
+
+.qa-image-upload {
+  display: inline-flexbox;
+}
+
+.submit-btn {
+  width: 50%;
+  display: flex;
+  justify-content: "center";
+  align-items: "center";
+  background-color: rgba(231, 93, 14, 0.925);
+  color: white;
+  border-radius: 3px;
+}
+.qa-add-answer-header {
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+}
+.qa-add-answer-header button {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  border-radius: 3px;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+.qa-image-btn {
+  display: flex;
+}
+
+.multi-preview img {
+  max-width: 100px;
+  padding: 5px;
+}
+
+span {
+  padding-left: 3px;
+  padding-right: 3px;
 }
