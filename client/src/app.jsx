@@ -38,7 +38,6 @@ const App = ()=> {
 
   useEffect( ()=>{
     loadInfo(productId);
-    console.log('this is current product id: ', productId)
   },[productId])
 
     return (
@@ -60,11 +59,11 @@ const App = ()=> {
             productId={productId}
             productInfo={productInfo}
             questions={questions}/>
-          {/* <Review
+          <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
-          /> */}
+          />
         </div>
     );
 };

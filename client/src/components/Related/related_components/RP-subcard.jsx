@@ -34,7 +34,6 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
 
   const getProductInfo = async () => {
     try {
-      console.log(item);
       const response =  await axios.get(`/related/${item}`);
       const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
       setInfo(response.data['prod']);
