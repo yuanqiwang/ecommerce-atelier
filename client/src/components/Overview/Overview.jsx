@@ -9,10 +9,12 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImg: "https://pngimg.com/uploads/ketchup/ketchup_PNG21.png"
+      currentImg: '',
+      currentStyleID: 369761
     };
 
     this.changeHeroPic = this.changeHeroPic.bind(this);
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
   getProductInfo(prodNum) {
@@ -20,7 +22,7 @@ class Overview extends React.Component {
 
     axios.get('/product/info/' + prodNum)
     .then(data => {
-      // console.log(data);
+      console.log(data.data.prod);
     })
     .catch(err => {
       console.log('Error fetching Overview data!');
@@ -29,22 +31,27 @@ class Overview extends React.Component {
   }
 
   changeHeroPic(pic) {
-    this.setState({currentImg: pic});
+    // this.setState({currentImg: pic});
+    console.log(this.props);
+  }
+
+  changeStyle(id) {
+    this.setState({currentStyleID: id});
   }
 
   render() {
     return (
-      <div id="overview">
-        <ImageGallery heroPic={this.state.currentImg} changePic={this.changeHeroPic} />
-        <ProductOptions />
-        <ProductInfo />
-        <ProductBullets />
+      <div id="overview" data-testid="overview">
+        <ImageGallery productStyle={this.props.productStyle} currentStyle={this.state.currentStyleID} changePic={this.changeHeroPic} />
+        <ProductOptions productInfo={this.props.productInfo} productStyle={this.props.productStyle} currentStyle={this.state.currentStyleID} changeStyle={this.changeStyle} />
+        <ProductInfo productInfo={this.props.productInfo} />
+        <ProductBullets productInfo={this.props.productInfo} />
       </div>
     );
   }
 
   componentDidMount() {
-    this.getProductInfo('59980');
+    // this.getProductInfo('59980');
   }
 }
 

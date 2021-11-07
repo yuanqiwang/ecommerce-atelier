@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import RP_sub from './RP-subcard.jsx';
 
-const RP_row = ({relatedProductArr, productInfo, productStyle }) => {
+const RP_row = ({relatedProductArr, productInfo, productStyle, changeProduct }) => {
 
   const scrl = React.createRef();
   const [scrollX, setscrollX] = useState(0);
@@ -47,7 +47,7 @@ const RP_row = ({relatedProductArr, productInfo, productStyle }) => {
               )
             }
             <ul className = 'rp-cardrow' ref={scrl} onScroll={scrollCheck}>
-              {relatedProductArr.map((item, i) => <RP_sub key={i} item ={item} mainInfo = {productInfo} mainStyle ={productStyle}/> )}
+              {relatedProductArr.map((item, i) => <RP_sub key={i} item ={item} mainInfo = {productInfo} mainStyle ={productStyle} changeProduct = {changeProduct}/> )}
             </ul>
             {scrolEnd ?
              (

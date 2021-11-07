@@ -1,5 +1,4 @@
 import React from 'react'
-import test from './test-review.js'
 import ReviewCard from './ReviewCard.jsx'
 
 
@@ -15,7 +14,6 @@ const UserReviews = (props) => {
       .sort((a, b) => a.helpfulness < b.helpfulness && a.date < b.date ? 1 : -1)
       .map( (item, i) => {
         let date = new Date(item.date).toLocaleDateString("en-US", options)
-        console.log(item)
         return (
           <>
             <ReviewCard

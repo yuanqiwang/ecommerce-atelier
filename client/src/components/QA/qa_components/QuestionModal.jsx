@@ -56,7 +56,7 @@ const QuestionModal = ({ open, productId, productName, onClose}) => {
               onChange={(e)=> setName(e.target.value)}
               required
             />
-            <span className='instructions'> For privacy reasons, do not use your full name or email address</span>
+            <span className='qa-instructions'> For privacy reasons, do not use your full name or email address</span>
           </p>
           <p>
             <label htmlFor='email'>Your email (mandatory)*</label>
@@ -70,7 +70,7 @@ const QuestionModal = ({ open, productId, productName, onClose}) => {
               maxLength='60'
               onChange={(e)=> setEmail(e.target.value)}
               required/>
-            <span className='instructions'> For authentication reasons, you will not be emailed
+            <span className='qa-instructions'> For authentication reasons, you will not be emailed
             </span>
           </p>
           <button type='submit' onClick={(e)=> {

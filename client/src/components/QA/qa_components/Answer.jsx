@@ -1,8 +1,39 @@
 import React, {useState, useEffect} from 'react';
+import Helpful from './Helpful.jsx';
 
 const Answer = ({answer}) => {
 
   //[helpfulness, setHelpfulness] = useState(answer.helpfulness);
+
+  const convertDate = (dateString) => {
+    var date = new Date(dateString);
+    var monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','October', 'November', 'December']
+
+    var year = date.getFullYear();
+    var month = monthList[date.getMonth()]
+    var day = date.getDate();
+    return ` ${month} ${day}, ${year}`;
+  }
+
+
+
+  let reportedAnswers = JSON.parse(localStorage.getItem('reportedAnswers')) || [];
+  let reportedInit = false;
+  if (reportedAnswers.includes(answer.id)) {
+    reportedInit = true
+  }
+  const [reportStatus, setReportStatus] = useState(reportedInit);
+  const handleReport = () => {
+
+    if (reportStatus) {
+      console.log('already reported')
+    } else {
+      setReportStatus(true);
+      reportedAnswers.push(answer.id);
+      localStorage.setItem('reportedAnswers', JSON.stringify(reportedAnswers));
+    }
+
+  }
 
   return (
     <div className='qa-answer'>
@@ -17,12 +48,16 @@ const Answer = ({answer}) => {
        </div>
        : null}
       <div className='qa-answerby qa-tiny'>
-        <div>by {answer.answerer_name}, {answer.date.slice(0,10)}</div>
+        <div> by {answer.answerer_name}, {convertDate(answer.date)}</div>
         <div className='qa-divider'>|</div>
         <div className='qa-helpful'> Helpful?</div>
-        <div className='qa-underscore qa-helpful'> Yes ({answer.helpfulness})</div>
+        <Helpful id={answer.id} localStorageName='helpfulAnswersList' helpfulness={answer.helpfulness}/>
         <div className='qa-divider'>|</div>
-        <div className='qa-underscore qa-tiny'> Report</div>
+        <div className={reportStatus? 'qa-not-clickable': 'qa-clickable'}
+          onClick={handleReport}>
+          {reportStatus? 'Reported': 'Report'}
+        </div>
+
 
       </div>
     </div>

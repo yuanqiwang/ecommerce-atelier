@@ -1,15 +1,12 @@
-import test from './test-review.js'
 import React from 'react'
 
 const ReviewCard = (props) => {
-  console.log(props.response)
   let starsFill = (props.rating / 5) * 100
   let photos = props.photos.map( (photo, index) =>
     <><img id="review-img" src={photo.url}></img></>
   )
   let rec = props.recommend === true ? <span>✅ I recommend this product</span> : <span>👎</span>
   const handleHelpful = () => {
-    console.log('clicked!')
   }
 
   return (

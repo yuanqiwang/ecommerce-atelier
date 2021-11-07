@@ -11,11 +11,11 @@ const OVERLAY_STYLE = {
 };
 
 const MODAL_STYLE = {
-  width: "200px",
-  height: "200px",
+  width: "400px",
+  height: "400px",
   position: "fixed",
   top: "10%",
-  left: "20%",
+  left: "40%",
   background: "#fff",
   zIndex: 99,
   padding: "30px",
@@ -29,7 +29,7 @@ export default function Modal({ children, visable, close }) {
       <div style={OVERLAY_STYLE}></div>
       <div style={MODAL_STYLE}>
         <div>{children}</div>
-        <button onClick={close}>submit</button>
+        <button onClick={close}>Submit</button>
       </div>
     </>
   );

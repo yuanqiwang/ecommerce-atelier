@@ -5,11 +5,14 @@ const SearchQuestions = ({onChange}) => {
     <div className='qa-search-bar'>
         <input
            type='text'
-           placeholder='Have a question? Search for answers…'
+           placeholder='HAVE A QUESTION? SEARCH FOR ANSWER...'
            onChange={(e)=>onChange(e)}
         />
-        <button className="qa-search-btn">
+        {/* <button className="qa-search-btn">
           <span>Magifier</span>
+        </button> */}
+        <button className="qa-search-btn">
+         <span className="glyphicon glyphicon-search"></span>
         </button>
 
     </div>

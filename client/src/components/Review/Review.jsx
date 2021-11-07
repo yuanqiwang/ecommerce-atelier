@@ -1,11 +1,11 @@
 import React from 'react'
-import Stars from './Stars.jsx'
-import Breakdown from './Breakdown.jsx'
-import Characteristics from './Characteristics.jsx'
-import UserReviews from './UserReviews.jsx'
-import SortReview from './SortReview.jsx'
-import MoreReviewButton from './MoreReviewButton.jsx'
-import AddReviewButton from './AddReviewButton.jsx'
+import Stars from './ReviewChildren/Stars.jsx'
+import Breakdown from './ReviewChildren/Breakdown.jsx'
+import Characteristics from './ReviewChildren/Characteristics.jsx'
+import UserReviews from './ReviewChildren/UserReviews.jsx'
+import SortReview from './ReviewChildren/SortReview.jsx'
+import MoreReviewButton from './ReviewChildren/MoreReviewButton.jsx'
+import AddReviewButton from './ReviewChildren/AddReviewButton.jsx'
 
 
 class Review extends React.Component {
