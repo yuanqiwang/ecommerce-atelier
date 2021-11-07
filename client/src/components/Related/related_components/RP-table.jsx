@@ -9,7 +9,7 @@ const RP_table = ({feature, mF, cF})=> {
         {
           !mF.hasOwnProperty(feature) ?
           null
-          : mF.feature || '✔️'
+          : mF[feature] || '✔️'
         }
       </td>
       <td>{feature}</td>
@@ -17,7 +17,7 @@ const RP_table = ({feature, mF, cF})=> {
       {
           !cF.hasOwnProperty(feature) ?
           null
-          : cF.feature || '✔️'
+          : cF[feature] || '✔️'
         }
       </td>
    </tr>
