@@ -2,12 +2,13 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ComparisonModal from './RP-Modal.jsx';
 
-const RP_sub = ({item, mainInfo}) => {
+const RP_sub = ({item, mainInfo, changeProduct}) => {
 
   const[productInfo, setInfo] = useState({});
+  const[productId, setProductId] = useState();
   const[stylePic, setStylePicture] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
   const[stylePrice, setStylePrice] = useState();
-  const[salePrice, setSaleprice] = useState(100);
+  const[salePrice, setSaleprice] = useState();
   const[styleName, setStyleName] = useState();
   const[reviewInfo, setReview] = useState(0);
   const[showModal, setModal] = useState(false);
@@ -33,16 +34,21 @@ const RP_sub = ({item, mainInfo}) => {
 
   const getProductInfo = async () => {
     try {
-      const response =  await axios.get(`/product/info/${item}`);
+      console.log(item);
+      const response =  await axios.get(`/related/${item}`);
       const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
       setInfo(response.data['prod']);
-      setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
+      setProductId(response.data['prod'].id);
+      if(response.data['style']['results'][0]['photos'][0]['thumbnail_url']){
+        setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
+      }
       setReview(avgReviewnum)
       setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
       if(response.data['style']['results'][0]['sale_price']){
         setSaleprice(response.data['style']['results'][0]['sale_price'].toFixed(0))
       }
-      const ProductName = response.data['prod']['name'] + ' -- ' + response.data['style']['results'][0]['name'];
+      const ProductName = response.data['prod']['name'];
+      // + ' -- ' + response.data['style']['results'][0]['name']
       setStyleName(ProductName)
 
     } catch (err){
@@ -52,7 +58,7 @@ const RP_sub = ({item, mainInfo}) => {
 
   useEffect(()=>{
     getProductInfo();
-  }, [])
+  }, [item])
 
   // const calAverageRating;// helper function
   function MouseOver(event) {
@@ -71,7 +77,7 @@ const RP_sub = ({item, mainInfo}) => {
 
       <div className='sub-card-img'>
          <button id='rp-action-button' onMouseOver={MouseOver} onMouseOut={MouseOut} onClick={actionClick}> ★ </button>
-         <img className='rp-card-img' src={stylePic} />
+         <img className='rp-card-img' src={stylePic} onClick = {() => changeProduct(productId)}/>
       </div>
 
       <div className ='sub-card'>
@@ -83,18 +89,23 @@ const RP_sub = ({item, mainInfo}) => {
             <div id= 'rp-sale-price'> ${salePrice}</div>
             <div id= 'rp-origin-price-dup'>${stylePrice}</div>
           </div>
-          : <div id= 'rp-origin-price'> {stylePrice}</div>
+          : <div id= 'rp-origin-price'> ${stylePrice}</div>
         }
         {
           reviewInfo?
           <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
-            &nbsp;{reviewInfo}
           </div>
-          : <div>No Reviews yet</div>
+          : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
         }
       </div>
 
-      <ComparisonModal isOpen={showModal} mainFeature = {mainInfo.features} currentFeature = {productInfo.features} mainName = {mainInfo.name} currentName ={productInfo.name}/>
+      <ComparisonModal
+          isOpen={showModal}
+          mainFeature = {!mainInfo? [] : mainInfo.hasOwnProperty('features')? mainInfo.features : []}
+          currentFeature = {!productInfo? [] : productInfo.hasOwnProperty('features')? productInfo.features : []}
+          mainName = {!mainInfo? null: mainInfo.name}
+          currentName ={!productInfo? null: productInfo.name}
+      />
     </article>
   )
 }
