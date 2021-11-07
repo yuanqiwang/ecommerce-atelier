@@ -24,7 +24,7 @@
   border: 1px solid #3a3939;
   border-radius: 5px;
   width: 260px;
-  height: 380px;
+  height: 390px;
   display: inline-block;
   margin-right: 20px;
 }
@@ -125,7 +125,7 @@
 :root {
   --star-size: 60px;
   --star-color: #fff;
-  --star-background: #fc0;
+  --star-background: darkred;
 }
 .sub-card-star {
   display: inline-block;
@@ -133,6 +133,16 @@
   padding: 5px;
   margin-left: 8px;
   line-height: 1;
+}
+
+.sub-card-no-star {
+  display: inline-block;
+  padding: 5px;
+  margin-left: 8px;
+  line-height: 1;
+  color: darkred;
+  text-decoration:underline;
+
 }
 
 .sub-card-star::before {
@@ -154,12 +164,11 @@
   z-index: 99;
 }
 .rp-sub-modal{
-   width: 400px;
-   height: 300px;
+   margin: 0 auto;
+   text-align:center;
    max-width: 100%;
    border: 1px solid black;
    border-radius: 5px;
-   padding: 10px 20px;
    opacity: 1;
    background-color: white;
    position:absolute;
@@ -169,11 +178,16 @@
    scroll-behavior: smooth;
 }
 .rp-table{
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
   border-collapse: collapse;
   border-spacing: 0;
   width: 90%;
   border: none;
   align-items: center;
+  white-space: nowrap;
+  margin-bottom: 10px;
 }
 
 th, td {
@@ -181,7 +195,6 @@ th, td {
   padding: 10px;
 }
 
-/* Zebra-striped table rows */
 tr:nth-child(even) {
   background-color: #f2f2f2
 }

@@ -12,17 +12,24 @@ const ComparisonModal = ({isOpen, mainFeature, currentFeature, mainName, current
     let f1 = {};
     let f2 = {};
     let combinedFeature = [];
-    for (var i=0; i<mainFeature.length; i++) {
-      f1[mainFeature[i].feature] = mainFeature[i].value
-      combinedFeature.push(mainFeature[i].feature)
-    }
+    if(mainFeature.length > 0){
+      for (var i=0; i<mainFeature.length; i++) {
+        f1[mainFeature[i]['feature']] = mainFeature[i]['value']
+        combinedFeature.push(mainFeature[i]['feature'])
 
-    for (var j=0; j<currentFeature.length; j++) {
-      f2[mainFeature[j].feature] = mainFeature[j].value
-      if(!combinedFeature.includes(mainFeature[j].feature)){
-        combinedFeature.push(mainFeature[2].feature)
       }
     }
+
+    if(currentFeature.length > 0) {
+      for (var j=0; j<currentFeature.length; j++) {
+        f2[currentFeature[j].feature] = currentFeature[j].value
+        if(!combinedFeature.includes(currentFeature[j].feature)){
+          combinedFeature.push(currentFeature[j].feature)
+        }
+      }
+    }
+
+    //console.log(f1, f2, combinedFeature)//57
     setFeature(combinedFeature)
     setMF(f1)
     setCF(f2)
@@ -33,16 +40,22 @@ const ComparisonModal = ({isOpen, mainFeature, currentFeature, mainName, current
   }, [])
 
   return (
-    <div className='rp-comparison-modal'>
+     <div className='rp-comparison-modal'>
       <div className='rp-sub-modal'>
         <div id='title' style = {{'textAlign':'left'}}>Comparing</div>
         <table className = 'rp-table'>
-        <tr>
-          <th>{mainName}</th>
-          <th style={{'width':'40%'}}></th>
-          <th>{currentName}</th>
-        </tr>
-        {features.map((feature, i) => <RP_table feature={feature} key = {i} mF={mF} cF={cF} />)}
+          <tbody>
+            <tr>
+              <th>{mainName}</th>
+              <th style={{'width':'40%'}}></th>
+              <th>{currentName}</th>
+            </tr>
+            {
+              features.length > 0 ?
+                features.map((feature, i) => <RP_table feature={feature} key = {i} mF={mF} cF={cF} />)
+              : null
+            }
+          </tbody>
         </table>
       </div>
     </div>
