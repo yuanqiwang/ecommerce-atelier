@@ -40,18 +40,20 @@ const App = ()=> {
 
   useEffect(()=>{
     loadInfo(productId);
-  },[productId])
+  },[productId, Object.keys(outfits).length])
 
   const addoutfit = () => {
     let newState = {...outfits};
-    newState[productId] = {
-      productInfo: productInfo,
-      stars: stars,
-      productStyle: productStyle
-    };
-    setOutfits(newState)
-    window.localStorage.removeItem('AtelierOutfits');
-    window.localStorage.setItem('AtelierOutfits', JSON.stringify(newState));
+    if(!newState[productId]) {
+      newState[productId] = {
+        productInfo: productInfo,
+        stars: stars,
+        productStyle: productStyle
+      };
+      setOutfits(newState)
+      window.localStorage.removeItem('AtelierOutfits');
+      window.localStorage.setItem('AtelierOutfits', JSON.stringify(newState));
+    }
   }
 
   const removeoutfit = (Id) => {
