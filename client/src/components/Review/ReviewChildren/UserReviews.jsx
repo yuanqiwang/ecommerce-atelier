@@ -1,9 +1,9 @@
 import React from 'react'
-import test from './test-review.js'
 import ReviewCard from './ReviewCard.jsx'
 
 
 const UserReviews = (props) => {
+
   let count = props.count
   let reviews = props.reviews
   let options = { year: 'numeric', month: 'long', day: 'numeric' };

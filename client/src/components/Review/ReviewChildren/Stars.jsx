@@ -12,8 +12,9 @@ const Stars = (props) => {
   let keyValArr = []
   let starBars;
 
-  if (props.ratings !== undefined) {
-    nOfRatings = Object.values(props.ratings).reduce((a, b) => parseInt(a) + parseInt(b))
+  if (props.ratings !== undefined && props.ratings.length > 0) {
+    nOfRatings = props.ratings.length > 0 ?
+    Object.values(props.ratings).reduce((a, b) => parseInt(a) + parseInt(b)) : null;
     keys = Object.keys(props.ratings)
     values = Object.values(props.ratings)
     let keyTimesValue = [];
@@ -36,9 +37,7 @@ const Stars = (props) => {
       <div className="bar-container">
         <div className="starbar-bar" key={index} style={{"width": `${(item / 5)*100}%` }}><br/></div>
       </div>
-
     )
-
   }
 
 
@@ -54,7 +53,7 @@ const Stars = (props) => {
 
   return (
     <div>
-      <div className="star-text">{showNum} &nbsp;</div>
+      <div className="star-text">{showNum || null}&nbsp;</div>
       <div className="star-rating">
         <span className="off"></span>
         <span className="on" style={{"width": `${starsFill}%`}}></span>

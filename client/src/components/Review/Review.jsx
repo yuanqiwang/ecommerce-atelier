@@ -1,11 +1,11 @@
 import React from 'react'
-import Stars from './Stars.jsx'
-import Breakdown from './Breakdown.jsx'
-import Characteristics from './Characteristics.jsx'
-import UserReviews from './UserReviews.jsx'
-import SortReview from './SortReview.jsx'
-import MoreReviewButton from './MoreReviewButton.jsx'
-import AddReviewButton from './AddReviewButton.jsx'
+import Stars from './ReviewChildren/Stars.jsx'
+import Breakdown from './ReviewChildren/Breakdown.jsx'
+import Characteristics from './ReviewChildren/Characteristics.jsx'
+import UserReviews from './ReviewChildren/UserReviews.jsx'
+import SortReview from './ReviewChildren/SortReview.jsx'
+import MoreReviewButton from './ReviewChildren/MoreReviewButton.jsx'
+import AddReviewButton from './ReviewChildren/AddReviewButton.jsx'
 
 
 class Review extends React.Component {
@@ -31,7 +31,7 @@ class Review extends React.Component {
       return (
         <>
         <div className="review-grid">
-          <div id="review-title">
+          <div id="review-container-right">
           <h3>Reviews & Ratings</h3>
             <div id="left-column">
               <Stars
@@ -47,25 +47,26 @@ class Review extends React.Component {
               </div>
           </div>
           <div id="right-column">
-          <div id="review-title">
-            <h3> </h3>
-            <SortReview
-              nReviews={this.props['reviews'].length}
-              dropdownCallback={this.handleCallback}
-            />
-            <UserReviews
-              reviews={this.props['reviews']}
-              dropdown={this.state.dropdown}
-              count={this.state.reviewCount}
-            />
+            <div id="review-title">
+              <h3> </h3>
+              <SortReview
+                nReviews={this.props['reviews'].length}
+                dropdownCallback={this.handleCallback}
+              />
+              <UserReviews
+                reviews={this.props['reviews']}
+                dropdown={this.state.dropdown}
+                count={this.state.reviewCount}
+              />
+
+            </div>
             <MoreReviewButton
-              addCountCallback={this.addCountCallback}
-              nReviews={this.props['reviews'].length}
-              reviewCount={this.state.reviewCount}
-            />
+                addCountCallback={this.addCountCallback}
+                nReviews={this.props['reviews'].length}
+                reviewCount={this.state.reviewCount}
+              />
             <AddReviewButton />
           </div>
-        </div>
         </div>
         </>
       )
