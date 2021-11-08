@@ -46,7 +46,7 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
       }
       setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
       if(response.data['style']['results'][0]['sale_price']){
-        setSaleprice(response.data['style']['results'][0]['sale_price'].toFixed(0))
+        setSaleprice(parseInt(response.data['style']['results'][0]['sale_price']).toFixed(0))
       }
       const ProductName = response.data['prod']['name'];
       // + ' -- ' + response.data['style']['results'][0]['name']

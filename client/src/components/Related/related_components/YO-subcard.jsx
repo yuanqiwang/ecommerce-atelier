@@ -41,7 +41,7 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
       }
       setStylePrice(parseInt(response.productStyle[0]['original_price']).toFixed(0))
       if(response.productStyle[0]['sale_price']){
-        setSaleprice(response.productStyle[0]['sale_price'].toFixed(0))
+        setSaleprice(parseInt(response.productStyle[0]['sale_price']).toFixed(0))
       }
       const ProductName = response.productInfo.name;
       setStyleName(ProductName)
