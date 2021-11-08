@@ -8,7 +8,7 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
   const[productId, setProductId] = useState();
   const[stylePic, setStylePicture] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
   const[stylePrice, setStylePrice] = useState();
-  const[salePrice, setSaleprice] = useState();
+  const[salePrice, setSaleprice] = useState(0);
   const[styleName, setStyleName] = useState();
   const[reviewInfo, setReview] = useState(0);
   const[showModal, setModal] = useState(false);
@@ -35,13 +35,15 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
   const getProductInfo = async () => {
     try {
       const response =  await axios.get(`/related/${item}`);
-      const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
+      if(response.data['reviewStars'].ratings) {
+        const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
+        setReview(avgReviewnum)
+      }
       setInfo(response.data['prod']);
       setProductId(response.data['prod'].id);
       if(response.data['style']['results'][0]['photos'][0]['thumbnail_url']){
         setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
       }
-      setReview(avgReviewnum)
       setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
       if(response.data['style']['results'][0]['sale_price']){
         setSaleprice(response.data['style']['results'][0]['sale_price'].toFixed(0))
@@ -91,7 +93,7 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
           : <div id= 'rp-origin-price'> ${stylePrice}</div>
         }
         {
-          reviewInfo?
+          reviewInfo > 0?
           <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
           </div>
           : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
