@@ -61,11 +61,13 @@ class Review extends React.Component {
 
             </div>
             <MoreReviewButton
-                addCountCallback={this.addCountCallback}
-                nReviews={this.props['reviews'].length}
-                reviewCount={this.state.reviewCount}
+              addCountCallback={this.addCountCallback}
+              nReviews={this.props['reviews'].length}
+              reviewCount={this.state.reviewCount}
               />
-            <AddReviewButton />
+            <AddReviewButton
+              productName={this.props.productInfo['name'] || null}
+            />
           </div>
         </div>
         </>

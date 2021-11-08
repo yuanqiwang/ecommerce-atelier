@@ -63,6 +63,7 @@ const App = ()=> {
             productID={productId}
             reviews={reviews}
             stars={stars}
+            productInfo={productInfo}
           />
         </div>
     );
