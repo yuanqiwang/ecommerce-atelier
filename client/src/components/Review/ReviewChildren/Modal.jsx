@@ -11,15 +11,15 @@ const OVERLAY_STYLE = {
 };
 
 const MODAL_STYLE = {
-  width: "400px",
-  height: "400px",
+  width: "500px",
+  height: "700px",
   position: "fixed",
-  top: "10%",
-  left: "40%",
+  top: "50%",
+  left: "50%",
   background: "#fff",
   zIndex: 99,
   padding: "30px",
-  transfrom: "translate(-50%, -50%)"
+  transform: "translate(-50%, -50%)"
 };
 
 export default function Modal({ children, visable, close }) {

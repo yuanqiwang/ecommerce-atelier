@@ -1,3 +1,4 @@
+/* modal styles */
 body {
   height: 100%;
 }
@@ -61,7 +62,34 @@ body {
 #centered-toggle-button {
   position: absolute;
 }
+/*general form styles */
+.rmodal-question {
+  font-size: large;
+  color: purple;
+}
 
+.rmodal-body textarea {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rmodal-summary input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: purple;
+}
+
+/* checkbox styles */
+#checkboxes {
+  display:flex;
+  text-align:center;
+}
+.checkboxgroup label {
+  display:block;
+}
+
+/* form star ratings */
 .star-rating {
   display:inline-flex;
   flex-direction: row-reverse;
@@ -89,3 +117,4 @@ body {
 .star-rating label:hover ~ label {
   color:#fc0;
 }
+
