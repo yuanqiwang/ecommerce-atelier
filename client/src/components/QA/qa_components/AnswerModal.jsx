@@ -2,28 +2,15 @@ import React, { useEffect, useState} from 'react'
 
 const AnswerModal = ({open, productId, productName, question, onClose}) => {
 
-  if (!open) {
-    return null;
-  }
-  // console.log(productName, question)
+  if (!open) { return null}
 
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [files, setFiles] = useState([])
+  const [files, setFiles] = useState([]);
+  const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   let data = {
-  //     body,
-  //     name,
-  //     email,
-  //     product_id: productId
-  //   }
-  //   axios.post('/qa/questions', data) //update this.
-  //     .then((res)  => console.log(res))
-  //     .catch((err) => console.log(err))
-  // }
   const uploadMultipleFiles = (e) => {
     let fileObj = []
     let fileArray = [];
@@ -40,6 +27,27 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
   const uploadFiles = (e) => {
       e.preventDefault()
       console.log(files)
+  }
+
+  const uploadImage = async e => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'ketchup') //specific to cloudinary
+
+    setLoading(true);
+    const res  = await (
+      'https://api.cloudinary.com/v1_1/dseonxo5o/image/upload'
+      {
+        method: "Post",
+        body: data
+      }
+    )
+    const file = await res.json()
+    setImage(file.secure_url)
+    sestLoading(false)
+
+
   }
 
   return (
@@ -96,7 +104,7 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
             <span className='qa-instructions'> For authentication reasons, you will not be emailed</span>
           </p>
 
-          <div className='qa-image-upload'>
+          {/* <div className='qa-image-upload'>
             <label htmlFor='image'>Upload pictures</label>
             <input
               className='qa-input'
@@ -111,7 +119,20 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
                     ))}
                 </div>
 
-          </div>
+          </div> */}
+            <p>
+              <input
+                type='file'
+                name='file'
+                placeholder = 'Upload an image'
+                onChange={uploadImage}
+              />
+              {loading ? (
+                <h3>loading ... </h3>
+              ) : (
+                <img sr={image} style={{width: '300px'}} />
+              )}
+            </p>
 
           <button type='submit' className='qa-submit-btn' onClick={(e)=> { onSubmit(e); onClose()}}>Submit</button>
         </form>

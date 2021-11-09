@@ -37,7 +37,7 @@ const QA = ({questions, productId, productInfo}) => {
 
   return (
     <div className='QA' data-testid="QA-render">
-      <h5>{`QUESTIONS & ANSWERS`}</h5>
+      <h3>{`QUESTIONS & ANSWERS`}</h3>
       <SearchQuestions
         onChange={handleSearch}
       />

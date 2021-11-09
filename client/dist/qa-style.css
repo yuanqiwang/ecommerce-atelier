@@ -87,6 +87,8 @@
 
 .qa-answers {
   display: flex;
+  border-bottom-style: solid;
+  border-bottom: chocolate;
   /* flex-direction: column; */
 }
 .qa-answers-right {
