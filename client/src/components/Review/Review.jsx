@@ -27,11 +27,12 @@ class Review extends React.Component {
   }
 
   render() {
+    //console.log(this.props.stars['characteristics'])
     if (this.props.reviews !== undefined) {
       return (
         <>
         <div className="review-grid">
-          <div id="review-container-right">
+          <div id="review-container-left">
           <h3>Reviews & Ratings</h3>
             <div id="left-column">
               <Stars
@@ -67,6 +68,7 @@ class Review extends React.Component {
               />
             <AddReviewButton
               productName={this.props.productInfo['name'] || null}
+              reviews={this.props.stars['characteristics'] !== undefined ? Object.keys(this.props.stars['characteristics']) : null}
             />
           </div>
         </div>

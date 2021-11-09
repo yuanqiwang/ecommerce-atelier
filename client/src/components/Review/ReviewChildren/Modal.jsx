@@ -11,7 +11,7 @@ const OVERLAY_STYLE = {
 };
 
 const MODAL_STYLE = {
-  width: "500px",
+  width: "900px",
   height: "700px",
   position: "fixed",
   top: "50%",
@@ -20,6 +20,7 @@ const MODAL_STYLE = {
   zIndex: 99,
   padding: "30px",
   transform: "translate(-50%, -50%)"
+
 };
 
 export default function Modal({ children, visable, close }) {
