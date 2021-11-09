@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState } from "react";
 import Modal from "./Modal.jsx";
 import meanings from "./meanings.js";
@@ -12,26 +16,20 @@ function renderSwitch(val) {
     default: return null
   }
 }
-console.log(meanings["Fit"][0])
-const meaningsVal = {
-  "Size": null,
-  "Width": null,
-  "Comfort": null,
-  "Quality": null,
-  "Length": null,
-  "Fit": null
-}
 
 export default function AddReviewButton( {productName, reviews}) {
   const [isOpen, setIsOpen] = useState(false);
   const [starVal, setStarVal] = useState(0);
-  const [Size, setSize] = useState("default")
-  const [Width, setWidth] = useState("default")
-  const [Comfort, setComfort] = useState("default")
-  const [Quality, setQuality] = useState("default")
-  const [Length, setLength] = useState("default")
-  const [Fit, setFit] = useState("default")
-
+  const [characVal, setCharacVal] = useState(
+    {
+      Size: "default",
+      Width: "default",
+      Comfort: "default",
+      Quality: "default",
+      Length: "default",
+      Fit: "default"
+    }
+  )
   return (
     <div className="App">
       <button
@@ -91,16 +89,22 @@ export default function AddReviewButton( {productName, reviews}) {
                 <>
                 <span id="modal-charac-title">{characteristic}</span><br/>
                   <div className="letter-slider">
-                    <div className="rmodal-selected">Your choice: {meanings[characteristic] !== null ? "default" : "Default" } </div>
-                    <input id={`${characteristic}1`} type="radio"  name={characteristic} value="1"/>
+                    <div className="rmodal-selected">choice: {characVal[characteristic]}</div>
+                    <input
+                      id={`${characteristic}1`}
+                      type="radio"
+                      name={characteristic}
+                      value="1"
+                      onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][0]]}))}}/>
                     <label htmlFor={`${characteristic}1`}>{meanings[characteristic][0]}</label>
-                    <input id={`${characteristic}2`} type="radio"  name={characteristic} value="2"/>
+                    <input id={`${characteristic}2`} type="radio"  name={characteristic} value="2"
+                      onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][1]]}))}}/>
                     <label htmlFor={`${characteristic}2`}>{meanings[characteristic][1]}</label>
-                    <input id={`${characteristic}3`} type="radio" name={characteristic} value="3"/>
+                    <input id={`${characteristic}3`} type="radio" name={characteristic} value="3" onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][2]]}))}}/>
                     <label htmlFor={`${characteristic}3`}>{meanings[characteristic][2]}</label>
-                    <input id={`${characteristic}4`} type="radio"name={characteristic} value="4"/>
+                    <input id={`${characteristic}4`} type="radio"name={characteristic} value="4" onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][3]]}))}}/>
                     <label htmlFor={`${characteristic}4`}>{meanings[characteristic][3]}</label>
-                    <input id={`${characteristic}5`} type="radio" name={characteristic} value="5"/>
+                    <input id={`${characteristic}5`} type="radio" name={characteristic} value="5" onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][4]]}))}}/>
                     <label htmlFor={`${characteristic}5`}>{meanings[characteristic][4]}</label>
                   </div>
                 </>
