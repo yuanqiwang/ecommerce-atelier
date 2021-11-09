@@ -97,14 +97,43 @@ app.post('/qa/questions', (req, res) => {
 
   axios(optionPostQuestion)
     .then((result) => {
-      console.log('success')
-      res.send(201)})
+      res.sendStatus(201)})
     .catch((error) => {
       console.log(error)
       res.send(error)})
 
 })
+app.put('/qa/questions/helpful', (req, res) => {
+  let questionId = req.body.id
+  const optionQuestionHelpful= {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionQuestionHelpful)
+    .then((result) => {
+      res.sendStatus(204)
+    })
+    .catch((error) => {
+      res.send(error)}
+    )
+})
 
+app.put('/qa/answers/helpful', (req, res) => {
+  let answersId = req.body.id
+  const optionAnswerHelpful= {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answersId}/helpful`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionAnswerHelpful)
+    .then((result) => {
+      res.sendStatus(204)
+    })
+    .catch((error) => {
+      res.send(error)}
+    )
+})
 
 
 app.get('/related/*', async (req, res) => {

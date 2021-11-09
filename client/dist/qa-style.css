@@ -58,7 +58,6 @@
 
 .qa-main-questions {
   padding: 10px;
-  min-height: 250px;
   max-height: 80vh;
   overflow-y: auto;
 
@@ -88,6 +87,8 @@
 
 .qa-answers {
   display: flex;
+  border-bottom-style: solid;
+  border-bottom: chocolate;
   /* flex-direction: column; */
 }
 .qa-answers-right {
