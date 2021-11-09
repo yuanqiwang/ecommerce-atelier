@@ -58,7 +58,6 @@
 
 .qa-main-questions {
   padding: 10px;
-  min-height: 250px;
   max-height: 80vh;
   overflow-y: auto;
 
