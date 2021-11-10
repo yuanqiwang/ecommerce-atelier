@@ -1,35 +1,37 @@
-
-
-
-
 import React, { useState } from "react";
 import Modal from "./Modal.jsx";
 import meanings from "./meanings.js";
 
-function renderSwitch(val) {
-  switch(val) {
-    case 5: return `"Great"`
-    case 4: return `"Good"`
-    case 3: return `"Average"`
-    case 2: return `"Fair"`
-    case 1: return `"Poor"`
-    default: return null
-  }
-}
 
 export default function AddReviewButton( {productName, reviews}) {
   const [isOpen, setIsOpen] = useState(false);
   const [starVal, setStarVal] = useState(0);
+  const [textAreaCount, setTextAreaCount] = useState(0);
   const [characVal, setCharacVal] = useState(
     {
-      Size: "default",
-      Width: "default",
-      Comfort: "default",
-      Quality: "default",
-      Length: "default",
-      Fit: "default"
+      Size: "none selected",
+      Width: "none selected",
+      Comfort: "none selected",
+      Quality: "none selected",
+      Length: "none selected",
+      Fit: "none selected"
     }
-  )
+  );
+
+  const renderSwitch = (val) => {
+    switch(val) {
+      case 5: return `"Great"`
+      case 4: return `"Good"`
+      case 3: return `"Average"`
+      case 2: return `"Fair"`
+      case 1: return `"Poor"`
+      default: return null
+    }
+  }
+  const calculateTextArea = e => {
+    setTextAreaCount(e.target.value.length);
+  }
+
   return (
     <div className="App">
       <button
@@ -39,7 +41,7 @@ export default function AddReviewButton( {productName, reviews}) {
           setIsOpen(true);
         }}
       >
-        ADD A REVIEW +
+        <div>ADD A REVIEW +</div>
       </button>
       <Modal
         visable={isOpen}
@@ -70,10 +72,6 @@ export default function AddReviewButton( {productName, reviews}) {
                   setStarVal(1)}} id="1-star" name="rating" value="1" />
                 <label htmlFor="1-star" className="star">&#9733;</label>
               </div>
-
-
-
-
               <span id="rstar-value">{renderSwitch(starVal)}</span>
               <div className="rmodal-question">
                 Do you recommend this product*????
@@ -116,24 +114,32 @@ export default function AddReviewButton( {productName, reviews}) {
             </div>
             <div className="rmodal-body">
               <div className="rmodal-question">Your Review*</div>
-              <textarea property="comment" cols="50" rows="4" maxLength="1000" placeholder="Why did you like this product or not?">
+              <textarea
+                property="comment"
+                cols="50"
+                rows="4"
+                minLength="50"
+                maxLength="1000"
+                placeholder="Why did you like this product or not?"
+                onChange={calculateTextArea}
+                >
               </textarea>
+              <p>{textAreaCount < 50 ? `Minimum required characters left: ${50 - textAreaCount}` : `Minimum Reached`}</p>
             </div>
             <div className="rmodal-nickname">
               <label className="rmodal-question">What is your nickname* </label>
-              <input type="text" name="nickname" id="nickname"/>
+              <input type="text" name="nickname" id="nickname" placeholder="ex:jackson11!"/>
+              <p>For privacy reasons, do not use your full name or email address</p>
             </div>
             <div className="rmodal-email">
               <label className="rmodal-question">Your email*: </label>
-              <input type="text" name="email" id="email"/>
+              <input type="text" name="email" id="email" maxLength="60" Length="100" placeholder="ex:jackson11@email.com"/>
+              <p>For authentication reasons, you will not be emailed</p>
             </div>
             <div className="rmodal-nickname">
                 <label className="rmodal-question">Upload your Photos: </label>
                 <input type="file" name="photo" id="upload" accept="image/png, image/jpeg"/>
             </div>
-
-
-
           </form>
         </div>
       </Modal>

@@ -105,6 +105,11 @@ app.post('/qa/questions', (req, res) => {
 
 })
 
+app.post('/review/reviews', (req, res) => {
+  console.log(req.body);
+
+})
+
 
 
 app.get('/related/*', async (req, res) => {

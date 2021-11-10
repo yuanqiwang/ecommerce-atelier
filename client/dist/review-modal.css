@@ -65,7 +65,7 @@ body {
 }
 /*general form styles */
 #rmodal-wrapper {
-  max-height: 700px;
+  max-height: 580px;
   overflow:auto;
 }
 .rmodal-question {
@@ -190,7 +190,8 @@ body {
   padding-bottom: 0.25em;
   margin: 1em auto;
   position: relative;
-  width: 40em;
+  width: 30em;
+
 }
 .letter-slider::after{
   content: '';

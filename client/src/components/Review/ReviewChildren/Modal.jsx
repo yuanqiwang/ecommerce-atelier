@@ -11,8 +11,8 @@ const OVERLAY_STYLE = {
 };
 
 const MODAL_STYLE = {
-  width: "900px",
-  height: "700px",
+  width: "600px",
+  height: "600px",
   position: "fixed",
   top: "50%",
   left: "50%",
