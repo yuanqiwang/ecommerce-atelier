@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const App = ()=> {
 
-  const [productId, setProductID] = useState(60204);// 59553
+  const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -76,7 +76,7 @@ const App = ()=> {
   }
     return (
         <div>
-          {/* <div id="header">
+          <div id="header">
             <h1>Logo</h1>
             <div id="search"></div>
           </div>
@@ -92,16 +92,16 @@ const App = ()=> {
             addoutfit={addoutfit}
             removeoutfit={removeoutfit}
             outfits = {outfits}
-            /> */}
+            />
           <QA
             productId={productId}
             productInfo={productInfo}
             questions={questions}/>
-          {/* <Review
+          <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
-          /> */}
+          />
         </div>
     );
 };
