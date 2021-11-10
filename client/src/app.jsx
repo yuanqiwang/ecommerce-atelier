@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const App = ()=> {
 
-  const [productId, setProductID] = useState(59553);//60201
+  const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -71,7 +71,9 @@ const App = ()=> {
     }
   },[Object.keys(outfits).length])
 
-
+  const addInteraction = () => {
+    console.log('add interactions')
+  }
     return (
         <div>
           <div id="header">
