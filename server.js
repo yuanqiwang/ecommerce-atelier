@@ -86,56 +86,6 @@ app.get('/product/info/*', async (req, res) => {
 
 })
 
-app.post('/qa/questions', (req, res) => {
-  console.log(req.body);
-  const optionPostQuestion = {
-    method: 'POST',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
-    headers: { Authorization: config.github_token },
-    data: req.body
-  };
-
-  axios(optionPostQuestion)
-    .then((result) => {
-      res.sendStatus(201)})
-    .catch((error) => {
-      console.log(error)
-      res.send(error)})
-
-})
-app.put('/qa/questions/helpful', (req, res) => {
-  let questionId = req.body.id
-  const optionQuestionHelpful= {
-    method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
-    headers: { Authorization: config.github_token }
-  };
-  axios(optionQuestionHelpful)
-    .then((result) => {
-      res.sendStatus(204)
-    })
-    .catch((error) => {
-      res.send(error)}
-    )
-})
-
-app.put('/qa/answers/helpful', (req, res) => {
-  let answersId = req.body.id
-  const optionAnswerHelpful= {
-    method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answersId}/helpful`,
-    headers: { Authorization: config.github_token }
-  };
-  axios(optionAnswerHelpful)
-    .then((result) => {
-      res.sendStatus(204)
-    })
-    .catch((error) => {
-      res.send(error)}
-    )
-})
-
-
 app.get('/related/*', async (req, res) => {
   const productId = req.params['0']; // string not number
 
@@ -183,4 +133,111 @@ app.get('/related/*', async (req, res) => {
 
 })
 
+app.post('/qa/questions', (req, res) => {
+
+  const optionPostQuestion = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
+    headers: { Authorization: config.github_token },
+    data: req.body
+  };
+
+  axios(optionPostQuestion)
+    .then((result) => {
+      res.sendStatus(201)})
+    .catch((error) => {
+      res.send(error)})
+
+})
+
+app.post('/qa/questions/:id/answers', (req, res) => {
+  let questionId = req.params.id;
+  const optionPostAnswer = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`,
+    headers: { Authorization: config.github_token },
+    data: req.body
+  };
+
+  axios(optionPostAnswer)
+    .then((result) => {
+      res.sendStatus(201)})
+    .catch((error) => {
+      console.log(error)
+      res.send(error)})
+})
+
+app.get('/qa/questions/:id/answers', (req, res) => {
+  let questionId = req.params.id;
+  console.log(questionId)
+  const optionGetAnswer = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers?&count=1000`,
+    headers: { Authorization: config.github_token }
+  };
+
+  axios(optionGetAnswer)
+    .then((result) => {
+      res.send(result.data.results)})
+    .catch((error) => {
+      console.log(error)
+      res.send(error)})
+})
+
+
+app.put('/qa/questions/helpful', (req, res) => {
+  let questionId = req.body.id
+  const optionQuestionHelpful= {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionQuestionHelpful)
+    .then((result) => {
+      res.sendStatus(204)
+    })
+    .catch((error) => {
+      res.send(error)}
+    )
+})
+
+app.put('/qa/answers/helpful', (req, res) => {
+  let answersId = req.body.id
+  const optionAnswerHelpful= {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answersId}/helpful`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionAnswerHelpful)
+    .then((result) => {
+      res.sendStatus(204)
+    })
+    .catch((error) => {
+      res.send(error)}
+    )
+})
+
+app.put('/qa/answers/report', (req, res) => {
+  let id = req.body.id;
+  const optionAnswerReport = {
+    method: 'PUT',
+    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${id}/report`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionAnswerReport)
+    .then(result => res.sendStatus(204))
+    .catch(error => res.send(error))
+})
+
+app.post('/interactions', async (req, res) => {
+  const data = req.body.data;
+  const optionInteractions = {
+    method: 'POST',
+    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionInteractions)
+    .then(result => res.sendStatus(201))
+    .catch(error => res.send(error))
+})
 app.listen(PORT, () => console.log(`Listen on port ${PORT}`))
