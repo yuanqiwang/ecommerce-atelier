@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const QuestionModal = ({ open, productId, productName, onClose}) => {
+const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion}) => {
 
   if(!open) return null;
 
@@ -18,7 +18,9 @@ const QuestionModal = ({ open, productId, productName, onClose}) => {
       product_id: productId
     }
     axios.post('/qa/questions', data)
-      .then((res)  => console.log(res))
+      .then((res)  => {
+        onSubmitQuestion();
+      })
       .catch((err) => console.log(err))
   }
 

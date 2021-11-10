@@ -150,6 +150,24 @@ app.post('/qa/questions', (req, res) => {
 
 })
 
+app.get('/qa/questions/:id', async (req, res) => {
+  const productId = req.params.id;
+  const optionsQuestions= {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=10000`,
+    headers: { Authorization: config.github_token }
+  }
+  const questionsRequest = axios(optionsQuestions);
+
+  try {
+    let questions = await questionsRequest;
+    console.log('questions.data.results',questions.data.results)
+    res.send( questions.data.results )
+  } catch(err){
+    res.send(err);
+  }
+})
+
 app.post('/qa/questions/:id/answers', (req, res) => {
   let questionId = req.params.id;
   const optionPostAnswer = {
