@@ -9,13 +9,15 @@ import axios from 'axios';
 
 const App = ()=> {
 
-  const [productId, setProductID] = useState(59553);
+  const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
   const [questions, setquestions] = useState([]);
   const [reviews,setreviews] = useState([]);
   const [stars, setstars] = useState({});
+  const [outfits, setOutfits] = useState([]);
+
 
   const loadInfo = async (Id) => {
 
@@ -36,10 +38,42 @@ const App = ()=> {
     setProductID(Id);
   }
 
-  useEffect( ()=>{
+  useEffect(()=>{
     loadInfo(productId);
-  },[productId])
+  },[productId, Object.keys(outfits).length])
 
+  const addoutfit = () => {
+    let newState = {...outfits};
+    if(!newState[productId]) {
+      newState[productId] = {
+        productInfo: productInfo,
+        stars: stars,
+        productStyle: productStyle
+      };
+      setOutfits(newState)
+      window.localStorage.removeItem('AtelierOutfits');
+      window.localStorage.setItem('AtelierOutfits', JSON.stringify(newState));
+    }
+  }
+
+  const removeoutfit = (Id) => {
+    let newState = {...outfits};
+    delete newState[Id];
+    setOutfits(newState);
+    window.localStorage.removeItem('AtelierOutfits');
+    window.localStorage.setItem('AtelierOutfits', JSON.stringify(newState));
+  }
+
+  useEffect(()=>{
+    const savedOutfit = JSON.parse(window.localStorage.getItem('AtelierOutfits'));
+    if(savedOutfit) {
+      setOutfits(savedOutfit);
+    }
+  },[Object.keys(outfits).length])
+
+  const addInteraction = () => {
+    console.log('add interactions')
+  }
     return (
         <div>
           <div id="header">
@@ -54,7 +88,11 @@ const App = ()=> {
             productID={productId}
             productInfo={productInfo}
             productStyle={productStyle}
-            changeProduct={changeProduct}/>
+            changeProduct={changeProduct}
+            addoutfit={addoutfit}
+            removeoutfit={removeoutfit}
+            outfits = {outfits}
+            />
           <QA
             productId={productId}
             productInfo={productInfo}

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 const Helpful = ({id, localStorageName, helpfulness}) => {
 
@@ -8,6 +9,10 @@ const Helpful = ({id, localStorageName, helpfulness}) => {
   let initValue = false;
   if (tempStorage.includes(id)) {
     initValue = true
+  }
+  let type = 'questions';
+  if (localStorageName.indexOf('Answer') > 0) {
+    type = 'answers'
   }
   const [clickStatus, setClickStatus] = useState(initValue);
   const [helpfulnessCount, setHelpfulnessCount] = useState(helpfulness)
@@ -20,7 +25,10 @@ const Helpful = ({id, localStorageName, helpfulness}) => {
       setHelpfulnessCount((prev) => prev+1)
       tempStorage.push(id);
       localStorage.setItem(localStorageName, JSON.stringify(tempStorage));
-      //put request
+
+      axios.put(`/qa/${type}/helpful`, {id: id})
+      .then((res)  => console.log(res))
+      .catch((err) => console.log(err))
     }
   }
 
