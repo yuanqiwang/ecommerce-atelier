@@ -86,6 +86,48 @@ app.get('/product/info/*', async (req, res) => {
 
 })
 
+app.post('/qa/questions', (req, res) => {
+  console.log(req.body);
+  const optionPostQuestion = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
+    headers: { Authorization: config.github_token },
+    data: req.body
+  };
+
+  axios(optionPostQuestion)
+    .then((result) => {
+      console.log('success')
+      res.send(201)})
+    .catch((error) => {
+      console.log(error)
+      res.send(error)})
+
+})
+
+app.post('/review/reviews', (req, res) => {
+
+
+
+  const optionPostReview = {
+    method: 'Post',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
+    headers: { Authorization: config.github_token },
+    data: req.body
+  };
+
+  axios(optionPostReview)
+    .then((res) => {
+      console.log('review post success')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+})
+
+
+
 app.get('/related/*', async (req, res) => {
   const productId = req.params['0']; // string not number
 

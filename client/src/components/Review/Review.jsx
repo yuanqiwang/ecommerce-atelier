@@ -19,7 +19,6 @@ class Review extends React.Component {
 
   handleCallback = (childData) => {
     this.setState({dropdown: childData})
-    this.setState({reviewCount: 2})
   }
 
   addCountCallback = (childData) => {
@@ -27,11 +26,12 @@ class Review extends React.Component {
   }
 
   render() {
+    //console.log(this.props.stars['product_id'])
     if (this.props.reviews !== undefined) {
       return (
         <>
-        <div className="review-grid">
-          <div id="review-container-right">
+        <div className="review-grid" data-testid="related-render">
+          <div id="review-container-left">
           <h3>Reviews & Ratings</h3>
             <div id="left-column">
               <Stars
@@ -61,11 +61,15 @@ class Review extends React.Component {
 
             </div>
             <MoreReviewButton
-                addCountCallback={this.addCountCallback}
-                nReviews={this.props['reviews'].length}
-                reviewCount={this.state.reviewCount}
+              addCountCallback={this.addCountCallback}
+              nReviews={this.props['reviews'].length}
+              reviewCount={this.state.reviewCount}
               />
-            <AddReviewButton />
+            <AddReviewButton
+              productName={this.props.productInfo['name'] || null}
+              productId={this.props.stars['product_id']}
+              reviews={this.props.stars['characteristics'] !== undefined ? this.props.stars['characteristics'] : null}
+            />
           </div>
         </div>
         </>
