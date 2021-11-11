@@ -9,7 +9,8 @@ import axios from 'axios';
 
 const App = ()=> {
 
-  const [productId, setProductID] = useState(60001);
+
+  const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -72,6 +73,7 @@ const App = ()=> {
     }
   },[Object.keys(outfits).length])
 
+
   const clickTracking = (event) => {
     let timestamp = new Date();
     let postData = {};
@@ -95,6 +97,11 @@ const App = ()=> {
     document.body.addEventListener('click', clickTracking);
   }, []);
 
+
+  const addInteraction = () => {
+    console.log('add interactions')
+  }
+
     return (
         <div>
           <div id="header">
@@ -114,7 +121,7 @@ const App = ()=> {
             removeoutfit={removeoutfit}
             outfits = {outfits}
             />
-          {/* <QA
+          <QA
             productId={productId}
             productInfo={productInfo}
             questions={questions}/>
@@ -122,7 +129,7 @@ const App = ()=> {
             productID={productId}
             reviews={reviews}
             stars={stars}
-          /> */}
+          /> 
         </div>
     );
 };
