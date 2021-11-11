@@ -30,8 +30,9 @@ export default function Modal({ children, visable, close }) {
       <div style={OVERLAY_STYLE}></div>
       <div style={MODAL_STYLE}>
         <div>{children}</div>
-        <button onClick={close}>Submit</button>
+        <button onClick={close}>CLOSE</button>
       </div>
     </>
   );
 }
+

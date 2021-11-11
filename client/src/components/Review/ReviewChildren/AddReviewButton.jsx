@@ -3,10 +3,21 @@ import Modal from "./Modal.jsx";
 import meanings from "./meanings.js";
 
 
-export default function AddReviewButton( {productName, reviews}) {
+export default function AddReviewButton( {productName, productId, reviews}) {
+  const characteristicTitles = reviews !== null ? Object.keys(reviews) : null
+  if (reviews !== null) {
+    //console.log(reviews["Fit"].id)
+  }
   const [isOpen, setIsOpen] = useState(false);
   const [starVal, setStarVal] = useState(0);
   const [textAreaCount, setTextAreaCount] = useState(0);
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
+  const [recommend, setRecommend] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [characteristics, setCharacteristics] = useState({})
   const [characVal, setCharacVal] = useState(
     {
       Size: "none selected",
@@ -17,6 +28,22 @@ export default function AddReviewButton( {productName, reviews}) {
       Fit: "none selected"
     }
   );
+  console.log(characteristics)
+
+  const postData = (e) => {
+    e.preventDefault();
+    let data = {
+      "product_id": productId,
+      "rating": starVal,
+      "summary": summary,
+      "body": body,
+      "recommend": recommend,
+      "name": name,
+      "email": email,
+      "characteristics": characteristics
+    }
+  }
+
 
   const renderSwitch = (val) => {
     switch(val) {
@@ -47,17 +74,18 @@ export default function AddReviewButton( {productName, reviews}) {
         visable={isOpen}
         close={() => {
           setIsOpen(false);
+
         }}
       >
         <div id="rmodal-wrapper">
           <span id="rmodal-title">Write Your Review</span>
           <div id="rmodal-subtitle">About the {productName}</div>
-          <form id="form" name="form" method="post" action="index.html">
+          <form id="form" name="form">
             <div id="rmodal-stars">
               <div className="rmodal-question">Overall rating*</div>
               <div className="star-rating">
                 <input type="radio" onClick={() => {
-                  setStarVal(5)}} id="5-stars" name="rating" value="5" />
+                  setStarVal(5)}} id="5-stars" name="rating" value="5"/>
                 <label htmlFor="5-stars" >&#9733;</label>
                 <input type="radio" onClick={() => {
                   setStarVal(4)}}  id="4-stars" name="rating" value="4" />
@@ -73,17 +101,17 @@ export default function AddReviewButton( {productName, reviews}) {
                 <label htmlFor="1-star" className="star">&#9733;</label>
               </div>
               <span id="rstar-value">{renderSwitch(starVal)}</span>
-              <div className="rmodal-question">
-                Do you recommend this product*????
-                <input type="radio" value="yes" name="review-radio"/>
+              <div className="rmodal-overall-rating">
+                <p>Do you recommend this product*????</p>
+                <input type="radio" value="true" onClick={() => {setRecommend(true)}} name="review-radio"/>
                 <label htmlFor="yes">yes👍</label>
-                <input type="radio" value="no" name="review-radio"/>
+                <input type="radio" value="no" onClick={() => {setRecommend(false)}} name="review-radio"/>
                 <label htmlFor="no">no👎</label>
               </div>
             </div>
             <div className="rmodal-characteristics">
               <div className="rmodal-question">Characteristics*</div>
-                {reviews !== null ? reviews.map( (characteristic, index) =>
+                {characteristicTitles !== null ? characteristicTitles.map( (characteristic, index) =>
                 <>
                 <span id="modal-charac-title">{characteristic}</span><br/>
                   <div className="letter-slider">
@@ -93,16 +121,43 @@ export default function AddReviewButton( {productName, reviews}) {
                       type="radio"
                       name={characteristic}
                       value="1"
-                      onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][0]]}))}}/>
+                      onClick={() =>{ setCharacVal(prevState => ({...prevState,
+                        [characteristic]: [meanings[characteristic][0]]
+                        }))
+                        setCharacteristics(prevState => (
+                          {...prevState,
+                          [{...reviews[[characteristic]]}["id"]]:1
+                        }))
+                      }}/>
                     <label htmlFor={`${characteristic}1`}>{meanings[characteristic][0]}</label>
                     <input id={`${characteristic}2`} type="radio"  name={characteristic} value="2"
-                      onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][1]]}))}}/>
+                      onClick={() =>{
+                        setCharacteristics(prevState => (
+                          {...prevState,
+                          [{...reviews[[characteristic]]}["id"]]:2
+                        }))
+                        setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][1]]}))}}/>
                     <label htmlFor={`${characteristic}2`}>{meanings[characteristic][1]}</label>
-                    <input id={`${characteristic}3`} type="radio" name={characteristic} value="3" onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][2]]}))}}/>
+                    <input id={`${characteristic}3`} type="radio" name={characteristic} value="3" onClick={() =>{
+                      setCharacteristics(prevState => (
+                        {...prevState,
+                        [{...reviews[[characteristic]]}["id"]]:3
+                      }))
+                      setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][2]]}))}}/>
                     <label htmlFor={`${characteristic}3`}>{meanings[characteristic][2]}</label>
-                    <input id={`${characteristic}4`} type="radio"name={characteristic} value="4" onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][3]]}))}}/>
+                    <input id={`${characteristic}4`} type="radio"name={characteristic} value="4" onClick={() =>{
+                      setCharacteristics(prevState => (
+                        {...prevState,
+                        [{...reviews[[characteristic]]}["id"]]:4
+                      }))
+                      setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][3]]}))}}/>
                     <label htmlFor={`${characteristic}4`}>{meanings[characteristic][3]}</label>
-                    <input id={`${characteristic}5`} type="radio" name={characteristic} value="5" onClick={() =>{ setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][4]]}))}}/>
+                    <input id={`${characteristic}5`} type="radio" name={characteristic} value="5" onClick={() =>{
+                      setCharacteristics(prevState => (
+                        {...prevState,
+                        [{...reviews[[characteristic]]}["id"]]:5
+                      }))
+                      setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][4]]}))}}/>
                     <label htmlFor={`${characteristic}5`}>{meanings[characteristic][4]}</label>
                   </div>
                 </>
@@ -110,7 +165,7 @@ export default function AddReviewButton( {productName, reviews}) {
               </div>
             <div className="rmodal-summary">
               <div className="rmodal-question">Review Summary</div>
-              <input type="text" placeholder="Example: Best purchase ever!" maxLength="60" size="70" />
+              <input type="text" placeholder="Example: Best purchase ever!" onClick={(e) => {setSummary(e.target.value)}} maxLength="60" size="70" />
             </div>
             <div className="rmodal-body">
               <div className="rmodal-question">Your Review*</div>
@@ -121,25 +176,31 @@ export default function AddReviewButton( {productName, reviews}) {
                 minLength="50"
                 maxLength="1000"
                 placeholder="Why did you like this product or not?"
-                onChange={calculateTextArea}
+                onChange={(e) => {
+                  calculateTextArea(e)
+                  setBody(e.target.value)
+                }}
                 >
               </textarea>
               <p>{textAreaCount < 50 ? `Minimum required characters left: ${50 - textAreaCount}` : `Minimum Reached`}</p>
             </div>
             <div className="rmodal-nickname">
               <label className="rmodal-question">What is your nickname* </label>
-              <input type="text" name="nickname" id="nickname" placeholder="ex:jackson11!"/>
+              <input type="text" name="nickname" id="nickname" placeholder="ex:jackson11!" onChange={(e) => {
+                setName(e.target.value)
+              }}/>
               <p>For privacy reasons, do not use your full name or email address</p>
             </div>
             <div className="rmodal-email">
               <label className="rmodal-question">Your email*: </label>
-              <input type="text" name="email" id="email" maxLength="60" Length="100" placeholder="ex:jackson11@email.com"/>
+              <input type="text" name="email" id="email" maxLength="60" Length="100" placeholder="ex:jackson11@email.com" onChange={(e) => setEmail(e.target.value)}/>
               <p>For authentication reasons, you will not be emailed</p>
             </div>
             <div className="rmodal-nickname">
                 <label className="rmodal-question">Upload your Photos: </label>
-                <input type="file" name="photo" id="upload" accept="image/png, image/jpeg"/>
+                <input type="file" name="photo" id="upload" accept="image/png, image/jpeg" onChange={(e) => setPhoto(e.target.value)} />
             </div>
+            <button type="submit" onClick={(e) => postData(e)}>submit</button>
           </form>
         </div>
       </Modal>
