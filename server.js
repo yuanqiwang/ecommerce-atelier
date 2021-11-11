@@ -86,7 +86,6 @@ app.get('/product/info/*', async (req, res) => {
 
 })
 
-<<<<<<< HEAD
 app.post('/qa/questions', (req, res) => {
   console.log(req.body);
   const optionPostQuestion = {
@@ -129,8 +128,6 @@ app.post('/review/reviews', (req, res) => {
 
 
 
-=======
->>>>>>> 9fe2b6030d9335c4a4bd99b8fdbfcd6e6f76f3d0
 app.get('/related/*', async (req, res) => {
   const productId = req.params['0']; // string not number
 
