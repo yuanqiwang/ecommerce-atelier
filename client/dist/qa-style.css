@@ -239,3 +239,8 @@ span {
   padding-left: 3px;
   padding-right: 3px;
 }
+
+.qa-bold {
+  font-weight: bolder;
+  color: black
+}

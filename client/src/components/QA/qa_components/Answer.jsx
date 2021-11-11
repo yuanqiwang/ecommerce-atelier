@@ -58,7 +58,12 @@ const Answer = ({answer}) => {
        </div>
        : null}
       <div className='qa-answerby qa-tiny'>
-        <div> by {answer.answerer_name}, {convertDate(answer.date)}</div>
+        <div> by
+          <span className={answer.answerer_name.toLowerCase()=='seller'? 'qa-bold': 'null'}>
+             {answer.answerer_name},
+          </span>
+          {convertDate(answer.date)}
+        </div>
         <div className='qa-divider'>|</div>
         <div className='qa-helpful'> Helpful?</div>
         <Helpful id={answer.id} localStorageName='helpfulAnswersList' helpfulness={answer.helpfulness}/>

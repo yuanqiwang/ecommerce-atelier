@@ -76,7 +76,7 @@ const App = ()=> {
   }
     return (
         <div>
-          <div id="header">
+          {/* <div id="header">
             <h1>Logo</h1>
             <div id="search"></div>
           </div>
@@ -92,16 +92,16 @@ const App = ()=> {
             addoutfit={addoutfit}
             removeoutfit={removeoutfit}
             outfits = {outfits}
-            />
+            /> */}
           <QA
             productId={productId}
             productInfo={productInfo}
             questions={questions}/>
-          <Review
+          {/* <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
-          />
+          /> */}
         </div>
     );
 };

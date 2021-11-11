@@ -14,10 +14,9 @@ const Question = ({question, productId}) => {
   const [addAnswer, setAddAnswer] = useState(false)
 
   useEffect(() => {
-   if (Object.keys(answers).length>2) {
-    setLoadMoreAnswers('LOAD MORE ANSWERS')
-   }
-  }, []);
+    if (Object.keys(answers).length>2) {
+      setLoadMoreAnswers('LOAD MORE ANSWERS')
+    }}, []);
 
   const handleLoadMoreAnswers = (value) => {
     if (value === 'LOAD MORE ANSWERS') {
@@ -27,6 +26,28 @@ const Question = ({question, productId}) => {
       setVisible(2)
       setLoadMoreAnswers('LOAD MORE ANSWERS')
     }
+  }
+
+  const sortAnswer = (answersObj) => {
+
+    let list = Object.keys(answersObj).map((key)=>{
+      return answersObj[key]
+    })
+    let sellerList = []
+
+    list.sort((a,b) => {
+      return b.helpfulness - a.helpfulness
+    });
+
+    list.forEach((item, i) => {
+      if (item.answerer_name.toLowerCase()=='seller') {
+        sellerList.push(item)
+        list.splice(i, 1) //remove seller
+      }
+    })
+    let combinedList = sellerList.concat(list);
+    console.log('combinedList', combinedList)
+    return combinedList;
   }
 
 
@@ -55,9 +76,13 @@ const Question = ({question, productId}) => {
       <div className='qa-answers qa-scroll'>
         <div className='qa-answers-left'>A: </div>
         <div className='qa-answers-right'>
-          {Object.keys(answers).slice(0, visible).map((key) => {
+          {/* {Object.keys(answers).slice(0, visible).map((key) => {
                 return <Answer answer={answers[key]} key={key} />
               })
+          } */}
+          {sortAnswer(answers).slice(0, visible).map((answer) => {
+                return <Answer answer={answer} key={answer.id} />
+            })
           }
         </div>
       </div>

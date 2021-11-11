@@ -29,10 +29,10 @@ const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion
 
       <div className='qa-modal-main'>
 
-          <div >Ask Your Question</div>
-          <p>About the {productName} </p>
+        <div >Ask Your Question</div>
+        <p>About the {productName} </p>
         <form className='qa-form'>
-          <p>
+          <div className='qa-form-control'>
             <label htmlFor='question'>Your Question (mandatory)*</label>
             <textarea
               className='qa-input'
@@ -44,8 +44,11 @@ const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion
               autoComplete='off'
               onChange={(e)=> setBody(e.target.value)}
               required/>
-          </p>
-          <p>
+              <i className="fas fa-check-circle"></i>
+              <i className="fas fa-exclamation-circle"></i>
+              <small> Error message</small>
+          </div>
+          <div className='qa-form-control'>
             <label htmlFor='nickname'>What is your nickname (mandatory)*</label>
             <input
               className='qa-input'
@@ -58,9 +61,12 @@ const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion
               onChange={(e)=> setName(e.target.value)}
               required
             />
+            <i className="fas fa-check-circle"></i>
+            <i className="fas fa-exclamation-circle"></i>
             <span className='qa-instructions'> For privacy reasons, do not use your full name or email address</span>
-          </p>
-          <p>
+            <small> Error message</small>
+          </div>
+          <div className='qa-form-control'>
             <label htmlFor='email'>Your email (mandatory)*</label>
             <input
               className='qa-input'
@@ -72,19 +78,17 @@ const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion
               maxLength='60'
               onChange={(e)=> setEmail(e.target.value)}
               required/>
-            <span className='qa-instructions'> For authentication reasons, you will not be emailed
-            </span>
-          </p>
-          <button type='submit' onClick={(e)=> {
-            onSubmit(e)
-            onClose()}
-          }
-          >Submit</button>
+            <i className="fas fa-check-circle"></i>
+            <i className="fas fa-exclamation-circle"></i>
+            <span className='qa-instructions'> For authentication reasons, you will not be emailed</span>
+            <small> Error message</small>
+          </div>
+          <button type='submit' onClick={(e)=> {onSubmit(e); onClose()}}>Submit</button>
+          <button onClick={onClose}> Close</button>
         </form>
-        <button onClick={onClose}> Close</button>
       </div>
+   </div>
 
-    </div>
   )
 }
 
