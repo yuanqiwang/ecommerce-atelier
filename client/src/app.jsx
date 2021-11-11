@@ -9,8 +9,8 @@ import axios from 'axios';
 
 const App = ()=> {
 
-
-  const [productId, setProductID] = useState(59553);// 59553
+  const [theme, setTheme] = useState(true);// dark
+  const [productId, setProductID] = useState(59980);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -42,7 +42,7 @@ const App = ()=> {
 
   useEffect(()=>{
     loadInfo(productId);
-  },[productId,Object.keys(outfits).length])
+  },[productId])
 
   const addoutfit = () => {
     let newState = {...outfits};
@@ -129,7 +129,7 @@ const App = ()=> {
             productID={productId}
             reviews={reviews}
             stars={stars}
-          /> 
+          />
         </div>
     );
 };

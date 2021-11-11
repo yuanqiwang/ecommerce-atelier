@@ -29,11 +29,9 @@ const YO_row =({outfits, addoutfit, removeoutfit, changeProduct})=> {
         scrl.current &&
         scrl?.current?.scrollWidth === scrl?.current?.offsetWidth
       ) {
-        setscrolEnd(false);//显示
-        console.log(scrl.current.scrollWidth, scrl.current.offsetWidth)
+        setscrolEnd(false);
       } else {
-        setscrolEnd(true);//隐藏
-        console.log(scrl.current.scrollWidth, scrl.current.offsetWidth)
+        setscrolEnd(true);
       }
       return () => {};
     }
