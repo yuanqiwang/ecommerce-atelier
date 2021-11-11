@@ -46,7 +46,6 @@ const Question = ({question, productId}) => {
       }
     })
     let combinedList = sellerList.concat(list);
-    console.log('combinedList', combinedList)
     return combinedList;
   }
 

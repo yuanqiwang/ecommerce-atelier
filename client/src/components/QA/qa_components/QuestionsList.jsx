@@ -31,7 +31,7 @@ const QuestionsList = ({questions, productId, productInfo}) => {
   const handleSubmitQuestion = () => {
 
     axios.get(`/qa/questions/${productId}`)
-      .then((result) => {//might add sort function here;
+      .then((result) => {//might add sort function here? new q has 0 helpful and will be add on the bottom
         setQuestionList(result.data)})
       .catch((err) => console.log(err))
 

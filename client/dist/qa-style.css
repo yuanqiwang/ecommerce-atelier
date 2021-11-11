@@ -152,6 +152,20 @@
   transform: translate(-50%,-50%);
   padding:5px;
   z-index: 101;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.qa-model-header {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #f0f0f0 ;
+  padding:20px 5px;
+}
+.qa-model-header h3{
+  margin: 0;
+}
+.qa-model-header p{
+  margin: 5px;
 }
 
 .qa-display-block {
@@ -163,8 +177,9 @@
   flex-direction: column;
   /* justify-content: flex-start; */
   /* align-items: flex-start; */
-  color: rgb(116, 113, 113);
-  font-size: 0.8rem;
+  color: rgb(61, 59, 59);
+  font-size: 0.75rem;
+  padding-top: 4px;
 }
 
 .qa-instructions span {
@@ -175,16 +190,76 @@
 .qa-modal-main label {
   display: flex;
   flex-direction: column;
+  margin-bottom: 5px;
 }
 
 .qa-form {
   max-width: 600px;
+  padding: 10px 10px;
+}
+
+.qa-form-control {
+  max-width: 600px;
+  padding-bottom: 20px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.qa-form-control textarea{
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  font-family: inherit;
+}
+.qa-form-control input{
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.qa-form-control small{
+  visibility: visible;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: red;
+  font-size:13px;
+  margin-left: 3px;
+}
+
+/* .qa-form-control button{
+  background-color: rgba(221, 68, 30, 0.925);
+  color: #fff;
+  font-family: inherit;
+  width: 40%;
+  display: block;
+  padding: 5px;
+  margin: 3px;
+  border: 2px solid rgba(231, 93, 14, 0.925);
+  border-radius: 5px;
+  cursor: pointer;
+} */
+.qa-form-btn-container {
+  margin: 3px auto;
+  text-align: center;
+}
+.qa-form-btn {
+  background-color: rgba(221, 68, 30, 0.925);
+  color: #fff;
+  width: 40%;
+  padding: 8px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0px 3px 0px 3px;
+  font-size: 14px;
+}
+.qa-form-btn:hover {
+  border: 2px solid rgba(221, 68, 30, 0.925);
 }
 
 .qa-input {
   flex-basis: 100%;
   width: calc(85% - 2px);
-  padding: 0.25rem 1rem;
+  padding: 0.35rem;
   border-radius: 0.25rem;
 }
 

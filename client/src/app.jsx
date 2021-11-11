@@ -71,12 +71,23 @@ const App = ()=> {
     }
   },[Object.keys(outfits).length])
 
-  const addInteraction = () => {
-    console.log('add interactions')
+
+  const trackClick = (e, widget) => {
+
+    let data = {
+      element: e.target.className,
+      widget: widget,
+      time: new Date()
+    }
+    // console.log('postData', data)
+    axios.post('/interactions', data)
+      .then((result)=> {})
+      .catch((err) => console.log(err))
   }
+
     return (
         <div>
-          {/* <div id="header">
+          <div id="header">
             <h1>Logo</h1>
             <div id="search"></div>
           </div>
@@ -92,16 +103,17 @@ const App = ()=> {
             addoutfit={addoutfit}
             removeoutfit={removeoutfit}
             outfits = {outfits}
-            /> */}
+            />
           <QA
-            productId={productId}
+            productId={productId}s
             productInfo={productInfo}
-            questions={questions}/>
-          {/* <Review
+            questions={questions}
+            trackClick={(e)=>trackClick(e, 'QA')}/>
+          <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
-          /> */}
+          />
         </div>
     );
 };

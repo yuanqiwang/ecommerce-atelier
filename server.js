@@ -247,15 +247,15 @@ app.put('/qa/answers/report', (req, res) => {
     .catch(error => res.send(error))
 })
 
-app.post('/interactions', async (req, res) => {
-  const data = req.body.data;
+app.post('/interactions', (req, res) => {
   const optionInteractions = {
     method: 'POST',
     url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: config.github_token },
+    data: req.body
   };
   axios(optionInteractions)
-    .then(result => res.sendStatus(201))
-    .catch(error => res.send(error))
+    .then(result => {console.log('s'); res.sendStatus(201)})
+    .catch(error => {console.log('f'); res.send(error)})
 })
 app.listen(PORT, () => console.log(`Listen on port ${PORT}`))
