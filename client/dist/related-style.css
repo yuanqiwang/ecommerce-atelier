@@ -29,6 +29,11 @@
   margin-right: 20px;
 }
 
+#outfit-card {
+  width:260px;
+  min-width:260px;
+  height: 390px;
+}
 
 .rp-prev {
   border: 1px solid grey;
