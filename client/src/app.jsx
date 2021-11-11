@@ -33,10 +33,6 @@ const App = ()=> {
       console.log(err);
     }
 
-    const savedOutfit = JSON.parse(window.localStorage.getItem('AtelierOutfits'));
-    if(savedOutfit) {
-      setOutfits(savedOutfit);
-    }
   };
 
   const changeProduct = (Id) => {
