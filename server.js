@@ -106,7 +106,23 @@ app.post('/qa/questions', (req, res) => {
 })
 
 app.post('/review/reviews', (req, res) => {
-  console.log(req.body);
+
+
+
+  const optionPostReview = {
+    method: 'Post',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
+    headers: { Authorization: config.github_token },
+    data: req.body
+  };
+
+  axios(optionPostReview)
+    .then((res) => {
+      console.log('review post success')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 
 })
 

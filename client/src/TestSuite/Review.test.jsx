@@ -11,9 +11,9 @@ import {
 import { unmountComponentAtNode } from "react-dom"
 import '@testing-library/jest-dom'
 import Review from '../components/Review/Review.jsx'
-import Stars from '../components/Review/Stars.jsx'
-import AddReviewButton from '../components/Review/AddReviewButton.jsx'
-import MoreReviewButton from '../components/Review/MoreReviewButton.jsx'
+import Stars from '../components/Review/ReviewChildren/Stars.jsx'
+import AddReviewButton from '../components/Review/ReviewChildren/AddReviewButton.jsx'
+import MoreReviewButton from '../components/Review/ReviewChildren/MoreReviewButton.jsx'
 
 
 
@@ -34,4 +34,15 @@ test('should open modal on click', () => {
   fireEvent.click(clickIndicator)
   expect(mockOnClick).toHaveBeenCalledTimes(1)
 })
+
+afterEach(() => {
+  cleanup()
+})
+
+test('should render Related component', () => {
+  render(<Review reviews={[1]}/>);
+  const relatedElement = screen.getByTestId('related-render');
+  expect(relatedElement).toBeInTheDocument();
+})
+
 

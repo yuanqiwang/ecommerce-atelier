@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Modal from "./Modal.jsx";
 import meanings from "./meanings.js";
+import axios from 'axios';
+
 
 
 export default function AddReviewButton( {productName, productId, reviews}) {
   const characteristicTitles = reviews !== null ? Object.keys(reviews) : null
-  if (reviews !== null) {
-    //console.log(reviews["Fit"].id)
-  }
+  productId = parseInt(productId) || null;
   const [isOpen, setIsOpen] = useState(false);
-  const [starVal, setStarVal] = useState(0);
+  const [rating, setRating] = useState(0);
   const [textAreaCount, setTextAreaCount] = useState(0);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
@@ -17,8 +17,8 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photo, setPhoto] = useState('');
-  const [characteristics, setCharacteristics] = useState({})
-  const [characVal, setCharacVal] = useState(
+  const [characteristics, setCharacteristics] = useState({}) //for post request
+  const [characVal, setCharacVal] = useState( //for the UI
     {
       Size: "none selected",
       Width: "none selected",
@@ -28,20 +28,23 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       Fit: "none selected"
     }
   );
-  console.log(characteristics)
 
   const postData = (e) => {
     e.preventDefault();
     let data = {
-      "product_id": productId,
-      "rating": starVal,
-      "summary": summary,
-      "body": body,
-      "recommend": recommend,
-      "name": name,
-      "email": email,
-      "characteristics": characteristics
+      product_id: productId,
+      rating,
+      summary,
+      body,
+      recommend,
+      name,
+      email,
+      characteristics
     }
+
+    axios.post('/review/reviews', data)
+      .then((res)  => console.log(res))
+      .catch((err) => console.log(err))
   }
 
 
@@ -85,22 +88,22 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               <div className="rmodal-question">Overall rating*</div>
               <div className="star-rating">
                 <input type="radio" onClick={() => {
-                  setStarVal(5)}} id="5-stars" name="rating" value="5"/>
+                  setRating(5)}} id="5-stars" name="rating" value="5"/>
                 <label htmlFor="5-stars" >&#9733;</label>
                 <input type="radio" onClick={() => {
-                  setStarVal(4)}}  id="4-stars" name="rating" value="4" />
+                  setRating(4)}}  id="4-stars" name="rating" value="4" />
                 <label htmlFor="4-stars"  className="star">&#9733;</label>
                 <input type="radio" onClick={() => {
-                  setStarVal(3)}}  id="3-stars" name="rating" value="3" />
+                  setRating(3)}}  id="3-stars" name="rating" value="3" />
                 <label htmlFor="3-stars" className="star">&#9733;</label>
                 <input type="radio" onClick={() => {
-                  setStarVal(2)}}  id="2-stars" name="rating" value="2" />
+                  setRating(2)}}  id="2-stars" name="rating" value="2" />
                 <label htmlFor="2-stars" className="star">&#9733;</label>
                 <input type="radio" onClick={() => {
-                  setStarVal(1)}} id="1-star" name="rating" value="1" />
+                  setRating(1)}} id="1-star" name="rating" value="1" />
                 <label htmlFor="1-star" className="star">&#9733;</label>
               </div>
-              <span id="rstar-value">{renderSwitch(starVal)}</span>
+              <span id="rstar-value">{renderSwitch(rating)}</span>
               <div className="rmodal-overall-rating">
                 <p>Do you recommend this product*????</p>
                 <input type="radio" value="true" onClick={() => {setRecommend(true)}} name="review-radio"/>
@@ -126,7 +129,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                         }))
                         setCharacteristics(prevState => (
                           {...prevState,
-                          [{...reviews[[characteristic]]}["id"]]:1
+                          [{...reviews[[characteristic]]}["id"].toString()]:1
                         }))
                       }}/>
                     <label htmlFor={`${characteristic}1`}>{meanings[characteristic][0]}</label>
@@ -134,28 +137,28 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                       onClick={() =>{
                         setCharacteristics(prevState => (
                           {...prevState,
-                          [{...reviews[[characteristic]]}["id"]]:2
+                          [{...reviews[[characteristic]]}["id"].toString()]:2
                         }))
                         setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][1]]}))}}/>
                     <label htmlFor={`${characteristic}2`}>{meanings[characteristic][1]}</label>
                     <input id={`${characteristic}3`} type="radio" name={characteristic} value="3" onClick={() =>{
                       setCharacteristics(prevState => (
                         {...prevState,
-                        [{...reviews[[characteristic]]}["id"]]:3
+                        [{...reviews[[characteristic]]}["id"].toString()]:3
                       }))
                       setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][2]]}))}}/>
                     <label htmlFor={`${characteristic}3`}>{meanings[characteristic][2]}</label>
                     <input id={`${characteristic}4`} type="radio"name={characteristic} value="4" onClick={() =>{
                       setCharacteristics(prevState => (
                         {...prevState,
-                        [{...reviews[[characteristic]]}["id"]]:4
+                        [{...reviews[[characteristic]]}["id"].toString()]:4
                       }))
                       setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][3]]}))}}/>
                     <label htmlFor={`${characteristic}4`}>{meanings[characteristic][3]}</label>
                     <input id={`${characteristic}5`} type="radio" name={characteristic} value="5" onClick={() =>{
                       setCharacteristics(prevState => (
                         {...prevState,
-                        [{...reviews[[characteristic]]}["id"]]:5
+                        [{...reviews[[characteristic]]}["id"].toString()]:5
                       }))
                       setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][4]]}))}}/>
                     <label htmlFor={`${characteristic}5`}>{meanings[characteristic][4]}</label>
@@ -165,7 +168,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               </div>
             <div className="rmodal-summary">
               <div className="rmodal-question">Review Summary</div>
-              <input type="text" placeholder="Example: Best purchase ever!" onClick={(e) => {setSummary(e.target.value)}} maxLength="60" size="70" />
+              <input type="text" placeholder="Example: Best purchase ever!" onChange={(e) => setSummary(e.target.value)} maxLength="60" size="70" />
             </div>
             <div className="rmodal-body">
               <div className="rmodal-question">Your Review*</div>
