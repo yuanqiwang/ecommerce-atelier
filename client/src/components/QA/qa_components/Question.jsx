@@ -6,8 +6,6 @@ import Helpful from './Helpful.jsx'
 
 const Question = ({question, productId}) => {
 
-
-
   const [questionBody, setQuestionBody] = useState(question.question_body)
   const [answers, setAnswers] = useState(question.answers)
 
@@ -16,25 +14,48 @@ const Question = ({question, productId}) => {
   const [addAnswer, setAddAnswer] = useState(false)
 
   useEffect(() => {
-   if (Object.keys(answers).length>2) {
-    setLoadMoreAnswers('LOAD MORE ANSWERS')
-   }
-  }, []);
+    if (Object.keys(answers).length>2) {
+      setLoadMoreAnswers('LOAD MORE ANSWERS')
+    }}, []);
 
-  function handleLoadMoreAnswers(value) {
+  const handleLoadMoreAnswers = (value) => {
     if (value === 'LOAD MORE ANSWERS') {
       setVisible(Object.keys(answers).length)
       setLoadMoreAnswers('COLLAPSE ANSWERS')
-
     } else if (value === 'COLLAPSE ANSWERS') {
       setVisible(2)
       setLoadMoreAnswers('LOAD MORE ANSWERS')
     }
-
   }
 
-  const handleAddAnswer = () => {
-    setAddAnswer(true)
+  const sortAnswer = (answersObj) => {
+
+    let list = Object.keys(answersObj).map((key)=>{
+      return answersObj[key]
+    })
+    let sellerList = []
+
+    list.sort((a,b) => {
+      return b.helpfulness - a.helpfulness
+    });
+
+    list.forEach((item, i) => {
+      if (item.answerer_name.toLowerCase()=='seller') {
+        sellerList.push(item)
+        list.splice(i, 1) //remove seller
+      }
+    })
+    let combinedList = sellerList.concat(list);
+    return combinedList;
+  }
+
+
+  const handleSubmitAnswer = () => {
+
+    axios.get(`/qa/questions/${question.question_id}/answers`)
+      .then((result) => setAnswers(result.data))//
+      .catch((err) => console.log(err))
+
   }
 
   return (
@@ -48,15 +69,19 @@ const Question = ({question, productId}) => {
             helpfulness={question.question_helpfulness}
             localStorageName={'questionsMarkedHelpful'}/>
           <div className='qa-divider'>|</div>
-          <div className='qa-clickable qa-helpful' onClick={handleAddAnswer}> Add Answers </div>
+          <div className='qa-clickable qa-helpful' onClick={() => setAddAnswer(true)}> Add Answers </div>
         </div>
       </div>
       <div className='qa-answers qa-scroll'>
         <div className='qa-answers-left'>A: </div>
         <div className='qa-answers-right'>
-          {Object.keys(answers).slice(0, visible).map((key) => {
+          {/* {Object.keys(answers).slice(0, visible).map((key) => {
                 return <Answer answer={answers[key]} key={key} />
               })
+          } */}
+          {sortAnswer(answers).slice(0, visible).map((answer) => {
+                return <Answer answer={answer} key={answer.id} />
+            })
           }
         </div>
       </div>
@@ -70,9 +95,10 @@ const Question = ({question, productId}) => {
         open={addAnswer}
         productName={'test'}
         question={questionBody}
-        productId={productId}
+        questionId={question.question_id}
         onClose={()=> {
           setAddAnswer(false)}}
+        onSubmitAnswer={handleSubmitAnswer}
       />
     </div>
   )

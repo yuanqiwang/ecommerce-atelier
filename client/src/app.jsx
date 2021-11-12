@@ -9,7 +9,8 @@ import axios from 'axios';
 
 const App = ()=> {
 
-  const [productId, setProductID] = useState(59553);//60201
+  //const [theme, setTheme] = useState('light');
+  const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -32,6 +33,7 @@ const App = ()=> {
     } catch(err){
       console.log(err);
     }
+
   };
 
   const changeProduct = (Id) => {
@@ -40,7 +42,7 @@ const App = ()=> {
 
   useEffect(()=>{
     loadInfo(productId);
-  },[productId, Object.keys(outfits).length])
+  },[productId])
 
   const addoutfit = () => {
     let newState = {...outfits};
@@ -71,6 +73,20 @@ const App = ()=> {
     }
   },[Object.keys(outfits).length])
 
+  //pass this function with widget name
+  //then add it to a click event listener at top of the main component
+  const trackClick = (e, widget) => {
+    let data = {
+      element: e.target.outerHTML,
+      widget: widget,
+      time: new Date()
+    }
+    // console.log('postData!!', data)
+    axios.post('/interactions', data)
+      .then((result)=> {})
+      .catch((err) => {})
+  }
+
 
     return (
         <div>
@@ -92,13 +108,15 @@ const App = ()=> {
             outfits = {outfits}
             />
           <QA
-            productId={productId}
+            productId={productId}s
             productInfo={productInfo}
-            questions={questions}/>
+            questions={questions}
+            trackClick={(e)=>trackClick(e, 'QA')}/>
           <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
+            productInfo={productInfo}
           />
         </div>
     );

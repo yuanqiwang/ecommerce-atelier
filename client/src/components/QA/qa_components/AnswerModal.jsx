@@ -1,52 +1,49 @@
 import React, { useEffect, useState} from 'react'
+import axios from 'axios';
 
-const AnswerModal = ({open, productId, productName, question, onClose}) => {
+const AnswerModal = ({open, questionId, productName, question, onClose, onSubmitAnswer}) => {
 
-  if (!open) { return null}
+  if (!open) { return null }
 
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [files, setFiles] = useState([]);
-  const [image, setImage] = useState('');
+  const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showUpload, setShowUpload] = useState(true);
 
-  const uploadMultipleFiles = (e) => {
-    let fileObj = []
-    let fileArray = [];
-    // console.log('e.target.files', e.target.files[0])
-    fileObj.push(e.target.files)
-
-    for (let i = 0; i < fileObj[0].length; i++) {
-        fileArray.push(URL.createObjectURL(fileObj[0][i]))
-    }
-    console.log(fileArray)
-    setFiles([...files, fileArray])
-  }
-
-  const uploadFiles = (e) => {
-      e.preventDefault()
-      console.log(files)
-  }
 
   const uploadImage = async e => {
-    const files = e.target.files
+    const file = e.target.files
     const data = new FormData()
-    data.append('file', files[0])
+    data.append('file', file[0])
     data.append('upload_preset', 'ketchup') //specific to cloudinary
 
     setLoading(true);
-    const res  = await (
-      'https://api.cloudinary.com/v1_1/dseonxo5o/image/upload',
+    const res  = await fetch('https://api.cloudinary.com/v1_1/dseonxo5o/image/upload',
       {
         method: "Post",
         body: data
       }
     )
-    const file = await res.json()
-    setImage(file.secure_url)
-    setLoading(false)
 
+    const resFile = await res.json()
+    setPhotos([...photos, resFile.secure_url])
+    setLoading(false)
+    if (photos.length >= 4) {
+      setShowUpload(false)
+    }
+  }
+
+  const onSubmit = (e) => {
+    // e.preventDefault()
+    let data = { body, name, email, photos }
+    axios.post(`/qa/questions/${questionId}/answers`, data)
+    .then((res)  => {
+      // trigger a rerender
+      onSubmitAnswer()
+    })
+    .catch((err) => console.log(err))
 
   }
 
@@ -61,7 +58,7 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
           <div> {productName}: {question} </div>
 
         <form className='qa-form'>
-          <p>
+          <div>
             <label htmlFor='answer'>Your Answer (mandatory)*</label>
             <textarea
               className='qa-input'
@@ -73,8 +70,8 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
               autoComplete='off'
               onChange={(e)=> setBody(e.target.value)}
               required/>
-          </p>
-          <p>
+          </div>
+          <div>
             <label htmlFor='nickname'>What is your nickname (mandatory)*</label>
             <input
               className='qa-input'
@@ -88,8 +85,8 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
               required
             />
             <span className='qa-instructions'> For privacy reasons, do not use your full name or email address</span>
-          </p>
-          <p>
+          </div>
+          <div>
             <label htmlFor='email'>Your email (mandatory)*</label>
             <input
               className='qa-input'
@@ -102,39 +99,31 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
               onChange={(e)=> setEmail(e.target.value)}
               required/>
             <span className='qa-instructions'> For authentication reasons, you will not be emailed</span>
-          </p>
-
-          {/* <div className='qa-image-upload'>
-            <label htmlFor='image'>Upload pictures</label>
-            <input
-              className='qa-input'
-              id='image'
-              type='file'
-              multiple
-              onChange={uploadMultipleFiles}
-              />
-              <div className="form-group multi-preview">
-                    {(files || []).map((url,i) => (
-                        <img key={i} src={url} alt="..." />
-                    ))}
-                </div>
-
-          </div> */}
-            <p>
-              <input
-                type='file'
-                name='file'
-                placeholder = 'Upload an image'
-                onChange={uploadImage}
-              />
+          </div>
+            <div className='qa-image-upload'>
+              {showUpload ?
+                <input
+                  type='file'
+                  name='file'
+                  placeholder = 'Upload an image'
+                  onChange={uploadImage}
+                  multiple
+                />
+                : null
+              }
               {loading ? (
                 <h3>loading ... </h3>
               ) : (
-                <img sr={image} style={{width: '300px'}} />
-              )}
-            </p>
+              <div className="form-group multi-preview">
+                {(photos || []).map((url,i) => (
+                    <img key={i} src={url} alt="..." />
+                ))}
+              </div>
 
-          <button type='submit' className='qa-submit-btn' onClick={(e)=> { onSubmit(e); onClose()}}>Submit</button>
+              )}
+            </div>
+
+          <button type='submit' className='qa-submit-btn' onClick={(e)=> {onSubmit(e); onClose()}}>Submit</button>
         </form>
 
       </div>

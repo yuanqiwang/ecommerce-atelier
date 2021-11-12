@@ -9,6 +9,7 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
   const[salePrice, setSaleprice] = useState(0);
   const[styleName, setStyleName] = useState();
   const[reviewInfo, setReview] = useState(0);
+  const[addtionalImage, setaddtionalImage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
 
   const avgReview = (reviewObj) => {
     let reviewNum=0;
@@ -36,9 +37,14 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
         setReview(avgReviewnum)
       }
 
-      if(response.productStyle[0]['photos'][0]['thumbnail_url']){
-        setStylePicture(response.productStyle[0]['photos'][0]['thumbnail_url']);
+      if(response.productStyle[0]['photos'][0]['url']){
+        setStylePicture(response.productStyle[0]['photos'][0]['url']);
       }
+
+      if(response.productStyle[0]['photos'][0]['thumbnail_url']){
+        setaddtionalImage(response.productStyle[0]['photos'][0]['thumbnail_url']);
+      }
+
       setStylePrice(parseInt(response.productStyle[0]['original_price']).toFixed(0))
       if(response.productStyle[0]['sale_price']){
         setSaleprice(parseInt(response.productStyle[0]['sale_price']).toFixed(0))
@@ -49,7 +55,7 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
 
   useEffect(()=>{
     getProductInfo();
-  }, [productId])
+  }, [response.productInfo.id])
 
 
   return(

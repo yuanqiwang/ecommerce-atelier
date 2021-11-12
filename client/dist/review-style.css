@@ -8,7 +8,7 @@
   width:90%
 }
 
-#review-container-right {
+#review-container-left {
   overflow: auto;
   max-height: 700px;
   margin:0;
@@ -149,8 +149,9 @@ button {
   background: #e7e7e7;
 }
 
-.starbar {
-
+#review-title {
+  max-height: 420px;
+  overflow: auto;
 }
 
 .starbar-rating {
