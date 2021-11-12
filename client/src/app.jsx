@@ -75,6 +75,20 @@ const App = ()=> {
 
 
 
+  const trackClick = (e, widget) => {
+
+    let data = {
+      element: e.target.className,
+      widget: widget,
+      time: new Date()
+    }
+    // console.log('postData', data)
+    axios.post('/interactions', data)
+      .then((result)=> {})
+      .catch((err) => console.log(err))
+  }
+
+
     return (
         <div>
           <div id="header">
@@ -95,13 +109,15 @@ const App = ()=> {
             outfits = {outfits}
             />
           <QA
-            productId={productId}
+            productId={productId}s
             productInfo={productInfo}
-            questions={questions}/>
+            questions={questions}
+            trackClick={(e)=>trackClick(e, 'QA')}/>
           <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
+            productInfo={productInfo}
           />
         </div>
     );

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Question from './Question.jsx'
 import QuestionModal from './QuestionModal.jsx';
+import axios from 'axios';
 
 const QuestionsList = ({questions, productId, productInfo}) => {
 
@@ -17,7 +18,6 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     if (questions.length > 0) {
       setMoreQuestionVisible(true)
     }
-
   },[questions])
 
   useEffect(() => {
@@ -27,6 +27,15 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     }
   },[questionDisplayCount]
   )
+
+  const handleSubmitQuestion = () => {
+
+    axios.get(`/qa/questions/${productId}`)
+      .then((result) => {//might add sort function here? new q has 0 helpful and will be add on the bottom
+        setQuestionList(result.data)})
+      .catch((err) => console.log(err))
+
+  }
 
   return (
     <div>
@@ -52,7 +61,8 @@ const QuestionsList = ({questions, productId, productInfo}) => {
             open={isOpen}
             productName={productInfo? productInfo.name : 'product'}
             productId={productId}
-            onClose={()=> {setIsOpen(false)}} />
+            onClose={()=> {setIsOpen(false)}}
+            onSubmitQuestion={handleSubmitQuestion} />
       </div>
     </div>
 
