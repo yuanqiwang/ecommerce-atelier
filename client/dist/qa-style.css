@@ -75,7 +75,7 @@
 
 .qa-helpful {
   display: inline-flex;
-  margin: 3px auto 3px auto;
+  /* margin: 3px auto 3px auto; */
 }
 
 .qa-answerby {
