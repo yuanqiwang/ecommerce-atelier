@@ -255,7 +255,7 @@ app.post('/interactions', (req, res) => {
     data: req.body
   };
   axios(optionInteractions)
-    .then(result => {console.log('s'); res.sendStatus(201)})
-    .catch(error => {console.log('f'); res.send(error)})
+    .then(result => {res.sendStatus(201)})
+    .catch(error => {res.send(error)})
 })
 app.listen(PORT, () => console.log(`Listen on port ${PORT}`))

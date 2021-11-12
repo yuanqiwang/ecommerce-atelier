@@ -71,18 +71,18 @@ const App = ()=> {
     }
   },[Object.keys(outfits).length])
 
-
+  //pass this function with widget name
+  //then add it to a click event listener at top of the main component
   const trackClick = (e, widget) => {
-
     let data = {
-      element: e.target.className,
+      element: e.target.outerHTML,
       widget: widget,
       time: new Date()
     }
-    // console.log('postData', data)
+    // console.log('postData!!', data)
     axios.post('/interactions', data)
       .then((result)=> {})
-      .catch((err) => console.log(err))
+      .catch((err) => {})
   }
 
     return (
