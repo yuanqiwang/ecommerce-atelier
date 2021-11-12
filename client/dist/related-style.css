@@ -1,6 +1,8 @@
 #related {
   margin: auto;
-  width: 70%;
+  width: 1200px;
+  min-width: 1200px;
+  max-width: 1200px;
 }
 
 #related-rp {
@@ -29,6 +31,11 @@
   margin-right: 20px;
 }
 
+#outfit-card {
+  width:260px;
+  min-width:260px;
+  height: 390px;
+}
 
 .rp-prev {
   border: 1px solid grey;

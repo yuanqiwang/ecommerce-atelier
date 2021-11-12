@@ -9,6 +9,7 @@ import axios from 'axios';
 
 const App = ()=> {
 
+  //const [theme, setTheme] = useState('light');
   const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
@@ -32,6 +33,7 @@ const App = ()=> {
     } catch(err){
       console.log(err);
     }
+
   };
 
   const changeProduct = (Id) => {
@@ -40,7 +42,7 @@ const App = ()=> {
 
   useEffect(()=>{
     loadInfo(productId);
-  },[productId, Object.keys(outfits).length])
+  },[productId])
 
   const addoutfit = () => {
     let newState = {...outfits};
@@ -72,6 +74,7 @@ const App = ()=> {
   },[Object.keys(outfits).length])
 
 
+
   const trackClick = (e, widget) => {
 
     let data = {
@@ -84,6 +87,7 @@ const App = ()=> {
       .then((result)=> {})
       .catch((err) => console.log(err))
   }
+
 
     return (
         <div>

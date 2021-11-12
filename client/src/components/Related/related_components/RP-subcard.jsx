@@ -12,6 +12,7 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
   const[styleName, setStyleName] = useState();
   const[reviewInfo, setReview] = useState(0);
   const[showModal, setModal] = useState(false);
+  const[addtionalImage, setaddtionalImage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
 
   const avgReview = (reviewObj) => {
     let reviewNum=0;
@@ -41,9 +42,14 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
       }
       setInfo(response.data['prod']);
       setProductId(response.data['prod'].id);
-      if(response.data['style']['results'][0]['photos'][0]['thumbnail_url']){
-        setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
+      if(response.data['style']['results'][0]['photos'][0]['url']){
+        setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
       }
+
+      if(response.data['style']['results'][0]['photos'][0]['thumbnail_url']){
+        setaddtionalImage(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
+      }
+
       setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
       if(response.data['style']['results'][0]['sale_price']){
         setSaleprice(parseInt(response.data['style']['results'][0]['sale_price']).toFixed(0))
@@ -59,25 +65,36 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
 
   useEffect(()=>{
     getProductInfo();
-  }, [item])
+  }, [])
 
   // const calAverageRating;// helper function
-  function MouseOver(event) {
+  const btMouseOver = (event) => {
     event.target.style['-webkit-text-fill-color'] = 'black';
   }
-  function MouseOut(event){
+  const btMouseOut = (event) => {
     event.target.style['-webkit-text-fill-color'] = 'transparent';
   }
 
-  function actionClick(){
+  const imgMouseOver = (event) => {
+    setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
+  }
+  const imgMouseOut = (event) => {
+    setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
+  }
+
+  const actionClick = () => {
     setModal(!showModal);
   }
+
+  useEffect(() => {
+
+  }, [stylePic])
 
   return(
     <article className = 'rp-card'>
 
       <div className='sub-card-img'>
-         <button id='rp-action-button' onMouseOver={MouseOver} onMouseOut={MouseOut} onClick={actionClick}> ★ </button>
+         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick}> ★ </button>
          <img className='rp-card-img' src={stylePic} onClick = {() => changeProduct(productId)}/>
       </div>
 
@@ -94,7 +111,7 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
         }
         {
           reviewInfo > 0?
-          <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
+          <div className ='sub-card-star' style = {{'--rating': reviewInfo}}>
           </div>
           : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
         }
