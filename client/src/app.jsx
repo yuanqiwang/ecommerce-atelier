@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const App = ()=> {
 
-  const [productId, setProductID] = useState(59553);// 59553
+  const [productId, setProductID] = useState(59557);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);

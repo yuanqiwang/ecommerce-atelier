@@ -106,7 +106,7 @@ app.post('/qa/questions', (req, res) => {
 })
 
 app.post('/review/reviews', (req, res) => {
-
+  console.log(req.body)
 
 
   const optionPostReview = {

@@ -8,16 +8,18 @@ import axios from 'axios';
 export default function AddReviewButton( {productName, productId, reviews}) {
   const characteristicTitles = reviews !== null ? Object.keys(reviews) : null
   productId = parseInt(productId) || null;
-  const [isOpen, setIsOpen] = useState(false);
   const [rating, setRating] = useState(0);
-  const [textAreaCount, setTextAreaCount] = useState(0);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [recommend, setRecommend] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [photo, setPhoto] = useState('');
   const [characteristics, setCharacteristics] = useState({}) //for post request
+  const [photos, setPhotos] = useState([]);
+
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [textAreaCount, setTextAreaCount] = useState(0);
   const [characVal, setCharacVal] = useState( //for the UI
     {
       Size: "none selected",
@@ -29,6 +31,29 @@ export default function AddReviewButton( {productName, productId, reviews}) {
     }
   );
 
+  const uploadImage = async e => {
+    const files = e.target.files
+    if (files.length > 5) {
+      e.preventDefault();
+      alert('Cannot upload more than 5 files, please edit your review') //add some text later
+      return;
+    } else {
+     for (var i=0; i<files.length; i++) {
+        const data = new FormData()
+        data.append('file', files[i])
+        data.append('upload_preset', 'ketchup')
+        const res = await fetch('https://api.cloudinary.com/v1_1/dousz4spf/image/upload', {
+          method: 'POST',
+          body: data
+        },
+      )
+      const file = await res.json() //json response
+      setPhotos(photos => [...photos, file.secure_url])
+      }
+    }
+
+  }
+
   const postData = (e) => {
     e.preventDefault();
     let data = {
@@ -39,12 +64,20 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       recommend,
       name,
       email,
+      photos,
       characteristics
     }
+    console.log(data)
+    console.log(photos)
 
     axios.post('/review/reviews', data)
-      .then((res)  => console.log(res))
-      .catch((err) => console.log(err))
+      .then((res)  =>
+        res.send(201)
+      )
+      .catch((err) =>
+        console.log(err)
+      )
+
   }
 
 
@@ -201,7 +234,13 @@ export default function AddReviewButton( {productName, productId, reviews}) {
             </div>
             <div className="rmodal-nickname">
                 <label className="rmodal-question">Upload your Photos: </label>
-                <input type="file" name="photo" id="upload" accept="image/png, image/jpeg" onChange={(e) => setPhoto(e.target.value)} />
+                <input multiple
+                  type="file"
+                  name="photo"
+                  id="upload"
+                  accept="image/png, image/jpeg"
+                  onChange={uploadImage}
+                />
             </div>
             <button type="submit" onClick={(e) => postData(e)}>submit</button>
           </form>
