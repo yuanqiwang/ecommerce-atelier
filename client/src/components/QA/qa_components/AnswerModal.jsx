@@ -26,6 +26,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
         body: data
       }
     )
+
     const resFile = await res.json()
     setPhotos([...photos, resFile.secure_url])
     setLoading(false)
