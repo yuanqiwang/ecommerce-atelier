@@ -37,7 +37,7 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
 
     setLoading(true);
     const res  = await (
-      'https://api.cloudinary.com/v1_1/dseonxo5o/image/upload'
+      'https://api.cloudinary.com/v1_1/dseonxo5o/image/upload',
       {
         method: "Post",
         body: data
@@ -45,7 +45,7 @@ const AnswerModal = ({open, productId, productName, question, onClose}) => {
     )
     const file = await res.json()
     setImage(file.secure_url)
-    sestLoading(false)
+    setLoading(false)
 
 
   }
