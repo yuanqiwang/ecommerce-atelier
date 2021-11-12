@@ -65,7 +65,7 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
 
   useEffect(()=>{
     getProductInfo();
-  }, [item])
+  }, [])
 
   // const calAverageRating;// helper function
   const btMouseOver = (event) => {
@@ -94,26 +94,26 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
     <article className = 'rp-card'>
 
       <div className='sub-card-img'>
-         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} widget = 'Related Products'> ★ </button>
-         <img className='rp-card-img' src={stylePic} onClick = {() => changeProduct(productId)} onMouseOver={imgMouseOver} onMouseOut={imgMouseOut} widget = 'Related Products'/>
+         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick}> ★ </button>
+         <img className='rp-card-img' src={stylePic} onClick = {() => changeProduct(productId)}/>
       </div>
 
       <div className ='sub-card'>
-        <div id = 'category' widget = 'Related Products'> {productInfo.category}</div>
-        <div id = 'name' widget = 'Related Products'> {styleName}</div>
+        <div id = 'category'> {productInfo.category}</div>
+        <div id = 'name'> {styleName}</div>
         {
           salePrice > 0?
           <div className='rp-allprice'>
-            <div id= 'rp-sale-price' widget = 'Related Products'> ${salePrice}</div>
-            <div id= 'rp-origin-price-dup' widget = 'Related Products'>${stylePrice}</div>
+            <div id= 'rp-sale-price'> ${salePrice}</div>
+            <div id= 'rp-origin-price-dup'>${stylePrice}</div>
           </div>
-          : <div id= 'rp-origin-price' widget = 'Related Products'> ${stylePrice}</div>
+          : <div id= 'rp-origin-price'> ${stylePrice}</div>
         }
         {
           reviewInfo > 0?
-          <div className ='sub-card-star' style = {{'--rating': reviewInfo}} widget = 'Related Products'>
+          <div className ='sub-card-star' style = {{'--rating': reviewInfo}}>
           </div>
-          : <div className ='sub-card-no-star' widget = 'Related Products'> Be the 1st to Review!</div>
+          : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
         }
       </div>
 

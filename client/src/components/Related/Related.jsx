@@ -8,9 +8,9 @@ const Related = ({relatedProductArr, productInfo, productStyle, changeProduct, o
       <div id='related' data-testid="related-render">
         <br/>
         <div id='related-rp'>
-          <div id='rp-title' widget = 'Related Products'>RELATED PRODUCTS</div>
+          <div id='rp-title' >RELATED PRODUCTS</div>
           <RP_row relatedProductArr={relatedProductArr} productInfo = {productInfo} productStyle ={productStyle} changeProduct={changeProduct}/>
-          <div id='rp-title' widget = 'Related Products'>YOUR OUTFIT</div>
+          <div id='rp-title' >YOUR OUTFIT</div>
           <YO_row outfits={outfits} addoutfit={addoutfit} removeoutfit={removeoutfit} changeProduct={changeProduct}/>
         </div>
         <br/>

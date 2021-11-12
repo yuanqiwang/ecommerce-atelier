@@ -55,7 +55,7 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
 
   useEffect(()=>{
     getProductInfo();
-  }, [productId])
+  }, [response.productInfo.id])
 
 
   return(

@@ -9,8 +9,8 @@ import axios from 'axios';
 
 const App = ()=> {
 
-  const [theme, setTheme] = useState(true);// dark
-  const [productId, setProductID] = useState(59980);// 59553
+  //const [theme, setTheme] = useState('light');
+  const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -74,33 +74,6 @@ const App = ()=> {
   },[Object.keys(outfits).length])
 
 
-  const clickTracking = (event) => {
-    let timestamp = new Date();
-    let postData = {};
-
-      if(event.path[0]) {
-        // console.log(event.path[0])
-        if (event.path[0].attributes) {
-          // console.log(event.path[0].attributes)
-          let code = event.path[0].attributes.getNamedItem('widget');
-          // console.log(code);
-          if (code) {
-            postData = code.textContent ? {element: event.target.outerHTML, widget: code.textContent, time: timestamp } : {};
-          //  console.log('tracking data', postData)
-          }
-        }
-      }
-
-  }
-
-  useEffect(() => {
-    document.body.addEventListener('click', clickTracking);
-  }, []);
-
-
-  const addInteraction = () => {
-    console.log('add interactions')
-  }
 
     return (
         <div>
