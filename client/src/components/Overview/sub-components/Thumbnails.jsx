@@ -12,12 +12,14 @@ import Thumbnail from './Thumbnail.jsx';
 function Thumbnails(props) {
   return (
     <div id="overview_thumbnails" data-testid="thumbnails">
+      <div className="overview_thumb_scroll overview_thumb_scroll_up"></div>
       {props.thumbnails.map(thumb => {
         // console.log(thumb);
         return (
           <Thumbnail key={thumb.url} img={thumb.thumbnail_url} changePic={props.changePic} />
         )
       })}
+      <div className="overview_thumb_scroll overview_thumb_scroll_down"></div>
     </div>
   );
 };

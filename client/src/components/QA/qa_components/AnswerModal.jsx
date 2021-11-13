@@ -12,6 +12,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
   const [loading, setLoading] = useState(false);
   const [showUpload, setShowUpload] = useState(true);
 
+
   const uploadImage = async e => {
     const file = e.target.files
     const data = new FormData()
@@ -25,6 +26,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
         body: data
       }
     )
+
     const resFile = await res.json()
     setPhotos([...photos, resFile.secure_url])
     setLoading(false)

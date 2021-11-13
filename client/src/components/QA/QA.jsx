@@ -3,7 +3,7 @@ import QuestionsList from './qa_components/QuestionsList.jsx';
 import SearchQuestions from './qa_components/SearchQuestions.jsx';
 import axios from 'axios';
 
-const QA = ({questions, productId, productInfo}) => {
+const QA = ({questions, productId, productInfo, trackClick}) => {
 
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,12 +31,13 @@ const QA = ({questions, productId, productInfo}) => {
 
    }, [searchTerm]);
 
-  const handleSearch = (ev) => {
-    setSearchTerm(ev.target.value)
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value)
   }
 
+
   return (
-    <div className='QA' data-testid="QA-render">
+    <div className='QA' data-testid="QA-render" onClick={trackClick}>
       <h3>{`QUESTIONS & ANSWERS`}</h3>
       <SearchQuestions
         onChange={handleSearch}

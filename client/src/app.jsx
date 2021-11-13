@@ -1,15 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import Overview from './components/Overview/Overview.jsx'
-import Review from './components/Review/Review.jsx'
-import Related from './components/Related/Related.jsx'
-import QA from './components/QA/QA.jsx'
+import React, {useState, useEffect, lazy, Suspense} from 'react';
+const Overview = lazy(() => import('./components/Overview/Overview.jsx'));
+const Review = lazy(() => import('./components/Review/Review.jsx'));
+const Related = lazy(() => import('./components//Related/Related.jsx'));
+const QA = lazy(() => import('./components/QA/QA.jsx'));
 
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const App = ()=> {
 
-  const [productId, setProductID] = useState(59557);// 59553
+  //const [theme, setTheme] = useState('light');
+  const [productId, setProductID] = useState(59553);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -18,6 +19,13 @@ const App = ()=> {
   const [stars, setstars] = useState({});
   const [outfits, setOutfits] = useState([]);
 
+  const {pid} = useParams();
+
+  useEffect(()=>{
+    if (pid) {
+      setProductID(pid)
+    }
+  },[pid])
 
   const loadInfo = async (Id) => {
 
@@ -32,15 +40,13 @@ const App = ()=> {
     } catch(err){
       console.log(err);
     }
-  };
 
-  const changeProduct = (Id) => {
-    setProductID(Id);
-  }
+  };
 
   useEffect(()=>{
     loadInfo(productId);
-  },[productId, Object.keys(outfits).length])
+    window.scrollTo(0, 0);
+  },[productId])
 
   const addoutfit = () => {
     let newState = {...outfits};
@@ -71,15 +77,23 @@ const App = ()=> {
     }
   },[Object.keys(outfits).length])
 
-  const addInteraction = () => {
-    console.log('add interactions')
+  //pass this function with widget name
+  //then add it to a click event listener at top of the main component
+  const trackClick = (e, widget) => {
+    let data = {
+      element: e.target.outerHTML,
+      widget: widget,
+      time: new Date()
+    }
+    axios.post('/interactions', data)
+      .then((result)=> {})
+      .catch((err) => {})
   }
+
+  const renderLoader = () => <p>Loading</p>;
     return (
         <div>
-          <div id="header">
-            <h1>Logo</h1>
-            <div id="search"></div>
-          </div>
+          <Suspense fallback={renderLoader()}>
           <Overview
             productInfo={productInfo}
             productStyle={productStyle} />
@@ -88,25 +102,26 @@ const App = ()=> {
             productID={productId}
             productInfo={productInfo}
             productStyle={productStyle}
-            changeProduct={changeProduct}
             addoutfit={addoutfit}
             removeoutfit={removeoutfit}
             outfits = {outfits}
+            trackClick={(e)=>trackClick(e, 'Related Product')}
             />
           <QA
-            productId={productId}
+            productId={productId}s
             productInfo={productInfo}
-            questions={questions}/>
+            questions={questions}
+            trackClick={(e)=>trackClick(e, 'QA')}/>
           <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
             productInfo={productInfo}
           />
+          </Suspense>
         </div>
     );
 };
 
 
-
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;

@@ -1,4 +1,5 @@
 const express = require('express');
+var compression = require('compression');
 let app = express();
 let PORT = 1234;
 
@@ -7,6 +8,7 @@ const axios = require('axios');
 
 let qa = require('./routes/qa')
 
+app.use(compression());
 app.use(express.static('client/dist'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -192,6 +194,24 @@ app.post('/qa/questions', (req, res) => {
 
 })
 
+app.get('/qa/questions/:id', async (req, res) => {
+  const productId = req.params.id;
+  const optionsQuestions= {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=10000`,
+    headers: { Authorization: config.github_token }
+  }
+  const questionsRequest = axios(optionsQuestions);
+
+  try {
+    let questions = await questionsRequest;
+    console.log('questions.data.results',questions.data.results)
+    res.send( questions.data.results )
+  } catch(err){
+    res.send(err);
+  }
+})
+
 app.post('/qa/questions/:id/answers', (req, res) => {
   let questionId = req.params.id;
   const optionPostAnswer = {
@@ -305,15 +325,15 @@ app.put('/review/reviews/report', (req, res) => {
     .catch(error => res.send(error))
 })
 
-app.post('/interactions', async (req, res) => {
-  const data = req.body.data;
+app.post('/interactions', (req, res) => {
   const optionInteractions = {
     method: 'POST',
     url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: config.github_token },
+    data: req.body
   };
   axios(optionInteractions)
-    .then(result => res.sendStatus(201))
-    .catch(error => res.send(error))
+    .then(result => {res.sendStatus(201)})
+    .catch(error => {res.send(error)})
 })
 app.listen(PORT, () => console.log(`Listen on port ${PORT}`))

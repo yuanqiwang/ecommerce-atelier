@@ -41,12 +41,17 @@
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "body-parse": "^0.1.0",
+<<<<<<< HEAD
+=======
+    "compression": "^1.7.4",
+>>>>>>> d4201b7fc577e4f360f69bd0e0c57d024bb4d256
     "eslint": "^8.2.0",
     "eslint-plugin-react": "^7.26.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.14",
     "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2"
   }
 }
