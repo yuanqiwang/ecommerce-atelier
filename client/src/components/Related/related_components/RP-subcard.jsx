@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ComparisonModal from './RP-Modal.jsx';
+import { Link } from 'react-router-dom';
 
 const RP_sub = ({item, mainInfo, changeProduct}) => {
 
@@ -95,7 +96,9 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
 
       <div className='sub-card-img'>
          <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick}> ★ </button>
-         <img className='rp-card-img' src={stylePic} onClick = {() => changeProduct(productId)}/>
+         <Link to={`/product/${productId}`}>
+         <img className='rp-card-img' src={stylePic} />
+         </Link>
       </div>
 
       <div className ='sub-card'>

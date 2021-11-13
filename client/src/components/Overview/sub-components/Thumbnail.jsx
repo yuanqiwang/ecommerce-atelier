@@ -2,10 +2,10 @@ import React from 'react';
 
 function Thumbnail(props) {
   return (
-      <div onClick={() => {
+      <div className="overview_thumbnail" onClick={() => {
         props.changePic(props.img);
       }}>
-        <img className="overview_thumbnail" src={props.img}/>
+        <div className="overview_thumbnail_img"  style={{'background-image': "url('" + props.img + "')"}}></div>
       </div>
   );
 };
