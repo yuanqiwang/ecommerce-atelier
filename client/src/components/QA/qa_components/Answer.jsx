@@ -31,7 +31,6 @@ const Answer = ({answer}) => {
       setReportStatus(true);
       reportedAnswers.push(answer.id);
       localStorage.setItem('reportedAnswers', JSON.stringify(reportedAnswers));
-
       axios.put(`/qa/answers/report`, {id: answer.id})
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))

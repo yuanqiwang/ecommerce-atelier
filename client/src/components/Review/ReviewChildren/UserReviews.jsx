@@ -17,6 +17,7 @@ const UserReviews = (props) => {
         return (
           <>
             <ReviewCard
+              reviewId={item.review_id}
               index={i}
               date={date}
               rating={item.rating}
@@ -43,6 +44,7 @@ const UserReviews = (props) => {
       return  (
         <>
           <ReviewCard
+            reviewId={item.review_id}
             index={i}
             date={date}
             rating={item.rating}
@@ -69,6 +71,7 @@ const UserReviews = (props) => {
         return  (
           <>
             <ReviewCard
+              reviewId={item.review_id}
               index={i}
               date={date}
               rating={item.rating}

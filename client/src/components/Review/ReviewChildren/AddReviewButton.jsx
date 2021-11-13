@@ -64,7 +64,6 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       recommend,
       name,
       email,
-      photos,
       characteristics
     }
     console.log(data)

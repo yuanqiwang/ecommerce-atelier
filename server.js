@@ -117,11 +117,11 @@ app.post('/review/reviews', (req, res) => {
   };
 
   axios(optionPostReview)
-    .then((res) => {
+    .then(() => {
       console.log('review post success')
     })
     .catch((err) => {
-      console.log(err)
+      res.send(err)
     })
 
 })
@@ -259,14 +259,48 @@ app.put('/qa/answers/helpful', (req, res) => {
     )
 })
 
-app.put('/qa/answers/report', (req, res) => {
-  let id = req.body.id;
-  const optionAnswerReport = {
+app.put('/qa/questions/helpful', (req, res) => {
+  let questionId = req.body.id
+  console.log(questionId)
+  const optionQuestionHelpful= {
     method: 'PUT',
-    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${id}/report`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
     headers: { Authorization: config.github_token }
   };
-  axios(optionAnswerReport)
+  axios(optionQuestionHelpful)
+    .then((result) => {
+      res.sendStatus(204)
+    })
+    .catch((error) => {
+      res.send(error)}
+    )
+})
+
+app.put('/review/reviews/helpful', (req, res) => {
+  console.log(req.body)
+  let reviewsId = req.body.id
+  const optionReviewHelpful= {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/review/reviews/${reviewsId}/helpful`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionReviewHelpful)
+    .then((result) => {
+      res.sendStatus(204)
+    })
+    .catch((error) => {
+      res.send(error)}
+    )
+})
+
+app.put('/review/reviews/report', (req, res) => {
+  let reviewsId = 1094788
+  const optionReviewReport = {
+    method: 'PUT',
+    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/review/reviews/1094788/report`,
+    headers: { Authorization: config.github_token }
+  };
+  axios(optionReviewReport)
     .then(result => res.sendStatus(204))
     .catch(error => res.send(error))
 })
