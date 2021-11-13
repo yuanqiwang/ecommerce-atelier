@@ -1,4 +1,5 @@
 const express = require('express');
+var compression = require('compression');
 let app = express();
 let PORT = 1234;
 
@@ -7,6 +8,7 @@ const axios = require('axios');
 
 let qa = require('./routes/qa')
 
+app.use(compression());
 app.use(express.static('client/dist'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
