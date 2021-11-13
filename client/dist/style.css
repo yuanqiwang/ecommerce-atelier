@@ -27,4 +27,15 @@ hr.review-solid {
   --second--color: #e57373;
   --second--light: #ffa4a2;
   --second--dark:#af4448;
+  --text--color: #000000;
+}
+
+[data-theme="dark"] {
+  --primary--color: #37474f;
+  --primary--light: #62727b;
+  --primary--dark: #102027;
+  --second--color: #e57373;
+  --second--light: #ffa4a2;
+  --second--dark:#af4448;
+  --text--color:#ffffff;
 }
