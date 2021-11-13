@@ -1,6 +1,8 @@
+body {
+  background-color: var(--primary--color) !important;
+}
 #app {
   font-family: 'Lato', sans-serif;
-  background-color: var(--primary--color);
 }
 
 
@@ -30,6 +32,15 @@ hr.review-solid {
   --second--dark:#8e0000;
   --text--color: #000000;
   --global-theme-toggle-content: '🌞 THEME';
+  --h1--size: 56px;
+  --h2--size: 45px;
+  --h3--size: 35px;
+  --h4--size: 27px;
+  --h5--size: 21px;
+  --h6--size: 16px;
+  --b1--size: 20px;
+  --b2--size: 17px;
+  --b3--size: 15px;
 }
 
 html[data-theme="dark"] {
