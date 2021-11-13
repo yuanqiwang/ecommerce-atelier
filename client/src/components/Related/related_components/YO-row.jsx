@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import YO_sub from './YO-subcard.jsx';
 
-const YO_row =({outfits, addoutfit, removeoutfit, changeProduct})=> {
+const YO_row =({outfits, addoutfit, removeoutfit})=> {
   const scrl = React.createRef();
   const [scrollX, setscrollX] = useState(0);
   const [scrolEnd, setscrolEnd] = useState(true);
@@ -52,11 +52,11 @@ const YO_row =({outfits, addoutfit, removeoutfit, changeProduct})=> {
             <ul className = 'rp-cardrow' ref={scrl} onScroll={scrollCheck}>
                <article className = 'rp-card' id ='outfit-card'  style ={{'textAlign':'center'}} onClick={addoutfit}>
                  Add to your Outfit
-                <li id= 'yo-button' onClick={addoutfit} widget = 'Related Products'>+</li>
+                <li id= 'yo-button' onClick={addoutfit}>+</li>
                </article>
               {
                 Object.keys(outfits).length >0 ?
-                  Object.keys(outfits).map((product, i) => <YO_sub response={outfits[product]} key={i} removeoutfit={removeoutfit} changeProduct={changeProduct}/>)
+                  Object.keys(outfits).map((product, i) => <YO_sub response={outfits[product]} key={i} removeoutfit={removeoutfit}/>)
                 : null
               }
             </ul>

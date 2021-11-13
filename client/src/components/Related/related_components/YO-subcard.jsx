@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import { Link } from 'react-router-dom';
 const YO_sub = ({response, removeoutfit, changeProduct}) => {
 
   const[productInfo, setInfo] = useState({});
@@ -63,7 +63,9 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
 
       <div className='sub-card-img'>
          <button id='yo-action-button'  onClick={() => removeoutfit(productId)}>X</button>
-         <img className='rp-card-img' src={stylePic} onClick = {() => changeProduct(productId)}/>
+         <Link to={`/product/${productId}`}>
+         <img className='rp-card-img' src={stylePic}/>
+         </Link>
       </div>
 
       <div className ='sub-card'>
