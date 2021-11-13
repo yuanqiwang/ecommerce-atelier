@@ -52,7 +52,7 @@ const YO_row =({outfits, addoutfit, removeoutfit})=> {
             <ul className = 'rp-cardrow' ref={scrl} onScroll={scrollCheck}>
                <article className = 'rp-card' id ='outfit-card'  style ={{'textAlign':'center'}} onClick={addoutfit}>
                  Add to your Outfit
-                <li id= 'yo-button' onClick={addoutfit} widget = 'Related Products'>+</li>
+                <li id= 'yo-button' onClick={addoutfit}>+</li>
                </article>
               {
                 Object.keys(outfits).length >0 ?

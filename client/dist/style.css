@@ -4,7 +4,6 @@
 
 
 #header {
-  width: 70%;
   margin: 10px auto;
   background: grey;
   height: 100px;
@@ -21,3 +20,11 @@ hr.review-solid {
   border-top: 3px solid #bbb;
 }
 
+:root {
+  --primary--color: #e0e0e0;
+  --primary--light: #ffffff;
+  --primary--dark: #aeaeae;
+  --second--color: #e57373;
+  --second--light: #ffa4a2;
+  --second--dark:#af4448;
+}

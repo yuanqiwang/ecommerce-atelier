@@ -10,7 +10,7 @@ import axios from 'axios';
 const App = ()=> {
 
   //const [theme, setTheme] = useState('light');
-  const [productId, setProductID] = useState(59553);// 59553
+  const [productId, setProductID] = useState(59980);// 59553
   const [productInfo, setproductInfo] = useState({});
   const [productStyle, setproductStyle] = useState([]);
   const [relatedProductArr,setrelatedProductArr] = useState([]);
@@ -49,6 +49,7 @@ const App = ()=> {
 
   useEffect(()=>{
     loadInfo(productId);
+    window.scrollTo(0, 0);
   },[productId])
 
   const addoutfit = () => {

@@ -9,10 +9,9 @@ import App from './app.jsx';
 
 const Main = () => {
 
-
     return (
         <div>
-          <BrowserRouter>
+          <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
             <Routes>
               <Route path="/" element={<App />} />
               <Route path="/product/:pid" element={<App />} />
