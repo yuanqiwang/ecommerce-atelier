@@ -21,10 +21,6 @@ const App = ()=> {
 
   const {pid} = useParams();
 
-  // const updateProductId = () => {
-
-  // }
-
   useEffect(()=>{
     if (pid) {
       setProductID(pid)
