@@ -133,7 +133,7 @@
 #rp-title {
   font-size: 1em;
   padding: 20px;
-  color: var( --second--color);
+  color: var( --text--color);
 }
 
 

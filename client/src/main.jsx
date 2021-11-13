@@ -16,7 +16,6 @@ const Main = () => {
             return
         }
         htmlTag.setAttribute("data-theme", "dark")
-        console.log( document.getElementsByTagName("html")[0])
     }
 
     return (
