@@ -41,9 +41,7 @@ const Answer = ({answer}) => {
 
   return (
     <div className='qa-answer'>
-      <div className='qa-question'>
-          <span className ='qa-tiny'> {answer.body}</span>
-      </div>
+      <div> <span className ='qa-tiny'> {answer.body}</span> </div>
       {answer.photos.length?
        <div className='qa-answer-img-container'>
          {answer.photos.map((photo, index)=>{
