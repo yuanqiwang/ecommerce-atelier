@@ -6,14 +6,23 @@ import {
   Route
  } from 'react-router-dom';
 import App from './app.jsx';
-import Logo from './Logo.svg';
 
 const Main = () => {
+
+  const toggleTheme = () => {
+     const htmlTag = document.getElementsByTagName("html")[0]
+        if (htmlTag.hasAttribute("data-theme")) {
+            htmlTag.removeAttribute("data-theme")
+            return
+        }
+        htmlTag.setAttribute("data-theme", "dark")
+        console.log( document.getElementsByTagName("html")[0])
+    }
 
     return (
         <div>
         <header>
-          <Logo className="logo"/>
+          <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
         </header>
         <main>
           <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
