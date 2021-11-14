@@ -89,7 +89,6 @@ app.get('/product/info/*', async (req, res) => {
 })
 
 app.post('/qa/questions', (req, res) => {
-  console.log(req.body);
   const optionPostQuestion = {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
@@ -108,8 +107,6 @@ app.post('/qa/questions', (req, res) => {
 })
 
 app.post('/review/reviews', (req, res) => {
-  console.log(req.body)
-
 
   const optionPostReview = {
     method: 'Post',
@@ -205,7 +202,6 @@ app.get('/qa/questions/:id', async (req, res) => {
 
   try {
     let questions = await questionsRequest;
-    console.log('questions.data.results',questions.data.results)
     res.send( questions.data.results )
   } catch(err){
     res.send(err);
@@ -231,7 +227,6 @@ app.post('/qa/questions/:id/answers', (req, res) => {
 
 app.get('/qa/questions/:id/answers', (req, res) => {
   let questionId = req.params.id;
-  console.log(questionId)
   const optionGetAnswer = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers?&count=1000`,
@@ -281,7 +276,6 @@ app.put('/qa/answers/helpful', (req, res) => {
 
 app.put('/qa/questions/helpful', (req, res) => {
   let questionId = req.body.id
-  console.log(questionId)
   const optionQuestionHelpful= {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
@@ -297,7 +291,6 @@ app.put('/qa/questions/helpful', (req, res) => {
 })
 
 app.put('/review/reviews/helpful', (req, res) => {
-  console.log(req.body)
   let reviewsId = req.body.id
   const optionReviewHelpful= {
     method: 'PUT',
@@ -305,7 +298,7 @@ app.put('/review/reviews/helpful', (req, res) => {
     headers: { Authorization: config.github_token }
   };
   axios(optionReviewHelpful)
-    .then((result) => {
+    .then((res) => {
       res.sendStatus(204)
     })
     .catch((error) => {
@@ -314,14 +307,14 @@ app.put('/review/reviews/helpful', (req, res) => {
 })
 
 app.put('/review/reviews/report', (req, res) => {
-  let reviewsId = 1094788
+  let reviewsId = req.body.id
   const optionReviewReport = {
     method: 'PUT',
-    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/review/reviews/1094788/report`,
+    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/review/reviews/${reviewsId}/report`,
     headers: { Authorization: config.github_token }
   };
   axios(optionReviewReport)
-    .then(result => res.sendStatus(204))
+    .then(res => res.sendStatus(204))
     .catch(error => res.send(error))
 })
 
