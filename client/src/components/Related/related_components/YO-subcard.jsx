@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-const YO_sub = ({response, removeoutfit, changeProduct}) => {
+const YO_sub = ({response, removeoutfit}) => {
 
   const[productInfo, setInfo] = useState({});
   const[productId, setProductId] = useState({});

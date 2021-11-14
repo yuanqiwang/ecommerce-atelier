@@ -39,3 +39,43 @@ exports[`matches snaoshot 1`] = `
   </div>
 </div>
 `;
+
+exports[`should match snapshot 1`] = `
+<div
+  className="QA"
+  data-testid="QA-render"
+>
+  <h3>
+    QUESTIONS & ANSWERS
+  </h3>
+  <div
+    className="qa-search-bar"
+  >
+    <input
+      onChange={[Function]}
+      placeholder="HAVE A QUESTION? SEARCH FOR ANSWER..."
+      type="text"
+    />
+    <button
+      className="qa-search-btn"
+    >
+      <span
+        className="glyphicon glyphicon-search"
+      />
+    </button>
+  </div>
+  <div>
+    <div
+      className="qa-main-questions"
+    />
+    <div>
+      <div
+        className="qa-more-question"
+        onClick={[Function]}
+      >
+        ASK A QUESTION +
+      </div>
+    </div>
+  </div>
+</div>
+`;

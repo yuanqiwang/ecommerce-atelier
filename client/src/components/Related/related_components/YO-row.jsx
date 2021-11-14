@@ -44,7 +44,7 @@ const YO_row =({outfits, addoutfit, removeoutfit})=> {
             {scrollX === 0 ?
             null
             : (
-              <button className="rp-prev" onClick={() => slide(-400)}>
+              <button className="rp-prev" onClick={() => slide(-400)} data-testid = "rp-left-button">
                 {'<'}
               </button>
               )
@@ -52,7 +52,7 @@ const YO_row =({outfits, addoutfit, removeoutfit})=> {
             <ul className = 'rp-cardrow' ref={scrl} onScroll={scrollCheck}>
                <article className = 'rp-card' id ='outfit-card'  style ={{'textAlign':'center'}} onClick={addoutfit}>
                  Add to your Outfit
-                <li id= 'yo-button' onClick={addoutfit}>+</li>
+                <li id= 'yo-button' onClick={addoutfit} data-testid = "rp-add-button">+</li>
                </article>
               {
                 Object.keys(outfits).length >0 ?
@@ -66,7 +66,7 @@ const YO_row =({outfits, addoutfit, removeoutfit})=> {
             :
             scrolEnd ?
              (
-              <button className="rp-next" onClick={() => slide(+400)}>
+              <button className="rp-next" onClick={() => slide(+400)} data-testid = "rp-right-button">
                 {'>'}
               </button>
             )
