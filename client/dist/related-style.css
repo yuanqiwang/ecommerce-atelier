@@ -26,7 +26,8 @@
   border: 1px solid var(--primary--dark);
   border-radius: 5px;
   width: 260px;
-  height: 390px;
+  min-width: 260px;
+  height: 375px;
   display: inline-block;
   margin-right: 20px;
 }
@@ -61,12 +62,17 @@
 }
 
 .rp-card-img {
-  margin-left: 30px;
+  /* margin-left: 30px;
   margin-right:30px;
   margin-top: 30px;
-  margin-bottom: 30px;
-  height: 210px;
-  width: 201px;
+  margin-bottom: 30px; */
+  /* margin-top: 10px; */
+  /* padding: 10px; */
+  height: 260px;
+  /* width: 200px; */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   /* overflow: hidden; */
 }
 
@@ -131,7 +137,7 @@
 }
 
 #rp-title {
-  font-size: 1em;
+  font-size: var(--h5--size);
   padding: 20px;
   color: var( --text--color);
 }

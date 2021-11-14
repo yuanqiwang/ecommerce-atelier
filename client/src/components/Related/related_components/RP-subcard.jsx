@@ -98,7 +98,7 @@ const RP_sub = ({item, mainInfo}) => {
       <div className='sub-card-img'>
          <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick}> ★ </button>
          <Link to={`/product/${productId}`}>
-         <img className='rp-card-img' src={stylePic} />
+         <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
       </div>
 

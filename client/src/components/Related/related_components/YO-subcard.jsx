@@ -64,7 +64,7 @@ const YO_sub = ({response, removeoutfit}) => {
       <div className='sub-card-img'>
          <button id='yo-action-button'  onClick={() => removeoutfit(productId)}>X</button>
          <Link to={`/product/${productId}`}>
-         <img className='rp-card-img' src={stylePic}/>
+         <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
       </div>
 
