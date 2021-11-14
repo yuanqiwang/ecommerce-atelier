@@ -51,7 +51,7 @@ const YO_row =({outfits, addoutfit, removeoutfit})=> {
             }
             <ul className = 'rp-cardrow' ref={scrl} onScroll={scrollCheck}>
                <article className = 'rp-card' id ='outfit-card'  style ={{'textAlign':'center'}} onClick={addoutfit}>
-                 Add to your Outfit
+                <li id = 'outfit-card-text'> Add to your Outfit </li>
                 <li id= 'yo-button' onClick={addoutfit} data-testid = "rp-add-button">+</li>
                </article>
               {

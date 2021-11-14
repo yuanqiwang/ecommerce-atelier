@@ -35,7 +35,14 @@
 #outfit-card {
   width:260px;
   min-width:260px;
-  height: 390px;
+  height: 375px;
+  color: var( --text--color);
+  font-size: var(--h5--size);
+}
+
+#outfit-card-text {
+  position:relative;
+  top: 70%;
 }
 
 .rp-prev {
