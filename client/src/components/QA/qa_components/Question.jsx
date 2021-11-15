@@ -4,7 +4,7 @@ import axios from 'axios'
 import AnswerModal from './AnswerModal.jsx'
 import Helpful from './Helpful.jsx'
 
-const Question = ({question, productId}) => {
+const Question = ({question, productId, productName}) => {
 
   const [questionBody, setQuestionBody] = useState(question.question_body)
   const [answers, setAnswers] = useState(question.answers)
@@ -16,7 +16,7 @@ const Question = ({question, productId}) => {
   useEffect(() => {
     if (Object.keys(answers).length>2) {
       setLoadMoreAnswers('LOAD MORE ANSWERS')
-    }}, []);
+    }}, [answers]);
 
   const handleLoadMoreAnswers = (value) => {
     if (value === 'LOAD MORE ANSWERS') {
@@ -75,10 +75,6 @@ const Question = ({question, productId}) => {
       <div className='qa-answers qa-scroll'>
         <div className='qa-answers-left'>A: </div>
         <div className='qa-answers-right'>
-          {/* {Object.keys(answers).slice(0, visible).map((key) => {
-                return <Answer answer={answers[key]} key={key} />
-              })
-          } */}
           {sortAnswer(answers).slice(0, visible).map((answer) => {
                 return <Answer answer={answer} key={answer.id} />
             })
@@ -93,7 +89,7 @@ const Question = ({question, productId}) => {
 
       <AnswerModal
         open={addAnswer}
-        productName={'test'}
+        productName={productName}
         question={questionBody}
         questionId={question.question_id}
         onClose={()=> {

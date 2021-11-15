@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import axios from 'axios';
+import validateInfo from './validateInfo.js';
 
 const AnswerModal = ({open, questionId, productName, question, onClose, onSubmitAnswer}) => {
 
@@ -11,6 +12,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showUpload, setShowUpload] = useState(true);
+  const [errors, setErrors] = useState({});
 
 
   const uploadImage = async e => {
@@ -36,28 +38,34 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
   }
 
   const onSubmit = (e) => {
-    // e.preventDefault()
-    let data = { body, name, email, photos }
-    axios.post(`/qa/questions/${questionId}/answers`, data)
-    .then((res)  => {
-      // trigger a rerender
-      onSubmitAnswer()
-    })
-    .catch((err) => console.log(err))
+    e.preventDefault()
 
+    let data = { body, name, email, photos }
+    let errors = validateInfo(data)
+    setErrors(errors);
+    console.log('data and error', data, errors)
+    if (Object.entries(errors).length == 0) {
+      axios.post(`/qa/questions/${questionId}/answers`, data)
+      .then((res)  => {
+        onSubmitAnswer()// trigger a rerender
+        onClose() //then close the window
+      })
+      .catch((err) => console.log(err))
+    } else {
+
+    }
   }
 
   return (
     <div className='qa-modal'>
 
       <div className='qa-modal-main'>
-          <div className='qa-add-answer-header'>
-            <div>Submit your Answer</div>
-            <button className='close-btn' onClick={onClose}> x </button>
+          <div className='qa-modal-header'>
+              <h3>Submit your Answer</h3>
+              <p> {productName}: {question} </p>
           </div>
-          <div> {productName}: {question} </div>
 
-        <form className='qa-form'>
+        <form className='qa-form-control'>
           <div>
             <label htmlFor='answer'>Your Answer (mandatory)*</label>
             <textarea
@@ -71,7 +79,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
               onChange={(e)=> setBody(e.target.value)}
               required/>
           </div>
-          <div>
+          <div className='qa-form-control'>
             <label htmlFor='nickname'>What is your nickname (mandatory)*</label>
             <input
               className='qa-input'
@@ -86,7 +94,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
             />
             <span className='qa-instructions'> For privacy reasons, do not use your full name or email address</span>
           </div>
-          <div>
+          <div className='qa-form-control'>
             <label htmlFor='email'>Your email (mandatory)*</label>
             <input
               className='qa-input'
@@ -100,7 +108,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
               required/>
             <span className='qa-instructions'> For authentication reasons, you will not be emailed</span>
           </div>
-            <div className='qa-image-upload'>
+            <div className='qa-image-upload qa-form-control'>
               {showUpload ?
                 <input
                   type='file'
@@ -122,8 +130,22 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
 
               )}
             </div>
-
-          <button type='submit' className='qa-submit-btn' onClick={(e)=> {onSubmit(e); onClose()}}>Submit</button>
+          {Object.keys(errors).length ?
+            (<div>You must enter the following:
+              {Object.keys(errors).map(errorKey => {
+                return (
+                <div
+                  key={errorKey}
+                  style={{maxWidth: '600px', position: 'relative', paddingBottom:'20px'}}>
+                  <small> {errors[errorKey].split(" ")[0]} </small>
+                </div>)
+              })}
+             </div>
+            )
+            : null
+          }
+          <input type='submit' className='qa-form-btn' value='Submit' onClick={onSubmit} />
+          <input type='submit' className='qa-form-btn' value='Close'  onClick={onClose} />
         </form>
 
       </div>

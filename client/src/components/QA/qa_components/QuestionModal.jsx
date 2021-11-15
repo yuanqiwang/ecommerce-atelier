@@ -47,7 +47,7 @@ const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion
     <div className='qa-modal'>
 
       <div className='qa-modal-main'>
-        <div className='qa-model-header'>
+        <div className='qa-modal-header'>
           <h3>Ask Your Question</h3>
           <p>About the {productName} </p>
         </div>

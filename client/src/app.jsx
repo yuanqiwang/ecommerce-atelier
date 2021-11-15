@@ -94,7 +94,7 @@ const App = ()=> {
     return (
         <div>
           <Suspense fallback={renderLoader()}>
-          <Overview
+          {/* <Overview
             productInfo={productInfo}
             productStyle={productStyle} />
           <Related
@@ -106,18 +106,18 @@ const App = ()=> {
             removeoutfit={removeoutfit}
             outfits = {outfits}
             trackClick={(e)=>trackClick(e, 'Related Product')}
-            />
+            /> */}
           <QA
             productId={productId}s
             productInfo={productInfo}
             questions={questions}
             trackClick={(e)=>trackClick(e, 'QA')}/>
-          <Review
+          {/* <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
             productInfo={productInfo}
-          />
+          /> */}
           </Suspense>
         </div>
     );

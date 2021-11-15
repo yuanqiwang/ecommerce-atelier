@@ -6,7 +6,7 @@ let PORT = 1234;
 const config = require('./config.js'); // Name: github_token
 const axios = require('axios');
 
-let qa = require('./routes/qa')
+// let qa = require('./routes/qa')
 
 app.use(compression());
 app.use(express.static('client/dist'));

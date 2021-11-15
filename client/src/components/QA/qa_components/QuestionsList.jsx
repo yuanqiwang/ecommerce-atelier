@@ -41,7 +41,12 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     <div>
       <div className='qa-main-questions'>
         {questionList.slice(0,questionDisplayCount).map(question =>
-          <Question question={question} key={question.question_id} productId={productId}/>)
+          <Question
+            question={question}
+            key={question.question_id}
+            productId={productId}
+            productName={productInfo? productInfo.name : 'product'}
+            />)
         }
       </div>
 
