@@ -24,7 +24,6 @@ const Stars = (props) => {
     }
     const reducer = (a, b) => a + b;
     starsAvg = keyTimesValue.reduce(reducer) / nOfRatings;
-    starsFill = (4/5) * 100
     showNum = starsAvg.toFixed(1)
     /*starbars logic*/
     starBars = keyValArr.map((item, index) =>
@@ -55,7 +54,14 @@ const Stars = (props) => {
   return (
     <div>
       <div className="star-text">{showNum || null}&nbsp;</div>
-        <span className="sub-card-star" style = {{'--rating': starsAvg}}></span>
+        <span className="sub-card-star" style = {{'--rating': starsAvg}} >
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </span>
+
       <div id="review-rec">
         {percentage}% of reviews recommend this product<br />
       </div>
