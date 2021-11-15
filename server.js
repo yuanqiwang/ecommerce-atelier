@@ -89,7 +89,6 @@ app.get('/product/info/*', async (req, res) => {
 })
 
 app.post('/qa/questions', (req, res) => {
-  console.log(req.body);
   const optionPostQuestion = {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
@@ -109,8 +108,6 @@ app.post('/qa/questions', (req, res) => {
 
 app.post('/review/reviews', (req, res) => {
 
-
-
   const optionPostReview = {
     method: 'Post',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
@@ -126,6 +123,39 @@ app.post('/review/reviews', (req, res) => {
       console.log(err)
     })
 
+})
+
+app.put('/review/reviews/helpful', (req, res) => {
+  let reviewHelpfulId = req.body.id
+  const optionPutReviewHelpful = {
+    method: 'Put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewHelpfulId}/helpful`,
+    headers: { Authorization: config.github_token }
+  }
+  axios(optionPutReviewHelpful)
+  .then((result) => {
+    res.sendStatus(204)
+  })
+  .catch((error) => {
+    res.send(error)
+  })
+})
+
+app.put('/review/reviews/report', (req, res) => {
+  let reviewReportId = req.body.id
+  const optionPutReviewHelpful = {
+    method: 'Put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewReportId}/report`,
+    headers: { Authorization: config.github_token }
+  }
+  //current error means url does not exist?
+  axios(optionPutReviewHelpful)
+  .then((result) => {
+    res.sendStatus(204)
+  })
+  .catch((error) => {
+    res.send(error)
+  })
 })
 
 
@@ -231,7 +261,6 @@ app.post('/qa/questions/:id/answers', (req, res) => {
 
 app.get('/qa/questions/:id/answers', (req, res) => {
   let questionId = req.params.id;
-  console.log(questionId)
   const optionGetAnswer = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers?&count=1000`,

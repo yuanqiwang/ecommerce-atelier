@@ -4,7 +4,6 @@ import {
   screen,
   act,
   mount,
-  cleanup,
   fireEvent,
   waitForElement
 } from '@testing-library/react';
@@ -19,29 +18,29 @@ import MoreReviewButton from '../components/Review/ReviewChildren/MoreReviewButt
 
 
 //Stars
-/*
+
 test('renders recommendation percentage', () => {
   render(<Stars />);
-  const recommend = screen.getByRole(/button/i);
-  expect(recommend).toHaveTextContent('%')
+  const recommend = screen.getByText(/%/i)
+  expect(recommend).toBeInTheDocument()
 });
-/*
-/*
+
 //AddReviewButton
 test('should open modal on click', () => {
   const mockOnClick = jest.fn()
-  const { getByTestId } = render(<AddReviewButton onClick={mockOnClick()}/>);
-  screen.debug()
+  const { getByTestId } = render(<AddReviewButton productId={59980} reviews={''} onClick={mockOnClick()}/>);
+  //screen.debug()
   const clickIndicator = getByTestId('ClickIndicator')
   fireEvent.click(clickIndicator)
   expect(mockOnClick).toHaveBeenCalledTimes(1)
 })
-*/
+
 
 /*
 test('should render Related component', () => {
-  render(<Review reviews={[1]}/>);
-  const relatedElement = screen.getByTestId('related-render');
-  expect(relatedElement).toBeInTheDocument();
+  render(<Review productId={59980} productInfo={['test']} stars={[5, 2, 3, 4]} ratings={[1]} reviews={[1]}/>);
+  const qaElement = screen.getByTestId('related-render');
+  expect(qaElement).toBeInTheDocument();
 })
 */
+
