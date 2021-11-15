@@ -59,7 +59,12 @@ const ReviewCard = (props) => {
         <div id="review-photo">{photos}</div>
         <div id="review-recommend">{rec}</div>
         <div id="review-response">{props.response}</div>
-        <div id="review-helpful" >Helpful? <span id="helpful" onClick={handleHelpful}>{helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) | <span onClick={handleReport}>{reportStatus ? "✓ Report internally reviewed" : "Report"}</span></div>
+        <div id="review-helpful" >Helpful?
+          <span id="helpful"
+            onClick={handleHelpful}>{helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount})
+          <span
+            onClick={handleReport}>{reportStatus ? "✓ Report sent for review" : "Report"}</span>
+        </div>
         <hr id="review-solid"></hr>
       </div>
     </div>
