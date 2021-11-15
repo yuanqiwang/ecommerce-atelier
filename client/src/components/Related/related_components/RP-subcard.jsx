@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ComparisonModal from './RP-Modal.jsx';
 import { Link } from 'react-router-dom';
+import Star from '../../../star.jsx';
 
 const RP_sub = ({item, mainInfo}) => {
 
@@ -11,7 +12,7 @@ const RP_sub = ({item, mainInfo}) => {
   const[stylePrice, setStylePrice] = useState();
   const[salePrice, setSaleprice] = useState(0);
   const[styleName, setStyleName] = useState();
-  const[reviewInfo, setReview] = useState(0);
+  const[stars, setStars] = useState({});
   const[showModal, setModal] = useState(false);
   const[addtionalImage, setaddtionalImage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
 
@@ -38,9 +39,8 @@ const RP_sub = ({item, mainInfo}) => {
     try {
       const response =  await axios.get(`/related/${item}`);
       if(response) {
-        if(response.data['reviewStars'].ratings) {
-          const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
-          setReview(avgReviewnum)
+        if(response.data['reviewStars']) {
+          setStars(response.data['reviewStars'])
         }
         setInfo(response.data['prod']);
         setProductId(response.data['prod'].id);
@@ -96,7 +96,7 @@ const RP_sub = ({item, mainInfo}) => {
     <article className = 'rp-card' data-testid = 'rp-subcard'>
 
       <div className='sub-card-img'>
-         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} href="#" class="fas fa-star"> </button>
+         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} href="#" className="fas fa-star"> </button>
          <Link to={`/product/${productId}`}>
          <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
@@ -113,17 +113,7 @@ const RP_sub = ({item, mainInfo}) => {
           </div>
           : <div id= 'rp-origin-price'> ${stylePrice}</div>
         }
-        {
-          reviewInfo > 0?
-          <div className ='sub-card-star' style = {{'--rating': reviewInfo}}>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-          </div>
-          : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
-        }
+        <Star stars={stars}/>
       </div>
 
       <ComparisonModal
@@ -137,6 +127,6 @@ const RP_sub = ({item, mainInfo}) => {
   )
 }
 
-
-
+//rating={reviewInfo}
+//<div className ='sub-card-no-star'> Be the 1st to Review!</div>
 export default RP_sub;

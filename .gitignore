@@ -28,4 +28,5 @@ client/dist/client_src_components_Related_Related_jsx.bundle.js
 client/dist/client_src_components_QA_QA_jsx.bundle.js
 client/dist/client_src_components_Overview_Overview_jsx.bundle.js
 client/dist/vendors-node_modules_react-router-dom_index_js.bundle.js
+client/dist/client_src_star_jsx.bundle.js
 client/src/.DS_Store

@@ -81,3 +81,16 @@ html[data-theme="dark"] {
   content: var(--global-theme-toggle-content);
   color: var(--text--color);
 }
+
+
+.star {
+  display: inline-block;
+  --percent: calc(var(--rating)/5*100%);
+  padding: 5px;
+  margin-left: 8px;
+  line-height: 1;
+  -webkit-text-stroke: 1px var(--second--light);
+  background-image: linear-gradient(90deg,var(--second--light) var(--percent), var(--primary--color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
