@@ -108,7 +108,7 @@ const App = ()=> {
             trackClick={(e)=>trackClick(e, 'Related Product')}
             />
           <QA
-            productId={productId}s
+            productId={productId}
             productInfo={productInfo}
             questions={questions}
             trackClick={(e)=>trackClick(e, 'QA')}/>
