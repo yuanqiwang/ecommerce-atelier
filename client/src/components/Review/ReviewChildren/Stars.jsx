@@ -12,11 +12,10 @@ const Stars = (props) => {
   let keyValArr = []
   let starBars;
 
-  if (props.ratings !== undefined && props.ratings.length > 0) {
-    nOfRatings = props.ratings.length > 0 ?
-    Object.values(props.ratings).reduce((a, b) => parseInt(a) + parseInt(b)) : null;
-    keys = Object.keys(props.ratings)
-    values = Object.values(props.ratings)
+  if (props['ratings'] !== undefined && props['ratings'][1]) {
+    nOfRatings = Object.values(props['ratings']).reduce((a, b) => parseInt(a) + parseInt(b));
+    keys = Object.keys(props['ratings'])
+    values = Object.values(props['ratings'])
     let keyTimesValue = [];
     for (var i=0; i<keys.length; i++) {
       keyTimesValue.push(keys[i] * values[i])
@@ -25,7 +24,6 @@ const Stars = (props) => {
     }
     const reducer = (a, b) => a + b;
     starsAvg = keyTimesValue.reduce(reducer) / nOfRatings;
-    starsFill = (2.5/5) * 100
     showNum = starsAvg.toFixed(1)
     /*starbars logic*/
     starBars = keyValArr.map((item, index) =>
@@ -38,6 +36,8 @@ const Stars = (props) => {
         <div className="starbar-bar" key={index} style={{"width": `${(item / 5)*100}%` }}><br/></div>
       </div>
     )
+  } else {
+    return null
   }
 
 
@@ -54,17 +54,20 @@ const Stars = (props) => {
   return (
     <div>
       <div className="star-text">{showNum || null}&nbsp;</div>
-      <div className="star-rating">
-        <span className="off"></span>
-        <span className="on" style={{"width": `${starsFill}%`}}></span>
-      </div>
+        <span className="sub-card-star" style = {{'--rating': starsAvg}} >
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </span>
+
       <div id="review-rec">
         {percentage}% of reviews recommend this product<br />
       </div>
       <div className="star-bars">
         {starBars}
       </div>
-
     </div>
   )
 }

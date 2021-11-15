@@ -117,6 +117,7 @@ const App = ()=> {
             reviews={reviews}
             stars={stars}
             productInfo={productInfo}
+            trackClick={(e)=>trackClick(e, 'Review')}
           />
           </Suspense>
         </div>

@@ -29,7 +29,7 @@ class Review extends React.Component {
     if (this.props.reviews !== undefined) {
       return (
         <>
-        <div className="review-grid">
+        <div className="review-grid" onClick={this.props.trackClick}>
           <div id="review-container-left">
           <h3>Reviews & Ratings</h3>
             <div id="left-column" data-testid="related-render">
