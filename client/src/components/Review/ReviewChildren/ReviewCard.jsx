@@ -26,8 +26,8 @@ const ReviewCard = (props) => {
     } else {
       setHelpfulStatus(true)
       setHelpfulCount((prev) => prev + 1)
-      localStorage.setItem(id, JSON.stringify(helpfulStatus))
-      axios.put(`/review/reviews/helpful`, {id} )
+      localStorage.setItem(`helpful${id}`, JSON.stringify(helpfulStatus))
+      axios.put(`/review/reviews/helpful`, {id: id} )
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))
     }
@@ -38,7 +38,7 @@ const ReviewCard = (props) => {
       console.log('report already clicked')
     } else {
       setReportStatus(true)
-      localStorage.setItem(id, JSON.stringify(reportStatus))
+      localStorage.setItem(`report${id}`, JSON.stringify(reportStatus))
       axios.put(`/review/reviews/report`, {id: id})
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))
