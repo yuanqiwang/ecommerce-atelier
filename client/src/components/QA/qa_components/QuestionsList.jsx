@@ -51,7 +51,6 @@ const QuestionsList = ({questions, productId, productInfo}) => {
       </div>
 
       <div>
-
         {moreQuestionVisible ?
           <div className='qa-more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
               MORE ANSWERED QUESTIONS
@@ -67,7 +66,8 @@ const QuestionsList = ({questions, productId, productInfo}) => {
             productName={productInfo? productInfo.name : 'product'}
             productId={productId}
             onClose={()=> {setIsOpen(false)}}
-            onSubmitQuestion={handleSubmitQuestion} />
+            onSubmitQuestion={handleSubmitQuestion}
+        />
       </div>
     </div>
 

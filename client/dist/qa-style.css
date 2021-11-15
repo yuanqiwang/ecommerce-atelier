@@ -306,3 +306,8 @@
   font-weight: bolder;
   color: black
 }
+
+.qa-image-modal img{
+  max-width:500px;
+  max-height: 400px;
+}
