@@ -16,6 +16,10 @@ const Question = ({question, productId, productName}) => {
   useEffect(() => {
     if (Object.keys(answers).length>2) {
       setLoadMoreAnswers('LOAD MORE ANSWERS')
+    } else {
+      // setAnswers({0:
+      //   {body: 'NO ANSWERS HAVE BEEN ADDED'
+      // }})
     }}, [answers]);
 
   const handleLoadMoreAnswers = (value) => {
@@ -73,13 +77,21 @@ const Question = ({question, productId, productName}) => {
         </div>
       </div>
       <div className='qa-answers qa-scroll'>
-        <div className='qa-answers-left'>A: </div>
-        <div className='qa-answers-right'>
-          {sortAnswer(answers).slice(0, visible).map((answer) => {
+        {Object.keys(answers).length == 0 ?
+            (<p style={{fontStyle:'italic', fontSize: 'small', color: 'gray'}}>
+              There is no answer to this question
+            </p>)
+          :
+          (<>
+            <div className='qa-answers-left'>A: </div>
+            <div className='qa-answers-right'>
+              {sortAnswer(answers).slice(0, visible).map((answer) => {
                 return <Answer answer={answer} key={answer.id} />
-            })
-          }
-        </div>
+              })}
+            </div>
+          </>
+          )
+        }
       </div>
 
       {loadMoreAnswers ?
