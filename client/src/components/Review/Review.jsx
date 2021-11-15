@@ -27,7 +27,6 @@ class Review extends React.Component {
 
   render() {
     if (this.props.reviews !== undefined) {
-      //console.log(this.props['reviews'])
       return (
         <>
         <div className="review-grid">

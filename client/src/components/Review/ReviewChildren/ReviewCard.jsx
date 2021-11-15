@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const ReviewCard = (props) => {
-  //console.log(props)
   let id = props.reviewId
   let count = props.helpfulness
   const [helpfulStatus, setHelpfulStatus] = useState(() => {
@@ -28,7 +27,7 @@ const ReviewCard = (props) => {
       setHelpfulStatus(true)
       setHelpfulCount((prev) => prev + 1)
       localStorage.setItem(id, JSON.stringify(helpfulStatus))
-      axios.put(`/review/reviews/helpful`, {id: id})
+      axios.put(`/review/reviews/helpful`, {id} )
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))
     }
@@ -38,7 +37,6 @@ const ReviewCard = (props) => {
     if (reportStatus) {
       console.log('report already clicked')
     } else {
-      console.log(id)
       setReportStatus(true)
       localStorage.setItem(id, JSON.stringify(reportStatus))
       axios.put(`/review/reviews/report`, {id: id})

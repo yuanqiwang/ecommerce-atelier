@@ -116,13 +116,46 @@ app.post('/review/reviews', (req, res) => {
   };
 
   axios(optionPostReview)
-    .then(() => {
+    .then((res) => {
       console.log('review post success')
     })
     .catch((err) => {
-      res.send(err)
+      console.log(err)
     })
 
+})
+
+app.put('/review/reviews/helpful', (req, res) => {
+  let reviewHelpfulId = req.body.id
+  const optionPutReviewHelpful = {
+    method: 'Put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewHelpfulId}/helpful`,
+    headers: { Authorization: config.github_token }
+  }
+  axios(optionPutReviewHelpful)
+  .then((result) => {
+    res.sendStatus(204)
+  })
+  .catch((error) => {
+    res.send(error)
+  })
+})
+
+app.put('/review/reviews/report', (req, res) => {
+  let reviewReportId = req.body.id
+  const optionPutReviewHelpful = {
+    method: 'Put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewReportId}/report`,
+    headers: { Authorization: config.github_token }
+  }
+  //current error means url does not exist?
+  axios(optionPutReviewHelpful)
+  .then((result) => {
+    res.sendStatus(204)
+  })
+  .catch((error) => {
+    res.send(error)
+  })
 })
 
 
@@ -202,6 +235,7 @@ app.get('/qa/questions/:id', async (req, res) => {
 
   try {
     let questions = await questionsRequest;
+    console.log('questions.data.results',questions.data.results)
     res.send( questions.data.results )
   } catch(err){
     res.send(err);
@@ -274,47 +308,15 @@ app.put('/qa/answers/helpful', (req, res) => {
     )
 })
 
-app.put('/qa/questions/helpful', (req, res) => {
-  let questionId = req.body.id
-  const optionQuestionHelpful= {
+app.put('/qa/answers/report', (req, res) => {
+  let id = req.body.id;
+  const optionAnswerReport = {
     method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
+    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${id}/report`,
     headers: { Authorization: config.github_token }
   };
-  axios(optionQuestionHelpful)
-    .then((result) => {
-      res.sendStatus(204)
-    })
-    .catch((error) => {
-      res.send(error)}
-    )
-})
-
-app.put('/review/reviews/helpful', (req, res) => {
-  let reviewsId = req.body.id
-  const optionReviewHelpful= {
-    method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/review/reviews/${reviewsId}/helpful`,
-    headers: { Authorization: config.github_token }
-  };
-  axios(optionReviewHelpful)
-    .then((res) => {
-      res.sendStatus(204)
-    })
-    .catch((error) => {
-      res.send(error)}
-    )
-})
-
-app.put('/review/reviews/report', (req, res) => {
-  let reviewsId = req.body.id
-  const optionReviewReport = {
-    method: 'PUT',
-    url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/review/reviews/${reviewsId}/report`,
-    headers: { Authorization: config.github_token }
-  };
-  axios(optionReviewReport)
-    .then(res => res.sendStatus(204))
+  axios(optionAnswerReport)
+    .then(result => res.sendStatus(204))
     .catch(error => res.send(error))
 })
 
