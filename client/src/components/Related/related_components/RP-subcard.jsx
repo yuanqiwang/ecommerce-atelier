@@ -3,7 +3,7 @@ import axios from 'axios';
 import ComparisonModal from './RP-Modal.jsx';
 import { Link } from 'react-router-dom';
 
-const RP_sub = ({item, mainInfo, changeProduct}) => {
+const RP_sub = ({item, mainInfo}) => {
 
   const[productInfo, setInfo] = useState({});
   const[productId, setProductId] = useState();
@@ -37,28 +37,29 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
   const getProductInfo = async () => {
     try {
       const response =  await axios.get(`/related/${item}`);
-      if(response.data['reviewStars'].ratings) {
-        const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
-        setReview(avgReviewnum)
-      }
-      setInfo(response.data['prod']);
-      setProductId(response.data['prod'].id);
-      if(response.data['style']['results'][0]['photos'][0]['url']){
-        setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
-      }
+      if(response) {
+        if(response.data['reviewStars'].ratings) {
+          const avgReviewnum = avgReview(response.data['reviewStars'].ratings);
+          setReview(avgReviewnum)
+        }
+        setInfo(response.data['prod']);
+        setProductId(response.data['prod'].id);
+        if(response.data['style']['results'][0]['photos'][0]['url']){
+          setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
+        }
 
-      if(response.data['style']['results'][0]['photos'][0]['thumbnail_url']){
-        setaddtionalImage(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
-      }
+        if(response.data['style']['results'][0]['photos'][0]['thumbnail_url']){
+          setaddtionalImage(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
+        }
 
-      setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
-      if(response.data['style']['results'][0]['sale_price']){
-        setSaleprice(parseInt(response.data['style']['results'][0]['sale_price']).toFixed(0))
+        setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
+        if(response.data['style']['results'][0]['sale_price']){
+          setSaleprice(parseInt(response.data['style']['results'][0]['sale_price']).toFixed(0))
+        }
+        const ProductName = response.data['prod']['name'];
+        // + ' -- ' + response.data['style']['results'][0]['name']
+        setStyleName(ProductName)
       }
-      const ProductName = response.data['prod']['name'];
-      // + ' -- ' + response.data['style']['results'][0]['name']
-      setStyleName(ProductName)
-
     } catch (err){
       console.log(err);
     }
@@ -70,18 +71,18 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
 
   // const calAverageRating;// helper function
   const btMouseOver = (event) => {
-    event.target.style['-webkit-text-fill-color'] = 'black';
+    event.target.style['-webkit-text-fill-color'] = '#c62828';
   }
   const btMouseOut = (event) => {
     event.target.style['-webkit-text-fill-color'] = 'transparent';
   }
 
-  const imgMouseOver = (event) => {
-    setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
-  }
-  const imgMouseOut = (event) => {
-    setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
-  }
+  // const imgMouseOver = (event) => {
+  //   setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
+  // }
+  // const imgMouseOut = (event) => {
+  //   setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
+  // }
 
   const actionClick = () => {
     setModal(!showModal);
@@ -92,12 +93,12 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
   }, [stylePic])
 
   return(
-    <article className = 'rp-card'>
+    <article className = 'rp-card' data-testid = 'rp-subcard'>
 
       <div className='sub-card-img'>
-         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick}> ★ </button>
+         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} href="#" class="fas fa-star"> </button>
          <Link to={`/product/${productId}`}>
-         <img className='rp-card-img' src={stylePic} />
+         <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
       </div>
 
@@ -115,6 +116,11 @@ const RP_sub = ({item, mainInfo, changeProduct}) => {
         {
           reviewInfo > 0?
           <div className ='sub-card-star' style = {{'--rating': reviewInfo}}>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
           </div>
           : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
         }
