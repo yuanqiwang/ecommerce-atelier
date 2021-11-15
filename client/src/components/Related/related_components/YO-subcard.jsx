@@ -62,7 +62,7 @@ const YO_sub = ({response, removeoutfit}) => {
     <article className = 'rp-card'>
 
       <div className='sub-card-img'>
-         <button id='yo-action-button'  onClick={() => removeoutfit(productId)}>X</button>
+         <button id='yo-action-button'  onClick={() => removeoutfit(productId)} class="fas fa-times-circle"></button>
          <Link to={`/product/${productId}`}>
          <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
@@ -81,7 +81,12 @@ const YO_sub = ({response, removeoutfit}) => {
         }
         {
           reviewInfo > 0?
-          <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
+          <div className ='sub-card-star' style = {{'--rating': reviewInfo}}>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
           </div>
           : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
         }

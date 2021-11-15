@@ -41,6 +41,7 @@ hr.review-solid {
   --b1--size: 20px;
   --b2--size: 17px;
   --b3--size: 15px;
+  --b4--size: 13px;
 }
 
 html[data-theme="dark"] {
@@ -61,6 +62,7 @@ html[data-theme="dark"] {
   --b1--size: 20px;
   --b2--size: 17px;
   --b3--size: 15px;
+  --b4--size: 13px;
 }
 
 .theme-toggle {

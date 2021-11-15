@@ -71,7 +71,7 @@ const RP_sub = ({item, mainInfo}) => {
 
   // const calAverageRating;// helper function
   const btMouseOver = (event) => {
-    event.target.style['-webkit-text-fill-color'] = 'black';
+    event.target.style['-webkit-text-fill-color'] = '#c62828';
   }
   const btMouseOut = (event) => {
     event.target.style['-webkit-text-fill-color'] = 'transparent';
@@ -96,7 +96,7 @@ const RP_sub = ({item, mainInfo}) => {
     <article className = 'rp-card' data-testid = 'rp-subcard'>
 
       <div className='sub-card-img'>
-         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick}> ★ </button>
+         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} href="#" class="fas fa-star"> </button>
          <Link to={`/product/${productId}`}>
          <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
@@ -116,6 +116,11 @@ const RP_sub = ({item, mainInfo}) => {
         {
           reviewInfo > 0?
           <div className ='sub-card-star' style = {{'--rating': reviewInfo}}>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
           </div>
           : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
         }
