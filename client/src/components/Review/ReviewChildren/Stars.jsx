@@ -14,7 +14,6 @@ const Stars = (props) => {
 
   if (props['ratings'] !== undefined && props['ratings'][1]) {
     nOfRatings = Object.values(props['ratings']).reduce((a, b) => parseInt(a) + parseInt(b));
-    console.log(nOfRatings)
     keys = Object.keys(props['ratings'])
     values = Object.values(props['ratings'])
     let keyTimesValue = [];
@@ -25,7 +24,6 @@ const Stars = (props) => {
     }
     const reducer = (a, b) => a + b;
     starsAvg = keyTimesValue.reduce(reducer) / nOfRatings;
-    console.log(starsAvg)
     starsFill = (4/5) * 100
     showNum = starsAvg.toFixed(1)
     /*starbars logic*/
