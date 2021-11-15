@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-const YO_sub = ({response, removeoutfit, changeProduct}) => {
+const YO_sub = ({response, removeoutfit}) => {
 
   const[productInfo, setInfo] = useState({});
   const[productId, setProductId] = useState({});
@@ -62,9 +62,9 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
     <article className = 'rp-card'>
 
       <div className='sub-card-img'>
-         <button id='yo-action-button'  onClick={() => removeoutfit(productId)}>X</button>
+         <button id='yo-action-button'  onClick={() => removeoutfit(productId)} class="fas fa-times-circle"></button>
          <Link to={`/product/${productId}`}>
-         <img className='rp-card-img' src={stylePic}/>
+         <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
       </div>
 
@@ -81,7 +81,12 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
         }
         {
           reviewInfo > 0?
-          <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
+          <div className ='sub-card-star' style = {{'--rating': reviewInfo}}>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
           </div>
           : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
         }
