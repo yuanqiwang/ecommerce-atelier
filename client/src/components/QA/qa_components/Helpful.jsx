@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const Helpful = ({id, localStorageName, helpfulness}) => {
-
   //[helpfulness, setHelpfulness] = useState(answer.helpfulness);
   let tempStorage = JSON.parse(localStorage.getItem(localStorageName)) || [];
 

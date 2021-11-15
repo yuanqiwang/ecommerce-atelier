@@ -26,14 +26,13 @@ class Review extends React.Component {
   }
 
   render() {
-    //console.log(this.props.stars['product_id'])
     if (this.props.reviews !== undefined) {
       return (
         <>
-        <div className="review-grid" data-testid="related-render">
+        <div className="review-grid">
           <div id="review-container-left">
           <h3>Reviews & Ratings</h3>
-            <div id="left-column">
+            <div id="left-column" data-testid="related-render">
               <Stars
                 ratings={this.props.stars['ratings']}
                 recommend={this.props.stars['recommended']}
@@ -57,6 +56,7 @@ class Review extends React.Component {
                 reviews={this.props['reviews']}
                 dropdown={this.state.dropdown}
                 count={this.state.reviewCount}
+                productId={this.props.stars['product_id']}
               />
 
             </div>
