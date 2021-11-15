@@ -60,9 +60,9 @@ const Question = ({question, productId, productName}) => {
 
   return (
     <div>
-      <div className='qa-container'>
+      <div className='qa-question-container'>
         <div className='qa-question'>Q: {questionBody} </div>
-        <div className='qa-tiny qa-helpful'>
+        <div className='qa-tiny qa-helpful-container'>
           <div className= 'qa-helpful'> Helpful?</div>
           <Helpful
             id={question.question_id}

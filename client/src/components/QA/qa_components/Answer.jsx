@@ -58,14 +58,17 @@ const Answer = ({answer}) => {
           </span>
           {convertDate(answer.date)}
         </div>
-        <div className='qa-divider'>|</div>
-        <div className='qa-helpful'> Helpful?</div>
-        <Helpful id={answer.id} localStorageName='helpfulAnswersList' helpfulness={answer.helpfulness}/>
-        <div className='qa-divider'>|</div>
-        <div className={reportStatus? 'qa-not-clickable': 'qa-clickable'}
-          onClick={handleReport}>
-          {reportStatus? 'Reported': 'Report'}
+        <div className='qa-helpful-container'>
+          <div className='qa-divider'>|</div>
+          <div className='qa-helpful'> Helpful?</div>
+          <Helpful id={answer.id} localStorageName='helpfulAnswersList' helpfulness={answer.helpfulness}/>
+          <div className='qa-divider'>|</div>
+          <div className={reportStatus? 'qa-not-clickable qa-helpful': 'qa-clickable qa-helpful'}
+            onClick={handleReport}>
+            {reportStatus? 'Reported': 'Report'}
+          </div>
         </div>
+
 
 
       </div>
