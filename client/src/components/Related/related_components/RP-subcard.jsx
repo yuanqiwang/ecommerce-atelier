@@ -86,7 +86,7 @@ const RP_sub = ({item, mainInfo}) => {
         </Link>
       </div>
 
-      <div className ='sub-card'>
+      <div className ='sub-card' id = 'sub-card'>
         <div id = 'category'> {productInfo.category}</div>
         <div id = 'name'> {styleName}</div>
         {

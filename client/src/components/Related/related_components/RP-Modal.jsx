@@ -49,7 +49,7 @@ const ComparisonModal = ({isOpen, mainFeature, currentFeature, mainName, current
           <thead>
             <tr>
               <th >{mainName}</th>
-              <th ></th>
+              <th style = {{'width':'40%'}}></th>
               <th >{currentName}</th>
             </tr>
           </thead>

@@ -198,7 +198,7 @@
   text-align: left;
   padding: 5px;
   margin-left: 8px;
-  color: var(--text--color);
+  color: var(--second--color);
   font-size: var(--b1--size);
 }
 .rp-comparison-modal{
@@ -228,36 +228,34 @@
 .rp-table{
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 20px;
-  border-collapse: collapse;
-  border-spacing: 0;
+  border-collapse: separate;
+  border-spacing: 2px;
   width: 90%;
   border: none;
   align-items: center;
-  white-space: nowrap;
   margin-bottom: 10px;
+  table-layout: auto;
 }
 
-th, td {
-  text-align: center;
-  padding: 8px;
-  white-space: nowrap;
-  width: 100%;
-}
-thead tr {
-  display: block;
+
+thead {
   position: relative;
   background-color: var(--primary-light);
   color: var(--text--color);
   font-size: var(--b2--size);
 }
+thead th {
+  padding: 3px;
+}
+
 tbody {
-  display: block;
-  overflow: auto;
   color: var(--text--color);
   font-size: var(--b3--size);
 }
 
+tbody td {
+  padding: 2px;
+}
 tbody .fas {
   -webkit-text-stroke: 1px var(--text--color);
   -webkit-background-clip: text;
