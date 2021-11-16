@@ -8,9 +8,7 @@ import ProductBullets from './sub-components/ProductBullets.jsx';
 class Overview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentStyleID: 0
-    };
+    this.state = { currentStyleID: 0 };
 
     this.changeStyle = this.changeStyle.bind(this);
   }
@@ -29,6 +27,7 @@ class Overview extends React.Component {
   }
 
   changeStyle(id) {
+    // console.log(this.state);
     this.setState({currentStyleID: id});
   }
 
@@ -37,19 +36,21 @@ class Overview extends React.Component {
       <div id="overview" data-testid="overview">
         <ImageGallery
           productStyle={this.props.productStyle}
-          currentStyle={this.state.currentStyleID} />
+          currentStyleID={this.state.currentStyleID} />
 
         <ProductOptions
           productInfo={this.props.productInfo}
           productStyle={this.props.productStyle}
-          currentStyle={this.state.currentStyleID}
+          currentStyleID={this.state.currentStyleID}
           changeStyle={this.changeStyle} />
 
         <ProductInfo
-          productInfo={this.props.productInfo} />
+          productInfo={this.props.productInfo}
+          currentStyleID={this.state.currentStyleID} />
 
         <ProductBullets
-          productInfo={this.props.productInfo} />
+          productInfo={this.props.productInfo}
+          currentStyleID={this.state.currentStyleID} />
 
       </div>
     );

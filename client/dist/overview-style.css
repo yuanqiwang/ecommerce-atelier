@@ -251,6 +251,12 @@
   border-radius: 50%;
   border: 2px solid #CCC;
   position: relative;
+  cursor: pointer;
+  transition-duration: 100ms;
+}
+
+.overview_style:hover {
+  transform: scale(1.1);
 }
 
 .overview_style img {

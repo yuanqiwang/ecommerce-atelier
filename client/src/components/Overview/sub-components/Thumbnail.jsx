@@ -5,7 +5,7 @@ function Thumbnail(props) {
       <div className="overview_thumbnail" onClick={() => {
         props.changePic(props.img);
       }}>
-        <div className="overview_thumbnail_img"  style={{'background-image': "url('" + props.img + "')"}}></div>
+        <div className="overview_thumbnail_img"  style={{'backgroundImage': "url('" + props.img + "')"}}></div>
       </div>
   );
 };

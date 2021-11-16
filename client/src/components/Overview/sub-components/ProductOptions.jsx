@@ -9,8 +9,13 @@ function ProductOptions(props) {
   return (
     <div id="overview_product_options" data-testid="product-options">
       <StarRating />
-      <ProductHeadline productInfo={props.productInfo} />
-      <StyleSelector productStyle={props.productStyle} currentStyle={props.currentStyle} changeStyle={props.changeStyle} />
+      <ProductHeadline
+        productInfo={props.productInfo}
+        currentStyleID={props.currentStyleID} />
+      <StyleSelector
+        productStyle={props.productStyle}
+        currentStyleID={props.currentStyleID}
+        changeStyle={props.changeStyle} />
       <AddToCart />
     </div>
   );
