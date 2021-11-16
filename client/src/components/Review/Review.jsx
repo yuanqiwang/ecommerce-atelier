@@ -1,6 +1,5 @@
 import React from 'react'
 import Stars from './ReviewChildren/Stars.jsx'
-import Breakdown from './ReviewChildren/Breakdown.jsx'
 import Characteristics from './ReviewChildren/Characteristics.jsx'
 import UserReviews from './ReviewChildren/UserReviews.jsx'
 import SortReview from './ReviewChildren/SortReview.jsx'
@@ -36,9 +35,6 @@ class Review extends React.Component {
               <Stars
                 ratings={this.props.stars['ratings']}
                 recommend={this.props.stars['recommended']}
-              />
-                <Breakdown
-
               />
               <Characteristics
                 characteristics={this.props.stars['characteristics']}

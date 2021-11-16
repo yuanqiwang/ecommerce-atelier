@@ -12,7 +12,7 @@
   overflow: auto;
   max-height: 700px;
   margin:0;
-  width:70%
+  width:90%
 }
 
 /*user review card */
@@ -95,13 +95,37 @@ button {
   overflow: auto;
 }
 
-.starbar-rating {
-  text-decoration: underline;
+/* breakdown of number ratings */
+
+#breakdown {
+  display: flex;
+}
+
+progress#breakdown {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress#breakdown {
+  background: green;
+}
+
+
+/*star portion left column */
+#review-star-container {
+  display: flex;
+  justify-content: center;
 
 }
 
-.starbar-bar {
-  background-color: black;
+.star-text {
+  font-weight: 900;
+  font-size: 60px;
+}
+
+.review-stars {
+  margin-top: 30px;
+  font-size: 25px;
 }
 
 .bar-container {

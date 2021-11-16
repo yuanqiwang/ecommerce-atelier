@@ -1,41 +1,26 @@
 import React from 'react'
+import Star from '../../../star.jsx';
 
 
 const Stars = (props) => {
   /*stars variables*/
   let nOfRatings = 0;
   let starsAvg = 0;
-  let starsFill = 0;
   let showNum = 0;
   let keys, values
-  /*star bars variables*/
-  let keyValArr = []
-  let starBars;
 
   if (props['ratings'] !== undefined && props['ratings'][1]) {
     nOfRatings = Object.values(props['ratings']).reduce((a, b) => parseInt(a) + parseInt(b));
     keys = Object.keys(props['ratings'])
     values = Object.values(props['ratings'])
     let keyTimesValue = [];
+    console.log(props['ratings'])
     for (var i=0; i<keys.length; i++) {
       keyTimesValue.push(keys[i] * values[i])
-      keyValArr.push(keys[i])
-      keyValArr.push(values[i])
     }
     const reducer = (a, b) => a + b;
     starsAvg = keyTimesValue.reduce(reducer) / nOfRatings;
     showNum = starsAvg.toFixed(1)
-    /*starbars logic*/
-    starBars = keyValArr.map((item, index) =>
-      index%2 === 0 ?
-        index === 0 ?
-      <div className="starbar-rating" key={index}>{item} star</div> :
-      <div className="starbar-rating" key={index}>{item} stars</div>
-      :
-      <div className="bar-container">
-        <div className="starbar-bar" key={index} style={{"width": `${(item / 5)*100}%` }}><br/></div>
-      </div>
-    )
   } else {
     return null
   }
@@ -50,23 +35,40 @@ const Stars = (props) => {
     trueRecs = parseInt(props.recommend['true'])
     percentage = Math.round(((trueRecs / (trueRecs + falseRecs)) * 100))
   }
-
+  console.log(nOfRatings)
+  console.log(props['ratings'])
   return (
     <div>
-      <div className="star-text">{showNum || null}&nbsp;</div>
-        <span className="sub-card-star" style = {{'--rating': starsAvg}} >
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </span>
+      <div id="review-star-container">
+        <div className="star-text">{showNum || null}&nbsp;</div>
+        <div className="review-stars"> <Star rating={starsAvg}/></div>
+      </div>
 
       <div id="review-rec">
         {percentage}% of reviews recommend this product<br />
       </div>
-      <div className="star-bars">
-        {starBars}
+
+      <div className="bars-breakdown">
+        <div id="breakdown">
+          <label htmlFor="breakdown-rating">5 stars&nbsp;</label>
+          <progress id="breakdown-rating" max="100" value={(props['ratings'][5]/nOfRatings)*100}></progress>
+        </div>
+        <div id="breakdown">
+          <label htmlFor="breakdown-rating">4 stars&nbsp;</label>
+          <progress id="breakdown-rating" max="100" value={(props['ratings'][4]/nOfRatings)*100}></progress>
+        </div>
+        <div id="breakdown">
+          <label htmlFor="breakdown-rating">3 stars&nbsp;</label>
+          <progress id="breakdown-rating" max="100" value={(props['ratings'][3]/nOfRatings)*100}></progress>
+        </div>
+        <div id="breakdown">
+          <label htmlFor="file">2 stars&nbsp;</label>
+          <progress id="breakdown-rating" max="100" value={(props['ratings'][2]/nOfRatings)*100}></progress>
+        </div>
+        <div id="breakdown">
+          <label htmlFor="breakdown-rating">1 star&nbsp;</label>
+          <progress id="breakdown-rating" max="100" value={(props['ratings'][1]/nOfRatings)*100}></progress>
+        </div>
       </div>
     </div>
   )
