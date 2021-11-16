@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Lato:wght@100&family=Passions+Conflict&display=swap');
+
+
 body {
-  background-color: var(--primary--color) !important;
+  background-color: var(--primary--color);
 }
 #app {
   font-family: 'Lato', sans-serif;
@@ -93,4 +96,82 @@ html[data-theme="dark"] {
   background-image: linear-gradient(90deg,var(--second--light) var(--percent), var(--primary--color) var(--percent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+header {
+  height: 70px;
+  width: 100%;
+  background-color: var(--primary--dark);
+  margin-bottom: 30px;
+}
+
+footer {
+  height: 70px;
+  width: 100%;
+  background-color: var(--primary--dark);
+  margin-top: 30px;
+}
+
+.logo-name {
+  margin-left: 240px;
+  font-family: 'Passions Conflict', cursive;
+  font-size: var(--h1--size);
+  color: var(--second--color);
+  display: inline;
+  position:absolute;
+  z-index: 4;
+}
+
+.logo-name-layer {
+  font-family: 'Passions Conflict', cursive;
+  font-size: 100px;
+  color: var(--text--color);
+  display: inline;
+  margin-left: 300px;
+  margin-top: -20px;
+  opacity: 0.3;
+  position:absolute;
+  z-index: 3;
+}
+
+#search {
+  display: inline;
+  position:absolute;
+  box-sizing: border-box;
+  font: 'Lato', sans-serif;
+  background: var(--primary--light);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  right: 240px;
+  top: 30px;
+  padding: 5px 3px 5px 3px;
+}
+
+#search button,
+#search input {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font-family: 'Lato', sans-serif;
+  outline: 0;
+}
+#search button {
+  cursor: pointer;
+  padding: 0 0.25em;
+  -webkit-text-stroke: 0px var(--text--color);
+  -webkit-text-fill-color: var(--text--color);
+}
+#search input:focus {
+  color: var(--text--color);
+}
+#search input::placeholder {
+  color: var(--text--color);
+}
+
+.copyright {
+  color: var(--text--color);
+  text-align: center;
+  padding: 25px;
 }

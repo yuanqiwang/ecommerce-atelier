@@ -247,7 +247,6 @@ th, td {
 thead tr {
   display: block;
   position: relative;
-  width: 100%;
   background-color: var(--primary-light);
   color: var(--text--color);
   font-size: var(--b2--size);
