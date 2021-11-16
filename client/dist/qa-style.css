@@ -311,3 +311,17 @@
   max-width:500px;
   max-height: 400px;
 }
+
+.qa-close-icon {
+  float: left;
+  position: absolute;
+  right: 6px;
+  background-color:#f7f7f7;;
+  color:  var(--primary--light)
+}
+
+.qa-close-icon:hover{
+  cursor: pointer;
+  background-color: #fff;
+  color: var(--primary--dark);
+}
