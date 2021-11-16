@@ -18,7 +18,6 @@ class Review extends React.Component {
       review3: false,
       review2: false,
       review1: false,
-      reviews: {1: false, 2: false, 3: false, 4: false, 5: false},
       element: 0
     }
   }
@@ -39,9 +38,6 @@ class Review extends React.Component {
     }))
 
   }
-
-
-
 
   render() {
     if (this.props.reviews !== undefined) {
