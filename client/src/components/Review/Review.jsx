@@ -1,5 +1,5 @@
 import React from 'react'
-import Stars from './ReviewChildren/Stars.jsx'
+import Breakdown from './ReviewChildren/Breakdown.jsx'
 import Characteristics from './ReviewChildren/Characteristics.jsx'
 import UserReviews from './ReviewChildren/UserReviews.jsx'
 import SortReview from './ReviewChildren/SortReview.jsx'
@@ -12,7 +12,12 @@ class Review extends React.Component {
     super(props)
     this.state = {
       dropdown: 'relevance',
-      reviewCount: 2
+      reviewCount: 2,
+      review5: false,
+      review4: false,
+      review3: false,
+      review2: false,
+      review1: false,
     }
   }
 
@@ -24,7 +29,16 @@ class Review extends React.Component {
     this.setState({reviewCount: this.state.reviewCount + 2})
   }
 
+  handleReviewCallback = (childData) => {
+    let review = 'review' + childData
+    this.setState(prevState => ({
+      [review]: !prevState[review]
+    }))
+  }
+
+
   render() {
+    console.log(this.state)
     if (this.props.reviews !== undefined) {
       return (
         <>
@@ -32,9 +46,10 @@ class Review extends React.Component {
           <div id="review-container-left">
           <h3>Reviews & Ratings</h3>
             <div id="left-column" data-testid="related-render">
-              <Stars
+              <Breakdown
                 ratings={this.props.stars['ratings']}
                 recommend={this.props.stars['recommended']}
+                handleReviewCallback={this.handleReviewCallback}
               />
               <Characteristics
                 characteristics={this.props.stars['characteristics']}
@@ -60,7 +75,7 @@ class Review extends React.Component {
               addCountCallback={this.addCountCallback}
               nReviews={this.props['reviews'].length}
               reviewCount={this.state.reviewCount}
-              />
+            />
             <AddReviewButton
               productName={this.props.productInfo['name'] || null}
               productId={this.props.stars['product_id']}
