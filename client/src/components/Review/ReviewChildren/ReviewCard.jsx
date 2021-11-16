@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Star from '../../../star.jsx';
+
 
 const ReviewCard = (props) => {
-  //console.log(props)
+  console.log(props)
   let id = props.reviewId
   let count = props.helpfulness
   const [helpfulStatus, setHelpfulStatus] = useState(() => {
@@ -13,8 +15,6 @@ const ReviewCard = (props) => {
   })
   const [helpfulCount, setHelpfulCount] = useState(count)
 
-
-  let starsFill = (props.rating / 5) * 100
   let photos = props.photos.map( (photo, index) =>
     <><img id="review-img" src={photo.url}></img></>
   )
@@ -52,8 +52,7 @@ const ReviewCard = (props) => {
     <div>
       <div className="review-card">
         <div className="star-rating-card">
-          <div className="off-card"></div>
-          <div className="on-card" style={{"width": `${starsFill}%`}}></div>
+          <Star rating={props.rating} />
         </div>
         <div id="review-reviewer"> ✓{props.reviewer}, {props.date}</div>
         <div id="review-title">{props.summary}</div>
