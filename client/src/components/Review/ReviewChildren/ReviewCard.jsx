@@ -6,10 +6,10 @@ const ReviewCard = (props) => {
   let id = props.reviewId
   let count = props.helpfulness
   const [helpfulStatus, setHelpfulStatus] = useState(() => {
-    return localStorage.getItem(id) || false
+    return localStorage.getItem(`helpful`+id) || false
   })
   const [reportStatus, setReportStatus] = useState(() => {
-    return localStorage.getItem(id) || false
+    return localStorage.getItem(`review`+id) || false
   })
   const [helpfulCount, setHelpfulCount] = useState(count)
 
@@ -27,7 +27,7 @@ const ReviewCard = (props) => {
     } else {
       setHelpfulStatus(true)
       setHelpfulCount((prev) => prev + 1)
-      localStorage.setItem(id, JSON.stringify(helpfulStatus))
+      localStorage.setItem(`helpful`+id, JSON.stringify(helpfulStatus))
       axios.put(`/review/reviews/helpful`, {id: id})
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))
@@ -40,7 +40,7 @@ const ReviewCard = (props) => {
     } else {
       console.log(id)
       setReportStatus(true)
-      localStorage.setItem(id, JSON.stringify(reportStatus))
+      localStorage.setItem(`report`+id, JSON.stringify(reportStatus))
       axios.put(`/review/reviews/report`, {id: id})
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))
