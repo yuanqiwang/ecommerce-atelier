@@ -18,6 +18,8 @@ class Review extends React.Component {
       review3: false,
       review2: false,
       review1: false,
+      reviews: {1: false, 2: false, 3: false, 4: false, 5: false},
+      element: 0
     }
   }
 
@@ -32,13 +34,16 @@ class Review extends React.Component {
   handleReviewCallback = (childData) => {
     let review = 'review' + childData
     this.setState(prevState => ({
-      [review]: !prevState[review]
+      [review]: !prevState[review],
+      element: childData
     }))
+
   }
 
 
+
+
   render() {
-    console.log(this.state)
     if (this.props.reviews !== undefined) {
       return (
         <>
@@ -68,6 +73,12 @@ class Review extends React.Component {
                 dropdown={this.state.dropdown}
                 count={this.state.reviewCount}
                 productId={this.props.stars['product_id']}
+                review1={this.state.review1}
+                review2={this.state.review2}
+                review3={this.state.review3}
+                review4={this.state.review4}
+                review5={this.state.review5}
+                element={this.state.element}
               />
 
             </div>

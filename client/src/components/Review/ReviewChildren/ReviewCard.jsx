@@ -46,30 +46,29 @@ const ReviewCard = (props) => {
     }
 
   }
-  let testArray = [4]
   return (
     <div>
-      <div className="review-card">
+    <div className="review-card">
 
-        <div className="star-rating-card">
-
-        </div>
-        <div id="review-reviewer"> ✓{props.reviewer}, {props.date}</div>
-        <div id="review-title">{props.summary}</div>
-        <div id="review-body">{props.body}</div>
-        <div id="review-photo">{photos}</div>
-        <div id="review-recommend">{rec}</div>
-        <div id="review-response">{props.response}</div>
-
-        <div id="review-helpful" >Helpful? <span id="helpful" onClick={handleHelpful}>{helpfulStatus ?
-           "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) |
-           <span onClick={handleReport}>{reportStatus ?
-           "✓ Flagged for internal review" : "Report"}</span>
-        </div>
-
-        <hr id="review-solid"></hr>
+      <div className="star-rating-card">
+        <Star rating={props.rating} />
       </div>
+      <div id="review-reviewer"> ✓{props.reviewer}, {props.date}</div>
+      <div id="review-title">{props.summary}</div>
+      <div id="review-body">{props.body}</div>
+      <div id="review-photo">{photos}</div>
+      <div id="review-recommend">{rec}</div>
+      <div id="review-response">{props.response}</div>
+
+      <div id="review-helpful" >Helpful? <span id="helpful" onClick={handleHelpful}>{helpfulStatus ?
+         "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) |
+         <span onClick={handleReport}>{reportStatus ?
+         "✓ Flagged for internal review" : "Report"}</span>
+      </div>
+
+      <hr id="review-solid"></hr>
     </div>
+  </div>
   )
 
 }

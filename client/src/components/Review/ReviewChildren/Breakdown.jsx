@@ -9,7 +9,6 @@ class Breakdown extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
   handleChange = (e) => {
-    console.log(e)
     this.props.handleReviewCallback(e);
     event.preventDefault();
   }
