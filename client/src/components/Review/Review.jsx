@@ -1,5 +1,4 @@
 import React from 'react'
-import Stars from './ReviewChildren/Stars.jsx'
 import Breakdown from './ReviewChildren/Breakdown.jsx'
 import Characteristics from './ReviewChildren/Characteristics.jsx'
 import UserReviews from './ReviewChildren/UserReviews.jsx'
@@ -13,7 +12,13 @@ class Review extends React.Component {
     super(props)
     this.state = {
       dropdown: 'relevance',
-      reviewCount: 2
+      reviewCount: 2,
+      review5: false,
+      review4: false,
+      review3: false,
+      review2: false,
+      review1: false,
+      element: 0
     }
   }
 
@@ -25,21 +30,27 @@ class Review extends React.Component {
     this.setState({reviewCount: this.state.reviewCount + 2})
   }
 
+  handleReviewCallback = (childData) => {
+    let review = 'review' + childData
+    this.setState(prevState => ({
+      [review]: !prevState[review],
+      element: childData
+    }))
+
+  }
+
   render() {
-    //console.log(this.props.stars['product_id'])
     if (this.props.reviews !== undefined) {
       return (
         <>
-        <div className="review-grid" data-testid="related-render">
+        <div className="review-grid" onClick={this.props.trackClick}>
           <div id="review-container-left">
           <h3>Reviews & Ratings</h3>
-            <div id="left-column">
-              <Stars
+            <div id="left-column" data-testid="related-render">
+              <Breakdown
                 ratings={this.props.stars['ratings']}
                 recommend={this.props.stars['recommended']}
-              />
-                <Breakdown
-
+                handleReviewCallback={this.handleReviewCallback}
               />
               <Characteristics
                 characteristics={this.props.stars['characteristics']}
@@ -57,6 +68,13 @@ class Review extends React.Component {
                 reviews={this.props['reviews']}
                 dropdown={this.state.dropdown}
                 count={this.state.reviewCount}
+                productId={this.props.stars['product_id']}
+                review1={this.state.review1}
+                review2={this.state.review2}
+                review3={this.state.review3}
+                review4={this.state.review4}
+                review5={this.state.review5}
+                element={this.state.element}
               />
 
             </div>
@@ -64,7 +82,7 @@ class Review extends React.Component {
               addCountCallback={this.addCountCallback}
               nReviews={this.props['reviews'].length}
               reviewCount={this.state.reviewCount}
-              />
+            />
             <AddReviewButton
               productName={this.props.productInfo['name'] || null}
               productId={this.props.stars['product_id']}

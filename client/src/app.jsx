@@ -108,7 +108,7 @@ const App = ()=> {
             trackClick={(e)=>trackClick(e, 'Related Product')}
             />
           <QA
-            productId={productId}s
+            productId={productId}
             productInfo={productInfo}
             questions={questions}
             trackClick={(e)=>trackClick(e, 'QA')}/>
@@ -117,6 +117,7 @@ const App = ()=> {
             reviews={reviews}
             stars={stars}
             productInfo={productInfo}
+            trackClick={(e)=>trackClick(e, 'Review')}
           />
           </Suspense>
         </div>

@@ -6,9 +6,9 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
 
   if (!open) { return null }
 
-  const [body, setBody] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [body, setBody] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showUpload, setShowUpload] = useState(true);

@@ -41,7 +41,7 @@ const RP_row = ({relatedProductArr, productInfo, productStyle }) => {
             {scrollX === 0 ?
             null
             : (
-              <button className="rp-prev" onClick={() => slide(-400)} >
+              <button className="rp-prev" onClick={() => slide(-400)} data-testid = "rp-left-button" >
                 {'<'}
               </button>
               )
@@ -57,7 +57,7 @@ const RP_row = ({relatedProductArr, productInfo, productStyle }) => {
             :
             scrolEnd ?
              (
-              <button className="rp-next" onClick={() => slide(+400)} >
+              <button className="rp-next" onClick={() => slide(+400)} data-testid = "rp-right-button" >
                 {'>'}
               </button>
             )

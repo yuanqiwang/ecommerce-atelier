@@ -12,7 +12,7 @@
   overflow: auto;
   max-height: 700px;
   margin:0;
-  width:70%
+  width:90%
 }
 
 /*user review card */
@@ -59,65 +59,6 @@ img#review-img {
   font-size: 12px;
 }
 
-.star-rating-card {
-  position: relative;
-  vertical-align: middle;
-  display: inline-block;
-  color: #b1b1b1;
-  overflow: hidden;
-}
-
-.on-card {
-  position: absolute;
-  left: 0;
-  top: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  color: black;
-}
-.off-card:before, .on-card:before {
-  content:"\2605\2605\2605\2605\2605";
-  font-size: 8pt;
-}
-.off-card:before {
-  -webkit-text-stroke: 1px #848484;
-}
-.on:before {
-  -webkit-text-stroke: 1px black;
-}
-.star-rating {
-  position: relative;
-  vertical-align: middle;
-  display: inline-block;
-  color: #b1b1b1;
-  overflow: hidden;
-}
-
-.on {
-  position: absolute;
-  left: 0;
-  top: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  color: black;
-}
-.off:before, .on:before {
-  content:"\2605\2605\2605\2605\2605";
-  font-size: 14pt;
-}
-.off:before {
-  -webkit-text-stroke: 1px #848484;
-}
-.on:before {
-  -webkit-text-stroke: 1px black;
-}
-
-.star-text {
-  font-family: 'Lato', sans-serif;
-  font-size: 30px;
-  font-weight: 900;
-}
-
 button {
   float: left;
 }
@@ -154,13 +95,29 @@ button {
   overflow: auto;
 }
 
-.starbar-rating {
-  text-decoration: underline;
+/* breakdown of number ratings */
+
+#breakdown {
+  display: flex;
+}
+
+
+
+/*star portion left column */
+#review-star-container {
+  display: flex;
+  justify-content: center;
 
 }
 
-.starbar-bar {
-  background-color: black;
+.star-text {
+  font-weight: 900;
+  font-size: 60px;
+}
+
+.review-stars {
+  margin-top: 30px;
+  font-size: 25px;
 }
 
 .bar-container {

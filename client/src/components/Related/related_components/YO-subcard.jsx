@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-const YO_sub = ({response, removeoutfit, changeProduct}) => {
+import Star from '../../../star.jsx';
+const YO_sub = ({response, removeoutfit}) => {
 
   const[productInfo, setInfo] = useState({});
   const[productId, setProductId] = useState({});
@@ -8,33 +9,16 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
   const[stylePrice, setStylePrice] = useState();
   const[salePrice, setSaleprice] = useState(0);
   const[styleName, setStyleName] = useState();
-  const[reviewInfo, setReview] = useState(0);
+  const[stars, setStars] = useState({});
   const[addtionalImage, setaddtionalImage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
 
-  const avgReview = (reviewObj) => {
-    let reviewNum=0;
-    let ratingSum=0;
-
-    if(reviewObj) {
-      let keys = Object.keys(reviewObj);
-      let values = Object.values(reviewObj);
-
-        for (var i=0; i<keys.length; i++) {
-          reviewNum += parseInt(values[i]);
-          ratingSum += parseInt(keys[i])*parseInt(values[i]);
-        }
-    }
-    return reviewNum > 0?  (ratingSum/reviewNum).toFixed(1) : 0
-
-  };
 
 
   const getProductInfo = () => {
       setInfo(response.productInfo);
       setProductId(response.productInfo.id)
-      if(response.stars.ratings) {
-        const avgReviewnum = avgReview(response.stars.ratings);
-        setReview(avgReviewnum)
+      if(response.stars) {
+        setStars(response.stars)
       }
 
       if(response.productStyle[0]['photos'][0]['url']){
@@ -62,9 +46,9 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
     <article className = 'rp-card'>
 
       <div className='sub-card-img'>
-         <button id='yo-action-button'  onClick={() => removeoutfit(productId)}>X</button>
+         <button id='yo-action-button'  onClick={() => removeoutfit(productId)} className="fas fa-times-circle"></button>
          <Link to={`/product/${productId}`}>
-         <img className='rp-card-img' src={stylePic}/>
+         <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
          </Link>
       </div>
 
@@ -79,12 +63,7 @@ const YO_sub = ({response, removeoutfit, changeProduct}) => {
           </div>
           : <div id= 'rp-origin-price'> ${stylePrice}</div>
         }
-        {
-          reviewInfo > 0?
-          <div className ='sub-card-star' style = {{'--rating': reviewInfo}} >
-          </div>
-          : <div className ='sub-card-no-star'> Be the 1st to Review!</div>
-        }
+        <Star stars={stars}/>
       </div>
     </article>
   )

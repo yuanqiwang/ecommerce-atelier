@@ -3,11 +3,9 @@ import React from 'react'
 class SortReview extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange = (event) => {
-    //console.log(event.target.value)
     this.props.dropdownCallback(event.target.value);
     event.preventDefault();
   }

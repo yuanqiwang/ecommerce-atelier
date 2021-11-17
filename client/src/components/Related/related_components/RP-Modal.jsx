@@ -15,7 +15,9 @@ const ComparisonModal = ({isOpen, mainFeature, currentFeature, mainName, current
     if(mainFeature.length > 0){
       for (var i=0; i<mainFeature.length; i++) {
         f1[mainFeature[i]['feature']] = mainFeature[i]['value']
-        combinedFeature.push(mainFeature[i]['feature'])
+        if(!combinedFeature.includes(mainFeature[i].feature)){
+          combinedFeature.push(mainFeature[i].feature)
+        }
 
       }
     }
@@ -42,14 +44,16 @@ const ComparisonModal = ({isOpen, mainFeature, currentFeature, mainName, current
   return (
      <div className='rp-comparison-modal'>
       <div className='rp-sub-modal'>
-        <div id='title' style = {{'textAlign':'left'}}>Comparing</div>
+        <div id='modal-title'>Comparing</div>
         <table className = 'rp-table'>
-          <tbody>
+          <thead>
             <tr>
-              <th>{mainName}</th>
-              <th style={{'width':'40%'}}></th>
-              <th>{currentName}</th>
+              <th >{mainName}</th>
+              <th style = {{'width':'40%'}}></th>
+              <th >{currentName}</th>
             </tr>
+          </thead>
+          <tbody>
             {
               features.length > 0 ?
                 features.map((feature, i) => <RP_table feature={feature} key = {i} mF={mF} cF={cF} />)

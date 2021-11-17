@@ -15,4 +15,3 @@ describe("Example tests", function(){
 test('test', () => {
   expect(true).toBe(true);
 })
-
