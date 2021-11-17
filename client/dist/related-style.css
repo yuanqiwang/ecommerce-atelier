@@ -24,6 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 
 /* Both RP and YO styling */
@@ -45,6 +46,7 @@
   display: inline-block;
   margin-right: 30px;
   background-color: var(--primary--dark);
+  overflow:hidden;
 }
 
 /* Add out outfit card itself*/
@@ -89,6 +91,7 @@
   position:relative;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
+  z-index: 2;
 }
 
 .rp-card-img {
@@ -133,7 +136,7 @@
   max-width: 100%;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  z-index: 1;
+  z-index: 2;
 }
 
 #category {
@@ -179,17 +182,6 @@
 
 
 /* for stars */
-.sub-card-star {
-  display: inline-block;
-  --percent: calc(var(--rating)/5*100%);
-  padding: 5px;
-  margin-left: 8px;
-  line-height: 1;
-  -webkit-text-stroke: 1px var(--second--light);
-  background-image: linear-gradient(90deg,var(--second--light) var(--percent), var(--primary--color) var(--percent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 .sub-card-no-star {
   display: inline-block;
@@ -202,50 +194,80 @@
 
 /* RP Comparison Modal */
 
+#modal-title {
+  text-align: left;
+  padding: 5px;
+  margin-left: 8px;
+  color: var(--second--color);
+  font-size: var(--b1--size);
+}
 .rp-comparison-modal{
-  top:0;
-  left:0;
+  max-height: 350px;
+  width: auto;
   display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  z-index: 99;
+  align-items:flex-end;
+  justify-content:center;
+  /* position: element(rp-card);
+  transform: translateY(-30%); */
 }
 .rp-sub-modal{
    margin: 0 auto;
    text-align:center;
    max-width: 100%;
    border: 1px solid black;
-   border-radius: 5px;
+   border-radius: 20px;
    opacity: 1;
-   background-color: white;
+   background-color: var(--primary--light);
    position:absolute;
-   overflow-x: auto;
-   overflow-y: auto;
    white-space: nowrap;
    scroll-behavior: smooth;
+   color: black;
+   padding: 10px;
+   z-index: 1000;
 }
 .rp-table{
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 20px;
-  border-collapse: collapse;
-  border-spacing: 0;
+  border-collapse: separate;
+  border-spacing: 2px;
   width: 90%;
   border: none;
   align-items: center;
-  white-space: nowrap;
   margin-bottom: 10px;
+  table-layout: auto;
 }
 
-th, td {
-  text-align: center;
-  padding: 10px;
+
+thead {
+  position: relative;
+  background-color: var(--primary-light);
+  color: var(--text--color);
+  font-size: var(--b2--size);
+}
+thead th {
+  padding: 3px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2
+tbody {
+  color: var(--text--color);
+  font-size: var(--b3--size);
 }
 
+tbody td {
+  padding: 2px;
+}
+tbody .fas {
+  -webkit-text-stroke: 1px var(--text--color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--text--color);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--primary--light)
+}
+tbody tr:nth-child(odd) {
+  background-color: var(--primary--color)
+}
 
 #yo-image {
   display: inline-block;

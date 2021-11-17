@@ -16,24 +16,6 @@ const RP_sub = ({item, mainInfo}) => {
   const[showModal, setModal] = useState(false);
   const[addtionalImage, setaddtionalImage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
 
-  const avgReview = (reviewObj) => {
-    let reviewNum=0;
-    let ratingSum=0;
-
-    if(reviewObj) {
-      let keys = Object.keys(reviewObj);
-      let values = Object.values(reviewObj);
-
-        for (var i=0; i<keys.length; i++) {
-          reviewNum += parseInt(values[i]);
-          ratingSum += parseInt(keys[i])*parseInt(values[i]);
-        }
-    }
-
-
-    return reviewNum > 0?  (ratingSum/reviewNum).toFixed(1) : 0
-
-  };
 
   const getProductInfo = async () => {
     try {
@@ -46,6 +28,8 @@ const RP_sub = ({item, mainInfo}) => {
         setProductId(response.data['prod'].id);
         if(response.data['style']['results'][0]['photos'][0]['url']){
           setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
+        } else {
+          setStylePicture('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
         }
 
         if(response.data['style']['results'][0]['photos'][0]['thumbnail_url']){
@@ -67,7 +51,7 @@ const RP_sub = ({item, mainInfo}) => {
 
   useEffect(()=>{
     getProductInfo();
-  }, [])
+  }, [item])
 
   // const calAverageRating;// helper function
   const btMouseOver = (event) => {
@@ -93,16 +77,16 @@ const RP_sub = ({item, mainInfo}) => {
   }, [stylePic])
 
   return(
-    <article className = 'rp-card' data-testid = 'rp-subcard'>
+    <article className = 'rp-card' data-testid = 'rp-subcard' id = 'rp-card'>
 
       <div className='sub-card-img'>
-         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} href="#" className="fas fa-star"> </button>
-         <Link to={`/product/${productId}`}>
-         <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
-         </Link>
+        <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} href="#" className="fas fa-star"> </button>
+        <Link to={`/product/${productId}`}>
+        <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
+        </Link>
       </div>
 
-      <div className ='sub-card'>
+      <div className ='sub-card' id = 'sub-card'>
         <div id = 'category'> {productInfo.category}</div>
         <div id = 'name'> {styleName}</div>
         {
@@ -113,9 +97,8 @@ const RP_sub = ({item, mainInfo}) => {
           </div>
           : <div id= 'rp-origin-price'> ${stylePrice}</div>
         }
-        <Star stars={stars}/>
+      <Star stars={stars}/>
       </div>
-
       <ComparisonModal
           isOpen={showModal}
           mainFeature = {!mainInfo? [] : mainInfo.hasOwnProperty('features')? mainInfo.features : []}

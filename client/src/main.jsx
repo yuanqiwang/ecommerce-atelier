@@ -21,8 +21,14 @@ const Main = () => {
     return (
         <div>
         <header>
-          <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
+          <div className = "logo-name" id = "logo-name">cinquante-sept</div>
+          <div className = "logo-name-layer">57</div>
+          <div id="search">
+            <input id="search-input" placeholder="Search..."/>
+            <button id="search-button"><i className="fa fa-search"></i></button>
+          </div>
         </header>
+        <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
         <main>
           <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
             <Routes>
@@ -32,6 +38,9 @@ const Main = () => {
           </BrowserRouter>
         </main>
         <footer>
+        <div className ='copyright'>
+        2021 Cinquante-Sept Copyright@KetchUp Team
+        </div>
         </footer>
         </div>
     )
