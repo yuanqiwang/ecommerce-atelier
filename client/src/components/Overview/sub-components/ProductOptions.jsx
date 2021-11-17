@@ -8,7 +8,8 @@ function ProductOptions(props) {
   // console.log('PO:',props)
   return (
     <div id="overview_product_options" data-testid="product-options">
-      <StarRating />
+      <StarRating
+        stars={props.stars} />
       <ProductHeadline
         productInfo={props.productInfo}
         currentStyleID={props.currentStyleID} />

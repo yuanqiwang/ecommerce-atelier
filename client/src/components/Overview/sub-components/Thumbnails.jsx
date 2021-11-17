@@ -16,7 +16,7 @@ function Thumbnails(props) {
       {props.thumbnails.map(thumb => {
         // console.log(thumb);
         return (
-          <Thumbnail key={thumb.url} img={thumb.thumbnail_url} changePic={props.changePic} />
+          <Thumbnail key={Math.random()} img={thumb.thumbnail_url} changePic={props.changePic} />
         )
       })}
       <div className="overview_thumb_scroll overview_thumb_scroll_down"></div>

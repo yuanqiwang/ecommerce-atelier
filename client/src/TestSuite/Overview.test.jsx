@@ -186,6 +186,7 @@ it('All Sub-Components render correctly', () => {
 
 // Add to Cart
 // ===========
+
 // Size Selector
 // will list all of the available sizes for the currently selected style.
 // only sizes that are currently in stock for the style selected should be listed.

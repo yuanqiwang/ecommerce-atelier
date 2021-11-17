@@ -50,6 +50,7 @@ class Overview extends React.Component {
           productInfo={this.props.productInfo}
           productStyle={this.props.productStyle}
           currentStyleID={this.state.currentStyleID}
+          stars={this.props.stars}
           changeStyle={this.changeStyle} />
 
         <ProductInfo
