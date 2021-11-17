@@ -26,9 +26,17 @@ class Overview extends React.Component {
     })
   }
 
+  updateHero() {
+    let firstThumbnail = document.querySelector('#overview_thumbnails').children[1];
+    // console.log(thumbnailGallery);
+    firstThumbnail.click();
+  }
+
   changeStyle(id) {
-    console.log(this.props);
-    this.setState({currentStyleID: id});
+    // console.log('style changed: ', this.props);
+    this.setState({currentStyleID: id}, () => {
+      this.updateHero();
+    });
   }
 
   render() {

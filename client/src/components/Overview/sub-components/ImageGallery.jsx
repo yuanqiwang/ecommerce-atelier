@@ -5,7 +5,7 @@ class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      heroPic: 'https://pngimg.com/uploads/ketchup/ketchup_PNG21.png',
+      heroPic: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
       thumbnailCount: 0,
       currentImg: 0
     };
@@ -28,9 +28,9 @@ class ImageGallery extends React.Component {
     let thumbnails = []
 
     try {
-      heroPic = {'backgroundImage': "url('" + this.props.productStyle[0].photos[this.state.currentImg].url + "')"};
-      console.log(this.state.currentImg);
-      thumbnails = this.props.productStyle[0].photos;
+      // heroPic = {'backgroundImage': "url('" + this.props.productStyle[this.props.currentStyleID].photos[this.state.currentImg].url + "')"};
+      // console.log(this.props.currentStyleID);
+      thumbnails = this.props.productStyle[this.props.currentStyleID].photos;
     } catch {}
 
     return (
