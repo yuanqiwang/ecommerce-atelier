@@ -1,30 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import Helpful from './Helpful.jsx';
 import axios from 'axios';
+import convertDate from './convertDate.js';
+import ImageModal from './ImageModal.jsx';
+
+
 const Answer = ({answer}) => {
-
-  //[helpfulness, setHelpfulness] = useState(answer.helpfulness);
-
-  const convertDate = (dateString) => {
-    var date = new Date(dateString);
-    var monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','October', 'November', 'December']
-
-    var year = date.getFullYear();
-    var month = monthList[date.getMonth()]
-    var day = date.getDate();
-    return ` ${month} ${day}, ${year}`;
-  }
-
-
 
   let reportedAnswers = JSON.parse(localStorage.getItem('reportedAnswers')) || [];
   let reportedInit = false;
   if (reportedAnswers.includes(answer.id)) {
     reportedInit = true
   }
-  const [reportStatus, setReportStatus] = useState(reportedInit);
-  const handleReport = () => {
 
+  const [reportStatus, setReportStatus] = useState(reportedInit);
+  const [imageModal, setImageModal] = useState(false);
+  const [imageModalURL, setImageModalURL] = useState('');
+
+  const handleReport = () => {
     if (reportStatus) {
       console.log('already reported')
     } else {
@@ -35,22 +28,25 @@ const Answer = ({answer}) => {
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))
     }
-
+  }
+  const handleModalOpen = e => {
+    setImageModal(true);
+    setImageModalURL(e.target.src);
+  }
+  const handleModalClose = e => {
+    setImageModal(false);
   }
 
   return (
     <div className='qa-answer'>
-      <div className='qa-question'>
-          <span className ='qa-tiny'> {answer.body}</span>
-      </div>
+      <div> <span className ='qa-tiny'> {answer.body}</span> </div>
       {answer.photos.length?
        <div className='qa-answer-img-container'>
          {answer.photos.map((photo, index)=>{
            if (typeof photo == 'object') {
-             console.log('test object')
-             return (<img className='qa-answer-img' src={photo.url} key={index}/>)
+             return (<img className='qa-answer-img' src={photo.url} key={index} onClick={handleModalOpen}/>)
            } else {
-             return (<img className='qa-answer-img' src={photo} key={index}/>)
+             return (<img className='qa-answer-img' src={photo} key={index} onClick={handleModalOpen}/>)
            }
 
          })}
@@ -59,21 +55,28 @@ const Answer = ({answer}) => {
       <div className='qa-answerby qa-tiny'>
         <div> by
           <span className={answer.answerer_name.toLowerCase()=='seller'? 'qa-bold': 'null'}>
-             {answer.answerer_name},
+             {` ${answer.answerer_name},`}
           </span>
           {convertDate(answer.date)}
         </div>
-        <div className='qa-divider'>|</div>
-        <div className='qa-helpful'> Helpful?</div>
-        <Helpful id={answer.id} localStorageName='helpfulAnswersList' helpfulness={answer.helpfulness}/>
-        <div className='qa-divider'>|</div>
-        <div className={reportStatus? 'qa-not-clickable': 'qa-clickable'}
-          onClick={handleReport}>
-          {reportStatus? 'Reported': 'Report'}
+        <div className='qa-helpful-container'>
+          <div className='qa-divider'>|</div>
+          <div className='qa-helpful'> Helpful?</div>
+          <Helpful id={answer.id} localStorageName='helpfulAnswersList' helpfulness={answer.helpfulness}/>
+          <div className='qa-divider'>|</div>
+          <div className={reportStatus? 'qa-not-clickable qa-helpful': 'qa-clickable qa-helpful'}
+            onClick={handleReport}>
+            {reportStatus? 'Reported': 'Report'}
+          </div>
         </div>
-
-
       </div>
+      {imageModal ?
+         <ImageModal
+           imageURL={imageModalURL}
+           handleModalClose={handleModalClose}
+          />
+        : null
+      }
     </div>
   )
 }

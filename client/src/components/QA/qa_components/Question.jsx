@@ -4,7 +4,7 @@ import axios from 'axios'
 import AnswerModal from './AnswerModal.jsx'
 import Helpful from './Helpful.jsx'
 
-const Question = ({question, productId}) => {
+const Question = ({question, productName}) => {
 
   const [questionBody, setQuestionBody] = useState(question.question_body)
   const [answers, setAnswers] = useState(question.answers)
@@ -16,7 +16,11 @@ const Question = ({question, productId}) => {
   useEffect(() => {
     if (Object.keys(answers).length>2) {
       setLoadMoreAnswers('LOAD MORE ANSWERS')
-    }}, []);
+    } else {
+      // setAnswers({0:
+      //   {body: 'NO ANSWERS HAVE BEEN ADDED'
+      // }})
+    }}, [answers]);
 
   const handleLoadMoreAnswers = (value) => {
     if (value === 'LOAD MORE ANSWERS') {
@@ -60,9 +64,9 @@ const Question = ({question, productId}) => {
 
   return (
     <div>
-      <div className='qa-container'>
+      <div className='qa-question-container'>
         <div className='qa-question'>Q: {questionBody} </div>
-        <div className='qa-tiny qa-helpful'>
+        <div className='qa-tiny qa-helpful-container'>
           <div className= 'qa-helpful'> Helpful?</div>
           <Helpful
             id={question.question_id}
@@ -73,17 +77,21 @@ const Question = ({question, productId}) => {
         </div>
       </div>
       <div className='qa-answers qa-scroll'>
-        <div className='qa-answers-left'>A: </div>
-        <div className='qa-answers-right'>
-          {/* {Object.keys(answers).slice(0, visible).map((key) => {
-                return <Answer answer={answers[key]} key={key} />
-              })
-          } */}
-          {sortAnswer(answers).slice(0, visible).map((answer) => {
+        {Object.keys(answers).length == 0 ?
+            (<p style={{fontStyle:'italic', fontSize: 'small', color: 'gray'}}>
+              There is no answer to this question
+            </p>)
+          :
+          (<>
+            <div className='qa-answers-left'>A: </div>
+            <div className='qa-answers-right'>
+              {sortAnswer(answers).slice(0, visible).map((answer) => {
                 return <Answer answer={answer} key={answer.id} />
-            })
-          }
-        </div>
+              })}
+            </div>
+          </>
+          )
+        }
       </div>
 
       {loadMoreAnswers ?
@@ -93,7 +101,7 @@ const Question = ({question, productId}) => {
 
       <AnswerModal
         open={addAnswer}
-        productName={'test'}
+        productName={productName}
         question={questionBody}
         questionId={question.question_id}
         onClose={()=> {

@@ -14,10 +14,11 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     // console.log('initial render and when questions is updated ')
     if (questions) {
       setQuestionList(questions)
-    }
-    if (questions.length > 0) {
       setMoreQuestionVisible(true)
     }
+    // if (questions.length > 0) {
+    //   setMoreQuestionVisible(true)
+    // }
   },[questions])
 
   useEffect(() => {
@@ -41,12 +42,16 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     <div>
       <div className='qa-main-questions'>
         {questionList.slice(0,questionDisplayCount).map(question =>
-          <Question question={question} key={question.question_id} productId={productId}/>)
+          <Question
+            question={question}
+            key={question.question_id}
+            productId={productId}
+            productName={productInfo? productInfo.name : 'product'}
+            />)
         }
       </div>
 
       <div>
-
         {moreQuestionVisible ?
           <div className='qa-more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
               MORE ANSWERED QUESTIONS
@@ -62,7 +67,8 @@ const QuestionsList = ({questions, productId, productInfo}) => {
             productName={productInfo? productInfo.name : 'product'}
             productId={productId}
             onClose={()=> {setIsOpen(false)}}
-            onSubmitQuestion={handleSubmitQuestion} />
+            onSubmitQuestion={handleSubmitQuestion}
+        />
       </div>
     </div>
 
