@@ -22,6 +22,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  cursor: zoom-in;
 }
 
 #overview_product_options {
@@ -325,6 +326,8 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
 }
 
 #overview_favorite {
@@ -337,6 +340,8 @@
   font-size: 20px;
   font-weight: bold;
   margin-left: 10px;
+  cursor: pointer;
+  user-select: none;
 }
 
 #overview_product_info,
