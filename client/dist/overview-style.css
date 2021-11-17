@@ -280,6 +280,14 @@
   font-size: 10px;
 }
 
+#overview_select_size {
+  display: flex;
+}
+
+#overview_select_size .qty-dropdown {
+  width: 40%;
+}
+
 #overview_select_size select,
 #overview_add_cart button {
   height: 40px;

@@ -27,7 +27,7 @@ class Overview extends React.Component {
   }
 
   changeStyle(id) {
-    // console.log(this.state);
+    console.log(this.props);
     this.setState({currentStyleID: id});
   }
 
