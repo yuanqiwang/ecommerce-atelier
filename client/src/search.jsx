@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const SearchQuestions = ({onChange}) => {
+const Search = ({onChange}) => {
   return (
     <div className='qa-search-bar'>
         <input
@@ -19,4 +19,4 @@ const SearchQuestions = ({onChange}) => {
 }
 
 
-export default SearchQuestions;
+export default Search;

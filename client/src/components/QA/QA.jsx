@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import QuestionsList from './qa_components/QuestionsList.jsx';
-import SearchQuestions from './qa_components/SearchQuestions.jsx';
-import axios from 'axios';
+import Search from '../../search.jsx';
+
 
 const QA = ({questions, productId, productInfo, trackClick}) => {
 
@@ -39,7 +39,7 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
   return (
     <div className='QA' data-testid="QA-render" onClick={trackClick}>
       <h3>{`QUESTIONS & ANSWERS`}</h3>
-      <SearchQuestions
+      <Search
         onChange={handleSearch}
       />
       <QuestionsList
