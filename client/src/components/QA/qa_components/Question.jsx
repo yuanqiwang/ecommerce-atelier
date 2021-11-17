@@ -4,7 +4,7 @@ import axios from 'axios'
 import AnswerModal from './AnswerModal.jsx'
 import Helpful from './Helpful.jsx'
 
-const Question = ({question, productId, productName}) => {
+const Question = ({question, productName}) => {
 
   const [questionBody, setQuestionBody] = useState(question.question_body)
   const [answers, setAnswers] = useState(question.answers)

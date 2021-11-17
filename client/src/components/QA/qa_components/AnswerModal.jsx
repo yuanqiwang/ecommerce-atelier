@@ -16,6 +16,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
 
 
   const uploadImage = async e => {
+    console.log('clicked')
     const file = e.target.files
     const data = new FormData()
     data.append('file', file[0])
@@ -43,7 +44,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
     let data = { body, name, email, photos }
     let errors = validateInfo(data)
     setErrors(errors);
-    console.log('data and error', data, errors)
+
     if (Object.entries(errors).length == 0) {
       axios.post(`/qa/questions/${questionId}/answers`, data)
       .then((res)  => {
@@ -65,7 +66,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
               <p> {productName}: {question} </p>
           </div>
 
-        <form className='qa-form-control'>
+        <form className='qa-form'>
           <div>
             <label htmlFor='answer'>Your Answer (mandatory)*</label>
             <textarea
@@ -144,8 +145,10 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
             )
             : null
           }
-          <input type='submit' className='qa-form-btn' value='Submit' onClick={onSubmit} />
-          <input type='submit' className='qa-form-btn' value='Close'  onClick={onClose} />
+          <div className='qa-form-control qa-form-btn-container'>
+            <input type='submit' className='qa-form-btn' value='Submit' onClick={onSubmit} />
+            <input type='submit' className='qa-form-btn' value='Close'  onClick={onClose} />
+          </div>
         </form>
 
       </div>

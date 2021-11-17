@@ -14,10 +14,11 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     // console.log('initial render and when questions is updated ')
     if (questions) {
       setQuestionList(questions)
-    }
-    if (questions.length > 0) {
       setMoreQuestionVisible(true)
     }
+    // if (questions.length > 0) {
+    //   setMoreQuestionVisible(true)
+    // }
   },[questions])
 
   useEffect(() => {

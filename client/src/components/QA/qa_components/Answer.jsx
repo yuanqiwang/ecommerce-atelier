@@ -56,7 +56,7 @@ const Answer = ({answer}) => {
       <div className='qa-answerby qa-tiny'>
         <div> by
           <span className={answer.answerer_name.toLowerCase()=='seller'? 'qa-bold': 'null'}>
-             {answer.answerer_name},
+             {` ${answer.answerer_name},`}
           </span>
           {convertDate(answer.date)}
         </div>
