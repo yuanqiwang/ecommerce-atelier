@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 
 const Additional = ({images, changeBackground}) => {
 
-
   const [idx, setIndex] = useState(0);
   const [displayed, setDisplay] = useState(images.slice(0, 4))
 
@@ -25,13 +24,17 @@ const Additional = ({images, changeBackground}) => {
         src = {image}
         style={{'backgroundImage': "url('" + image + "')"}}
         onClick={toggleMainImage}/>)}
-    <button className="rp-next-mini"
-      onClick={()=> {
-      setIndex(idx+1)
-      setDisplay(images.slice(idx+1, idx+5))}}
-      disabled={images.length < 4 || idx === images.length-4}
-      hidden={idx+5 >= images.length}
-    > {'>'} </button>
+    {
+      images.length <= 4 || idx+5 >= images.length ?
+      null
+      :  <button className="rp-next-mini"
+          onClick={()=> {
+          setIndex(idx+1)
+          setDisplay(images.slice(idx+1, idx+5))}}
+          hidden={images.length <= 4 || idx+5 >= images.length}
+          disabled={images.length < 4 || idx === images.length-4}
+        > {'>'} </button>
+    }
   </div>
   )
 }

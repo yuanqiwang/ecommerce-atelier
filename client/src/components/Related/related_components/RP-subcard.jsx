@@ -47,8 +47,8 @@ const RP_sub = ({item, mainInfo}) => {
         const ProductName = response.data['prod']['name'];
         setStyleName(ProductName)
 
-        const addPhotos = response.data['style']['results'].map(style=>style.photos[0].thumbnail_url);
-        if(addPhotos.length > 0 ){
+        const addPhotos = response.data['style']['results'].flatMap(style=> style.photos[0].thumbnail_url ? style.photos[0].thumbnail_url : [] );
+        if(addPhotos){
           setaddtionalImage(addPhotos);
         } else {
           setaddtionalImage([]);
