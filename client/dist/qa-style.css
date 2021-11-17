@@ -27,7 +27,7 @@
 
 .qa-search-bar input:focus {
   border-color: transparent;
-  border-bottom: 1px solid maroon
+  border-bottom: 1px solid var(--second--color)
 }
 
 .qa-search-btn {
@@ -40,16 +40,23 @@
 
 .qa-more-question {
   display: inline-block;
-  border-style: solid;
-  border-color: rgb(48, 47, 47);
-  border-width:  1px;
+  border-style: none;
+  /* border-color: rgb(48, 47, 47);
+  border-width:  1px; */
+  border-radius: 5px;
   padding: 10px;
   margin-left: 10px;
   margin-inline-end: 5px;
   margin-bottom: 20px;
   cursor: pointer;
+  background-color: #f0f0f0;
+  box-shadow: 2px 4px 4px 2px rgb(0 0 0 / 20%);
+  color: var(--second--color);
 }
-
+.qa-more-question:hover {
+ background-color: var(--second--color);
+ color: #f0f0f0
+}
 
 
 .qa-main-questions {
@@ -233,7 +240,7 @@
   text-align: center;
 }
 .qa-form-btn {
-  background-color: rgba(221, 68, 30, 0.925);
+  background-color: var(--second--light);
   color: #fff;
   width: 40%;
   padding: 8px;
@@ -244,7 +251,8 @@
   font-size: 14px;
 }
 .qa-form-btn:hover {
-  border: 2px solid rgba(221, 68, 30, 0.925);
+  background-color: var(--second--color);
+  border: 2px solid var(--second--color)
 }
 
 .qa-input {

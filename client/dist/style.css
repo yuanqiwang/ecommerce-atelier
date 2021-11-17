@@ -27,19 +27,12 @@ hr.review-solid {
 }
 
 :root {
-  /* --primary--color: #e0e0e0;
+  --primary--color: #e0e0e0;
   --primary--light: #ffffff;
   --primary--dark: #aeaeae;
   --second--color: #c62828;
   --second--light: #ff5f52;
   --second--dark:#8e0000;
-  --text--color: #000000; */
-  --primary--color: #e0e0e0;
-  --primary--light: #ffa55f;
-  --primary--dark: #c24400;
-  --second--color: #b2e096;
-  --second--light: #e5ffc7;
-  --second--dark:#81ae67;
   --text--color: #000000;
   --global-theme-toggle-content: '🌞 THEME';
   --h1--size: 56px;
