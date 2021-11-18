@@ -8,7 +8,7 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [questionList, setQuestionList] = useState([]);
-
+  const placeholder = 'HAVE A QUESTION? SEARCH FOR ANSWER...'
   useEffect(() => {
     setQuestionList(questions)
   }, [questions])
@@ -39,7 +39,7 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
       <h3>{`QUESTIONS & ANSWERS`}</h3>
       <Search
         onChange={handleSearch}
-        placeholder={'HAVE A QUESTION? SEARCH FOR ANSWER...'}
+        placeholder={placeholder}
       />
       <QuestionsList
         questions={questionList}

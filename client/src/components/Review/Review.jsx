@@ -5,6 +5,7 @@ import UserReviews from './ReviewChildren/UserReviews.jsx'
 import SortReview from './ReviewChildren/SortReview.jsx'
 import MoreReviewButton from './ReviewChildren/MoreReviewButton.jsx'
 import AddReviewButton from './ReviewChildren/AddReviewButton.jsx'
+import Search from '../../search.jsx';
 
 
 class Review extends React.Component {
@@ -18,10 +19,11 @@ class Review extends React.Component {
       review3: false,
       review2: false,
       review1: false,
-      element: 0
+      element: 0,
+      searchTerm: []
     }
+    this.handleSearch = this.handleSearch.bind(this);
   }
-
   handleCallback = (childData) => {
     this.setState({dropdown: childData})
   }
@@ -36,13 +38,20 @@ class Review extends React.Component {
       [review]: !prevState[review],
       element: childData
     }))
+  }
 
+  handleSearch = (e) => {
+    this.setState({searchTerm: e.target.value})
   }
 
   render() {
+    const placeholder = 'SEARCH FOR A REVIEW'
     if (this.props.reviews !== undefined) {
       return (
         <>
+        <div class="Review">
+          <Search onChange={this.handleSearch} placeholder={placeholder}/>
+
         <div className="review-grid" onClick={this.props.trackClick}>
           <div id="review-container-left">
           <h3>Reviews & Ratings</h3>
@@ -75,6 +84,7 @@ class Review extends React.Component {
                 review4={this.state.review4}
                 review5={this.state.review5}
                 element={this.state.element}
+                searchTerm={this.state.searchTerm}
               />
 
             </div>
@@ -89,6 +99,7 @@ class Review extends React.Component {
               reviews={this.props.stars['characteristics'] !== undefined ? this.props.stars['characteristics'] : null}
             />
           </div>
+        </div>
         </div>
         </>
       )

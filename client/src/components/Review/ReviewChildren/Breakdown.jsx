@@ -76,7 +76,7 @@ class Breakdown extends React.Component {
             <progress id="breakdown-rating" max="100" value={(this.props['ratings'][2]/nOfRatings)*100}></progress>
           </div>
           <div id="breakdown" onClick={() => this.handleChange(1)}>
-            <label htmlFor="breakdown-rating" >1 star&nbsp;</label>
+            <label htmlFor="breakdown-rating" >1 star&nbsp;&nbsp;&nbsp;</label>
             <progress id="breakdown-rating" max="100" value={(this.props['ratings'][1]/nOfRatings)*100}></progress>
           </div>
         </div>

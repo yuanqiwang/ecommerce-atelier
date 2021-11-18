@@ -28,6 +28,7 @@ const UserReviews = (props) => {
           return (
             <>
               <ReviewCard
+                searchTerm={props.searchTerm}
                 reviewId={item.review_id}
                 index={i}
                 date={date}
@@ -61,6 +62,7 @@ const UserReviews = (props) => {
         return  (
           <>
             <ReviewCard
+              searchTerm={props.searchTerm}
               reviewId={item.review_id}
               index={i}
               date={date}
@@ -92,6 +94,7 @@ const UserReviews = (props) => {
           return  (
             <>
               <ReviewCard
+                searchTerm={props.searchTerm}
                 reviewId={item.review_id}
                 index={i}
                 date={date}
