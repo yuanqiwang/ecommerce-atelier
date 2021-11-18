@@ -112,13 +112,13 @@ const App = ()=> {
             productInfo={productInfo}
             questions={questions}
             trackClick={(e)=>trackClick(e, 'QA')}/>
-          <Review
+          {/* <Review
             productID={productId}
             reviews={reviews}
             stars={stars}
             productInfo={productInfo}
             trackClick={(e)=>trackClick(e, 'Review')}
-          />
+          /> */}
           </Suspense>
         </div>
     );

@@ -42,11 +42,11 @@ const Answer = ({answer}) => {
       <div> <span className ='qa-tiny'> {answer.body}</span> </div>
       {answer.photos.length?
        <div className='qa-answer-img-container'>
-         {answer.photos.map((photo, index)=>{
+         {answer.photos.map((photo, i)=>{
            if (typeof photo == 'object') {
-             return (<img className='qa-answer-img' src={photo.url} key={index} onClick={handleModalOpen}/>)
+             return (<img className='qa-answer-img' src={photo.url} key={i} onClick={handleModalOpen} alt={`answer image ${i}`} />)
            } else {
-             return (<img className='qa-answer-img' src={photo} key={index} onClick={handleModalOpen}/>)
+             return (<img className='qa-answer-img' src={photo} key={i} onClick={handleModalOpen} alt={`answer image ${i}`} />)
            }
 
          })}

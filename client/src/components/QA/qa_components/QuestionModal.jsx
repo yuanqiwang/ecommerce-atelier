@@ -65,6 +65,7 @@ const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion
               // onChange={(e)=> setBody(e.target.value)}
               value={values.body}
               onChange={handleChange}
+              aria-label='question-input'
               required/>
               {errors.body&&<small> {errors.body}</small>}
           </div>
