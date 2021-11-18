@@ -8,13 +8,15 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [questionList, setQuestionList] = useState([]);
-
+  const placeholder = 'HAVE A QUESTION? SEARCH FOR ANSWER...'
   useEffect(() => {
     // questions.sort((a,b) => {//need to do this with search results
     //   return b.question_helpfulness - a.question_helpfulness
     // });
     setQuestionList(questions)
   }, [questions])
+
+  //console.log(questionList)
 
   useEffect(() => {
      if (searchTerm.length >= 3) {
@@ -41,6 +43,7 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
       <h3>{`QUESTIONS & ANSWERS`}</h3>
       <Search
         onChange={handleSearch}
+        placeholder={placeholder}
       />
       <QuestionsList
         questions={questionList}

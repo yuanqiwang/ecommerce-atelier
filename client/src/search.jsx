@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 
-const Search = ({onChange}) => {
+const Search = ({onChange, placeholder}) => {
+
   return (
     <div className='qa-search-bar'>
         <input
            type='text'
-           placeholder='HAVE A QUESTION? SEARCH FOR ANSWER...'
+           placeholder={placeholder}
            onChange={onChange}
         />
         <button className="qa-search-btn">

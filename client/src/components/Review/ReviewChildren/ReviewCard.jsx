@@ -4,9 +4,10 @@ import Star from '../../../star.jsx';
 
 
 const ReviewCard = (props) => {
-  console.log(props)
   let id = props.reviewId
   let count = props.helpfulness
+  let searchTerm = props.searchTerm
+
   const [helpfulStatus, setHelpfulStatus] = useState(() => {
     return localStorage.getItem(`helpful`+id) || false
   })
@@ -14,6 +15,14 @@ const ReviewCard = (props) => {
     return localStorage.getItem(`review`+id) || false
   })
   const [helpfulCount, setHelpfulCount] = useState(count)
+  const [reviewList, setReviewList] = useState([])
+  const [activeSearch, setActiveSearch] = useState(false)
+
+
+  useEffect(() => {
+    setReviewList(searchTerm)
+    reviewList.length >= 3 ? setActiveSearch(true) : setActiveSearch(false)
+  }, [searchTerm]);
 
   let photos = props.photos.map( (photo, index) =>
     <><img id="review-img" src={photo.url}></img></>
@@ -48,24 +57,29 @@ const ReviewCard = (props) => {
 
   }
 
-  return (
-    <div>
-      <div className="review-card">
-        <div className="star-rating-card">
-          <Star rating={props.rating} />
+  if ( (reviewList.length >= 3 && ( JSON.stringify(props.body).toLowerCase()).indexOf(reviewList.toLowerCase()) > 0) || activeSearch === false) {
+    return (
+      <div>
+        <div className="review-card">
+          <div className="star-rating-card">
+            <Star rating={props.rating} />
+          </div>
+          <div id="review-reviewer"> ✓{props.reviewer}, {props.date}</div>
+          <div id="review-title">{props.summary}</div>
+          <div id="review-body">{props.body}</div>
+          <div id="review-photo">{photos}</div>
+          <div id="review-recommend">{rec}</div>
+          <div id="review-response">{props.response}</div>
+          <div id="review-helpful" >Helpful? <span id="helpful" onClick={handleHelpful}>{helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) | <span onClick={handleReport}>{reportStatus ? "✓ Report internally reviewed" : "Report"}</span></div>
+          <hr id="review-solid"></hr>
         </div>
-        <div id="review-reviewer"> ✓{props.reviewer}, {props.date}</div>
-        <div id="review-title">{props.summary}</div>
-        <div id="review-body">{props.body}</div>
-        <div id="review-photo">{photos}</div>
-        <div id="review-recommend">{rec}</div>
-        <div id="review-response">{props.response}</div>
-        <div id="review-helpful" >Helpful? <span id="helpful" onClick={handleHelpful}>{helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) | <span onClick={handleReport}>{reportStatus ? "✓ Report internally reviewed" : "Report"}</span></div>
-        <hr id="review-solid"></hr>
       </div>
-    </div>
+    )
+} else {
+  return (
+    null
   )
-
+}
 }
 
 export default ReviewCard

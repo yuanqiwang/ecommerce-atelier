@@ -1,12 +1,8 @@
 .review-grid {
-  margin: auto;
-  width:70%;
+
 }
 
-#left-column {
-  margin:30;
-  width:90%
-}
+
 
 #review-container-left {
   overflow: auto;
