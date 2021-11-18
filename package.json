@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --collectCoverage=true",
     "start": "nodemon server.js",
-    "react-dev": "webpack --mode development --watch"
+    "react-dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
