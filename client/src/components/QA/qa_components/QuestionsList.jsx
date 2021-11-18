@@ -12,12 +12,18 @@ const QuestionsList = ({questions, productId, productInfo}) => {
 
   useEffect(() => {
     // console.log('initial render and when questions is updated ')
-    if (questions) {
-      setQuestionList(questions)
-      setMoreQuestionVisible(true)
+    if (questions)  {
+      if (questions.length>2) {
+        setQuestionList(questions)
+        setMoreQuestionVisible(true)
+      } else {
+        setQuestionList(questions)
+        setMoreQuestionVisible(false)
+      }
     }
-    // if (questions.length > 0) {
-    //   setMoreQuestionVisible(true)
+    // else {
+    //   setQuestionList(questions)
+    //   setMoreQuestionVisible(false)
     // }
   },[questions])
 
@@ -26,8 +32,7 @@ const QuestionsList = ({questions, productId, productInfo}) => {
     if (questionDisplayCount >= questions.length) {
       setMoreQuestionVisible(false)
     }
-  },[questionDisplayCount]
-  )
+  },[questionDisplayCount])
 
   const handleSubmitQuestion = () => {
 

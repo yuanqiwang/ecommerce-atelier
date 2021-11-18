@@ -10,9 +10,6 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
   const [questionList, setQuestionList] = useState([]);
   const placeholder = 'HAVE A QUESTION? SEARCH FOR ANSWER...'
   useEffect(() => {
-    // questions.sort((a,b) => {//need to do this with search results
-    //   return b.question_helpfulness - a.question_helpfulness
-    // });
     setQuestionList(questions)
   }, [questions])
 
@@ -21,15 +18,16 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
   useEffect(() => {
      if (searchTerm.length >= 3) {
        let matchResult = []
-       questions.forEach((question) => {
-        if (JSON.stringify(question.question_body).indexOf(searchTerm) >0) {
-          matchResult.push(question)
-        }
-       })
-       setQuestionList(matchResult);
+       if (questions) {
+         questions.forEach((question) => {
+           if (JSON.stringify(question.question_body).toLowerCase().indexOf(searchTerm.toLowerCase()) > 0) {
+             matchResult.push(question)
+           }})
+         setQuestionList(matchResult);
+       }
      } else {
        setQuestionList(questions);
-     }
+     } //handle no search returned
 
    }, [searchTerm]);
 

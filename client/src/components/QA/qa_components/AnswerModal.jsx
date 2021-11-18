@@ -23,7 +23,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
     data.append('upload_preset', 'ketchup') //specific to cloudinary
 
     setLoading(true);
-    const res  = await fetch('https://api.cloudinary.com/v1_1/dseonxo5o/image/upload',
+    const res = await fetch('https://api.cloudinary.com/v1_1/dseonxo5o/image/upload',
       {
         method: "Post",
         body: data
@@ -78,6 +78,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
               maxLength='1000'
               autoComplete='off'
               onChange={(e)=> setBody(e.target.value)}
+              aria-label='answer-input'
               required/>
           </div>
           <div className='qa-form-control'>
@@ -115,17 +116,19 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
                   type='file'
                   name='file'
                   placeholder = 'Upload an image'
+                  data-testid ='upload-image'
                   onChange={uploadImage}
                   multiple
                 />
                 : null
               }
+              <span className='qa-instructions'> Upload up to 5 photos</span>
               {loading ? (
-                <h3>loading ... </h3>
+                <h3 data-testid='image-loaded'>loading ... </h3>
               ) : (
-              <div className="form-group multi-preview">
+              <div className="form-group qa-multi-preview" data-testid='image-loaded'>
                 {(photos || []).map((url,i) => (
-                    <img key={i} src={url} alt="..." />
+                    <img key={i} src={url} alt={`answer image ${i}`} />
                 ))}
               </div>
 
