@@ -251,11 +251,14 @@ thead {
 }
 thead th {
   padding: 3px;
+  font-weight: 400;
 }
 
 tbody {
   color: var(--text--color);
   font-size: var(--b3--size);
+  font-weight: 400;
+  padding: 1px;
 }
 
 tbody td {

@@ -1,7 +1,9 @@
 const express = require('express');
+const dotenv = require('dotenv');
 var compression = require('compression');
 let app = express();
 let PORT = 1234;
+dotenv.config();
 
 const config = require('./config.js'); // Name: github_token
 const axios = require('axios');
@@ -19,22 +21,21 @@ app.get('/product/info/*', async (req, res) => {
   const optionsRelatedproduct = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
-
   const relatedProductRequest = axios(optionsRelatedproduct);
 
   const optionsReview = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
   const reviewRequest = axios(optionsReview);
 
   const optionsStars = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${productId}`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
 
   const starsRequest = axios(optionsStars)
@@ -42,7 +43,7 @@ app.get('/product/info/*', async (req, res) => {
   const optionsStyle = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
 
   const styleRequest = axios(optionsStyle)
@@ -51,7 +52,7 @@ app.get('/product/info/*', async (req, res) => {
   const optionsProduct = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
 
   const productRequest = axios(optionsProduct)
@@ -59,7 +60,7 @@ app.get('/product/info/*', async (req, res) => {
   const optionsQuestions= {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=10000`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
   const questionsRequest = axios(optionsQuestions);
 
@@ -92,7 +93,7 @@ app.post('/qa/questions', (req, res) => {
   const optionPostQuestion = {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
-    headers: { Authorization: config.github_token },
+    headers: { Authorization: process.env.github_token || config.github_token },
     data: req.body
   };
 
@@ -111,7 +112,7 @@ app.post('/review/reviews', (req, res) => {
   const optionPostReview = {
     method: 'Post',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
-    headers: { Authorization: config.github_token },
+    headers: { Authorization: process.env.github_token || config.github_token },
     data: req.body
   };
 
@@ -130,7 +131,7 @@ app.put('/review/reviews/helpful', (req, res) => {
   const optionPutReviewHelpful = {
     method: 'Put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewHelpfulId}/helpful`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
   axios(optionPutReviewHelpful)
   .then((result) => {
@@ -146,7 +147,7 @@ app.put('/review/reviews/report', (req, res) => {
   const optionPutReviewHelpful = {
     method: 'Put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${reviewReportId}/report`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
   //current error means url does not exist?
   axios(optionPutReviewHelpful)
@@ -166,7 +167,7 @@ app.get('/related/*', async (req, res) => {
   const optionsStars = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${productId}`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
 
   const starsRequest = axios(optionsStars)
@@ -174,7 +175,7 @@ app.get('/related/*', async (req, res) => {
   const optionsStyle = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
 
   const styleRequest = axios(optionsStyle)
@@ -183,7 +184,7 @@ app.get('/related/*', async (req, res) => {
   const optionsProduct = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
 
   const productRequest = axios(optionsProduct)
@@ -212,7 +213,7 @@ app.post('/qa/questions', (req, res) => {
   const optionPostQuestion = {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
-    headers: { Authorization: config.github_token },
+    headers: { Authorization: process.env.github_token || config.github_token },
     data: req.body
   };
 
@@ -229,7 +230,7 @@ app.get('/qa/questions/:id', async (req, res) => {
   const optionsQuestions= {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=10000`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   }
   const questionsRequest = axios(optionsQuestions);
 
@@ -247,7 +248,7 @@ app.post('/qa/questions/:id/answers', (req, res) => {
   const optionPostAnswer = {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`,
-    headers: { Authorization: config.github_token },
+    headers: { Authorization: process.env.github_token || config.github_token },
     data: req.body
   };
 
@@ -264,7 +265,7 @@ app.get('/qa/questions/:id/answers', (req, res) => {
   const optionGetAnswer = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers?&count=1000`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   };
 
   axios(optionGetAnswer)
@@ -281,7 +282,7 @@ app.put('/qa/questions/helpful', (req, res) => {
   const optionQuestionHelpful= {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   };
   axios(optionQuestionHelpful)
     .then((result) => {
@@ -297,7 +298,7 @@ app.put('/qa/answers/helpful', (req, res) => {
   const optionAnswerHelpful= {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answersId}/helpful`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   };
   axios(optionAnswerHelpful)
     .then((result) => {
@@ -313,7 +314,7 @@ app.put('/qa/answers/report', (req, res) => {
   const optionAnswerReport = {
     method: 'PUT',
     url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${id}/report`,
-    headers: { Authorization: config.github_token }
+    headers: { Authorization: process.env.github_token || config.github_token }
   };
   axios(optionAnswerReport)
     .then(result => res.sendStatus(204))
@@ -324,7 +325,7 @@ app.post('/interactions', (req, res) => {
   const optionInteractions = {
     method: 'POST',
     url:`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`,
-    headers: { Authorization: config.github_token },
+    headers: { Authorization: process.env.github_token || config.github_token },
     data: req.body
   };
   axios(optionInteractions)

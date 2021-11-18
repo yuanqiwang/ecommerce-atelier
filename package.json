@@ -41,6 +41,7 @@
     "babel-loader": "^8.2.3",
     "body-parse": "^0.1.0",
     "compression": "^1.7.4",
+    "dotenv": "^10.0.0",
     "eslint": "^8.2.0",
     "eslint-plugin-react": "^7.26.1",
     "express": "^4.17.1",
