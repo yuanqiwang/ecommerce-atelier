@@ -13,8 +13,6 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
     setQuestionList(questions)
   }, [questions])
 
-  //console.log(questionList)
-
   useEffect(() => {
      if (searchTerm.length >= 3) {
        let matchResult = []
