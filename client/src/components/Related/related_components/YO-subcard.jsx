@@ -10,7 +10,7 @@ const YO_sub = ({response, removeoutfit}) => {
   const[salePrice, setSaleprice] = useState(0);
   const[styleName, setStyleName] = useState();
   const[stars, setStars] = useState({});
-  const[addtionalImage, setaddtionalImage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
+  const[addtionalImage, setaddtionalImage] = useState();
 
 
 
@@ -23,6 +23,8 @@ const YO_sub = ({response, removeoutfit}) => {
 
       if(response.productStyle[0]['photos'][0]['url']){
         setStylePicture(response.productStyle[0]['photos'][0]['url']);
+      } else {
+        setStylePicture('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
       }
 
       if(response.productStyle[0]['photos'][0]['thumbnail_url']){
@@ -32,6 +34,8 @@ const YO_sub = ({response, removeoutfit}) => {
       setStylePrice(parseInt(response.productStyle[0]['original_price']).toFixed(0))
       if(response.productStyle[0]['sale_price']){
         setSaleprice(parseInt(response.productStyle[0]['sale_price']).toFixed(0))
+      } else {
+        setSaleprice(0)
       }
       const ProductName = response.productInfo.name;
       setStyleName(ProductName)
@@ -48,7 +52,7 @@ const YO_sub = ({response, removeoutfit}) => {
       <div className='sub-card-img'>
          <button id='yo-action-button'  onClick={() => removeoutfit(productId)} className="fas fa-times-circle"></button>
          <Link to={`/product/${productId}`}>
-         <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
+         <div className='rp-card-img' style={{'backgroundImage': "url('" + stylePic + "')"}} ></div>
          </Link>
       </div>
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import ComparisonModal from './RP-Modal.jsx';
 import { Link } from 'react-router-dom';
 import Star from '../../../star.jsx';
+import Additional from './Additional.jsx';
 
 const RP_sub = ({item, mainInfo}) => {
 
@@ -14,7 +15,8 @@ const RP_sub = ({item, mainInfo}) => {
   const[styleName, setStyleName] = useState();
   const[stars, setStars] = useState({});
   const[showModal, setModal] = useState(false);
-  const[addtionalImage, setaddtionalImage] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png');
+  const[addtionalImage, setaddtionalImage] = useState([]);
+  const[display, setDisplay] = useState(false);
 
 
   const getProductInfo = async () => {
@@ -38,11 +40,20 @@ const RP_sub = ({item, mainInfo}) => {
 
         setStylePrice(parseInt(response.data['style']['results'][0]['original_price']).toFixed(0))
         if(response.data['style']['results'][0]['sale_price']){
-          setSaleprice(parseInt(response.data['style']['results'][0]['sale_price']).toFixed(0))
+          setSaleprice(parseInt(response.data['style']['results'][0]['sale_price']).toFixed(0));
+        } else {
+          setSaleprice(0);
         }
         const ProductName = response.data['prod']['name'];
-        // + ' -- ' + response.data['style']['results'][0]['name']
         setStyleName(ProductName)
+
+        const addPhotos = response.data['style']['results'].flatMap(style=> style.photos[0].thumbnail_url ? style.photos[0].thumbnail_url : [] );
+        if(addPhotos){
+          setaddtionalImage(addPhotos);
+        } else {
+          setaddtionalImage([]);
+        }
+
       }
     } catch (err){
       console.log(err);
@@ -61,12 +72,15 @@ const RP_sub = ({item, mainInfo}) => {
     event.target.style['-webkit-text-fill-color'] = 'transparent';
   }
 
-  // const imgMouseOver = (event) => {
-  //   setStylePicture(response.data['style']['results'][0]['photos'][0]['thumbnail_url']);
-  // }
-  // const imgMouseOut = (event) => {
-  //   setStylePicture(response.data['style']['results'][0]['photos'][0]['url']);
-  // }
+  const imgMouseOver = (event) => {
+    setDisplay(true);
+  }
+  const imgMouseOut = (event) => {
+    setDisplay(false);
+  }
+  const changeBackground = (img) => {
+    setStylePicture(img);
+  }
 
   const actionClick = () => {
     setModal(!showModal);
@@ -79,11 +93,16 @@ const RP_sub = ({item, mainInfo}) => {
   return(
     <article className = 'rp-card' data-testid = 'rp-subcard' id = 'rp-card'>
 
-      <div className='sub-card-img'>
+      <div className='sub-card-img' id = 'sub-card-img' onMouseOver = {imgMouseOver} onMouseLeave = {imgMouseOut}>
         <button id='rp-action-button' onMouseOver={btMouseOver} onMouseOut={btMouseOut} onClick={actionClick} href="#" className="fas fa-star"> </button>
         <Link to={`/product/${productId}`}>
-        <div className='rp-card-img' style={{'background-image': "url('" + stylePic + "')"}} ></div>
+        <div className='rp-card-img' style={{'backgroundImage': "url('" + stylePic + "')"}} ></div>
         </Link>
+        {
+          display && addtionalImage.length > 0 ?
+          <Additional images={addtionalImage} changeBackground={changeBackground} />
+          : null
+        }
       </div>
 
       <div className ='sub-card' id = 'sub-card'>
