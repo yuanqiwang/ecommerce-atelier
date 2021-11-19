@@ -146,9 +146,9 @@ export default function AddReviewButton( {productName, productId, reviews}) {
             <div className="rmodal-characteristics">
               <div className="rmodal-question">Characteristics*</div>
                 {characteristicTitles !== null ? characteristicTitles.map( (characteristic, index) =>
-                <>
-                <span id="modal-charac-title">{characteristic}</span><br/>
-                  <div className="letter-slider">
+                <div key={index}>
+                <span id="modal-charac-title" >{characteristic}</span><br/>
+                  <div className="letter-slider" >
                     <div className="rmodal-selected">choice: {characVal[characteristic]}</div>
                     <input
                       id={`${characteristic}1`}
@@ -171,8 +171,8 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                           [{...reviews[[characteristic]]}["id"].toString()]:2
                         }))
                         setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][1]]}))}}/>
-                    <label htmlFor={`${characteristic}2`}>{meanings[characteristic][1]}</label>
-                    <input id={`${characteristic}3`} type="radio" name={characteristic} value="3" onClick={() =>{
+                    <label  htmlFor={`${characteristic}2`}>{meanings[characteristic][1]}</label>
+                    <input  id={`${characteristic}3`} type="radio" name={characteristic} value="3" onClick={() =>{
                       setCharacteristics(prevState => (
                         {...prevState,
                         [{...reviews[[characteristic]]}["id"].toString()]:3
@@ -194,7 +194,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                       setCharacVal(prevState => ({...prevState,[characteristic]: [meanings[characteristic][4]]}))}}/>
                     <label htmlFor={`${characteristic}5`}>{meanings[characteristic][4]}</label>
                   </div>
-                </>
+                </div>
                 ) : null}
               </div>
             <div className="rmodal-summary">

@@ -49,7 +49,7 @@ class Review extends React.Component {
     if (this.props.reviews !== undefined) {
       return (
         <>
-        <div class="Review">
+        <div className="Review">
           <Search onChange={this.handleSearch} placeholder={placeholder}/>
 
         <div className="review-grid" onClick={this.props.trackClick}>
