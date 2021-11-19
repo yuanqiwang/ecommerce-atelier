@@ -11,6 +11,8 @@ class ImageGallery extends React.Component {
     };
 
     this.changeHeroPic = this.changeHeroPic.bind(this);
+    this.nextImage = this.nextImage.bind(this);
+    this.prevImage = this.prevImage.bind(this);
     this.changeThumbnail = this.changeThumbnail.bind(this);
   }
 
@@ -21,6 +23,24 @@ class ImageGallery extends React.Component {
 
   changeThumbnail(thumbIndex) {
     this.setState({currentImg: thumbIndex});
+  }
+
+  nextImage() {
+    console.log('props: ', this.props);
+    let thumbIndex = this.state.currentImg;
+    // if ( this.state.currentImg === this.props.images.length ) {
+    //   this.changeThumbnail(0);
+    // } else {
+    //   this.changeThumbnail(this.state.currentImg + 1 );
+    // }
+
+    thumbIndex++;
+
+    this.setState({currentImg: thumbIndex});
+  }
+
+  prevImage() {
+    console.log('state: ', this.state);
   }
 
   expandGallery() {
@@ -50,11 +70,11 @@ class ImageGallery extends React.Component {
             changePic={this.changeHeroPic}
             changeThumbnail={this.changeThumbnail} />
 
-          <div className="overview_hero_nav overview_hero_nav_prev"></div>
+          <div className="overview_hero_nav overview_hero_nav_prev" onClick={this.prevImage}></div>
           <div id="heroPic" style={heroPic}></div>
-          <div className="overview_hero_nav overview_hero_nav_next"></div>
+          <div className="overview_hero_nav overview_hero_nav_next" onClick={this.nextImage}></div>
           <div id="overview_fullscreen_toggle" onClick={this.expandGallery}>
-            <div className="toggle-icon"></div>
+          <div className="toggle-icon"></div>
           </div>
         </div>
       </div>
