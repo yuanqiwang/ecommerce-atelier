@@ -14,14 +14,15 @@ function AddToCart(props) {
   }
 
   let starBtn = <div id="overview_favorite" onClick={addToOutfit}><i className="fa fa-star" aria="hidden"></i></div>;
+  let currentOutfits = window.localStorage.AtelierOutfits;
 
-  if (Object.keys(JSON.parse(window.localStorage.AtelierOutfits)).includes(String(props.productID))) {
+  if ( currentOutfits && Object.keys(JSON.parse(currentOutfits)).includes(String(props.productID))) {
     starBtn = <div  id="overview_favorite" className="selected" onClick={addToOutfit}><i className="fa fa-star" aria="hidden"></i></div>;
   }
 
   return (
     <div id="overview_add_cart" data-testid="add-to-cart">
-      <button>Add to Bag<span>+</span></button>
+      <button onClick={props.addToCart}>Add to Cart<span>+</span></button>
       {starBtn}
     </div>
   );

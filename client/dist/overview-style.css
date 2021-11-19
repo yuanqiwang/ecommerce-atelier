@@ -356,6 +356,7 @@
 #overview_select_size {
   display: flex;
   color: var(--text--color);
+  padding: 20px 5px 10px;
 }
 
 #overview_select_size .qty-dropdown {
@@ -383,6 +384,7 @@
 #overview_add_cart {
   display: flex;
   align-items: center;
+  padding: 10px 12px;
 }
 
 #overview_add_cart button {
@@ -454,6 +456,14 @@
   color: var(--text--color);
   height: 200px;
   margin: 15px 0;
+}
+
+#overview_product_info div {
+ border-radius: 20px 0 0 20px;
+}
+
+#overview_product_bullets div {
+  border-radius: 0 20px 20px 0;
 }
 
 #overview_product_info h3,
