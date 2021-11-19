@@ -22,7 +22,7 @@ function AddToCart(props) {
 
   return (
     <div id="overview_add_cart" data-testid="add-to-cart">
-      <button onClick={props.addToCart}>Add to Cart<span>+</span></button>
+      <button onClick={props.addToCart} >Add to Cart<span>+</span></button>
       {starBtn}
     </div>
   );

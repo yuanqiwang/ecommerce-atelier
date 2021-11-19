@@ -8,8 +8,9 @@ class ProductOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: -1,
-      qty: 1
+      size: '',
+      qty: 1,
+      maxQty: 1
     };
 
     this.updateSize = this.updateSize.bind(this);
@@ -17,9 +18,19 @@ class ProductOptions extends React.Component {
     this.addToCart = this.addToCart.bind(this);
   }
 
-  updateSize() {}
+  updateSize(sizeData) {
+    sizeData = JSON.parse(sizeData.target.value);
+    console.log('chose a size!', sizeData);
 
-  updateQty() {}
+    this.setState({size: sizeData.size, maxQty: sizeData.quantity});
+  }
+
+  updateQty(quantity) {
+    // console.log('chose a quantity!', quantity.target.value);
+    this.setState({qty: parseInt(quantity.target.value)});
+
+    console.log(this.state);
+  }
 
   addToCart() {
     let purchaseItem = {
@@ -29,21 +40,20 @@ class ProductOptions extends React.Component {
       qty: this.state.qty
     };
 
-    let currentCart = window.localStorage.getItem('AtelierCart');
+    let currentCart = window.localStorage.AtelierCart;
 
     if (currentCart) {
       currentCart = JSON.parse(currentCart);
       let itemsInCart = Object.keys(currentCart).length;
 
       currentCart[itemsInCart] = purchaseItem;
-
-      window.localStorage.setItem('AtelierCart', JSON.stringify(currentCart));
     } else {
       currentCart = {0: purchaseItem};
-
-      window.localStorage.setItem('AtelierCart', JSON.stringify(currentCart));
     }
-    // console.log('added to cart!');
+
+    window.localStorage.setItem('AtelierCart', JSON.stringify(currentCart));
+
+    console.log('added to cart!');
   }
 
   render() {
@@ -58,6 +68,7 @@ class ProductOptions extends React.Component {
           productStyle={this.props.productStyle}
           currentStyleID={this.props.currentStyleID}
           changeStyle={this.props.changeStyle}
+          maxQty={this.state.maxQty}
           updateSize={this.updateSize}
           updateQty={this.updateQty} />
         <AddToCart
