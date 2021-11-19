@@ -45,19 +45,23 @@
   left: 10px;
   height: 522px;
   overflow: hidden;
-  padding: 23px 0;
+  padding: 23px 5px;
 }
 
 .overview_thumbnail {
   padding: 5px;
   margin: 1px 0;
   cursor: pointer;
-  background: var(--primary--color);
+  background: var(--primary--light);
+  transition-property: transform;
   transition-duration: 100ms;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 3px var(--primary--dark);
 }
 
 .overview_thumbnail:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .overview_thumbnail.active {
@@ -102,11 +106,11 @@
 }
 
 .overview_thumb_scroll_up::before {
-  border-bottom: 8px solid black;
+  border-bottom: 8px solid var(--text--color);
 }
 
 .overview_thumb_scroll_down::before {
-  border-top: 8px solid black;
+  border-top: 8px solid var(--text--color);
 }
 
 .overview_hero_nav {
@@ -117,14 +121,28 @@
 }
 
 .overview_hero_nav_prev {
-  left: 100px;
+  left: 85px;
   top: 0;
+  transition-property: transform top;
+  transition-duration: 100ms;
+}
+
+.overview_hero_nav_prev:hover {
+  transform: scale(1.1);
+  top: -10px;
 }
 
 .overview_hero_nav_next {
   right: 0;
   top: 50px;
   height: calc(100% - 50px);
+  transition-property: transform top;
+  transition-duration: 100ms;
+}
+
+.overview_hero_nav_next:hover {
+  transform: scale(1.1);
+  top: 40px;
 }
 
 .overview_hero_nav_prev::before,
@@ -140,12 +158,12 @@
 
 .overview_hero_nav_prev::before {
   top: calc(50% - 8px);
-  border-right: 20px solid black;
+  border-right: 20px solid var(--text--color);
 }
 
 .overview_hero_nav_next::before {
   top: calc(50% - 33px);
-  border-left: 20px solid black;
+  border-left: 20px solid var(--text--color);
 }
 
 #overview_fullscreen_toggle {
@@ -157,17 +175,20 @@
   right: 10px;
   height: 50px;
   width: 50px;
-  background: darkgray;
+  background: var(--primary--dark);
   cursor: pointer;
+  transition-property: transform;
   transition-duration: 100ms;
+  box-shadow: 0 1px 3px var(--text--color);
+  border-radius: 50%;
 }
 
 #overview_fullscreen_toggle:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .toggle-icon {
-  border: 4px solid black;
+  border: 4px solid var(--text--color);
   width: 20px;
   height: 20px;
   line-height: 30px;
@@ -176,7 +197,7 @@
 .toggle-icon::before,
 .toggle-icon::after {
   content: '';
-  background: darkgray;
+  background: var(--primary--dark);
   position: absolute;
 }
 
@@ -202,6 +223,7 @@
   top: 0;
   left: 0;
   padding: 0;
+  transition-property: width;
   transition-duration: 300ms;
   width: 714px;
   height: 594px;
@@ -386,6 +408,7 @@
   cursor: pointer;
   user-select: none;
   background-color: var(--primary--color);
+  transition-property: background-color color border;
   transition-duration: 100ms;
 }
 
