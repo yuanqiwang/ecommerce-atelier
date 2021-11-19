@@ -17,7 +17,10 @@ function ProductOptions(props) {
         productStyle={props.productStyle}
         currentStyleID={props.currentStyleID}
         changeStyle={props.changeStyle} />
-      <AddToCart />
+      <AddToCart
+        productID={props.productInfo.id}
+        addOutfit={props.addoutfit}
+        removeOutfit={props.removeoutfit} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ function StarRating(props) {
     reviewsSection.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   };
 
-  console.log('star props: ', props.stars);
+  // console.log('star props: ', props.stars);
 
   // let avgRating = 0;
 

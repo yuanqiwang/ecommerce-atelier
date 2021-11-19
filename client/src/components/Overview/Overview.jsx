@@ -51,7 +51,9 @@ class Overview extends React.Component {
           productStyle={this.props.productStyle}
           currentStyleID={this.state.currentStyleID}
           stars={this.props.stars}
-          changeStyle={this.changeStyle} />
+          changeStyle={this.changeStyle}
+          addoutfit={this.props.addoutfit}
+          removeoutfit={this.props.removeoutfit} />
 
         <ProductInfo
           productInfo={this.props.productInfo}

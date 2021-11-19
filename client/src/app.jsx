@@ -97,7 +97,9 @@ const App = ()=> {
           <Overview
             productInfo={productInfo}
             productStyle={productStyle}
-            stars={stars} />
+            stars={stars}
+            addoutfit={addoutfit}
+            removeoutfit={removeoutfit} />
           <Related
             relatedProductArr={relatedProductArr}
             productID={productId}
