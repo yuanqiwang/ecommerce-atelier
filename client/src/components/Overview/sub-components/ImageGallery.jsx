@@ -23,6 +23,15 @@ class ImageGallery extends React.Component {
     this.setState({currentImg: thumbIndex});
   }
 
+  expandGallery() {
+    let imageGallery = document.querySelector('#gallery_expander');
+    if ( imageGallery.classList.contains('expanded') ) {
+      imageGallery.classList.remove('expanded');
+    } else {
+      imageGallery.classList.add('expanded');
+    }
+  }
+
   render() {
     let heroPic = {'backgroundImage': "url('" + this.state.heroPic + "')"};
     let thumbnails = []
@@ -35,16 +44,18 @@ class ImageGallery extends React.Component {
 
     return (
       <div id="overview_image_gallery" data-testid="image-gallery">
-        <Thumbnails
-          thumbnails={thumbnails}
-          changePic={this.changeHeroPic}
-          changeThumbnail={this.changeThumbnail} />
+        <div id="gallery_expander">
+          <Thumbnails
+            thumbnails={thumbnails}
+            changePic={this.changeHeroPic}
+            changeThumbnail={this.changeThumbnail} />
 
-        <div className="overview_hero_nav overview_hero_nav_prev"></div>
-        <div id="heroPic" style={heroPic}></div>
-        <div className="overview_hero_nav overview_hero_nav_next"></div>
-        <div id="overview_fullscreen_toggle" onClick={() => {console.log('woosh!')}}>
-          <div className="toggle-icon"></div>
+          <div className="overview_hero_nav overview_hero_nav_prev"></div>
+          <div id="heroPic" style={heroPic}></div>
+          <div className="overview_hero_nav overview_hero_nav_next"></div>
+          <div id="overview_fullscreen_toggle" onClick={this.expandGallery}>
+            <div className="toggle-icon"></div>
+          </div>
         </div>
       </div>
     )

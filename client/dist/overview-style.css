@@ -10,10 +10,13 @@
 
 #overview_image_gallery {
   position: relative;
+  background-color: var(--primary--color);
   border: 3px solid darkgoldenrod;
   border-right: 3px solid darkgreen;
   text-align: center;
   padding: 20px;
+  width: 674px;
+  height: 554px;
 }
 
 #heroPic {
@@ -188,6 +191,26 @@
   top: 10px;
   left: 20px;
 }
+
+/* ===== Gallery => Expanded View ===== */
+
+#gallery_expander {
+  background-color: var(--primary--color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  transition-duration: 750ms;
+  width: 714px;
+  height: 594px;
+  z-index: 10;
+}
+
+#gallery_expander.expanded {
+  width: 1194px;
+}
+
+/* ===== Product Info ===== */
 
 #overview_star_rating {
   background: #DDD;
