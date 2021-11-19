@@ -1,12 +1,116 @@
+/* review parent attributes */
 
+.Review {
+  margin: auto;
+  width: 70%;
+}
 
-
-
-#review-container-left {
+#review-left {
   overflow: auto;
   max-height: 700px;
   margin:0;
   width:90%
+}
+
+#review-right {
+  max-height: 700px;
+  margin-left: 10%;
+
+}
+
+/*star rating number */
+
+#review-star-container {
+  display: inline-flex;
+  justify-content: left;
+}
+
+
+.star-text {
+  font-weight: 900;
+  font-size: 60px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.review-stars {
+  margin-top: 30px;
+  font-size: 15px;
+}
+
+
+/* breakdown of number ratings */
+
+.bars-breakdown {
+  position: relative;
+}
+
+#breakdown-rating {
+  padding-left: 10px;
+  width: 80%;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* characteristic bar breakdown*/
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  input[type='range'] {
+    width: 100%;
+    overflow: hidden;
+    -webkit-appearance: none;
+    background-color:#b0acac;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    width: 50%;
+    -webkit-appearance: none;
+    color:#b0acac;
+    margin-top: -1px;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 3px;
+    background-color: transparent;
+    background: url(https://img.icons8.com/glyph-neue/16/000000/sort-down.png) center center no-repeat;
+    background-size: 15px;
+    cursor: ew-resize;
+    -webkit-appearance: none;
+
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #f45e54;
+  }
+
+  .container {
+    display: flex;
+    width: 100%
+  }
+  .container.space-between {
+    justify-content: space-between;
+  }
+
+}
+/* -------------end left column ------------*/
+
+/*sortReview */
+#review-sort {
+  display: inline-flex;
+  font-size: 22px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+#review-dropdown {
+  font-size: 22px;
+  text-decoration: underline;
 }
 
 /*user review card */
@@ -84,86 +188,3 @@ button {
   background: #e7e7e7;
 }
 
-#review-title {
-  max-height: 420px;
-  overflow: auto;
-}
-
-/* breakdown of number ratings */
-
-.bars-breakdown {
-  position: relative;
-}
-
-#breakdown-rating {
-  padding-left: 10px;
-  width: 80%;
-}
-
-
-
-/*star portion left column */
-#review-star-container {
-  display: flex;
-  justify-content: center;
-
-}
-
-.star-text {
-  font-weight: 900;
-  font-size: 60px;
-}
-
-.review-stars {
-  margin-top: 30px;
-  font-size: 25px;
-}
-
-.bar-container {
-  width: 100%;
-  background-color: #f1f1f1;
-  text-align: center;
-  color: white;
-}
-
-/* characteristic bar breakdown*/
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  input[type='range'] {
-    width: 100%;
-    overflow: hidden;
-    -webkit-appearance: none;
-    background-color:#b0acac;
-  }
-
-  input[type='range']::-webkit-slider-runnable-track {
-    width: 50%;
-    -webkit-appearance: none;
-    color:#b0acac;
-    margin-top: -1px;
-  }
-
-  input[type=range]::-webkit-slider-thumb {
-    height: 15px;
-    width: 15px;
-    border-radius: 3px;
-    background-color: transparent;
-    background: url(https://img.icons8.com/glyph-neue/16/000000/sort-down.png) center center no-repeat;
-    background-size: 15px;
-    cursor: ew-resize;
-    -webkit-appearance: none;
-
-  }
-  input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #f45e54;
-  }
-
-  .container {
-    display: flex;
-    width: 100%
-  }
-  .container.space-between {
-    justify-content: space-between;
-  }
-
-}

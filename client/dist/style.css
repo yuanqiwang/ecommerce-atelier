@@ -176,8 +176,3 @@ footer {
 }
 
 
-/*potentially QA and Review can share this*/
-.Review {
-  margin: auto;
-  width: 70%;
-}

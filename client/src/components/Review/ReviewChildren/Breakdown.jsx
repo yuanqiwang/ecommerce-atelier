@@ -50,7 +50,7 @@ class Breakdown extends React.Component {
     return (
       <div>
         <div id="review-star-container">
-          <div className="star-text">{showNum || null}&nbsp;</div>
+          <div className="star-text">{showNum || null}</div>
           <div className="review-stars"> <Star rating={starsAvg}/></div>
         </div>
 

@@ -2,7 +2,7 @@ import React from 'react'
 import ReviewCard from './ReviewCard.jsx'
 
 
-const UserReviews = (props) => {
+const FilterReviews = (props) => {
   let count = props.count
   let reviews = props.reviews
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -125,4 +125,4 @@ const UserReviews = (props) => {
   )
 }
 
-export default UserReviews
+export default FilterReviews
