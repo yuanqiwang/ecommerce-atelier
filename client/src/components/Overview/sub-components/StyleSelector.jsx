@@ -16,13 +16,10 @@ class StyleSelector extends React.Component {
             }
           ]
         }
-      ],
-      size: '',
-      quantityAvailable: 1
+      ]
     };
 
     this.updateStyles = this.updateStyles.bind(this);
-    this.updateSize = this.updateSize.bind(this);
   }
 
   updateStyles(id, newStyles) {
@@ -33,15 +30,6 @@ class StyleSelector extends React.Component {
     }
 
     // console.log(this.state);
-  }
-
-  updateSize() {
-    let data = document.querySelector('#overview_select_size .size-dropdown').value.split('&');
-    let selectedSize = data[0];
-    let availableQty = data[1];
-    // data.options[data.options.selectedIndex].text = selectedSize;
-    console.log(selectedSize);
-    this.setState({size: selectedSize, quantityAvailable: availableQty});
   }
 
   render() {
@@ -63,7 +51,9 @@ class StyleSelector extends React.Component {
         <SelectSize
           currentStyleInfo={allStyles[this.props.currentStyleID]}
           quantityAvailable={this.state.quantityAvailable}
-          updateSize={this.updateSize} />
+          updateSize={this.props.updateSize}
+          updateQty={this.props.updateQty}
+          maxQty={this.props.maxQty} />
       </div>
     );
   }

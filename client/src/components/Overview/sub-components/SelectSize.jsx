@@ -12,8 +12,10 @@ function SelectSize(props) {
     }
 
     qty = [];
-    for ( let i=1; i<=props.quantityAvailable; i++ ) {
-      qty.push(i);
+    for ( let i=1; i<=props.maxQty; i++ ) {
+      if ( i <= 15 ) {
+        qty.push(i);
+      }
     }
     // console.log(qty);
 
@@ -24,12 +26,13 @@ function SelectSize(props) {
       <select className="size-dropdown" onChange={props.updateSize}>
         <option value="">Select Size</option>
         {sizes.map(size => {
+          let sizeData = JSON.stringify(size);
           return (
-            <option key={Math.random()} value={size.size + '&' + size.quantity}>{size.size}</option>
+            <option key={sizeData} value={sizeData}>{size.size}</option>
           );
         })}
       </select>
-      <select className="qty-dropdown">
+      <select className="qty-dropdown" onChange={props.updateQty}>
         {qty.map(i => (
           <option key={i} value={i}>{i}</option>
         ))}
