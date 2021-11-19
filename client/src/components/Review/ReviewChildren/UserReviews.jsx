@@ -26,7 +26,7 @@ const UserReviews = (props) => {
         let date = new Date(item.date).toLocaleDateString("en-US", options)
         if (filter.includes(item.rating) || filter.length === 0 || filter[0] === undefined) {
           return (
-            <>
+            <div key={i}>
               <ReviewCard
                 searchTerm={props.searchTerm}
                 reviewId={item.review_id}
@@ -41,7 +41,7 @@ const UserReviews = (props) => {
                 helpfulness={item.helpfulness}
                 photos={item.photos}
               />
-            </>
+            </div>
           )
         } else {
           return null
@@ -60,7 +60,7 @@ const UserReviews = (props) => {
       if (filter.includes(item.rating) || filter.length === 0 || filter[0] === undefined) {
 
         return  (
-          <>
+          <div key={i}>
             <ReviewCard
               searchTerm={props.searchTerm}
               reviewId={item.review_id}
@@ -75,7 +75,7 @@ const UserReviews = (props) => {
               helpfulness={item.helpfulness}
               photos={item.photos}
             />
-          </>
+          </div>
         )
       } else {
         return null
@@ -92,7 +92,7 @@ const UserReviews = (props) => {
         let date = new Date(item.date).toLocaleDateString("en-US", options)
         if (filter.includes(item.rating) || filter.length === 0 || filter[0] === undefined) {
           return  (
-            <>
+            <div key={i}>
               <ReviewCard
                 searchTerm={props.searchTerm}
                 reviewId={item.review_id}
@@ -107,7 +107,7 @@ const UserReviews = (props) => {
                 helpfulness={item.helpfulness}
                 photos={item.photos}
               />
-            </>
+            </div>
           )
         } else {
           return null

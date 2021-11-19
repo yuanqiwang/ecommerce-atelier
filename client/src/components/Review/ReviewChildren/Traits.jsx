@@ -7,7 +7,7 @@ const Traits = (props) => {
   console.log(cats)
   for (var i=0; i<cats.length; i++) {
     return (
-      <div class="container space-between">
+      <div className="container-review space-between">
         <div>{meanings[cats[i]][0]}</div>
         <div>{meanings[cats[i]][2]}</div>
         <div>{meanings[cats[i]][4]}</div>
