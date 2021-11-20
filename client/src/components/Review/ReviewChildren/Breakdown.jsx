@@ -16,8 +16,6 @@ class Breakdown extends React.Component {
 
 
   render() {
-
-
     let nOfRatings = 0;
     let starsAvg = 0;
     let showNum = 0;
@@ -48,7 +46,7 @@ class Breakdown extends React.Component {
     }
 
     return (
-      <div>
+      <div id="review-breakdowns">
         <div id="review-star-container">
           <div className="star-text">{showNum || null}</div>
           <div className="review-stars"> <Star rating={starsAvg}/></div>

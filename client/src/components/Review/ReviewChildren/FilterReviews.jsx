@@ -26,8 +26,9 @@ const FilterReviews = (props) => {
         let date = new Date(item.date).toLocaleDateString("en-US", options)
         if (filter.includes(item.rating) || filter.length === 0 || filter[0] === undefined) {
           return (
-            <div key={i}>
+            <div id="review-card-container" key={i}>
               <ReviewCard
+                prodName={props.productName}
                 searchTerm={props.searchTerm}
                 reviewId={item.review_id}
                 index={i}
@@ -48,7 +49,7 @@ const FilterReviews = (props) => {
         }
       })
       return (
-        <div>{relevance.slice(0, count)}</div>
+        <>{relevance.slice(0, count)}</>
       )
     }
     if (props.dropdown === 'helpfulness') {
@@ -60,8 +61,9 @@ const FilterReviews = (props) => {
       if (filter.includes(item.rating) || filter.length === 0 || filter[0] === undefined) {
 
         return  (
-          <div key={i}>
+          <div id="review-card-container" key={i}>
             <ReviewCard
+              prodName={props.productName}
               searchTerm={props.searchTerm}
               reviewId={item.review_id}
               index={i}
@@ -82,7 +84,7 @@ const FilterReviews = (props) => {
       }
     })
     return (
-      <div>{helpful.slice(0, count)}</div>
+      <>{helpful.slice(0, count)}</>
     )
     }
     if (props.dropdown === 'newest') {
@@ -92,8 +94,9 @@ const FilterReviews = (props) => {
         let date = new Date(item.date).toLocaleDateString("en-US", options)
         if (filter.includes(item.rating) || filter.length === 0 || filter[0] === undefined) {
           return  (
-            <div key={i}>
+            <div id="review-card-container" key={i}>
               <ReviewCard
+                prodName={props.productName}
                 searchTerm={props.searchTerm}
                 reviewId={item.review_id}
                 index={i}
@@ -114,7 +117,7 @@ const FilterReviews = (props) => {
         }
       })
     return (
-      <div>{recent.slice(0, count)}</div>
+      <>{recent.slice(0, count)}</>
     )
    }
 

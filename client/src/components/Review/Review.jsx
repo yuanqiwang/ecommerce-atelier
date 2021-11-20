@@ -45,7 +45,7 @@ class Review extends React.Component {
   }
 
   render() {
-    const placeholder = 'SEARCH FOR A REVIEW'
+    const placeholder = 'SEARCH REVIEW BY KEYWORD'
     if (this.props.reviews !== undefined) {
       return (
         <>
@@ -70,28 +70,27 @@ class Review extends React.Component {
                     nReviews={this.props['reviews'].length}
                     dropdownCallback={this.handleCallback}
                   />
-                  <div id="review-title">
-                    <FilterReviews
-                      reviews={this.props['reviews']}
-                      dropdown={this.state.dropdown}
-                      count={this.state.reviewCount}
-                      productId={this.props.stars['product_id']}
-                      review1={this.state.review1}
-                      review2={this.state.review2}
-                      review3={this.state.review3}
-                      review4={this.state.review4}
-                      review5={this.state.review5}
-                      element={this.state.element}
-                      searchTerm={this.state.searchTerm}
-                    />
+                  <div id="reviewcard-column">
+                  <FilterReviews
+                    reviews={this.props['reviews']}
+                    productName={this.props.productInfo['name']}
+                    dropdown={this.state.dropdown}
+                    count={this.state.reviewCount}
+                    productId={this.props.stars['product_id']}
+                    review1={this.state.review1}
+                    review2={this.state.review2}
+                    review3={this.state.review3}
+                    review4={this.state.review4}
+                    review5={this.state.review5}
+                    element={this.state.element}
+                    searchTerm={this.state.searchTerm}
+                  />
                   </div>
-
                   <MoreReviewButton
                     addCountCallback={this.addCountCallback}
                     nReviews={this.props['reviews'].length}
                     reviewCount={this.state.reviewCount}
                   />
-
                   <AddReviewButton
                     productName={this.props.productInfo['name'] || null}
                     productId={this.props.stars['product_id']}

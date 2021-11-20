@@ -94,7 +94,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   }
 
   return (
-    <div className="App">
+    <div>
       <button
         id="review-button"
         data-testid="ClickIndicator"
