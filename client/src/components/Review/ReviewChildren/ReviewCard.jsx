@@ -12,7 +12,7 @@ const ReviewCard = (props) => {
     return localStorage.getItem(`helpful`+id) || false
   })
   const [reportStatus, setReportStatus] = useState(() => {
-    return localStorage.getItem(`review`+id) || false
+    return localStorage.getItem(`report`+id) || false
   })
   const [helpfulCount, setHelpfulCount] = useState(count)
   const [reviewList, setReviewList] = useState([])
@@ -47,7 +47,6 @@ const ReviewCard = (props) => {
     if (reportStatus) {
       console.log('report already clicked')
     } else {
-      console.log(id)
       setReportStatus(true)
       localStorage.setItem(`report`+id, JSON.stringify(reportStatus))
       axios.put(`/review/reviews/report`, {id: id})
@@ -71,7 +70,12 @@ const ReviewCard = (props) => {
         <div id="reviewcard-photo">{photos}</div>
         <div id="reviewcard-recommend">{rec}</div>
         <div id="reviewcard-response">{props.response}</div>
-        <div id="reviewcard-helpful" >Helpful? <span id="helpful" onClick={handleHelpful}>{helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) | <span onClick={handleReport}>{reportStatus ? "✓ Report internally reviewed" : "Report"}</span></div>
+        <div id="reviewcard-helpful" >Helpful?
+          <span id="helpful" onClick={handleHelpful}>
+            {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) |
+          <span onClick={handleReport}>
+            {reportStatus ? "✓ Report internally reviewed" : "Report"}</span>
+        </div>
       </div>
     )
 } else {

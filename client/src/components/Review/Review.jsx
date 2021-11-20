@@ -45,7 +45,7 @@ class Review extends React.Component {
   }
 
   render() {
-    const placeholder = 'SEARCH REVIEW BY KEYWORD'
+    const placeholder = 'SEARCH REVIEWS BY KEYWORD'
     if (this.props.reviews !== undefined) {
       return (
         <>
