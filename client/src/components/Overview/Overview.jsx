@@ -33,7 +33,7 @@ class Overview extends React.Component {
   }
 
   changeStyle(id) {
-    // console.log('style changed: ', this.props);
+    console.log('style changed: ', this.props);
     this.setState({currentStyleID: id}, () => {
       this.updateHero();
     });
@@ -51,7 +51,9 @@ class Overview extends React.Component {
           productStyle={this.props.productStyle}
           currentStyleID={this.state.currentStyleID}
           stars={this.props.stars}
-          changeStyle={this.changeStyle} />
+          changeStyle={this.changeStyle}
+          addoutfit={this.props.addoutfit}
+          removeoutfit={this.props.removeoutfit} />
 
         <ProductInfo
           productInfo={this.props.productInfo}

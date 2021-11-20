@@ -5,7 +5,7 @@ const ImageModal = ({handleModalClose, imageURL}) => {
     <div className='qa-modal' data-testid='image-modal'>
       <div className='qa-modal-main' >
           <div  className='qa-image-modal'>
-            <i onClick={handleModalClose} className="far fa-window-close qa-close-icon"></i>
+            <i onClick={handleModalClose} className="fas fa-times-circle qa-close-icon"></i>
             <img src={imageURL} />
           </div>
       </div>
