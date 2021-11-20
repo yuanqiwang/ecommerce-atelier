@@ -83,7 +83,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
                {errors.body&&<small> {errors.body}</small>}
           </div>
           <div className='qa-form-control'>
-            <label htmlFor='nickname'>What is your nickname (mandatory)*</label>
+            <label htmlFor='nickname'>What is your nickname (mandatory)*:</label>
             <input
               className='qa-input'
               id ='nickname'

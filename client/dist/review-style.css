@@ -1,6 +1,6 @@
 /* review parent attributes */
 
-.Review {
+#Review {
   margin: auto;
   width: 70%;
 }
@@ -189,7 +189,7 @@ img#review-img {
   font-size: 8pt;
 }
 
-#reviewcard-rec, #reviewcard-helpful {
+#reviewcard-rec, #helpful {
   color: maroon;
   text-decoration: underline;
 }

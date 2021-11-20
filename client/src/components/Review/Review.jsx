@@ -49,7 +49,7 @@ class Review extends React.Component {
     if (this.props.reviews !== undefined) {
       return (
         <>
-          <div className="Review">
+          <div id="Review">
             <h3 id="review-title">REVIEWS & RATING</h3>
             <Search onChange={this.handleSearch} placeholder={placeholder}/>
             <div className="review-grid" onClick={this.props.trackClick}>
@@ -103,6 +103,7 @@ class Review extends React.Component {
         </>
       )
     }
+    return <div data-testid="Review-render">null</div>
   }
 }
 
