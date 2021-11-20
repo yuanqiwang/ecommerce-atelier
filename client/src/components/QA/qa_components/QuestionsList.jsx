@@ -56,7 +56,7 @@ const QuestionsList = ({questions, productId, productInfo}) => {
         }
       </div>
 
-      <div>
+      <div className='qa-bottom'>
         {moreQuestionVisible ?
           <div className='qa-more-question' onClick={() => setQuestionDisplayCount(questionDisplayCount + 2)}>
               MORE ANSWERED QUESTIONS

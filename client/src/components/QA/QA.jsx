@@ -36,7 +36,7 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
 
   return (
     <div className='QA' data-testid="QA-render" onClick={trackClick}>
-      <h3>{`QUESTIONS & ANSWERS`}</h3>
+      <div className='QA-title'> {`QUESTIONS & ANSWERS`}</div>
       <Search
         onChange={handleSearch}
         placeholder={placeholder}
