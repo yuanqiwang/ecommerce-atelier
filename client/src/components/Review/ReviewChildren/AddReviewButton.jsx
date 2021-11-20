@@ -94,7 +94,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   }
 
   return (
-    <div>
+    <div >
       <button
         id="review-button"
         data-testid="ClickIndicator"
@@ -112,44 +112,48 @@ export default function AddReviewButton( {productName, productId, reviews}) {
         }}
       >
         <div id="rmodal-wrapper">
-          <span id="rmodal-title">Write Your Review</span>
-          <div id="rmodal-subtitle">About the {productName}</div>
+          <div id="rmodal-border">
+            <div id="rmodal-title">Write Your Review</div>
+            <div id="rmodal-subtitle">About the {productName}</div>
+          </div>
           <form id="form" name="form">
             <div id="rmodal-stars">
-              <div className="rmodal-question">Overall rating*</div>
+              <div className="rmodal-question">Overall rating (mandatory)*</div>
               <div className="star-rating">
                 <input type="radio" onClick={() => {
                   setRating(5)}} id="5-stars" name="rating" value="5"/>
-                <label htmlFor="5-stars" >&#9733;</label>
+                <label htmlFor="5-stars" className="fa fa-star"></label>
                 <input type="radio" onClick={() => {
                   setRating(4)}}  id="4-stars" name="rating" value="4" />
-                <label htmlFor="4-stars"  className="star">&#9733;</label>
+                <label htmlFor="4-stars"  className="fa fa-star"></label>
                 <input type="radio" onClick={() => {
                   setRating(3)}}  id="3-stars" name="rating" value="3" />
-                <label htmlFor="3-stars" className="star">&#9733;</label>
+                <label htmlFor="3-stars" className="fa fa-star"></label>
                 <input type="radio" onClick={() => {
                   setRating(2)}}  id="2-stars" name="rating" value="2" />
-                <label htmlFor="2-stars" className="star">&#9733;</label>
+                <label htmlFor="2-stars" className="fa fa-star"></label>
                 <input type="radio" onClick={() => {
                   setRating(1)}} id="1-star" name="rating" value="1" />
-                <label htmlFor="1-star" className="star">&#9733;</label>
+                <label htmlFor="1-star" className="fa fa-star"></label>
               </div>
-              <span id="rstar-value">{renderSwitch(rating)}</span>
-              <div className="rmodal-overall-rating">
-                <p>Do you recommend this product*????</p>
-                <input type="radio" value="true" onClick={() => {setRecommend(true)}} name="review-radio"/>
-                <label htmlFor="yes">yes👍</label>
-                <input type="radio" value="no" onClick={() => {setRecommend(false)}} name="review-radio"/>
-                <label htmlFor="no">no👎</label>
+                <span id="rstar-value">{renderSwitch(rating)}</span>
               </div>
-            </div>
+              <div id="block">
+                <div className="rmodal-overall-rating"><p>Do you recommend this product (mandatory)*?</p></div>
+                <div id="rmodal-radio">
+                  <input type="radio" value="true" onClick={() => {setRecommend(true)}} name="review-radio"/>
+                  <label htmlFor="yes">&nbsp;yes&nbsp;</label>
+                  <input type="radio" value="no" onClick={() => {setRecommend(false)}} name="review-radio"/>
+                  <label htmlFor="no">&nbsp;no&nbsp;</label>
+                </div>
+              </div>
             <div className="rmodal-characteristics">
-              <div className="rmodal-question">Characteristics*</div>
+              <div className="rmodal-question">Characteristics (mandatory)*</div>
                 {characteristicTitles !== null ? characteristicTitles.map( (characteristic, index) =>
                 <div key={index}>
                 <span id="modal-charac-title" >{characteristic}</span><br/>
                   <div className="letter-slider" >
-                    <div className="rmodal-selected">choice: {characVal[characteristic]}</div>
+                    <div className="rmodal-selected"><span className="choice">choice:</span> {characVal[characteristic]}</div>
                     <input
                       id={`${characteristic}1`}
                       type="radio"
@@ -202,10 +206,11 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               <input type="text" placeholder="Example: Best purchase ever!" onChange={(e) => setSummary(e.target.value)} maxLength="60" size="70" />
             </div>
             <div className="rmodal-body">
-              <div className="rmodal-question">Your Review*</div>
+              <div className="rmodal-question">Your Review (mandatory)*</div>
               <textarea
+                id="rmodal-textarea"
                 property="comment"
-                cols="50"
+                cols="65"
                 rows="4"
                 minLength="50"
                 maxLength="1000"
@@ -219,14 +224,14 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               <p>{textAreaCount < 50 ? `Minimum required characters left: ${50 - textAreaCount}` : `Minimum Reached`}</p>
             </div>
             <div className="rmodal-nickname">
-              <label className="rmodal-question">What is your nickname* </label>
+              <label className="rmodal-question">What is your nickname (mandatory)* </label>
               <input type="text" name="nickname" id="nickname" placeholder="ex:jackson11!" onChange={(e) => {
                 setName(e.target.value)
               }}/>
               <p>For privacy reasons, do not use your full name or email address</p>
             </div>
             <div className="rmodal-email">
-              <label className="rmodal-question">Your email*: </label>
+              <label className="rmodal-question">Your email (mandatory)*: </label>
               <input type="text" name="email" id="email" maxLength="60" Length="100" placeholder="ex:jackson11@email.com" onChange={(e) => setEmail(e.target.value)}/>
               <p>For authentication reasons, you will not be emailed</p>
             </div>
@@ -240,7 +245,9 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                   onChange={uploadImage}
                 />
             </div>
-            <button type="submit" onClick={(e) => postData(e)}>submit</button>
+            <div className="review-form-btn-container">
+              <button id="review-form-btn" type="submit" onClick={(e) => postData(e)}>submit</button>
+            </div>
           </form>
         </div>
       </Modal>

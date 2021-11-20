@@ -1,7 +1,6 @@
 import React from 'react'
 import Star from '../../../star.jsx';
 
-
 class Breakdown extends React.Component {
   /*stars variables*/
   constructor(props) {
@@ -12,8 +11,6 @@ class Breakdown extends React.Component {
     this.props.handleReviewCallback(e);
     event.preventDefault();
   }
-
-
 
   render() {
     let nOfRatings = 0;

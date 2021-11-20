@@ -20,7 +20,8 @@ const MODAL_STYLE = {
   zIndex: 99,
   padding: "30px",
   transform: "translate(-50%, -50%)",
-  borderRadius: "25px"
+  borderRadius: "25px",
+  border: "2px solid rgb(128,0,0)"
 };
 
 export default function Modal({ children, visable, close }) {
@@ -30,7 +31,9 @@ export default function Modal({ children, visable, close }) {
       <div style={OVERLAY_STYLE}></div>
       <div style={MODAL_STYLE}>
         <div>{children}</div>
-        <button onClick={close}>CLOSE</button>
+        <div className="review-form-btn-container">
+          <button id="review-form-btn" onClick={close}>CLOSE</button>
+        </div>
       </div>
     </>
   );

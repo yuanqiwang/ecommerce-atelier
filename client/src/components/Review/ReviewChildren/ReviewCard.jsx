@@ -70,9 +70,9 @@ const ReviewCard = (props) => {
         <div id="reviewcard-photo">{photos}</div>
         <div id="reviewcard-recommend">{rec}</div>
         <div id="reviewcard-response">{props.response}</div>
-        <div id="reviewcard-helpful" >Helpful?
+        <div id="reviewcard-helpful" >Helpful?&nbsp;
           <span id="helpful" onClick={handleHelpful}>
-            {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) |
+            {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) &nbsp;|&nbsp;&nbsp;
           <span onClick={handleReport}>
             {reportStatus ? "✓ Report sent for internal review" : "Report"}</span>
         </div>
