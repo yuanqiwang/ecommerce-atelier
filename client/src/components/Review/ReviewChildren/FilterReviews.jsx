@@ -83,6 +83,7 @@ const FilterReviews = (props) => {
         return null
       }
     })
+    console.log(helpful)
     return (
       <>{helpful.slice(0, count)}</>
     )

@@ -19,7 +19,8 @@ const MODAL_STYLE = {
   background: "#fff",
   zIndex: 99,
   padding: "30px",
-  transform: "translate(-50%, -50%)"
+  transform: "translate(-50%, -50%)",
+  borderRadius: "25px"
 };
 
 export default function Modal({ children, visable, close }) {

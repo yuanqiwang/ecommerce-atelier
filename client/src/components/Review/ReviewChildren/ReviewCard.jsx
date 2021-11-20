@@ -74,7 +74,7 @@ const ReviewCard = (props) => {
           <span id="helpful" onClick={handleHelpful}>
             {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) |
           <span onClick={handleReport}>
-            {reportStatus ? "✓ Report internally reviewed" : "Report"}</span>
+            {reportStatus ? "✓ Report sent for internal review" : "Report"}</span>
         </div>
       </div>
     )

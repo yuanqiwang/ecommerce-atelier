@@ -57,23 +57,23 @@ class Breakdown extends React.Component {
         </div>
 
         <div className="bars-breakdown">
-          <div id="breakdown" onClick={() => this.handleChange(5)}>
+          <div id="breakdown1" onClick={() => this.handleChange(5)}>
             <label htmlFor="breakdown-rating" value="5">5 stars&nbsp;</label>
             <progress id="breakdown-rating" max="100" value={(this.props['ratings'][5]/nOfRatings)*100}></progress>
           </div>
-          <div id="breakdown" onClick={() => this.handleChange(4)}>
+          <div id="breakdown2" onClick={() => this.handleChange(4)}>
             <label htmlFor="breakdown-rating">4 stars&nbsp;</label>
             <progress id="breakdown-rating" max="100" value={(this.props['ratings'][4]/nOfRatings)*100}></progress>
           </div>
-          <div id="breakdown" onClick={() => this.handleChange(3)}>
+          <div id="breakdown3" onClick={() => this.handleChange(3)}>
             <label htmlFor="breakdown-rating">3 stars&nbsp;</label>
             <progress id="breakdown-rating" max="100" value={(this.props['ratings'][3]/nOfRatings)*100}></progress>
           </div>
-          <div id="breakdown" onClick={() => this.handleChange(2)}>
+          <div id="breakdown4" onClick={() => this.handleChange(2)}>
             <label htmlFor="file">2 stars&nbsp;</label>
             <progress id="breakdown-rating" max="100" value={(this.props['ratings'][2]/nOfRatings)*100}></progress>
           </div>
-          <div id="breakdown" onClick={() => this.handleChange(1)}>
+          <div id="breakdown5" onClick={() => this.handleChange(1)}>
             <label htmlFor="breakdown-rating" >1 star&nbsp;&nbsp;&nbsp;</label>
             <progress id="breakdown-rating" max="100" value={(this.props['ratings'][1]/nOfRatings)*100}></progress>
           </div>
