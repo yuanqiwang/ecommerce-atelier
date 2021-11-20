@@ -14,13 +14,16 @@ const Helpful = ({id, localStorageName, helpfulness}) => {
     type = 'answers'
   }
   const [clickStatus, setClickStatus] = useState(initValue);
+  const [helpfulFeedback, setHelpfulFeedback] = useState(initValue)
   const [helpfulnessCount, setHelpfulnessCount] = useState(helpfulness)
 
+  //
   const handleClick = () => {
     if (clickStatus) {
       console.log('already clicked')
     } else {
       setClickStatus(true);
+      setHelpfulFeedback(true);
       setHelpfulnessCount((prev) => prev+1)
       tempStorage.push(id);
       localStorage.setItem(localStorageName, JSON.stringify(tempStorage));
@@ -33,7 +36,7 @@ const Helpful = ({id, localStorageName, helpfulness}) => {
 
   return (
         <div onClick={handleClick}>
-          <span className={clickStatus? 'qa-not-clickable': 'qa-clickable'}>Yes </span> ({helpfulnessCount})
+          <span className={clickStatus? 'qa-not-clickable': 'qa-clickable'}>Yes </span> ({helpfulnessCount}) {helpfulFeedback? '✓': null}
         </div>
   )
 }

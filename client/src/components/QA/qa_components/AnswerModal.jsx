@@ -67,7 +67,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
           </div>
 
         <form className='qa-form'>
-          <div>
+          <div className='qa-form-control'>
             <label htmlFor='answer'>Your Answer (mandatory)*</label>
             <textarea
               className='qa-input'
@@ -80,6 +80,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
               onChange={(e)=> setBody(e.target.value)}
               aria-label='answer-input'
               required/>
+               {errors.body&&<small> {errors.body}</small>}
           </div>
           <div className='qa-form-control'>
             <label htmlFor='nickname'>What is your nickname (mandatory)*</label>
@@ -95,6 +96,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
               required
             />
             <span className='qa-instructions'> For privacy reasons, do not use your full name or email address</span>
+            {errors.name&&<small> {errors.name}</small>}
           </div>
           <div className='qa-form-control'>
             <label htmlFor='email'>Your email (mandatory)*</label>
@@ -109,6 +111,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
               onChange={(e)=> setEmail(e.target.value)}
               required/>
             <span className='qa-instructions'> For authentication reasons, you will not be emailed</span>
+            {errors.email&&<small> {errors.email}</small>}
           </div>
             <div className='qa-image-upload qa-form-control'>
               {showUpload ?
@@ -134,7 +137,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
 
               )}
             </div>
-          {Object.keys(errors).length ?
+          {/* {Object.keys(errors).length ?
             (<div>You must enter the following:
               {Object.keys(errors).map(errorKey => {
                 return (
@@ -147,7 +150,7 @@ const AnswerModal = ({open, questionId, productName, question, onClose, onSubmit
              </div>
             )
             : null
-          }
+          } */}
           <div className='qa-form-control qa-form-btn-container'>
             <input type='submit' className='qa-form-btn' value='Submit' onClick={onSubmit} />
             <input type='submit' className='qa-form-btn' value='Close'  onClick={onClose} />

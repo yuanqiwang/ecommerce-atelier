@@ -63,7 +63,7 @@ const Question = ({question, productName}) => {
   }
 
   return (
-    <div>
+    <div className='qa-question-answers-container'>
       <div className='qa-question-container'>
         <div className='qa-question'>Q: {questionBody} </div>
         <div className='qa-tiny qa-helpful-container'>
@@ -78,7 +78,7 @@ const Question = ({question, productName}) => {
       </div>
       <div className='qa-answers qa-scroll'>
         {Object.keys(answers).length == 0 ?
-            (<p style={{fontStyle:'italic', fontSize: 'small', color: 'gray'}}>
+            (<p style={{fontStyle:'italic', fontSize: 'small', color: 'darkgrey'}}>
               There is no answer to this question
             </p>)
           :
