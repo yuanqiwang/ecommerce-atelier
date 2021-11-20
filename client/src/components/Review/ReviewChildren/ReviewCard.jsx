@@ -12,7 +12,7 @@ const ReviewCard = (props) => {
     return localStorage.getItem(`helpful`+id) || false
   })
   const [reportStatus, setReportStatus] = useState(() => {
-    return localStorage.getItem(`review`+id) || false
+    return localStorage.getItem(`report`+id) || false
   })
   const [helpfulCount, setHelpfulCount] = useState(count)
   const [reviewList, setReviewList] = useState([])
@@ -27,7 +27,7 @@ const ReviewCard = (props) => {
   let photos = props.photos.map( (photo, index) =>
     <><img id="review-img" src={photo.url}></img></>
   )
-  let rec = props.recommend === true ? <span>✅ I recommend this product</span> : <span>👎</span>
+  let rec = props.recommend === true ? <span>✅&nbsp;&nbsp;&nbsp;&nbsp;I recommend this product</span> : <span>👎</span>
 
 
   const handleHelpful = () => {
@@ -47,31 +47,34 @@ const ReviewCard = (props) => {
     if (reportStatus) {
       console.log('report already clicked')
     } else {
-      console.log(id)
       setReportStatus(true)
       localStorage.setItem(`report`+id, JSON.stringify(reportStatus))
       axios.put(`/review/reviews/report`, {id: id})
       .then((res)  => console.log(res))
       .catch((err) => console.log(err))
     }
-
   }
 
   if ( (reviewList.length >= 3 && ( JSON.stringify(props.body).toLowerCase()).indexOf(reviewList.toLowerCase()) > 0) || activeSearch === false) {
     return (
-      <div>
-        <div className="review-card">
-          <div className="star-rating-card">
-            <Star rating={props.rating} />
-          </div>
-          <div id="review-reviewer"> ✓{props.reviewer}, {props.date}</div>
-          <div id="review-title">{props.summary}</div>
-          <div id="review-body">{props.body}</div>
-          <div id="review-photo">{photos}</div>
-          <div id="review-recommend">{rec}</div>
-          <div id="review-response">{props.response}</div>
-          <div id="review-helpful" >Helpful? <span id="helpful" onClick={handleHelpful}>{helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) | <span onClick={handleReport}>{reportStatus ? "✓ Report internally reviewed" : "Report"}</span></div>
-          <hr id="review-solid"></hr>
+      <div className="review-card">
+
+
+        <div id="reviewcard-topline">
+          <div className="star-rating-card"><Star rating={props.rating}/></div>
+          <div id="reviewcard-reviewer"> ✓{props.reviewer}, {props.date}</div>
+        </div>
+
+        <div id="reviewcard-summary">{props.summary.length === 0 ? props.prodName : props.summary}</div>
+        <div id="reviewcard-body">{props.body}</div>
+        <div id="reviewcard-photo">{photos}</div>
+        <div id="reviewcard-recommend">{rec}</div>
+        <div id="reviewcard-response">{props.response}</div>
+        <div id="reviewcard-helpful" >Helpful?
+          <span id="helpful" onClick={handleHelpful}>
+            {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) |
+          <span onClick={handleReport}>
+            {reportStatus ? "✓ Report internally reviewed" : "Report"}</span>
         </div>
       </div>
     )
