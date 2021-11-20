@@ -25,7 +25,7 @@ const ReviewCard = (props) => {
   }, [searchTerm]);
 
   let photos = props.photos.map( (photo, index) =>
-    <><img id="review-img" src={photo.url}></img></>
+    <><img key={index} id="review-img" src={photo.url}></img></>
   )
   let rec = props.recommend === true ? <span>✅&nbsp;&nbsp;&nbsp;&nbsp;I recommend this product</span> : <span>👎</span>
 
@@ -70,11 +70,11 @@ const ReviewCard = (props) => {
         <div id="reviewcard-photo">{photos}</div>
         <div id="reviewcard-recommend">{rec}</div>
         <div id="reviewcard-response">{props.response}</div>
-        <div id="reviewcard-helpful" >Helpful?
+        <div id="reviewcard-helpful" >Helpful?&nbsp;
           <span id="helpful" onClick={handleHelpful}>
-            {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) |
-          <span onClick={handleReport}>
-            {reportStatus ? "✓ Report internally reviewed" : "Report"}</span>
+            {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) &nbsp;|&nbsp;&nbsp;
+          <span id="helpful" onClick={handleReport}>
+            {reportStatus ? "✓ Report sent for internal review" : "Report"}</span>
         </div>
       </div>
     )

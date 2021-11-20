@@ -4,25 +4,35 @@ import {
   screen,
   act,
   mount,
+  cleanUp,
   fireEvent,
   waitForElement
 } from '@testing-library/react';
 import { unmountComponentAtNode } from "react-dom"
 import '@testing-library/jest-dom'
 import Review from '../components/Review/Review.jsx'
-import Stars from '../components/Review/ReviewChildren/Stars.jsx'
+import Breakdown from '../components/Review/ReviewChildren/Breakdown.jsx'
 import AddReviewButton from '../components/Review/ReviewChildren/AddReviewButton.jsx'
 import MoreReviewButton from '../components/Review/ReviewChildren/MoreReviewButton.jsx'
+import reviewTest from './reviewTest.js'
 
 
+afterEach(() => cleanUp);
 
+describe("Basic Component Structure", () => {
+  it('should test default render behavior of Review', () => {
+    const {getByTestId} = render(<Review/>);
+    const reviewElement = getByTestId('Review-render');
+    expect(reviewElement).toBeInTheDocument();
+  })
+
+
+})
 
 //Stars
-
-test('renders recommendation percentage', () => {
-  render(<Stars />);
-  const recommend = screen.getByText(/%/i)
-  expect(recommend).toBeInTheDocument()
+test('renders Breakdown correctly', () => {
+  const { container } = render(<Breakdown recommend={true} ratings={''} />);
+  expect(container.firstChild).toMatchSnapshot()
 });
 
 //AddReviewButton
@@ -35,12 +45,14 @@ test('should open modal on click', () => {
   expect(mockOnClick).toHaveBeenCalledTimes(1)
 })
 
-
-/*
-test('should render Related component', () => {
-  render(<Review productId={59980} productInfo={['test']} stars={[5, 2, 3, 4]} ratings={[1]} reviews={[1]}/>);
-  const qaElement = screen.getByTestId('related-render');
-  expect(qaElement).toBeInTheDocument();
+describe("Testing More Review button", () => {
+  const mockOnClick = jest.fn()
+  it('should show show More Reviews button if there are more reviews to see', () => {
+    const { getByTestId } = render(<MoreReviewButton addCountCallBack={''} nReviews={10} reviewCount={5} />)
+    const btn = getByTestId("child-button")
+    expect(btn).toBeTruthy()
+  })
 })
-*/
+
+
 

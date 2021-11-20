@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Breakdown correctly 1`] = `null`;
+
+exports[`renders recommendation percentage 1`] = `null`;

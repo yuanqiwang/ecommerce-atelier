@@ -1,6 +1,6 @@
 /* review parent attributes */
 
-.Review {
+#Review {
   margin: auto;
   width: 70%;
 }
@@ -54,6 +54,11 @@
   margin-top: 10px;
   position: relative;
   width: 80%;
+  text-decoration: underline;
+}
+
+#breakdown1:hover, #breakdown2:hover, #breakdown3:hover, #breakdown4:hover, #breakdown5:hover {
+  background-color: lightsalmon;
 }
 
 #breakdown-rating {
@@ -66,7 +71,7 @@
   width: 100%;
   background-color: #f1f1f1;
   text-align: center;
-  color: white;
+  color: #f45e54;
 }
 
 /* characteristic bar breakdown*/
@@ -92,7 +97,7 @@
     border-radius: 3px;
     background-color: transparent;
     background: url(https://img.icons8.com/glyph-neue/16/000000/sort-down.png) center center no-repeat;
-    background-size: 15px;
+    background-size: 20px;
     cursor: ew-resize;
     -webkit-appearance: none;
 
@@ -184,7 +189,7 @@ img#review-img {
   font-size: 8pt;
 }
 
-#reviewcard-rec, #reviewcard-helpful {
+#reviewcard-rec, #helpful {
   color: maroon;
   text-decoration: underline;
 }
@@ -200,8 +205,6 @@ img#review-img {
   color: black;
 
 }
-
-
 
 #reviewcard-body {
   display: inline-flex;
@@ -235,7 +238,7 @@ button {
   margin-inline-end: 5px;
   margin-bottom: 20px;
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: white;
   box-shadow: 2px 4px 4px 2px rgb(0 0 0 / 20%);
   color: var(--second--color);
  }
