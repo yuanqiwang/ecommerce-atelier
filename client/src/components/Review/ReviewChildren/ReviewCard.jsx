@@ -25,7 +25,7 @@ const ReviewCard = (props) => {
   }, [searchTerm]);
 
   let photos = props.photos.map( (photo, index) =>
-    <><img key={index} id="review-img" src={photo.url}></img></>
+    <div key={index}><img id="review-img" src={photo.url}></img></div>
   )
   let rec = props.recommend === true ? <span>✅&nbsp;&nbsp;&nbsp;&nbsp;I recommend this product</span> : <span>👎</span>
 

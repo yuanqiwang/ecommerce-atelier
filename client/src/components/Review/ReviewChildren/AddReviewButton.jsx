@@ -19,12 +19,10 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   const [characteristics, setCharacteristics] = useState({}) //for post request
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [formComplete, setFormComplete] = useState(true);
-
-
-
+  const [formComplete, setFormComplete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [textAreaCount, setTextAreaCount] = useState(0);
+  const [errorMessage, setErrorMessage] = useState(false);
   const [characVal, setCharacVal] = useState( //for the UI
     {
       Size: "none selected",
@@ -75,8 +73,8 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       photos,
       characteristics
     }
-    if (data.rating === null || data.rating === 0 || data.summary === '') {
-      console.log('error')
+    if (data.rating === null || data.rating === 0 || data.summary === '' || data.email === '' || data.email.includes('@') === false) {
+      setErrorMessage(true)
     } else {
       axios.post('/review/reviews', data)
         .then((res)  =>
@@ -107,7 +105,6 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   }
 
   return (
-
     <div >
       <button
         id="review-button"
@@ -269,7 +266,8 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               </div>
               )}
             </div>
-            <span id='rmodal-caption'> Upload up to 5 photos</span>
+            <span id='rmodal-caption'> Upload up to 5 photos</span><br />
+            <div id='rmodal-errorMessage'>{errorMessage === false ? '' : 'Please check your mandatory fields'}</div>
             <div className="review-form-btn-container">
               <button id="review-form-btn" type="submit" onClick={(e) => postData(e)}>submit</button>
             </div>

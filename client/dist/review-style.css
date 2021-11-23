@@ -79,7 +79,6 @@
 .bar-container {
   width: 100%;
   background-color:var(--primary--light);
-  text-align: center;
   color:var(--second--light);
 }
 
@@ -252,6 +251,7 @@ button {
   padding: 10px;
   margin-left: 10px;
   margin-inline-end: 5px;
+  margin-top: 20px;
   margin-bottom: 20px;
   cursor: pointer;
   background-color:var(--primary--light);
@@ -265,4 +265,10 @@ button {
 
 }
 
+#rmodal-errorMessage {
+  color: red;
+  text-align: center;
+  margin: auto;
+
+}
 
