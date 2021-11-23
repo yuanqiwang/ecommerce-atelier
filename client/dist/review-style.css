@@ -57,8 +57,17 @@
   text-decoration: underline;
 }
 
-#breakdown1:hover, #breakdown2:hover, #breakdown3:hover, #breakdown4:hover, #breakdown5:hover {
-  background-color: lightsalmon;
+.bars-breakdown label:hover {
+  font-weight: 900;
+}
+
+
+#ratings-count {
+  text-decoration: none!important;
+  color:var(--primary--dark)!important;
+  pointer-events: none!important;
+  display: inline-flex;
+  position: relative;
 }
 
 #breakdown-rating {
@@ -69,9 +78,9 @@
 
 .bar-container {
   width: 100%;
-  background-color: #f1f1f1;
+  background-color:var(--primary--light);
   text-align: center;
-  color: #f45e54;
+  color:var(--second--light);
 }
 
 /* characteristic bar breakdown*/
@@ -81,13 +90,13 @@
     width: 80%;
     overflow: hidden;
     -webkit-appearance: none;
-    background-color:#b0acac;
+    background-color: var(--primary--dark);
   }
 
   input[type='range']::-webkit-slider-runnable-track {
     width: 50%;
     -webkit-appearance: none;
-    color:#b0acac;
+    color: var(--primary--dark);
     margin-top: -1px;
   }
 
@@ -103,7 +112,7 @@
 
   }
   input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #f45e54;
+    background:var(--second--light);
   }
 
   .container {
@@ -136,7 +145,7 @@
 #reviewcard-column {
   overflow-y: scroll;
   max-height: 600px;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
 }
 
 .review-card {
@@ -150,7 +159,7 @@
   padding-bottom: 20px;
   border-radius: 25px;
   position: relative;
-  background-color: white;
+  background-color:var(--primary--light);
 }
 
 #reviewcard-topline {
@@ -185,12 +194,12 @@ img#review-img {
 
 #review-reviewer {
   float:right;
-  color:grey;
+  color: var(--primary--dark);
   font-size: 8pt;
 }
 
 #reviewcard-rec, #helpful {
-  color: maroon;
+  color:var(--second--dark);
   text-decoration: underline;
 }
 
@@ -202,7 +211,7 @@ img#review-img {
 
 #review-helpful span:hover {
   text-decoration: underline;
-  color: black;
+  color:var(--text--color);
 
 }
 
@@ -213,6 +222,13 @@ img#review-img {
 }
 
 /*buttons */
+
+#review-x i{
+  padding-top: 10px;
+  padding-right: 15px;
+  background-color: transparent;
+  border-radius: "25px";
+}
 
 button {
   float: left;
@@ -238,14 +254,15 @@ button {
   margin-inline-end: 5px;
   margin-bottom: 20px;
   cursor: pointer;
-  background-color: white;
+  background-color:var(--primary--light);
   box-shadow: 2px 4px 4px 2px rgb(0 0 0 / 20%);
   color: var(--second--color);
  }
 
 #review-button:hover {
-  background-color: var(--second--color);
-  color:maroon;
+  background-color:var(--second--color);
+  color: #f0f0f0;
+
 }
 
 
