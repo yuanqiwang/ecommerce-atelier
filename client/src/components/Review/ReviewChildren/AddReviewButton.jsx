@@ -5,6 +5,8 @@ import axios from 'axios';
 
 
 
+
+
 export default function AddReviewButton( {productName, productId, reviews}) {
   const characteristicTitles = reviews !== null ? Object.keys(reviews) : null
   productId = parseInt(productId) || null;
@@ -16,10 +18,11 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   const [email, setEmail] = useState('');
   const [characteristics, setCharacteristics] = useState({}) //for post request
   const [photos, setPhotos] = useState([]);
-
-
+  const [loading, setLoading] = useState(false);
+  const [formComplete, setFormComplete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [textAreaCount, setTextAreaCount] = useState(0);
+  const [errorMessage, setErrorMessage] = useState(false);
   const [characVal, setCharacVal] = useState( //for the UI
     {
       Size: "none selected",
@@ -42,6 +45,8 @@ export default function AddReviewButton( {productName, productId, reviews}) {
         const data = new FormData()
         data.append('file', files[i])
         data.append('upload_preset', 'ketchup')
+
+        setLoading(true);
         const res = await fetch('https://api.cloudinary.com/v1_1/dousz4spf/image/upload', {
           method: 'POST',
           body: data
@@ -49,6 +54,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       )
       const file = await res.json() //json response
       setPhotos(photos => [...photos, file.secure_url])
+      setLoading(false)
       }
     }
 
@@ -67,17 +73,22 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       photos,
       characteristics
     }
-
-    axios.post('/review/reviews', data)
-      .then((res)  =>
-        res.send(201)
-      )
-      .catch((err) =>
-        console.log(err)
-      )
-
+    if (data.rating === null || data.rating === 0 || data.summary === '' || data.email === '' || data.email.includes('@') === false) {
+      setErrorMessage(true)
+    } else {
+      axios.post('/review/reviews', data)
+        .then((res)  =>
+          res.send(201)
+        )
+        .catch((err) =>
+          console.log(err)
+        )
+      setFormComplete(true)
+    }
   }
-
+  const clearForm = () => {
+    setPhotos([])
+  }
 
   const renderSwitch = (val) => {
     switch(val) {
@@ -107,10 +118,11 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       <Modal
         visable={isOpen}
         close={() => {
+          clearForm()
           setIsOpen(false);
-
         }}
       >
+      { formComplete === false ?
         <div id="rmodal-wrapper">
           <div id="rmodal-border">
             <div id="rmodal-title">Write Your Review</div>
@@ -153,7 +165,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                 <div key={index}>
                 <span id="modal-charac-title" >{characteristic}</span><br/>
                   <div className="letter-slider" >
-                    <div className="rmodal-selected"><span className="choice">choice:</span> {characVal[characteristic]}</div>
+                    <div className="rmodal-selected"><span className="choice">choice:</span> {characVal[characteristic]}</div><br/>
                     <input
                       id={`${characteristic}1`}
                       type="radio"
@@ -203,7 +215,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               </div>
             <div className="rmodal-summary">
               <div className="rmodal-question">Review Summary</div>
-              <input type="text" placeholder="Example: Best purchase ever!" onChange={(e) => setSummary(e.target.value)} maxLength="60" size="70" />
+              <input type="text" placeholder="Example: Best purchase ever!" onChange={(e) => setSummary(e.target.value)} maxLength="60" size="85" />
             </div>
             <div className="rmodal-body">
               <div className="rmodal-question">Your Review (mandatory)*</div>
@@ -221,22 +233,22 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                 }}
                 >
               </textarea>
-              <p>{textAreaCount < 50 ? `Minimum required characters left: ${50 - textAreaCount}` : `Minimum Reached`}</p>
+              <p id="rmodal-caption-box">{textAreaCount < 50 ? `Minimum required characters left: ${50 - textAreaCount}` : `Minimum Reached`}</p>
             </div>
             <div className="rmodal-nickname">
-              <label className="rmodal-question">What is your nickname (mandatory)* </label>
+              <label className="rmodal-question">What is your nickname (mandatory)*?</label>
               <input type="text" name="nickname" id="nickname" placeholder="ex:jackson11!" onChange={(e) => {
                 setName(e.target.value)
               }}/>
-              <p>For privacy reasons, do not use your full name or email address</p>
+              <p id="rmodal-caption">For privacy reasons, do not use your full name or email address</p>
             </div>
             <div className="rmodal-email">
-              <label className="rmodal-question">Your email (mandatory)*: </label>
-              <input type="text" name="email" id="email" maxLength="60" Length="100" placeholder="ex:jackson11@email.com" onChange={(e) => setEmail(e.target.value)}/>
-              <p>For authentication reasons, you will not be emailed</p>
+              <label className="rmodal-question">Your email (mandatory)* </label>
+              <input type="text" name="email" id="email" maxLength="60" Length="200" placeholder="ex:jackson11@email.com" onChange={(e) => setEmail(e.target.value)}/>
+              <p id="rmodal-caption">For authentication reasons, you will not be emailed</p>
             </div>
             <div className="rmodal-nickname">
-                <label className="rmodal-question">Upload your Photos: </label>
+                <label className="rmodal-question">Upload your Photos </label>
                 <input multiple
                   type="file"
                   name="photo"
@@ -244,12 +256,24 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                   accept="image/png, image/jpeg"
                   onChange={uploadImage}
                 />
+                {loading ? (
+                <h3 data-testid='image-loaded'>loading ... </h3>
+              ) : (
+              <div className="form-group qa-multi-preview" data-testid='image-loaded'>
+                {(photos || []).map((url,i) => (
+                    <img key={i} src={url} alt={`review image ${i}`} />
+                ))}
+              </div>
+              )}
             </div>
+            <span id='rmodal-caption'> Upload up to 5 photos</span><br />
+            <div id='rmodal-errorMessage'>{errorMessage === false ? '' : 'Please check your mandatory fields'}</div>
             <div className="review-form-btn-container">
               <button id="review-form-btn" type="submit" onClick={(e) => postData(e)}>submit</button>
             </div>
           </form>
         </div>
+      : <><header><div className = "logo-name" id = "logo-name">cinquante-sept</div></header><div id="rmodal-submitted"> Thanks for submitting your review! </div></>  }
       </Modal>
     </div>
   );
