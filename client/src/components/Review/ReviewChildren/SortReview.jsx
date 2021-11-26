@@ -15,6 +15,7 @@ class SortReview extends React.Component {
   render() {
  if (this.props.nReviews > 0) {
   return (
+    <>
       <div id="review-sort">
         {this.props.nReviews} reviews, sorted by
       <select id="review-dropdown" onChange={this.handleChange}>
@@ -22,8 +23,9 @@ class SortReview extends React.Component {
         <option value="helpfulness">helpfulness</option>
         <option value="newest">newest</option>
       </select><span>▿</span>
-
       </div>
+      <div id="review-caption">Note: reported reviews are not shown</div>
+    </>
   )
  }
  return (

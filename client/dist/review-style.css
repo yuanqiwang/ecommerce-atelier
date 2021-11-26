@@ -51,6 +51,13 @@
   margin-bottom: 5px;
 }
 
+#review-caption {
+  font-size: x-small;
+  white-space: initial;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
 /* breakdown of number ratings */
 
 #breakdown5, #breakdown4, #breakdown3, #breakdown2 {
@@ -306,5 +313,6 @@ button {
 #rmodal-errorMessage {
   color: red;
   text-align: center;
+
 }
 
