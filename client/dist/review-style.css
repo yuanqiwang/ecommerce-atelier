@@ -19,6 +19,11 @@
   margin-top: 10%;
 }
 
+#review-title {
+  font-size: var(--h5--size);
+  margin-bottom: 10px;
+}
+
 /*star rating number */
 
 #review-star-container {
@@ -107,20 +112,18 @@
 
 /* characteristic bar breakdown*/
 
+.review-characteristic {
+  margin-bottom: 0;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   input[type='range'] {
-    width: 80%;
+    width: 100%;
     overflow: hidden;
     -webkit-appearance: none;
     background-color: var(--primary--dark);
   }
 
-  input[type='range']::-webkit-slider-runnable-track {
-    width: 50%;
-    -webkit-appearance: none;
-    color: var(--primary--dark);
-    margin-top: -1px;
-  }
 
   input[type=range]::-webkit-slider-thumb {
     height: 15px;
@@ -129,7 +132,6 @@
     background-color: transparent;
     background: url(https://img.icons8.com/glyph-neue/16/000000/sort-down.png) center center no-repeat;
     background-size: 20px;
-    cursor: ew-resize;
     -webkit-appearance: none;
 
   }
@@ -137,14 +139,19 @@
     background:var(--second--light);
   }
 
-  .container {
+
+  .rcontainer {
     display: flex;
-    width: 100%
   }
-  .container.space-between {
+  .rcontainer.space-between {
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     font-size: x-small;
+  }
+
+  #myRange {
+    pointer-events: none;
+    cursor: none;
   }
 
 }
@@ -154,12 +161,14 @@
 #review-sort {
   display: inline-flex;
   font-size: 22px;
-  margin-top: 3%;
+  text-align: right;
+  margin-right: 0;
 }
 
 #review-dropdown {
   font-size: 22px;
   text-decoration: underline;
+  text-align: center;
 }
 
 
@@ -274,7 +283,7 @@ button {
   padding: 10px;
   margin-left: 10px;
   margin-inline-end: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
   cursor: pointer;
   background-color:var(--primary--light);

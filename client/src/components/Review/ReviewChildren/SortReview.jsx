@@ -16,12 +16,13 @@ class SortReview extends React.Component {
  if (this.props.nReviews > 0) {
   return (
       <div id="review-sort">
-        {this.props.nReviews} reviews, sorted by &nbsp;
+        {this.props.nReviews} reviews, sorted by
       <select id="review-dropdown" onChange={this.handleChange}>
         <option value="relevance">relevance</option>
         <option value="helpfulness">helpfulness</option>
         <option value="newest">newest</option>
-      </select>
+      </select><span>▿</span>
+
       </div>
   )
  }
