@@ -78,7 +78,6 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       photos,
       characteristics
     }
-    console.log(data)
     if (data.rating===0) {
       setRatingErr('Error: missing rating')
     }
