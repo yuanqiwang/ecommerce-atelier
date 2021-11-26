@@ -69,31 +69,41 @@ class Breakdown extends React.Component {
         </div>
 
         <div className="bars-breakdown">
-          <div id="breakdown1" onClick={() => this.handleChange(5)}>
-            <label onClick={() => this.handleClick("five")} htmlFor="breakdown-rating">{(this.state.five === true) ? <div style={{fontWeight: 900}}>5 stars</div>: <div>5 stars </div>}</label>
-            <progress id="breakdown-rating" max="100" value={(this.props['ratings'][5]/nOfRatings)*100}></progress>
+          <div id="breakdown5">
+            <div onClick={() => {this.handleClick("five"), this.handleChange(5)}} id="breakdown-rating">{(this.state.five === true) ? <div style={{fontWeight: 900}}>5 stars</div>: <div>5 stars </div>}</div>
+            <div id="breakdown-bar">
+              <div style={{ 'width': (this.props['ratings'][5]/nOfRatings)*100 + '%'  }}></div>
+            </div>
             <span id="ratings-count">&nbsp;{this.props['ratings'][5]}</span>
           </div>
-          <div id="breakdown2" onClick={() => this.handleChange(4)}>
-            <label onClick={() => this.handleClick("four")} htmlFor="breakdown-rating">{(this.state.four === true) ? <div style={{fontWeight: 900}}>4 stars</div>: <div>4 stars </div>}</label>
-            <progress id="breakdown-rating" max="100" value={(this.props['ratings'][4]/nOfRatings)*100}></progress>
+          <div id="breakdown4">
+            <div onClick={() => { this.handleClick("four"), this.handleChange(4)}} id="breakdown-rating">{(this.state.four === true) ? <div style={{fontWeight: 900}}>4 stars</div>: <div>4 stars </div>}</div>
+            <div id="breakdown-bar">
+              <div style={{ 'width': (this.props['ratings'][4]/nOfRatings)*100 + '%'  }}></div>
+            </div>
             <span id="ratings-count">&nbsp;{this.props['ratings'][4]}</span>
           </div>
-          <div id="breakdown3" onClick={() => this.handleChange(3)}>
-            <label onClick={() => this.handleClick("three")} htmlFor="breakdown-rating">{(this.state.three === true) ? <div style={{fontWeight: 900}}>3 stars</div>: <div>3 stars </div>}</label>
-            <progress id="breakdown-rating" max="100" value={(this.props['ratings'][3]/nOfRatings)*100}></progress><span id="ratings-count"></span>
+          <div id="breakdown3">
+            <div onClick={() => {this.handleClick("three"), this.handleChange(3)}} id="breakdown-rating">{(this.state.three === true) ? <div style={{fontWeight: 900}}>3 stars</div>: <div>3 stars </div>}</div>
+            <div id="breakdown-bar">
+              <div style={{ 'width': (this.props['ratings'][3]/nOfRatings)*100 + '%'  }}></div>
+            </div>
             <span id="ratings-count">&nbsp;{this.props['ratings'][3]}</span>
           </div>
-          <div id="breakdown4" onClick={() => this.handleChange(2)}>
-            <label onClick={() => this.handleClick("two")} htmlFor="file">{(this.state.two === true) ? <div style={{fontWeight: 900}}>2 stars</div>: <div>2 stars</div>}</label>
-            <progress id="breakdown-rating" max="100" value={(this.props['ratings'][2]/nOfRatings)*100}></progress><span id="ratings-count"></span>
+          <div id="breakdown2">
+            <div onClick={() => {this.handleClick("two"), this.handleChange(2)}} id="breakdown-rating">{(this.state.two === true) ? <div style={{fontWeight: 900}}>2 stars</div>: <div>2 stars</div>}</div>
+            <div id="breakdown-bar">
+              <div style={{ 'width': (this.props['ratings'][2]/nOfRatings)*100 + '%'  }}></div>
+            </div>
           </div>
           <span id="ratings-count">&nbsp;{this.props['ratings'][2]}</span>
-          <div id="breakdown5" onClick={() => this.handleChange(1)}>
-            <label onClick={() => this.handleClick("one")} htmlFor="breakdown-rating" >{(this.state.one === true) ? <div style={{fontWeight: 900}}>1 star</div>: <div>1 star</div>}</label>
-            <progress id="breakdown-rating" max="100" value={(this.props['ratings'][1]/nOfRatings)*100}></progress><span id="ratings-count"></span>
+          <div id="breakdown1">
+            <div onClick={() => {this.handleClick("one"), this.handleChange(1)}} id="breakdown-rating" >{(this.state.one === true) ? <div style={{fontWeight: 900}}>1 star</div>: <div>1 star</div>}</div>
+            <div id="breakdown-bar">
+              <div style={{ 'width': (this.props['ratings'][1]/nOfRatings)*100 + '%'  }}></div>
+            </div>
+            <span id="ratings-count">&nbsp;{this.props['ratings'][1]}</span>
           </div>
-          <div id="ratings-count">&nbsp;{this.props['ratings'][1]}</div>
         </div>
       </div>
     )

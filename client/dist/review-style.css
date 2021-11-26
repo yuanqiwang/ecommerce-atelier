@@ -46,15 +46,36 @@
   width: 80%;
 }
 
-
-
 /* breakdown of number ratings */
 
-.bars-breakdown {
-  margin-top: 10px;
-  position: relative;
-  width: 80%;
+#breakdown-rating {
   text-decoration: underline;
+}
+
+#breakdown-rating:hover {
+  color: var(--second--light);
+}
+
+#breakdown-rating {
+  float: left;
+}
+
+#breakdown-bar {
+  margin-top: 3%;
+  background-color: var(--primary--dark);
+  border-radius: 3px;
+  /* (height of inner div) / 2 + padding */
+  padding: 1px;
+  width: 70%;
+  float: left;
+  pointer-events: none!important;
+}
+
+
+#breakdown-bar > div {
+  background-color: var(--second--color);
+  height: 8px;
+  border-radius: 3px;
 }
 
 .bars-breakdown label:hover {
@@ -66,14 +87,8 @@
   text-decoration: none!important;
   color:var(--primary--dark)!important;
   pointer-events: none!important;
-  display: inline-flex;
-  position: relative;
-}
-
-#breakdown-rating {
-  padding-left: 10px;
-  width: 80%;
-  font-size: 20px;
+  font-size: small;
+  text-align: right;
 }
 
 .bar-container {
@@ -121,7 +136,7 @@
   .container.space-between {
     justify-content: space-between;
     width: 80%;
-    font-size: small;
+    font-size: x-small;
   }
 
 }
