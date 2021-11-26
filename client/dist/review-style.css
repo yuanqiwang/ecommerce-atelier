@@ -230,6 +230,10 @@ img#review-img {
   image-rendering: crisp-edges;
 }
 
+img#review-img:hover {
+  cursor: pointer;
+}
+
 #review-reviewer {
   float:right;
   color: var(--primary--dark);

@@ -168,6 +168,13 @@ footer {
 #search input::placeholder {
   color: var(--text--color);
 }
+/*added this globally*/
+.fas {
+  background-color: transparent;
+  border-color: transparent;
+  border: none;
+  background: none;
+}
 
 .copyright {
   color: var(--text--color);
