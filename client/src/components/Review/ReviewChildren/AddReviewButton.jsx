@@ -78,9 +78,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       photos,
       characteristics
     }
-    if (data.rating === 0 || data.recommend === null || data.body.length < 50 || data.email === '' || data.email.includes('@') === false) {
-      setErrorMessage(true)
-    }
+    console.log(data)
     if (data.rating===0) {
       setRatingErr('Error: missing rating')
     }
@@ -95,6 +93,11 @@ export default function AddReviewButton( {productName, productId, reviews}) {
     if (data.recommend === null) {
       setRecommendErr('Error: missing recommendation')
     }
+    if (data.rating === 0 || data.summary === '' || data.recommend === null || data.body === '' || data.email === '' || data.email.includes('@') === false) {
+      setErrorMessage(true)
+      return;
+    }
+
 
     else {
       axios.post('/review/reviews', data)
@@ -110,7 +113,12 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   const clearForm = () => {
     setPhotos([]),
     setCharacVal(characValDefault),
-    setRating(0)
+    setRating(0),
+    setErrorMessage(''),
+    setRatingErr(''),
+    setTextAreaErr(''),
+    setEmailErr(''),
+    setRecommendErr('')
   }
 
   const renderSwitch = (val) => {
