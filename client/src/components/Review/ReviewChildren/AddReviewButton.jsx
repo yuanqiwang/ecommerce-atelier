@@ -8,12 +8,22 @@ import axios from 'axios';
 
 
 export default function AddReviewButton( {productName, productId, reviews}) {
+
+  let characValDefault = {
+    Size: "none selected",
+    Width: "none selected",
+    Comfort: "none selected",
+    Quality: "none selected",
+    Length: "none selected",
+    Fit: "none selected"
+  }
+
   const characteristicTitles = reviews !== null ? Object.keys(reviews) : null
   productId = parseInt(productId) || null;
   const [rating, setRating] = useState(0);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
-  const [recommend, setRecommend] = useState(false);
+  const [recommend, setRecommend] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [characteristics, setCharacteristics] = useState({}) //for post request
@@ -23,41 +33,36 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   const [isOpen, setIsOpen] = useState(false);
   const [textAreaCount, setTextAreaCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState(false);
-  const [characVal, setCharacVal] = useState( //for the UI
-    {
-      Size: "none selected",
-      Width: "none selected",
-      Comfort: "none selected",
-      Quality: "none selected",
-      Length: "none selected",
-      Fit: "none selected"
-    }
-  );
+  const [characVal, setCharacVal] = useState(characValDefault);
+  const [photoErr, setPhotoErr] = useState('')
+  const [textAreaErr, setTextAreaErr] = useState('')
+  const [ratingErr, setRatingErr] = useState('')
+  const [recommendErr, setRecommendErr] = useState('')
+  const [emailErr, setEmailErr] = useState('')
 
   const uploadImage = async e => {
     const files = e.target.files
     if (files.length > 5) {
       e.preventDefault();
-      alert('Cannot upload more than 5 files, please edit your review') //add some text later
-      return;
+      setPhotos([]);
+      setPhotoErr('Error: Cannot upload more than 5 photos')
     } else {
-     for (var i=0; i<files.length; i++) {
-        const data = new FormData()
-        data.append('file', files[i])
-        data.append('upload_preset', 'ketchup')
+    for (var i=0; i<files.length; i++) {
+      const data = new FormData()
+      data.append('file', files[i])
+      data.append('upload_preset', 'ketchup')
 
-        setLoading(true);
-        const res = await fetch('https://api.cloudinary.com/v1_1/dousz4spf/image/upload', {
-          method: 'POST',
-          body: data
-        },
-      )
+      setLoading(true);
+      const res = await fetch('https://api.cloudinary.com/v1_1/dousz4spf/image/upload', {
+        method: 'POST',
+        body: data
+      },
+    )
       const file = await res.json() //json response
       setPhotos(photos => [...photos, file.secure_url])
       setLoading(false)
-      }
     }
-
+    }
   }
 
   const postData = (e) => {
@@ -73,9 +78,25 @@ export default function AddReviewButton( {productName, productId, reviews}) {
       photos,
       characteristics
     }
-    if (data.rating === null || data.rating === 0 || data.summary === '' || data.email === '' || data.email.includes('@') === false) {
+    if (data.rating === 0 || data.recommend === null || data.body.length < 50 || data.email === '' || data.email.includes('@') === false) {
       setErrorMessage(true)
-    } else {
+    }
+    if (data.rating===0) {
+      setRatingErr('Error: missing rating')
+    }
+    if (data.body.length < 50) {
+      setTextAreaErr('Error: minimum characters not met')
+    }
+
+    if (data.email.includes('@') === false || data.email === null) {
+      setEmailErr('Error: invalid email address')
+    }
+
+    if (data.recommend === null) {
+      setRecommendErr('Error: missing recommendation')
+    }
+
+    else {
       axios.post('/review/reviews', data)
         .then((res)  =>
           res.send(201)
@@ -87,7 +108,9 @@ export default function AddReviewButton( {productName, productId, reviews}) {
     }
   }
   const clearForm = () => {
-    setPhotos([])
+    setPhotos([]),
+    setCharacVal(characValDefault),
+    setRating(0)
   }
 
   const renderSwitch = (val) => {
@@ -150,6 +173,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               </div>
                 <span id="rstar-value">{renderSwitch(rating)}</span>
               </div>
+              <div id='rmodal-err'>{ratingErr}</div><br />
               <div id="block">
                 <div className="rmodal-overall-rating"><p>Do you recommend this product (mandatory)*?</p></div>
                 <div id="rmodal-radio">
@@ -158,6 +182,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                   <input type="radio" value="no" onClick={() => {setRecommend(false)}} name="review-radio"/>
                   <label htmlFor="no">&nbsp;no&nbsp;</label>
                 </div>
+                <div id='rmodal-err'>{recommendErr}</div><br />
               </div>
             <div className="rmodal-characteristics">
               <div className="rmodal-question">Characteristics (mandatory)*</div>
@@ -234,18 +259,20 @@ export default function AddReviewButton( {productName, productId, reviews}) {
                 >
               </textarea>
               <p id="rmodal-caption-box">{textAreaCount < 50 ? `Minimum required characters left: ${50 - textAreaCount}` : `Minimum Reached`}</p>
+              <div id='rmodal-err'>{textAreaErr}</div><br />
             </div>
             <div className="rmodal-nickname">
               <label className="rmodal-question">What is your nickname (mandatory)*?</label>
-              <input type="text" name="nickname" id="nickname" placeholder="ex:jackson11!" onChange={(e) => {
+              <input type="text" name="nickname" id="nickname" placeholder="jackson11" onChange={(e) => {
                 setName(e.target.value)
               }}/>
               <p id="rmodal-caption">For privacy reasons, do not use your full name or email address</p>
             </div>
             <div className="rmodal-email">
               <label className="rmodal-question">Your email (mandatory)* </label>
-              <input type="text" name="email" id="email" maxLength="60" Length="200" placeholder="ex:jackson11@email.com" onChange={(e) => setEmail(e.target.value)}/>
+              <input type="text" name="email" id="email" maxLength="60" Length="200" placeholder="jackson11@email.com" onChange={(e) => setEmail(e.target.value)}/>
               <p id="rmodal-caption">For authentication reasons, you will not be emailed</p>
+              <div id='rmodal-err'>{emailErr}</div><br />
             </div>
             <div className="rmodal-nickname">
                 <label className="rmodal-question">Upload your Photos </label>
@@ -267,9 +294,10 @@ export default function AddReviewButton( {productName, productId, reviews}) {
               )}
             </div>
             <span id='rmodal-caption'> Upload up to 5 photos</span><br />
+            <div id='rmodal-err'>{photoErr}</div><br />
             <div id='rmodal-errorMessage'>{errorMessage === false ? '' : 'Please check your mandatory fields'}</div>
             <div className="review-form-btn-container">
-              <button id="review-form-btn" type="submit" onClick={(e) => postData(e)}>submit</button>
+              <button id="review-form-btn" type="submit" onClick={(e) => postData(e)}>Submit</button>
             </div>
           </form>
         </div>

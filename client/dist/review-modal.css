@@ -295,12 +295,13 @@
   text-align: center;
   position: relative;
   padding: 40px;
+
 }
 
 #review-form-btn {
   background-color: var(--second--light);
   color: #fff;
-  width: 40%;
+  width: 20%;
   padding: 8px;
   border: 1px solid var(--second--light) !important;
   cursor: pointer;
@@ -311,6 +312,7 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  border-radius: 5px;
 }
 
 #review-form-btn:hover {

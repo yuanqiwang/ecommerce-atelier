@@ -297,10 +297,14 @@ button {
 
 }
 
+#rmodal-err {
+  color: red;
+  text-align: center;
+  font-size: small;
+}
+
 #rmodal-errorMessage {
   color: red;
   text-align: center;
-  margin: auto;
-
 }
 
