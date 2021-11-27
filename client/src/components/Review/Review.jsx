@@ -50,7 +50,7 @@ class Review extends React.Component {
       return (
         <>
           <div id="Review">
-            <h3 id="review-title">REVIEWS & RATING</h3>
+            <div id="review-title">RATINGS & REVIEWS</div>
             <Search onChange={this.handleSearch} placeholder={placeholder}/>
             <div className="review-grid" onClick={this.props.trackClick}>
               <div id="review-left">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Star from '../../../star.jsx';
+import ImageModal from './ImageModal.jsx';
 
 
 const ReviewCard = (props) => {
@@ -17,6 +18,19 @@ const ReviewCard = (props) => {
   const [helpfulCount, setHelpfulCount] = useState(count)
   const [reviewList, setReviewList] = useState([])
   const [activeSearch, setActiveSearch] = useState(false)
+  const [imageModal, setImageModal] = useState(false);
+  const [imageModalURL, setImageModalURL] = useState('');
+
+
+
+  const handleModalOpen = e => {
+    setImageModal(true);
+    setImageModalURL(e.target.src);
+  }
+
+  const handleModalClose = () => {
+    setImageModal(false);
+  }
 
 
   useEffect(() => {
@@ -25,9 +39,9 @@ const ReviewCard = (props) => {
   }, [searchTerm]);
 
   let photos = props.photos.map( (photo, index) =>
-    <div key={index}><img id="review-img" src={photo.url}></img></div>
+    <div key={index}><img id="review-img" onClick={handleModalOpen} src={photo.url} alt={`review` + index}></img></div>
   )
-  let rec = props.recommend === true ? <span>✅&nbsp;&nbsp;&nbsp;&nbsp;I recommend this product</span> : <span>👎</span>
+  let rec = props.recommend === true ? <span>✅&nbsp;&nbsp;&nbsp;&nbsp;I recommend this product</span> : <span>👎&nbsp;&nbsp;&nbsp;&nbsp;I do not recommend this product</span>
 
 
   const handleHelpful = () => {
@@ -76,6 +90,13 @@ const ReviewCard = (props) => {
           <span id="helpful" onClick={handleReport}>
             {reportStatus ? "✓ Report sent for internal review" : "Report"}</span>
         </div>
+        {imageModal ?
+         <ImageModal
+           imageURL={imageModalURL}
+           handleModalClose={handleModalClose}
+          />
+        : null
+      }
       </div>
     )
 } else {

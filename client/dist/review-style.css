@@ -19,6 +19,11 @@
   margin-top: 10%;
 }
 
+#review-title {
+  font-size: var(--h5--size);
+  margin-bottom: 10px;
+}
+
 /*star rating number */
 
 #review-star-container {
@@ -41,20 +46,56 @@
 
 /* recommendation */
 #review-breakdowns #review-rec {
-  font-size: medium;
+  font-size: small;
   white-space: initial;
-  width: 80%;
+  margin-bottom: 5px;
 }
 
-
+#review-caption {
+  font-size: x-small;
+  white-space: initial;
+  font-style: italic;
+  margin-bottom: 5px;
+}
 
 /* breakdown of number ratings */
 
-.bars-breakdown {
-  margin-top: 10px;
-  position: relative;
-  width: 80%;
+#breakdown5, #breakdown4, #breakdown3, #breakdown2 {
+  margin-bottom: 5px;
+}
+
+#breakdown1 {
+  margin-top: 5px;
+}
+
+#breakdown-rating {
   text-decoration: underline;
+}
+
+#breakdown-rating:hover {
+  color: var(--second--light);
+}
+
+#breakdown-rating {
+  float: left;
+}
+
+#breakdown-bar {
+  margin-top: 3%;
+  background-color: var(--primary--dark);
+  border-radius: 3px;
+  /* (height of inner div) / 2 + padding */
+  padding: 1px;
+  width: 70%;
+  float: left;
+  pointer-events: none!important;
+}
+
+
+#breakdown-bar > div {
+  background-color: var(--second--color);
+  height: 8px;
+  border-radius: 3px;
 }
 
 .bars-breakdown label:hover {
@@ -66,14 +107,8 @@
   text-decoration: none!important;
   color:var(--primary--dark)!important;
   pointer-events: none!important;
-  display: inline-flex;
-  position: relative;
-}
-
-#breakdown-rating {
-  padding-left: 10px;
-  width: 80%;
-  font-size: 20px;
+  font-size: small;
+  text-align: right;
 }
 
 .bar-container {
@@ -84,20 +119,18 @@
 
 /* characteristic bar breakdown*/
 
+.review-characteristic {
+  margin-bottom: 0;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   input[type='range'] {
-    width: 80%;
+    width: 100%;
     overflow: hidden;
     -webkit-appearance: none;
     background-color: var(--primary--dark);
   }
 
-  input[type='range']::-webkit-slider-runnable-track {
-    width: 50%;
-    -webkit-appearance: none;
-    color: var(--primary--dark);
-    margin-top: -1px;
-  }
 
   input[type=range]::-webkit-slider-thumb {
     height: 15px;
@@ -106,7 +139,6 @@
     background-color: transparent;
     background: url(https://img.icons8.com/glyph-neue/16/000000/sort-down.png) center center no-repeat;
     background-size: 20px;
-    cursor: ew-resize;
     -webkit-appearance: none;
 
   }
@@ -114,14 +146,19 @@
     background:var(--second--light);
   }
 
-  .container {
+
+  .rcontainer {
     display: flex;
-    width: 100%
   }
-  .container.space-between {
+  .rcontainer.space-between {
     justify-content: space-between;
-    width: 80%;
-    font-size: small;
+    width: 100%;
+    font-size: x-small;
+  }
+
+  #myRange {
+    pointer-events: none;
+    cursor: none;
   }
 
 }
@@ -131,12 +168,14 @@
 #review-sort {
   display: inline-flex;
   font-size: 22px;
-  margin-top: 3%;
+  text-align: right;
+  margin-right: 0;
 }
 
 #review-dropdown {
   font-size: 22px;
   text-decoration: underline;
+  text-align: center;
 }
 
 
@@ -150,7 +189,7 @@
 .review-card {
   box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   width: 80%;
-  margin-top: 30px;
+  margin-top: 10px;
   max-height: fit-content(20em);
   padding-right: 20px;
   padding-left: 30px;
@@ -189,6 +228,10 @@ img#review-img {
   width: calc(25% - 10px);
   max-height: 100px;
   image-rendering: crisp-edges;
+}
+
+img#review-img:hover {
+  cursor: pointer;
 }
 
 #review-reviewer {
@@ -251,7 +294,7 @@ button {
   padding: 10px;
   margin-left: 10px;
   margin-inline-end: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
   cursor: pointer;
   background-color:var(--primary--light);
@@ -265,10 +308,15 @@ button {
 
 }
 
+#rmodal-err {
+  color: red;
+  text-align: center;
+  font-size: small;
+}
+
 #rmodal-errorMessage {
   color: red;
   text-align: center;
-  margin: auto;
 
 }
 
