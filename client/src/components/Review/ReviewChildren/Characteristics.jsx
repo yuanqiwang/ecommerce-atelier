@@ -20,7 +20,9 @@ const Characteristics = (props) => {
       index%2 === 0 ?
       <h3 className="review-characteristic" key={index}>{item}</h3> :
       <div className="cbar" key={index}>
-        <input type="range" min="1" max="100" defaultValue={(item / 5) * 100} id="myRange"></input>
+      <label>
+        <input type="range" min="1" max="100" defaultValue={(item / 5) * 100} id={index}></input>
+      </label>
         <div className="rcontainer space-between">
           <div>{meanings[characArr[index - 1]][0]}</div>
           <div>{meanings[characArr[index - 1]][1]}</div>

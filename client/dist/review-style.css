@@ -106,7 +106,7 @@
 
 #ratings-count {
   text-decoration: none!important;
-  color:var(--primary--dark)!important;
+  color:var(--secondary--dark)!important;
   pointer-events: none!important;
   font-size: small;
   text-align: right;
@@ -157,7 +157,7 @@
     font-size: x-small;
   }
 
-  #myRange {
+  .cbar input {
     pointer-events: none;
     cursor: none;
   }
@@ -322,7 +322,7 @@ button {
 }
 
 
-#review-button {
+#morereview-button, #addreview-button {
   font-size: medium;
   margin-top: 2%;
   display: inline-block;
@@ -339,7 +339,7 @@ button {
   color: var(--second--color);
  }
 
-#review-button:hover {
+#morereview-button:hover, #addreview-button:hover {
   background-color:var(--second--color);
   color: #f0f0f0;
 
