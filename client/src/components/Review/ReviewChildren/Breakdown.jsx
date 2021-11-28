@@ -70,21 +70,21 @@ class Breakdown extends React.Component {
 
         <div className="bars-breakdown">
           <div id="breakdown5">
-            <div onClick={() => {this.handleClick("five"), this.handleChange(5)}} id="breakdown-rating">{(this.state.five === true) ? <div style={{fontWeight: 900}}>5 stars</div>: <div>5 stars </div>}</div>
+            <div onClick={() => {this.handleClick("five"), this.handleChange(5)}} id="breakdown-rating">{(this.state.five === true) ? <div style={{fontWeight: 900}}>5 stars</div>: <div>5 stars</div>}</div>
             <div id="breakdown-bar">
               <div style={{ 'width': (this.props['ratings'][5]/nOfRatings)*100 + '%'  }}></div>
             </div>
             <span id="ratings-count">&nbsp;{this.props['ratings'][5]}</span>
           </div>
           <div id="breakdown4">
-            <div onClick={() => { this.handleClick("four"), this.handleChange(4)}} id="breakdown-rating">{(this.state.four === true) ? <div style={{fontWeight: 900}}>4 stars</div>: <div>4 stars </div>}</div>
+            <div onClick={() => { this.handleClick("four"), this.handleChange(4)}} id="breakdown-rating">{(this.state.four === true) ? <div style={{fontWeight: 900}}>4 stars</div>: <div>4 stars</div>}</div>
             <div id="breakdown-bar">
               <div style={{ 'width': (this.props['ratings'][4]/nOfRatings)*100 + '%'  }}></div>
             </div>
             <span id="ratings-count">&nbsp;{this.props['ratings'][4]}</span>
           </div>
           <div id="breakdown3">
-            <div onClick={() => {this.handleClick("three"), this.handleChange(3)}} id="breakdown-rating">{(this.state.three === true) ? <div style={{fontWeight: 900}}>3 stars</div>: <div>3 stars </div>}</div>
+            <div onClick={() => {this.handleClick("three"), this.handleChange(3)}} id="breakdown-rating">{(this.state.three === true) ? <div style={{fontWeight: 900}}>3 stars</div>: <div>3 stars</div>}</div>
             <div id="breakdown-bar">
               <div style={{ 'width': (this.props['ratings'][3]/nOfRatings)*100 + '%'  }}></div>
             </div>

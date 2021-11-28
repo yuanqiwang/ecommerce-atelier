@@ -3,6 +3,7 @@
 #Review {
   margin: auto;
   width: 70%;
+  color: var(--text--color);
 }
 
 #review-left {
@@ -176,6 +177,12 @@
   font-size: 22px;
   text-decoration: underline;
   text-align: center;
+  color: var(--text--color);
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
 }
 
 
@@ -288,7 +295,6 @@ img#review-img:hover {
 
 #reviewcard-recommend {
   font-size: small;
-  color: gray;
 }
 
 #review-response {
@@ -313,14 +319,6 @@ img#review-img:hover {
 
 button {
   float: left;
-}
-
-#review-dropdown {
-  background-color: transparent;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
 }
 
 
