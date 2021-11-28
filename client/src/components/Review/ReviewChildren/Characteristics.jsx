@@ -19,7 +19,7 @@ const Characteristics = (props) => {
     characteristicVals = characArr.map((item, index) =>
       index%2 === 0 ?
       <h3 className="review-characteristic" key={index}>{item}</h3> :
-      <div className="cbar" key={index}>
+      <div className="cbar" onClick={(e)=> e.preventDefault()} key={index}>
       <label>
         <input type="range" min="1" max="100" defaultValue={(item / 5) * 100} id={index}></input>
       </label>

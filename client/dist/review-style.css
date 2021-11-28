@@ -138,7 +138,7 @@
     width: 15px;
     border-radius: 3px;
     background-color: transparent;
-    background: url(https://img.icons8.com/glyph-neue/16/000000/sort-down.png) center center no-repeat;
+    background: url('./sort-down.png') center center no-repeat;
     background-size: 20px;
     -webkit-appearance: none;
 
