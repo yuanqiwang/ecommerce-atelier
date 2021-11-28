@@ -258,10 +258,34 @@ img#review-img:hover {
 }
 
 #reviewcard-body {
-  display: inline-flex;
+  display: inline;
   margin: 3px 10px 3px 10px;
   font-size: 15px;
 }
+
+#review-twofifty {
+  display: inline;
+
+}
+
+#review-showmore {
+  display: inline;
+}
+
+#review-underline {
+  display: inline;
+  text-decoration: underline;
+  font-weight: 900;
+}
+
+#review-underline:hover {
+  color: blue;
+}
+
+#review-overtwofifty {
+  display: inline;
+}
+
 
 /*buttons */
 
