@@ -286,6 +286,21 @@ img#review-img:hover {
   display: inline;
 }
 
+#reviewcard-recommend {
+  font-size: small;
+  color: gray;
+}
+
+#review-response {
+  background-color: var(--primary--dark);
+  padding: 15px;
+  border-radius: 25px;
+}
+
+#review-bold {
+  font-weight: 900;
+}
+
 
 /*buttons */
 
