@@ -20,8 +20,7 @@ const ReviewCard = (props) => {
   const [activeSearch, setActiveSearch] = useState(false)
   const [imageModal, setImageModal] = useState(false);
   const [imageModalURL, setImageModalURL] = useState('');
-
-
+  const [showMore, setShowMore] = useState(false);
 
   const handleModalOpen = e => {
     setImageModal(true);
@@ -80,10 +79,16 @@ const ReviewCard = (props) => {
         </div>
 
         <div id="reviewcard-summary">{props.summary.length === 0 ? props.prodName : props.summary}</div>
-        <div id="reviewcard-body">{props.body}</div>
+        <div id="reviewcard-body">{props.body.length > 250 ?
+
+        <div id="review-twofifty"> {props.body.slice(0, 250)}<div id="review-showmore" onClick={() => setShowMore(true)}>{!showMore ? <div id="review-underline"> ...see more</div> : <div id="review-overtwofifty">{props.body.slice(250, props.body.length)}</div> }</div> </div>
+
+        : <div id="under">{props.body}</div>}</div>
         <div id="reviewcard-photo">{photos}</div>
         <div id="reviewcard-recommend">{rec}</div>
-        <div id="reviewcard-response">{props.response}</div>
+        <div id="reviewcard-response">
+            { props.response !== null ? <><span id="review-bold">Response:</span><br />{props.response}</> : props.response}
+        </div>
         <div id="reviewcard-helpful" >Helpful?&nbsp;
           <span id="helpful" onClick={handleHelpful}>
             {helpfulStatus ?   "✓ Thank you for your feedback!" : "Yes"}</span> ({helpfulCount}) &nbsp;|&nbsp;&nbsp;

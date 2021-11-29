@@ -137,7 +137,7 @@ export default function AddReviewButton( {productName, productId, reviews}) {
   return (
     <div >
       <button
-        id="review-button"
+        id="addreview-button"
         data-testid="ClickIndicator"
         onClick={() => {
           setIsOpen(true);

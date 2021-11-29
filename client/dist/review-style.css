@@ -3,6 +3,7 @@
 #Review {
   margin: auto;
   width: 70%;
+  color: var(--text--color);
 }
 
 #review-left {
@@ -105,7 +106,7 @@
 
 #ratings-count {
   text-decoration: none!important;
-  color:var(--primary--dark)!important;
+  color:var(--secondary--dark)!important;
   pointer-events: none!important;
   font-size: small;
   text-align: right;
@@ -137,7 +138,7 @@
     width: 15px;
     border-radius: 3px;
     background-color: transparent;
-    background: url(https://img.icons8.com/glyph-neue/16/000000/sort-down.png) center center no-repeat;
+    background: url('./sort-down.png') center center no-repeat;
     background-size: 20px;
     -webkit-appearance: none;
 
@@ -156,7 +157,7 @@
     font-size: x-small;
   }
 
-  #myRange {
+  .cbar input {
     pointer-events: none;
     cursor: none;
   }
@@ -176,6 +177,12 @@
   font-size: 22px;
   text-decoration: underline;
   text-align: center;
+  color: var(--text--color);
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
 }
 
 
@@ -258,10 +265,48 @@ img#review-img:hover {
 }
 
 #reviewcard-body {
-  display: inline-flex;
+  display: inline;
   margin: 3px 10px 3px 10px;
   font-size: 15px;
 }
+
+#review-twofifty {
+  display: inline;
+
+}
+
+#review-showmore {
+  display: inline;
+}
+
+#review-underline {
+  display: inline;
+  text-decoration: underline;
+  font-weight: 900;
+}
+
+#review-underline:hover {
+  color: blue;
+}
+
+#review-overtwofifty {
+  display: inline;
+}
+
+#reviewcard-recommend {
+  font-size: small;
+}
+
+#review-response {
+  background-color: var(--primary--dark);
+  padding: 15px;
+  border-radius: 25px;
+}
+
+#review-bold {
+  font-weight: 900;
+}
+
 
 /*buttons */
 
@@ -276,16 +321,8 @@ button {
   float: left;
 }
 
-#review-dropdown {
-  background-color: transparent;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
-}
 
-
-#review-button {
+#morereview-button, #addreview-button {
   font-size: medium;
   margin-top: 2%;
   display: inline-block;
@@ -302,7 +339,7 @@ button {
   color: var(--second--color);
  }
 
-#review-button:hover {
+#morereview-button:hover, #addreview-button:hover {
   background-color:var(--second--color);
   color: #f0f0f0;
 

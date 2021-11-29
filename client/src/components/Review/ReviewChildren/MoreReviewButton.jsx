@@ -17,7 +17,7 @@ class MoreReviewButton extends React.Component {
       return (
         <div data-testid="child-button">
           <button
-            id="review-button"
+            id="morereview-button"
             onClick={this.addCount}
           >
             MORE REVIEWS
