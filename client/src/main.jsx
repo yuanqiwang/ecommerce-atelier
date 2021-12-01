@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
+  browserHistory,
   BrowserRouter,
   Routes,
   Route
@@ -30,7 +31,7 @@ const Main = () => {
         </header>
         <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
         <main>
-          <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
+          <BrowserRouter history={browserHistory} onUpdate={() => window.scrollTo(0, 0)}>
             <Routes>
               <Route path="/" element={<App />} />
               <Route path="/product/:pid" element={<App />} />
