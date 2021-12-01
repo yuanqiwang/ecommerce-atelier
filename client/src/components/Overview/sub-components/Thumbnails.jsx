@@ -13,15 +13,15 @@ function Thumbnails(props) {
   return (
     <div id="overview_thumbnails" data-testid="thumbnails">
       <div className="overview_thumb_scroll overview_thumb_scroll_up"></div>
-      {props.thumbnails.map(thumb => {
-        // console.log(thumb);
+      {props.thumbnails.map((thumb,i) => {
+        // console.log(thumb, i);
         return (
-          <Thumbnail key={Math.random()} img={thumb.thumbnail_url} changePic={props.changePic} />
+          <Thumbnail key={Math.random()} id={i} img={thumb.thumbnail_url} changePic={props.changePic} changeThumbnail={props.changeThumbnail} />
         )
       })}
       <div className="overview_thumb_scroll overview_thumb_scroll_down"></div>
     </div>
   );
-};
+}
 
 export default Thumbnails;
