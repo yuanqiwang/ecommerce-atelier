@@ -33,7 +33,7 @@ class Overview extends React.Component {
   }
 
   changeStyle(id) {
-    console.log('style changed: ', this.props);
+    // console.log('style changed: ', this.props);
     this.setState({currentStyleID: id}, () => {
       this.updateHero();
     });
@@ -67,8 +67,12 @@ class Overview extends React.Component {
     );
   }
 
-  componentDidMount() {
-    // this.getProductInfo('59980');
+  componentDidUpdate() {
+    if ( this.state.currentStyleID >= this.props.productStyle.length ) {
+      this.setState({ currentStyleID: 0 }, () => {
+        this.changeStyle(this.state.currentStyleID);
+      });
+    }
   }
 }
 

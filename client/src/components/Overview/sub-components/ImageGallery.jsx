@@ -80,6 +80,14 @@ class ImageGallery extends React.Component {
       </div>
     )
   }
+
+  componentDidUpdate() {
+    if ( this.props.productStyle[this.props.currentStyleID] !== undefined &&
+      this.props.productStyle[this.props.currentStyleID].photos[0].url !== this.state.heroPic ) {
+      this.setState({ heroPic: this.props.productStyle[this.props.currentStyleID].photos[0].url });
+    }
+    // console.log('gallery updated:', this.props.productStyle[this.props.currentStyleID].photos[0].url);
+  }
 }
 
 export default ImageGallery;
