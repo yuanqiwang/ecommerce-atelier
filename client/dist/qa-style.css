@@ -290,6 +290,9 @@
   display: flex
 }
 
+.qa-answer-img {
+  height: 65px
+}
 .qa-answer-img-container img {
   border-style: solid;
   border-width: 1px;
