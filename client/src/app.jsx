@@ -24,8 +24,6 @@ const App = ()=> {
   useEffect(()=>{
     if (pid) {
       setProductID(pid)
-    } else {
-      setProductID(59553)
     }
   },[pid])
 
