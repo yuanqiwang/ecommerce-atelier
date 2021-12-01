@@ -5,7 +5,6 @@ import {
   HashRouter,
   Routes,
   Route,
-  Link
  } from 'react-router-dom';
 import App from './app.jsx';
 
@@ -22,25 +21,23 @@ const Main = () => {
 
     return (
         <div>
-        <HashRouter onUpdate={() => window.scrollTo(0, 0)}>
-          <header>
-            <Link to={"/"}>
-            <div className = "logo-name" id = "logo-name">cinquante-sept</div>
-            <div className = "logo-name-layer">57</div>
-            </Link>
-            <div id="search">
-              <input id="search-input" placeholder="Search..."/>
-              <button id="search-button"><i className="fa fa-search"></i></button>
-            </div>
-          </header>
-          <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
-          <main>
-              <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/product/:pid" element={<App />} />
-              </Routes>
-          </main>
-        </HashRouter>
+        <header>
+          <div className = "logo-name" id = "logo-name">cinquante-sept</div>
+          <div className = "logo-name-layer">57</div>
+          <div id="search">
+            <input id="search-input" placeholder="Search..."/>
+            <button id="search-button"><i className="fa fa-search"></i></button>
+          </div>
+        </header>
+        <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
+        <main>
+          <HashRouter onUpdate={() => window.scrollTo(0, 0)}>
+            <Routes>
+              <Route path="/" element={<App />} />
+              <Route path="/product/:pid" element={<App />} />
+            </Routes>
+          </HashRouter>
+        </main>
         <footer>
         <div className ='copyright'>
         2021 Cinquante-Sept Copyright@KetchUp Team
