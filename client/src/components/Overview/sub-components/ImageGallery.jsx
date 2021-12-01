@@ -22,6 +22,8 @@ class ImageGallery extends React.Component {
   }
 
   changeThumbnail(thumbIndex) {
+    // console.log(thumbIndex);
+
     this.setState({currentImg: thumbIndex});
   }
 
@@ -83,7 +85,8 @@ class ImageGallery extends React.Component {
 
   componentDidUpdate() {
     if ( this.props.productStyle[this.props.currentStyleID] !== undefined &&
-      this.props.productStyle[this.props.currentStyleID].photos[0].url !== this.state.heroPic ) {
+          this.state.currentImg === 0 &&
+          this.props.productStyle[this.props.currentStyleID].photos[0].url !== this.state.heroPic ) {
       this.setState({ heroPic: this.props.productStyle[this.props.currentStyleID].photos[0].url });
     }
     // console.log('gallery updated:', this.props.productStyle[this.props.currentStyleID].photos[0].url);
