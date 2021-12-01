@@ -57,6 +57,11 @@ class StyleSelector extends React.Component {
       </div>
     );
   }
+
+  componentDidUpdate() {
+    // let currentStyle = document.querySelector('#style-' + this.props.currentStyleID);
+    // this.updateStyles(this.props.currentStyleID);
+  }
 }
 
 export default StyleSelector;

@@ -9,7 +9,7 @@ function Styles(props) {
       {props.allStyles.map((style, i) => {
         if ( props.currentStyleID === i ) {
           return (
-            <div key={Math.random()} className="overview_style overview_selected_style">
+            <div key={Math.random()} id={'style-' + i} className="overview_style overview_selected_style">
               <img src={style.photos[0].thumbnail_url} alt={style.name} onClick={() => {
                 props.updateStyles(i, props.allStyles);
                 }} />
@@ -17,7 +17,7 @@ function Styles(props) {
           );
         } else {
           return (
-            <div key={Math.random()} className="overview_style">
+            <div key={Math.random()} id={'style-' + i} className="overview_style">
               <img src={style.photos[0].thumbnail_url} alt={style.name} onClick={() => {
                 props.updateStyles(i, props.allStyles);
                 }} />
