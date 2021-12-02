@@ -1,11 +1,11 @@
 # Project Atelier
 
-<img src="atelier.gif"  width="50%" height="50%" />
+<img src="atelier.gif" />
 
 ## Setup/Installation
 
 - Clone this repo to your desktop
-- Use commance `npm install` to install all necessary packages
+- Use command `npm install` to install all necessary packages
 - Use command `npm run start` to start the server
 - Use command `npm run build` to compile code
 - Open `index.html` in your browser
