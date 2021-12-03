@@ -12,7 +12,8 @@ const QuestionsList = ({questions, productId, productInfo}) => {
 
   useEffect(() => {
     // console.log('initial render and when questions is updated ')
-    if (questions)  {
+    if (questions) {
+      setQuestionDisplayCount(2) //if new question list, then set it to display two
       if (questions.length>2) {
         setQuestionList(questions)
         setMoreQuestionVisible(true)
@@ -21,10 +22,7 @@ const QuestionsList = ({questions, productId, productInfo}) => {
         setMoreQuestionVisible(false)
       }
     }
-    // else {
-    //   setQuestionList(questions)
-    //   setMoreQuestionVisible(false)
-    // }
+
   },[questions])
 
   useEffect(() => {
