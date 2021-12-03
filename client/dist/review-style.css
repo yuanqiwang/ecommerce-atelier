@@ -86,7 +86,7 @@
   border-radius: 3px;
   /* (height of inner div) / 2 + padding */
   padding: 1px;
-  width: 80%;
+  width: 75%;
   float: left;
   pointer-events: none!important;
 }
@@ -312,13 +312,7 @@ img#review-img:hover {
 
 /*buttons */
 
-#review-x i{
-  padding-top: 10px;
-  padding-right: 15px;
-  color: red!important;
-  background-color: transparent;
-  border-radius: "25px";
-}
+
 
 button {
   float: left;
@@ -349,13 +343,13 @@ button {
 }
 
 #rmodal-err {
-  color: red;
+  color: var(--second--color);
   text-align: center;
   font-size: small;
 }
 
 #rmodal-errorMessage {
-  color: red;
+  color: var(--second--color);
   text-align: center;
 
 }

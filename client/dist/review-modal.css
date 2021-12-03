@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0);
+  background: rgba(0,0,0,.6);
   z-index: 99;
 }
 
@@ -16,11 +16,12 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  background: "#fff";
+  background:var(--primary--light);
   z-index: 99;
   padding: 30px;
   transform: translate(-50%, -50%);
   border-radius: 25px;
+  color: var(--text--color);
 }
 .modal {
   width: 500px;
@@ -42,7 +43,7 @@
   box-shadow: 1rem 0 0 rgba(0, 0, 0, 0.2);
 }
 @supports (offset-rotation: 0deg) {
-  offset-rotation: 0deg;
+  offset-rotation:: 0deg;
   offset-path: path("M 250,100 S -300,500 -700,-200");
   .modal.off {
     offset-distance: 100%;
@@ -85,7 +86,7 @@
 
 #rmodal-border {
   padding-top: 20px;
-  background-color: lightgray;
+  background-color: var(--primary--dark);
   border-radius: 5px;
   padding-bottom: 20px;
 }
@@ -174,12 +175,12 @@
 }
 
 .star-rating :checked ~ label {
-  color:#f90;
+  color: var(--second--light);
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-  color:#fc0;
+  color:rgb(235, 165, 14);
 }
 
 /* */
@@ -281,7 +282,7 @@
   text-decoration: underline;
 }
 .letter-slider input:checked + label {
-  color: pink;
+  color: var(--radio-color);
 }
 .letter-slider label:last-of-type::after {
   display: block;

@@ -5,11 +5,11 @@ export default function Modal({ children, visable, close }) {
   if (!visable) return null;
   return (
     <>
-      <div id="rmodal-overlay"></div>
+      <div id="rmodal-overlay" onClick={close}></div>
       <div id="rmodal-wrapper">
         <div>{children}</div>
         <div id="review-x">
-          <i onClick={close} className="fas fa-times-circle qa-close-icon" ></i>
+          <i id="review-z" onClick={close} className="fas fa-times-circle qa-close-icon" ></i>
         </div>
       </div>
     </>
