@@ -8,7 +8,7 @@ const Search = ({onChange, placeholder}) => {
            placeholder={placeholder}
            onChange={onChange}
         />
-        <button className="qa-search-btn">
+        <button className="qa-search-btn" aria-label="Search">
          {/* <span className="glyphicon glyphicon-search"></span> */}
          <i className="fa fa-search"></i>
         </button>

@@ -30,7 +30,7 @@ const Main = () => {
             </Link>
             <div id="search">
               <input id="search-input" placeholder="Search..."/>
-              <button id="search-button"><i className="fa fa-search"></i></button>
+              <button id="search-button" aria-label="Search"><i className="fa fa-search"></i></button>
             </div>
           </header>
           <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
