@@ -68,11 +68,11 @@ class Overview extends React.Component {
   }
 
   componentDidUpdate() {
-    if ( this.state.currentStyleID >= this.props.productStyle.length ) {
-      this.setState({ currentStyleID: 0 }, () => {
-        this.changeStyle(this.state.currentStyleID);
-      });
-    }
+    // if ( this.state.currentStyleID >= this.props.productStyle.length ) {
+    //   this.setState({ currentStyleID: 0 }, () => {
+    //     this.changeStyle(this.state.currentStyleID);
+    //   });
+    // }
   }
 }
 
