@@ -101,7 +101,8 @@ const App = ()=> {
             productStyle={productStyle}
             stars={stars}
             addoutfit={addoutfit}
-            removeoutfit={removeoutfit} />
+            removeoutfit={removeoutfit}
+            productId = {productId} />
           <Related
             relatedProductArr={relatedProductArr}
             productID={productId}

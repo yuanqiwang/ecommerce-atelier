@@ -77,6 +77,15 @@
   background-repeat: no-repeat;
 }
 
+.overview_thumbnail_img_highlight {
+  height: 75px;
+  width: 75px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid var(--second--color);
+}
+
 .overview_thumb_scroll {
   width: 81px;
   position: absolute;
@@ -338,8 +347,8 @@
 }
 
 .overview_selected_style::after {
-  content: '✔️';
-  color: var(--primary--dark);
+  content: '\2713';
+  color: var(--text--color);
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -350,7 +359,7 @@
   right: -5px;
   text-align: center;
   line-height: 20px;
-  font-size: 10px;
+  font-size: 15px;
 }
 
 #overview_select_size {
@@ -433,19 +442,19 @@
   width: 90%;
   margin-top: 15px;
   background: var(--primary--dark);
-  border: 1px solid var(--primary--dark);;
+  border: 1px solid var(--primary--dark);
 }
 
 #overview_product_info {
   margin-left: auto;
-  border-right: 3px solid var(--primary--dark);;
+  border-right: 3px solid var(--primary--dark);
   border-radius: 25px 0 0 25px;
   padding-left: 20px;
 }
 
 #overview_product_bullets {
   margin-right: auto;
-  border-left: 3px solid var(--primary--dark);;
+  border-left: 3px solid var(--primary--dark);
   border-radius: 0 25px 25px 0;
   padding-right: 20px;
 }
@@ -459,7 +468,7 @@
 }
 
 #overview_product_info div {
- border-radius: 20px 0 0 20px;
+  border-radius: 20px 0 0 20px;
 }
 
 #overview_product_bullets div {
@@ -483,6 +492,34 @@
 }
 
 #overview_product_bullets li:before {
-  content: '✔️';
+  content: '\2713';
+  color: var(--text--color);
   padding-right: 20px;
+}
+
+.overview-allprice {
+  font-weight: 300;
+  padding: 5px 0px 2px 0px;
+}
+
+#overview-origin-price-dup {
+  text-decoration: line-through;
+  display: inline;
+  color: var(--text--color);
+  font-size: var(--b3--size);
+  margin-left: 5px;
+  font-weight: 300;
+}
+
+#overview-sale-price {
+  color: var(--second--color);
+  display: inline;
+  font-size: var(--b3--size);
+  font-weight: 400;
+}
+
+#overview-origin-price {
+  color: var(--text--color);
+  font-size: var(--b3--size);
+  font-weight: 400;
 }

@@ -9,19 +9,63 @@ import Thumbnail from './Thumbnail.jsx';
 //   "https://m.media-amazon.com/images/I/81P34yhaDlL._SX425_.jpg"
 // ];
 
-function Thumbnails(props) {
+const Thumbnails = ({thumbnails, changePic, changeThumbnail, currentStyleID, productId, currentHeroPic}) => {
+
+  const [idx, setIndex] = useState(0);
+  const [displayed, setDisplay] = useState(thumbnails.slice(0, 6));
+
+  // const toggleMainImage = (event) => {
+  //   changeBackground(event.target.src);
+  // }
+
+  useEffect( () => {
+    setDisplay(thumbnails.slice(0, 6));
+  }, [productId,currentStyleID, thumbnails.length])
+
+
   return (
     <div id="overview_thumbnails" data-testid="thumbnails">
-      <div className="overview_thumb_scroll overview_thumb_scroll_up"></div>
-      {props.thumbnails.map((thumb,i) => {
+      <div className="overview_thumb_scroll overview_thumb_scroll_up"
+      onClick={() => {
+        setIndex(idx-1)
+        setDisplay(thumbnails.slice(idx-1, idx+5))}}
+        hidden={idx === 0}
+      ></div>
+      {displayed.map((thumb,i) => {
         // console.log(thumb, i);
         return (
-          <Thumbnail key={Math.random()} id={i} img={thumb.thumbnail_url} changePic={props.changePic} changeThumbnail={props.changeThumbnail} />
+          <Thumbnail key={Math.random()} id={i} img={thumb.thumbnail_url} changePic={changePic} changeThumbnail={changeThumbnail} currentHeroPic ={currentHeroPic} />
         )
       })}
-      <div className="overview_thumb_scroll overview_thumb_scroll_down"></div>
+      {
+        thumbnails.length <= 6 || idx+7 >= thumbnails.length ?
+        null
+        :
+        <div className="overview_thumb_scroll overview_thumb_scroll_down"
+          onClick={()=> {
+          setIndex(idx+1)
+          setDisplay(thumbnails.slice(idx+1, idx+7))}}
+          disabled={thumbnails.length < 6 || idx === thumbnails.length-6}
+        ></div>
+      }
     </div>
-  );
+  )
+
 }
+
+// function Thumbnails(props) {
+//   return (
+//     <div id="overview_thumbnails" data-testid="thumbnails">
+//       <div className="overview_thumb_scroll overview_thumb_scroll_up"></div>
+//       {props.thumbnails.map((thumb,i) => {
+//         // console.log(thumb, i);
+//         return (
+//           <Thumbnail key={Math.random()} id={i} img={thumb.thumbnail_url} changePic={props.changePic} changeThumbnail={props.changeThumbnail} />
+//         )
+//       })}
+//       <div className="overview_thumb_scroll overview_thumb_scroll_down"></div>
+//     </div>
+//   );
+// }
 
 export default Thumbnails;

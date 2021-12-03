@@ -33,6 +33,7 @@ const Main = () => {
               <button id="search-button" aria-label="Search"><i className="fa fa-search"></i></button>
             </div>
           </header>
+          <div id ="one-liner"> SITE-WIDE ANNOUCEMENT MESSAGE! SAVE/DISCOUNT OFFER - NEW PRODUCT HIGHLIGHT </div>
           <span id="theme-toggle" className="theme-toggle" onClick = {toggleTheme}></span>
           <main>
               <Routes>
