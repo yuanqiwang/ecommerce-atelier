@@ -211,9 +211,10 @@
 }
 
 .qa-image-modal img{
-  /* max-width:500px; */
+  max-width:500px;
   /* max-height: 400px; */
-  width: 400px;
+  height: auto;
+  width: auto;
   border: solid var(--primary--color);
 }
 
@@ -293,17 +294,18 @@
   display: flex
 }
 
-/* .qa-answer-img {
-  height: 65px;
-  width: auto
-} */
+.qa-answer-img {
+  aspect-ratio: attr(width) / attr(height);
+}
 .qa-answer-img-container img {
   border-style: solid;
   border-width: 1px;
   border-color: var(--primary--color);
   margin-left: 10px;
-  height: 65px;
-  width: auto
+  /* height: 65px;
+  width: auto */
+  height: auto;
+  width: auto;
 }
 
 .qa-answer-img:hover{

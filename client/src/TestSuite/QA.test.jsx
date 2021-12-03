@@ -196,7 +196,7 @@ describe('Answer Modal', () => {
   it("should prevent submitting when the input does not meet requirements", () => {
     let submitButton = container.getByText('Submit')
     fireEvent.click(submitButton)
-    expect(container.getByText('You must enter the following:')).toBeInTheDocument();
+    expect(container.getByText('Input required')).toBeInTheDocument();
   })
 
   it("should close the modal window when clicking close", () => {

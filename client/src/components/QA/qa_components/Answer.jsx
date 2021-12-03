@@ -44,9 +44,9 @@ const Answer = ({answer}) => {
        <div className='qa-answer-img-container'>
          {answer.photos.map((photo, i)=>{
            if (typeof photo == 'object') {
-             return (<img className='qa-answer-img' src={photo.url} key={i} onClick={handleModalOpen} alt={`answer image ${i}`} />)
+             return (<img className='qa-answer-img' src={photo.url} height="65" width="65" key={i} onClick={handleModalOpen} alt={`answer image ${i}`} />)
            } else {
-             return (<img className='qa-answer-img' src={photo} key={i} onClick={handleModalOpen} alt={`answer image ${i}`} />)
+             return (<img className='qa-answer-img' src={photo} height="65" width='65' key={i} onClick={handleModalOpen} alt={`answer image ${i}`} />)
            }
 
          })}
