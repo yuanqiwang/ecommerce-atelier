@@ -1,4 +1,27 @@
 /* modal styles */
+
+#rmodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0);
+  z-index: 99;
+}
+
+#rmodal-wrapper {
+  width: 600px;
+  height: 600px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: "#fff";
+  z-index: 99;
+  padding: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 25px;
+}
 .modal {
   width: 500px;
   background: white;

@@ -28,7 +28,7 @@ class Review extends React.Component {
     this.setState({dropdown: childData})
   }
 
-  addCountCallback = (childData) => {
+  addCountCallback = () => {
     this.setState({reviewCount: this.state.reviewCount + 2})
   }
 

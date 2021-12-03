@@ -15,7 +15,6 @@
 }
 
 #review-right {
-  max-height: 700px;
   margin-left: 10%;
   margin-top: 10%;
 }
@@ -87,7 +86,7 @@
   border-radius: 3px;
   /* (height of inner div) / 2 + padding */
   padding: 1px;
-  width: 70%;
+  width: 80%;
   float: left;
   pointer-events: none!important;
 }
@@ -189,7 +188,7 @@
 /*user review card */
 #reviewcard-column {
   overflow-y: scroll;
-  max-height: 600px;
+  max-height: 1000px;
   padding-bottom: 1%;
 }
 
@@ -232,9 +231,12 @@ img#review-img {
   flex: 0 0 auto;
   margin: 5px;
   position: relative;
-  width: calc(25% - 10px);
   max-height: 100px;
+  max-width: 100px;
   image-rendering: crisp-edges;
+  object-fit: contain;
+  border:1px solid #021a40;
+  padding: 1px;
 }
 
 img#review-img:hover {
@@ -313,6 +315,7 @@ img#review-img:hover {
 #review-x i{
   padding-top: 10px;
   padding-right: 15px;
+  color: red!important;
   background-color: transparent;
   border-radius: "25px";
 }
@@ -355,5 +358,9 @@ button {
   color: red;
   text-align: center;
 
+}
+
+#no-underline {
+  text-decoration: none!important;
 }
 
