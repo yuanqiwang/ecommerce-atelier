@@ -186,5 +186,6 @@ footer {
 
 #one-liner {
   text-align: center;
+  color: var(--text--color);
   margin-bottom: 15px;
 }
