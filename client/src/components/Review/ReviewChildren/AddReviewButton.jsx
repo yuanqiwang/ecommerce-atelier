@@ -10,12 +10,12 @@ import axios from 'axios';
 export default function AddReviewButton( {productName, productId, reviews}) {
 
   let characValDefault = {
-    Size: "none selected",
-    Width: "none selected",
-    Comfort: "none selected",
-    Quality: "none selected",
-    Length: "none selected",
-    Fit: "none selected"
+    Size: "None selected",
+    Width: "None selected",
+    Comfort: "None selected",
+    Quality: "None selected",
+    Length: "None selected",
+    Fit: "None selected"
   }
 
   const characteristicTitles = reviews !== null ? Object.keys(reviews) : null

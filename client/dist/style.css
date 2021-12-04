@@ -32,6 +32,7 @@ hr.review-solid {
   --second--light: #ff5f52;
   --second--dark: #8e0000;
   --text--color: #000000;
+  --radio-color: #8B008B;
   --global-theme-toggle-content: '🌞 THEME';
   --h1--size: 56px;
   --h2--size: 45px;
@@ -51,6 +52,9 @@ html[data-theme='dark'] {
   --primary--dark: #102027;
   --second--color: #c62828;
   --second--light: #ff5f52;
+  --second--dark:#8e0000;
+  --text--color:#ffffff;
+  --radio-color:pink;
   --second--dark: #8e0000;
   --text--color: #ffffff;
   --global-theme-toggle-content: '🌝 THEME';

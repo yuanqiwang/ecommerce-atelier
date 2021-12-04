@@ -98,7 +98,7 @@ class Breakdown extends React.Component {
           </div>
           <span id="ratings-count">&nbsp;{this.props['ratings'][2]}</span>
           <div id="breakdown1">
-            <div onClick={() => {this.handleClick("one"), this.handleChange(1)}} id="breakdown-rating" >{(this.state.one === true) ? <div style={{fontWeight: 900}}>1 star</div>: <div>1 star</div>}</div>
+            <div onClick={() => {this.handleClick("one"), this.handleChange(1)}} id="breakdown-rating" >{(this.state.one === true) ? <div style={{fontWeight: 900}}>1&nbsp;&nbsp;&nbsp;star</div>: <div>1&nbsp;&nbsp;&nbsp;star</div>}</div>
             <div id="breakdown-bar">
               <div style={{ 'width': (this.props['ratings'][1]/nOfRatings)*100 + '%'  }}></div>
             </div>
