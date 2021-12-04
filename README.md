@@ -12,7 +12,7 @@
 
 ## Description
 
-This e-commerce website demo allows users to view products and scroll through related products. Users can also submit questions and reviews which also have additional sorting capabilities.
+This e-commerce website demo allows users to view products and scroll through related products. Users can also submit questions and reviews which also have additional sorting capabilities. Users can also view the website in light or darkmode. 
 
 ## Setup/Installation
 
