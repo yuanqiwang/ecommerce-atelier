@@ -1,6 +1,6 @@
 # Project Atelier
 
-#### An e-commerce demo application
+## An e-commerce demo application
 
 <img src="atelier.gif" />
 
