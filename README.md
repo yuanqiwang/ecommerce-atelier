@@ -2,6 +2,17 @@
 
 <img src="atelier.gif" />
 
+##Technologies Used
+ * React
+ * Express
+ * Node
+ * CSS
+ * JavaScript
+
+## Description
+
+This e-commerce website demo allows users to view products and scroll through related products. Users can also submit questions and reviews which also have additional sorting capabilities.
+
 ## Setup/Installation
 
 - Clone this repo to your desktop
@@ -29,4 +40,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
