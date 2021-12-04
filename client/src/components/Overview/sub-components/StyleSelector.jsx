@@ -14,7 +14,9 @@ class StyleSelector extends React.Component {
               thumbnail_url: 'https://m.media-amazon.com/images/I/71b0CQV4SFS._SX425_.jpg',
               url: "https://m.media-amazon.com/images/I/71b0CQV4SFS._SX425_.jpg"
             }
-          ]
+          ],
+          original_price: 0.00,
+          sale_price: 0.00
         }
       ]
     };
@@ -35,14 +37,29 @@ class StyleSelector extends React.Component {
   render() {
     let allStyles = this.state.styles;
     let selectedStyleName = this.state.styles[0].name;
+    let salePrice = this.state.styles[0].sale_price;
+    let price = this.state.styles[0].original_price;
 
     try {
       selectedStyleName = this.props.productStyle[this.props.currentStyleID].name;
       allStyles = this.props.productStyle;
+      price = parseInt(this.props.productStyle[this.props.currentStyleID].original_price).toFixed(0);
+      salePrice = parseInt(this.props.productStyle[this.props.currentStyleID].sale_price).toFixed(0);
     } catch {}
 
     return (
       <div id="overview_style_selector" data-testid="style-selector">
+        {
+          salePrice > 0?
+          <div className='overview-allprice'>
+            <div id= 'overview-sale-price'> ${salePrice}</div>
+            <div id= 'overview-origin-price-dup'>${price}</div>
+          </div>
+          :
+          <div className='overview-allprice'>
+            <div id= 'overview-origin-price'> ${price}</div>
+          </div>
+        }
         <h3>Style > {selectedStyleName}</h3>
         <Styles
           allStyles={allStyles}

@@ -43,6 +43,7 @@ class Overview extends React.Component {
     return (
       <div id="overview" data-testid="overview">
         <ImageGallery
+          productId = {this.props.productId}
           productStyle={this.props.productStyle}
           currentStyleID={this.state.currentStyleID} />
 
