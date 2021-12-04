@@ -45,6 +45,7 @@ const QA = ({questions, productId, productInfo, trackClick}) => {
         questions={questionList}
         productId={productId}
         productInfo={productInfo}
+        searchTerm={searchTerm}
       />
 
     </div>
