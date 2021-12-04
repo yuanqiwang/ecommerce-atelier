@@ -1,10 +1,9 @@
 # Project Atelier
 
 ## An e-commerce demo application
-
 <img src="atelier.gif" />
 
-##Technologies Used
+## Technologies Used
  * React
  * Express
  * Node
