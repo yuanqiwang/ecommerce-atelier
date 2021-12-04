@@ -4,7 +4,7 @@ import axios from 'axios'
 import AnswerModal from './AnswerModal.jsx'
 import Helpful from './Helpful.jsx'
 
-const Question = ({question, productName}) => {
+const Question = ({question, productName, searchTerm}) => {
 
   const [questionBody, setQuestionBody] = useState(question.question_body)
   const [answers, setAnswers] = useState(question.answers)
@@ -55,17 +55,28 @@ const Question = ({question, productName}) => {
 
 
   const handleSubmitAnswer = () => {
-
     axios.get(`/qa/questions/${question.question_id}/answers`)
       .then((result) => setAnswers(result.data))//
       .catch((err) => console.log(err))
 
   }
 
+  const getHighlightedText = (text, highlight) => {
+    // Split on highlight term and include term into parts, ignore case
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+    return <span> { parts.map((part, i) =>
+        <span key={i} style={part.toLowerCase() === highlight.toLowerCase() ? { backgroundColor: 'yellow' } : {} }>
+            { part }
+        </span>)
+    } </span>;
+  }
+
   return (
     <div className='qa-question-answers-container'>
       <div className='qa-question-container'>
-        <div className='qa-question'>Q: {questionBody} </div>
+        <div className='qa-question'>Q:
+          {getHighlightedText(questionBody, searchTerm)}
+        </div>
         <div className='qa-tiny qa-helpful-container'>
           <div className= 'qa-helpful'> Helpful?</div>
           <Helpful

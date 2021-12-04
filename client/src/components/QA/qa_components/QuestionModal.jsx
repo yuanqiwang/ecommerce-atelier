@@ -6,9 +6,6 @@ const QuestionModal = ({ open, productId, productName, onClose, onSubmitQuestion
 
   if(!open) return null;
 
-  const [body, setBody] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [values, setValues] = useState({
     body: '',
     name: '',

@@ -3,12 +3,13 @@ import Question from './Question.jsx'
 import QuestionModal from './QuestionModal.jsx';
 import axios from 'axios';
 
-const QuestionsList = ({questions, productId, productInfo}) => {
+const QuestionsList = ({questions, productId, productInfo, searchTerm}) => {
 
   const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
   const [questionList, setQuestionList] = useState([]);
   const [moreQuestionVisible, setMoreQuestionVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
+
 
   useEffect(() => {
     // console.log('initial render and when questions is updated ')
@@ -50,6 +51,7 @@ const QuestionsList = ({questions, productId, productInfo}) => {
             key={question.question_id}
             productId={productId}
             productName={productInfo? productInfo.name : 'product'}
+            searchTerm ={searchTerm}
             />)
         }
       </div>
