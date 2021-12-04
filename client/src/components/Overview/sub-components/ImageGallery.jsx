@@ -18,31 +18,40 @@ class ImageGallery extends React.Component {
 
   changeHeroPic(pic) {
     this.setState({heroPic: pic});
-    // console.log(this.state);
   }
 
   changeThumbnail(thumbIndex) {
-    // console.log(thumbIndex);
-
     this.setState({currentImg: thumbIndex});
   }
 
   nextImage() {
-    console.log('props: ', this.props);
     let thumbIndex = this.state.currentImg;
-    // if ( this.state.currentImg === this.props.images.length ) {
-    //   this.changeThumbnail(0);
-    // } else {
-    //   this.changeThumbnail(this.state.currentImg + 1 );
-    // }
+    if ( this.state.currentImg === this.props.productStyle[this.props.currentStyleID].photos.length ) {
+      this.changeThumbnail(0);
+    } else {
+      this.changeThumbnail(this.state.currentImg + 1 );
+    }
 
     thumbIndex++;
 
-    this.setState({currentImg: thumbIndex});
+    this.setState({
+      currentImg: thumbIndex,
+      heroPic: this.props.productStyle[this.props.currentStyleID].photos[thumbIndex].thumbnail_url
+    });
   }
 
   prevImage() {
-    console.log('state: ', this.state);
+    let thumbIndex = this.state.currentImg;
+    if ( this.state.currentImg > 0 ) {
+      this.changeThumbnail(this.state.currentImg + 1 );
+
+      thumbIndex--;
+
+      this.setState({
+        currentImg: thumbIndex,
+        heroPic: this.props.productStyle[this.props.currentStyleID].photos[thumbIndex].thumbnail_url
+      });
+    }
   }
 
   expandGallery() {
@@ -69,11 +78,14 @@ class ImageGallery extends React.Component {
         <div id="gallery_expander">
           <Thumbnails
             thumbnails={thumbnails}
+            currentStyleID = {this.props.currentStyleID}
+            productId = {this.props.productId}
             changePic={this.changeHeroPic}
-            changeThumbnail={this.changeThumbnail} />
+            changeThumbnail={this.changeThumbnail}
+            currentHeroPic = {this.state.heroPic} />
 
           <div className="overview_hero_nav overview_hero_nav_prev" onClick={this.prevImage}></div>
-          <div id="heroPic" style={heroPic}></div>
+          <div id="heroPic" style={heroPic} onClick={this.expandGallery}></div>
           <div className="overview_hero_nav overview_hero_nav_next" onClick={this.nextImage}></div>
           <div id="overview_fullscreen_toggle" onClick={this.expandGallery}>
           <div className="toggle-icon"></div>
@@ -85,9 +97,11 @@ class ImageGallery extends React.Component {
 
   componentDidUpdate() {
     if ( this.props.productStyle[this.props.currentStyleID] !== undefined &&
-           this.state.currentImg === 0 &&
-           this.props.productStyle[this.props.currentStyleID].photos[0].url !== this.state.heroPic ) {
-       this.setState({ heroPic: this.props.productStyle[this.props.currentStyleID].photos[0].url });
+          this.state.currentImg === 0 &&
+          this.props.productStyle[this.props.currentStyleID].photos[0].thumbnail_url !== this.state.heroPic ) {
+      this.setState({
+        heroPic: this.props.productStyle[this.props.currentStyleID].photos[0].thumbnail_url
+      });
     }
     // console.log('gallery updated:', this.props.productStyle[this.props.currentStyleID].photos[0].url);
   }

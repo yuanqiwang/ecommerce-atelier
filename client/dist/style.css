@@ -7,7 +7,6 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-
 #header {
   margin: 10px auto;
   background: grey;
@@ -31,7 +30,7 @@ hr.review-solid {
   --primary--dark: #aeaeae;
   --second--color: #c62828;
   --second--light: #ff5f52;
-  --second--dark:#8e0000;
+  --second--dark: #8e0000;
   --text--color: #000000;
   --radio-color: #8B008B;
   --global-theme-toggle-content: '🌞 THEME';
@@ -47,7 +46,7 @@ hr.review-solid {
   --b4--size: 13px;
 }
 
-html[data-theme="dark"] {
+html[data-theme='dark'] {
   --primary--color: #37474f;
   --primary--light: #62727b;
   --primary--dark: #102027;
@@ -56,6 +55,8 @@ html[data-theme="dark"] {
   --second--dark:#8e0000;
   --text--color:#ffffff;
   --radio-color:pink;
+  --second--dark: #8e0000;
+  --text--color: #ffffff;
   --global-theme-toggle-content: '🌝 THEME';
   --h1--size: 56px;
   --h2--size: 45px;
@@ -86,15 +87,18 @@ html[data-theme="dark"] {
   color: var(--text--color);
 }
 
-
 .star {
   display: inline-block;
-  --percent: calc(var(--rating)/5*100%);
+  --percent: calc(var(--rating) / 5 * 100%);
   padding: 5px;
   margin-left: 8px;
   line-height: 1;
   -webkit-text-stroke: 1px var(--second--light);
-  background-image: linear-gradient(90deg,var(--second--light) var(--percent), var(--primary--color) var(--percent));
+  background-image: linear-gradient(
+    90deg,
+    var(--second--light) var(--percent),
+    var(--primary--color) var(--percent)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -103,7 +107,7 @@ header {
   height: 70px;
   width: 100%;
   background-color: var(--primary--dark);
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 footer {
@@ -119,7 +123,7 @@ footer {
   font-size: var(--h1--size);
   color: var(--second--color);
   display: inline;
-  position:absolute;
+  position: absolute;
   z-index: 4;
 }
 
@@ -131,13 +135,13 @@ footer {
   margin-left: 300px;
   margin-top: -20px;
   opacity: 0.3;
-  position:absolute;
+  position: absolute;
   z-index: 3;
 }
 
 #search {
   display: inline;
-  position:absolute;
+  position: absolute;
   box-sizing: border-box;
   font: 'Lato', sans-serif;
   background: var(--primary--light);
@@ -184,4 +188,8 @@ footer {
   padding: 25px;
 }
 
-
+#one-liner {
+  text-align: center;
+  color: var(--text--color);
+  margin-bottom: 15px;
+}
