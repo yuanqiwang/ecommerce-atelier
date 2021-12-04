@@ -1,5 +1,7 @@
 # Project Atelier
 
+#### An e-commerce demo application
+
 <img src="atelier.gif" />
 
 ##Technologies Used
