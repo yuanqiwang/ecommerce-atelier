@@ -1,18 +1,32 @@
 # Project Atelier
 
-#### An e-commerce demo application
+#### Demo
 <img src="atelier.gif" />
 
-## Technologies Used
- * React
- * Express
- * Node
- * CSS
- * JavaScript
+## Overview
 
-## Description
+An e-commerce website that allows users to browse products and their descriptions, read and submit Q&A and reviews, and much more. It has four main sections:
+- Product Overview: includes product information, style selector, cart and image gallery.
+- Related Product: includes related products and liked products presented in two carousels.
+- Questions and Answers: includes questions and answers, feedback buttons, forms to submit questions and answers, and search bar for searching questions.
+- Reviews: includes reviews and ratings, a form to submit a review, and search bar for searching reviews.
 
-This e-commerce website demo allows users to view products and scroll through related products. Users can also submit questions and reviews which also have additional sorting capabilities. Users can also view the website in light or darkmode. 
+This is part of the HackReacter Capstone Projects. 
+
+## Description (Q&A)
+
+This description is for the Q&A section. For detailed description of other sections, please check out the repo from each contributor. Based on the Business Requirement, the Q&A section achieves the following key functions:
+
+- It displays a list of questions and their answers related to the product in question. 
+- Questions and answers are sorted by their helpfulness. If the answer is by the seller, that answer will be displayed first. 
+- The user can vote a question or an answer to be "helpful" by clicking the "helpful?" link. Similarly, a user can report a question or an answer. A user can vote only once per browser (until the user clears out the browser cache).
+- The user can expand the number of questions shown in the list two at a time (scrollable after certain height). The user can also collapse the list.
+- The user can submit a new question and upload an image via a modal
+- The user can submit an answer via a modal
+- The use can search questions by keyword. The search results will be populated. Searched word is highlighted in yellow. 
+
+
+Users can search questions and the list of questions will be filtered to 
 
 ## Setup/Installation
 
@@ -22,15 +36,21 @@ This e-commerce website demo allows users to view products and scroll through re
 - Use command `npm run build` to compile code
 - Open `index.html` in your browser
 
-## Usage
+## Technologies
 
-[localhost:1234](localhost:1234)
+- React
+- Node
+- Express
+- CSS
+- JavaScript
+
+## Deployment
+
+The front-end was deployed using AWS EC2 container (Ubuntu server)
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.
 
 ## Credit
 
